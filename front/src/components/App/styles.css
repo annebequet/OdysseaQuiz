@@ -1,0 +1,15 @@
+.app {
+  width: 500px;
+  margin: 1em auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: xx-large;
+  font-weight: 900;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.app img {
+  max-width: 150px;
+}
