@@ -2,9 +2,10 @@
 import React from 'react';
 
 // == Import
-import Counter from 'src/containers/Counter';
-import reactLogo from './react-logo.svg';
-import './styles.css';
+import Header from 'src/components/Header';
+import Footer from 'src/components/Footer';
+import Title from 'src/components/Title';
+import './styles.scss';
 
 // == Composant
 const App = () => (
@@ -24,13 +25,14 @@ const App = () => (
       }}
     >
       <source
-        src="https://vod-progressive.akamaized.net/exp=1595599730~acl=%2A%2F1233006834.mp4%2A~hmac=2cef48f5b9833f10c8f24013ca8ef0db854432820e9c5789a247ab20aba605e2/vimeo-prod-skyfire-std-us/01/3642/12/318214648/1233006834.mp4?filename=Ocean+Turtle+-+797.mp4"
+        src="https://vod-progressive.akamaized.net/exp=1595615976~acl=%2A%2F402718307.mp4%2A~hmac=4a73c1d219494115070c39aedee9fd5c42ff4450ce7ff826796914d489c09cf9/vimeo-prod-skyfire-std-us/01/2195/5/135977474/402718307.mp4?filename=Scuba+Diving+-+312.mp4"
         type="video/mp4"
+        alt="Video by Caelan Kelley from Pixabay"
       />
     </video>
-    <img src={reactLogo} alt="react logo" />
-    <h1>ODYSSEA QUIZ</h1>
-    <Counter />
+    <Header />
+    <Title />
+    <Footer />
   </div>
 );
 
