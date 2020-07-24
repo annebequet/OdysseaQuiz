@@ -6,6 +6,7 @@ use App\Repository\EnvironmentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=EnvironmentRepository::class)
@@ -21,6 +22,7 @@ class Environment
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Groups({"users_get", "users_get_one"})
      */
     private $name;
 
