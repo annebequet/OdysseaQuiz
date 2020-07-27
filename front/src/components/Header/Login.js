@@ -1,49 +1,59 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import Field from 'src/containers/Field';
 
-import Modal from 'react-modal';
+import './styles.scss';
 
-const Login = () => {
-  Modal.setAppElement('#root');
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+const Login = ({
+  open,
+  handleTogglerClick,
+  login,
+}) => {
+  const handleOnClick = () => {
+    handleTogglerClick();
+  };
+  const handleOnSubmit = (evt) => {
+    evt.preventDefault();
+    login();
+  };
 
   return (
-    <div className="header__nav__loginForm">
+    <div className={`${open ? 'login login--open' : 'login'}`}>
       <button
+        onClick={handleOnClick}
+        className="login__toggler"
         type="button"
-        onClick={() => setModalIsOpen(true)}
       >
-        Se Connecter
+        Connexion
       </button>
-      <Modal
-        isOpen={modalIsOpen}
-        shouldCloseOnOverlayClick={false}
-        onRequestClose={() => setModalIsOpen(false)}
+      <form
+        className="login__form"
+        onClick={handleOnSubmit}
       >
-  <div id="login" className="modal fade">
-    <div className="modal-dialog">
-      <div className="modal-content">
-        <div className="modal-body">
-          <button
-            type="button"
-            className="close"
-            onClick={() => setModalIsOpen(false)}
-          >
-            X
-          </button>
-          <h4>Se Connecter</h4>
-          <form>
-            <input type="text" name="username" className="username form-control" placeholder="Username"/>
-            <input type="password" name="password" className="password form-control" placeholder="password"/>
-            <input className="btn login" type="submit" value="Login" />
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-      </Modal>
+        <Field
+          label="Adresse Email"
+          id="email"
+          type="email"
+        />
+        <Field
+          label="Mot de passe"
+          id="password"
+          type="password"
+        />
+        <button
+          className="login__submit"
+          type="submit"
+        >
+          Se connecter
+        </button>
+      </form>
     </div>
   );
 };
 
+Login.propTypes = {
+  handleTogglerClick: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
+};
 export default Login;

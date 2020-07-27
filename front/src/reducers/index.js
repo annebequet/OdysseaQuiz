@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
+import headerLogin from './headerLogin';
 
 export default combineReducers({
-  counter,
+  headerLogin,
 });

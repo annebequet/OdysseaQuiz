@@ -1,0 +1,16 @@
+@use 'src/styles/vars';
+
+.field {
+  &__label {
+    font-size: .8em;
+    color: vars.$color-alt;
+    font-weight: bold;
+  }
+  &__input {
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    padding: vars.$gutter / 1.5;
+    margin-bottom: vars.$gutter / 2;
+  }
+}

@@ -1,3 +1,5 @@
+@use 'src/styles/vars';
+
 .header {
   width: 100%;
   height: 3em;
@@ -80,10 +82,76 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Burger Menu small screen size */
 @media (min-width: 768px) {
-    .bm-burger-button {
+    .menu--burger {
       display: none;
     }
   }
+/* Burger menu styles */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 0.4em;
+  top: 0.6em;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #a90000;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
 
 /* Nav menu not to be displayed when on a small screen */
 @media (max-width: 767px) {
@@ -91,68 +159,61 @@ Note: Beware of modifying this element as it can break the animations - you shou
     display: none;
   }
 }
+/* Desktop nav styles*/
 
 /* Nav Log */
 .header__log {
-  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
-.login-trigger {
-  font-weight: bold;
-  color: #fff;
-  background: linear-gradient(to bottom right, #B05574, #F87E7B);
-  padding: 15px 30px;
-  border-radius: 30px;
-  position: relative; 
-  top: 50%;
+/* Header Register link */
+.header__nav__register {
+  padding-right: 4em;
 }
 
-/*Modal*/
-h4 {
-  font-weight: bold;
-  color: #fff;
-}
-.close {
-  color: #fff;
-  transform: scale(1.2)
-}
-.modal-content {
-  font-weight: bold;
-  background: linear-gradient(to bottom right,#F87E7B,#B05574);
-}
-.form-control {
-  margin: 1em 0;
-}
-.form-control:hover, .form-control:focus {
-  box-shadow: none;  
-  border-color: #fff;
-}
-.username, .password {
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  border-bottom: 2px solid #eee;
-  padding-left: 0;
-  font-weight: normal;
-  background: transparent;  
-}
-.form-control::-webkit-input-placeholder {
-  color: #eee;  
-}
-.form-control:focus::-webkit-input-placeholder {
-  font-weight: bold;
-  color: #fff;
-}
+/* Login toggler */
 .login {
-  padding: 6px 20px;
-  border-radius: 20px;
-  background: none;
-  border: 2px solid #FAB87F;
-  color: #FAB87F;
-  font-weight: bold;
-  transition: all .5s;
-  margin-top: 1em;
+  position: fixed;
+  right: 2em;
+  width: 300px;
+  display: flex;
+  transition: transform .3s ;
+  transform: translateX(250px);
+  &--open {
+    transform: translateX(0);
+    top: 2em;
+    right: 30%;
+    .login__toggler {
+      /* add display none and use blur */
+      background-color: transparent;
+      color: transparent;
+      .app {
+        background-color: green;
+      }
+    }
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__toggler {
+    background-color: transparent;
+    transform: rotate(0);
+    border: none;
+    color: white;
+    margin-right: 4em;
+    font-weight: bold;
+  }
+  &__submit {
+    background-color: vars.$color-alt;
+    color: vars.$color-light;
+    border: none;
+    border-radius: 10px;
+    padding: vars.$gutter / 2;
+    font-weight: bold;
+  }
 }
-.login:hover {
-  background: #FAB87F;
-  color: #fff;
-}
+
+/* Link style */
+

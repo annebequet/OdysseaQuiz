@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 const RegisterButton = () => (
-  <div>
-    <button type="button">
+  <div className="header__nav__register">
+    <NavLink
+      to="/register"
+      activeClassName="menu__link--active"
+      exact
+    >
       S'enregistrer
-    </button>
+    </NavLink>
   </div>
 );
 
