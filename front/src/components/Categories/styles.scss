@@ -1,0 +1,16 @@
+.page__categories {
+  text-align: center;
+  margin: 1em;
+}
+.categories__ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.categories__item {
+  margin: 1em;
+}
+img {
+  border-radius: 20px;
+}
+
