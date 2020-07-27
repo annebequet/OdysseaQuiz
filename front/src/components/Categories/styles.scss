@@ -1,11 +1,21 @@
+@use 'src/styles/vars';
+
 .page__categories {
   text-align: center;
-  margin: 1em;
+  overflow: hidden scroll;
+  height: 750px;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 .categories__ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+h3 {
+  color: orange;
+  font-weight: bold;
+  padding: 0.8em;
 }
 .categories__item {
   margin: 1em;

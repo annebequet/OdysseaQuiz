@@ -4,7 +4,8 @@
 body {
   font-family: sans-serif;
   width: 100%;
-  box-sizing: border-box;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 /* 
