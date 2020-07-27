@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { slide as Menu } from 'react-burger-menu';
+import { bubble as Menu } from 'react-burger-menu';
 
 import Login from 'src/containers/Login';
 
@@ -65,11 +65,8 @@ const Header = () => (
       </Menu>
     </nav>
     <div className="header__nav__form">
-      <nav className="header__log">
-        <RegisterButton />
-        <Login />
-      </nav>
-      <div className="menu--desktop">LOGIN</div>
+      <RegisterButton />
+      <Login />
     </div>
   </div>
 );

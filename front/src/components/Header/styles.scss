@@ -1,6 +1,9 @@
 @use 'src/styles/vars';
 
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 3em;
   margin: 0;
@@ -10,72 +13,12 @@
   color: white;
 }
 
-/* Position and sizing of burger button */
-.bm-burger-button {
-  position: fixed;
-  width: 2em;
-  height: 2em;
-  left: 0.5em;
-  top: 0.5em;
-}
-
-/* Color/shape of burger icon bars */
-.bm-burger-bars {
-  background: white;
-}
- 
-/* Color/shape of burger icon bars on hover*/
-.bm-burger-bars-hover {
-  background: #a90000;
-}
- 
-/* Position and sizing of clickable cross button */
-.bm-cross-button {
-  height: 24px;
-  width: 24px;
-}
- 
-/* Color/shape of close button cross */
-.bm-cross {
-  background: #bdc3c7;
-}
- 
-/*
-Sidebar wrapper styles
-Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
-*/
-.bm-menu-wrap {
-  position: fixed;
-  height: 100%;
-  width: 30px;
-}
- 
-/* General sidebar styles */
-.bm-menu {
-  background: rgba(1, 1, 36);
-  padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
-}
- 
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-  fill: rgba(1, 1, 36);
-}
- 
-/* Wrapper for item list */
-.bm-item-list {
-  color: white;
-  padding: 0.8em;
-}
- 
-/* Individual item */
-.bm-item {
-  display: inline-block;
-}
- 
-/* Styling of overlay */
-.bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
+.header__nav__form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: orange;
+  font-weight: bold;
 }
 
 /* Responsive conditions : what sould not be displayed depending on the screen size */
@@ -97,7 +40,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #373a47;
+  background: orange;
 }
 
 /* Color/shape of burger icon bars on hover*/
@@ -123,18 +66,20 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu-wrap {
   position: fixed;
   height: 100%;
+  margin-left: -18px;
+  margin-top: -25px;
 }
 
 /* General sidebar styles */
 .bm-menu {
-  background: #373a47;
+  background: rgba(1, 1, 36, 0.8);
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }
 
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-  fill: #373a47;
+  fill: rgba(1, 1, 36, 0.8);
 }
 
 /* Wrapper for item list */
@@ -166,16 +111,18 @@ Note: Beware of modifying this element as it can break the animations - you shou
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  color: orange;
+  font-weight: bold;
 }
 /* Header Register link */
 .header__nav__register {
-  padding-right: 4em;
+  padding-right: 5em;
 }
 
 /* Login toggler */
 .login {
   position: fixed;
-  right: 2em;
+  right: 3em;
   width: 300px;
   display: flex;
   transition: transform .3s ;
@@ -184,13 +131,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
     transform: translateX(0);
     top: 2em;
     right: 30%;
+    width: 350px;
     .login__toggler {
       /* add display none and use blur */
       background-color: transparent;
       color: transparent;
-      .app {
-        background-color: green;
-      }
     }
   }
   &__form {
@@ -201,13 +146,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
     background-color: transparent;
     transform: rotate(0);
     border: none;
-    color: white;
+    color: orange;
     margin-right: 4em;
     font-weight: bold;
+    font-size: medium;
   }
   &__submit {
     background-color: vars.$color-alt;
-    color: vars.$color-light;
+    color: orange;
     border: none;
     border-radius: 10px;
     padding: vars.$gutter / 2;
