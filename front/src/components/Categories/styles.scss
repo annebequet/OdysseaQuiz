@@ -2,9 +2,7 @@
 
 .page__categories {
   text-align: center;
-  overflow: hidden scroll;
   height: 750px;
-  overflow-y: hidden; /* Hide vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 .categories__ul {
