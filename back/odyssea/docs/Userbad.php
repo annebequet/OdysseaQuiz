@@ -2,17 +2,16 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User implements UserInterface
+class Userbad
 {
     /**
      * @ORM\Id()
@@ -20,12 +19,6 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"users_get", "users_get_one"})
-     */
-    private $email;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
@@ -46,16 +39,20 @@ class User implements UserInterface
     private $pseudo;
 
     /**
-     * @ORM\Column(type="json")
-     * @Groups("users_get_one")
+     * @ORM\Column(type="string", length=180)
+     * @Groups({"users_get", "users_get_one"})
      */
-    private $roles = [];
+    private $email;
 
     /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $roles;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -90,7 +87,6 @@ class User implements UserInterface
      */
     private $scores;
 
-    
     public function __construct()
     {
         $this->contacts = new ArrayCollection();
@@ -100,6 +96,42 @@ class User implements UserInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(?string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -114,41 +146,9 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUsername(): string
+    public function getPassword(): ?string
     {
-        return (string) $this->email;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getPassword(): string
-    {
-        return (string) $this->password;
+        return $this->password;
     }
 
     public function setPassword(string $password): self
@@ -158,63 +158,18 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getSalt()
+    public function getRoles(): ?string
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
+        return $this->roles;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
+    public function setRoles(string $roles): self
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
-
-    /**
-     * Get the value of lastName
-     */ 
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Set the value of lastName
-     *
-     * @return  self
-     */ 
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
+        $this->roles = $roles;
 
         return $this;
     }
 
-    /**
-     * Get the value of firstName
-     */ 
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set the value of firstName
-     *
-     * @return  self
-     */ 
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-    
     public function getAvatar(): ?string
     {
         return $this->avatar;
@@ -327,28 +282,6 @@ class User implements UserInterface
 
     public function __toString() 
     {
-        return (string) $this->username; 
+        return (string) $this->pseudo; 
     }
-
-    /**
-     * Get the value of pseudo
-     */ 
-    public function getPseudo()
-    {
-        return $this->pseudo;
-    }
-
-    /**
-     * Set the value of pseudo
-     *
-     * @return  self
-     */ 
-    public function setPseudo($pseudo)
-    {
-        $this->pseudo = $pseudo;
-
-        return $this;
-    }
-
-
 }
