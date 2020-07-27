@@ -1,6 +1,7 @@
 @use 'src/styles/vars';
 
 .header {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,15 +11,6 @@
   background-color: rgba(1, 1, 36, 0.8);
   text-align: left;
   color: white;
-}
-
-.header__nav__form {
-  display: flex;
-  align-items: center;
-  margin: 1em;
-  justify-content: flex-end;
-  color: orange;
-  font-weight: bold;
 }
 
 /* Responsive conditions : what sould not be displayed depending on the screen size */
@@ -107,13 +99,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Desktop nav styles*/
 
 /* Nav Log */
-.header__log {
+.header__nav__form {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   color: orange;
-  font-size: medium;
+  font-weight: bold;
 }
+
 /* Header Register link */
 .header__nav__register {
   padding-right: 5em;
@@ -121,7 +114,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Login toggler */
 .login {
-  position: absolute;
+  position: fixed;
   right: 3em;
   width: 300px;
   display: flex;
