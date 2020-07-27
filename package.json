@@ -70,6 +70,7 @@
     "react-router-dom": "^5.2.0",
     "redux": "*",
     "semantic-ui-react": "^1.0.0",
-    "styled-components": "*"
+    "styled-components": "*",
+    "react-survey": "^1.7.0"
   }
 }
