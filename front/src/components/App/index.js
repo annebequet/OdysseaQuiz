@@ -9,6 +9,8 @@ import Footer from 'src/components/Footer';
 import Page from 'src/components/Page';
 import Register from 'src/components/Register';
 import Home from 'src/components/Home';
+import Categories from 'src/components/Categories';
+import Profile from 'src/components/Profile';
 import './styles.scss';
 
 // == Composant
@@ -48,6 +50,22 @@ const App = () => (
     >
       <Page>
         <Home />
+      </Page>
+    </Route>
+    <Route
+      exact
+      path="/categories"
+    >
+      <Page>
+        <Categories />
+      </Page>
+    </Route>
+    <Route
+      exact
+      path="/profile"
+    >
+      <Page>
+        <Profile />
       </Page>
     </Route>
     <Footer />
