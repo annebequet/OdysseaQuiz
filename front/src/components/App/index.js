@@ -1,10 +1,15 @@
 // == Import npm
 import React from 'react';
+import { Route } from 'react-router-dom';
+
 
 // == Import
-import Counter from 'src/containers/Counter';
-import reactLogo from './react-logo.svg';
-import './styles.css';
+import Header from 'src/components/Header';
+import Footer from 'src/components/Footer';
+import Page from 'src/components/Page';
+import Register from 'src/components/Register';
+import Home from 'src/components/Home';
+import './styles.scss';
 
 // == Composant
 const App = () => (
@@ -24,13 +29,28 @@ const App = () => (
       }}
     >
       <source
-        src="https://vod-progressive.akamaized.net/exp=1595599730~acl=%2A%2F1233006834.mp4%2A~hmac=2cef48f5b9833f10c8f24013ca8ef0db854432820e9c5789a247ab20aba605e2/vimeo-prod-skyfire-std-us/01/3642/12/318214648/1233006834.mp4?filename=Ocean+Turtle+-+797.mp4"
+        src="https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/rytughwRxj1s1gmp3/videoblocks-underwater-landscape-of-coral-reef-amazing-underwater-marine-life-world-scuba-diving-and-snorkeling_baj3ircnz__d3d6d16680620376fe9c58e37c21cfb7__P360.mp4"
         type="video/mp4"
       />
     </video>
-    <img src={reactLogo} alt="react logo" />
-    <h1>ODYSSEA QUIZ</h1>
-    <Counter />
+    <Header />
+    <Route
+      exact
+      path="/register"
+    >
+      <Page>
+        <Register />
+      </Page>
+    </Route>
+    <Route
+      exact
+      path="/"
+    >
+      <Page>
+        <Home />
+      </Page>
+    </Route>
+    <Footer />
   </div>
 );
 
