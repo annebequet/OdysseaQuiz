@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -21,21 +22,25 @@ class User
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Groups({"users_get", "users_get_one"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Groups({"users_get", "users_get_one"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=16)
+     * @Groups({"users_get", "users_get_one"})
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=180)
+     * @Groups({"users_get", "users_get_one"})
      */
     private $email;
 
@@ -51,6 +56,7 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"users_get", "users_get_one"})
      */
     private $avatar;
 
@@ -67,6 +73,7 @@ class User
     /**
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"users_get", "users_get_one"})
      */
     private $environment;
 
@@ -271,5 +278,10 @@ class User
         }
 
         return $this;
+    }
+
+    public function __toString() 
+    {
+        return (string) $this->pseudo; 
     }
 }
