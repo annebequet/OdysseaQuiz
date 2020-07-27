@@ -15,46 +15,18 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="app_login")
+     * @Route("/api/login", name="api_login", methods={"POST"})
      */
-    public function login(Request $request, SerializerInterface $serializer)
+    public function login()
     {
-        // Le JSON est dans le contenu de la requête
-        $content = $request->getContent();
+        $user = $this->getUser();
 
-        // On déserialise notre JSON en entité Doctrine
-        $user = $serializer->deserialize($content, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);
-
-        return $this->redirectToRoute('api_login',[
-            'user' => $user,
-        ]);
-    }
-
-    /**
-     * @Route("/api/login", name="api_login")
-     */
-    public function ApiLogin(AuthenticationUtils $authenticationUtils, UserRepository $userRepository, Request $request, SerializerInterface $serializer)
-    {
-
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        // Le JSON est dans le contenu de la requête
-        $content = $request->getContent();
-
-        $currentUser = $userRepository->find($user->getId());
-        
-        // On déserialise notre JSON en entité Doctrine
-        $user = $serializer->deserialize($content, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $currentUser]);
-
-        //dd($currentUser);
+        //dd($user);
 
         return $this->json([
-            'last_username' => $lastUsername, 
-            'user' => $user,
-            'error' => $error
+            'id' => $user->getId(),
+            'username' => $user->getUsername(),
+            'roles' => $user->getRoles(),
         ]);
     }
 
