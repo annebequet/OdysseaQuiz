@@ -10,65 +10,56 @@ const Categories = () => (
       <li className="categories__item">
         <h3>Catégorie </h3>
         <img
-        src={TurtleImage}
-        >
-        </img>
+          src={TurtleImage}
+        />
       </li>
       <li className="categories__item">
         <h3>Catégorie </h3>
         <img
-        src={TurtleImage}
-        >
-        </img>
+          src={TurtleImage}
+        />
       </li>
       <li className="categories__item">
         <h3>Catégorie </h3>
         <img
-        src={TurtleImage}
-        >
-        </img>
+          src={TurtleImage}
+        />
       </li>
       <li className="categories__item">
         <h3>Catégorie </h3>
         <img
-        src={TurtleImage}
-        >
-        </img>
+          src={TurtleImage}
+        />
       </li>
       <li className="categories__item">
         <h3>Catégorie </h3>
         <img
-        src={TurtleImage}
-        >
-        </img>
+          src={TurtleImage}
+        />
       </li>
       <li className="categories__item">
         <h3>Catégorie </h3>
         <img
-        src={TurtleImage}
-        >
-        </img>
+          src={TurtleImage}
+        />
       </li>
       <li className="categories__item">
         <h3>Catégorie </h3>
         <img
-        src={TurtleImage}
-        >
-        </img>
+          src={TurtleImage}
+        />
       </li>
       <li className="categories__item">
         <h3>Catégorie </h3>
         <img
-        src={TurtleImage}
-        >
-        </img>
+          src={TurtleImage}
+        />
       </li>
       <li className="categories__item">
         <h3>Catégorie </h3>
         <img
-        src={TurtleImage}
-        >
-        </img>
+          src={TurtleImage}
+        />
       </li>
     </ul>
   </div>
