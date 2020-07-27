@@ -7,10 +7,12 @@ export const handleTogglerClick = () => ({
   type: HANDLE_TOGGLER_CLICK,
 });
 
-export const login = () => ({
-  type: LOGIN,
+export const changeFieldValue = (key, value) => ({
+  type: CHANGE_FIELD_VALUE,
+  key,
+  value,
 });
 
-export const changeFieldValue = () => ({
-  type: CHANGE_FIELD_VALUE,
+export const login = () => ({
+  type: LOGIN,
 });

@@ -4,6 +4,12 @@
 body {
   font-family: sans-serif;
 }
+.body::-webkit-scrollbar {
+  display: none;
+}
+.body {
+  -ms-overflow-style: none;
+}
 
 /* 
   // or you can import your own font
