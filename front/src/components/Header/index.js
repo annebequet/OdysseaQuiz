@@ -5,6 +5,7 @@ import { bubble as Menu } from 'react-burger-menu';
 
 import Login from 'src/containers/Login';
 import RegisterButton from './RegisterButton';
+import WhaleLogo from 'src/assets/images/whale-logo.png';
 
 import './styles.scss';
 
@@ -38,7 +39,7 @@ const Header = () => (
       </NavLink>
     </nav>
     <nav className="menu--burger">
-      <Menu>
+      <Menu disableAutoFocus>
         <NavLink
           to="/"
           className="menu__item"
@@ -79,7 +80,7 @@ const Header = () => (
         >
           FAQ
         </NavLink>
-
+        <img className="logo" alt="whale-logo" src={WhaleLogo} />
       </Menu>
     </nav>
     <div className="header__nav__form">

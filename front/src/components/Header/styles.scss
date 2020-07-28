@@ -44,10 +44,12 @@
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-  height: 24px;
-  width: 50px;
+  height: 50px;
+  width: 200px;
+  margin-right: 23%;
+  padding-left: 60px;
+  padding-bottom: 60px;
 }
-
 /* Color/shape of close button cross */
 .bm-cross {
   background: #bdc3c7;
@@ -65,7 +67,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 svg:nth-child(1) {
-  height:50%;
+  width: 70%;
 }
 
 /* General sidebar styles */
@@ -73,7 +75,6 @@ svg:nth-child(1) {
   background: rgba(1, 1, 36);
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
-  height: 50%;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -172,4 +173,9 @@ svg:nth-child(1) {
 
 .menu__link--active {
   color: white;
+}
+
+.logo {
+  padding-top: 100px;
+  width: 200%;
 }
