@@ -3,6 +3,7 @@
 .page__categories {
   text-align: center;
   height: 750px;
+  overflow-y: hidden scroll; /* Hide vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 .categories__ul {
