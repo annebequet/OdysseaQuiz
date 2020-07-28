@@ -1,4 +1,4 @@
-import { HANDLE_TOGGLER_CLICK, CHANGE_FIELD_VALUE} from '../actions';
+import { HANDLE_TOGGLER_CLICK, CHANGE_FIELD_VALUE } from '../actions';
 
 const initialState = {
   open: false,
