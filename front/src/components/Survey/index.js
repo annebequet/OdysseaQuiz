@@ -14,7 +14,7 @@ const adultSurvey = () => {
 
   const model = new Survey.Model(surveyData);
 
-  const handleOnComplete= (survey, options) => {
+  const handleOnComplete = (survey, options) => {
     //Write survey results into database
     console.log("Survey results: " + JSON.stringify(surveyData));
    };
