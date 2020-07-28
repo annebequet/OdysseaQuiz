@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { bubble as Menu } from 'react-burger-menu';
 
 import Login from 'src/containers/Login';
-
 import RegisterButton from './RegisterButton';
 
 import './styles.scss';
@@ -15,6 +14,7 @@ const Header = () => (
     <nav className="menu--desktop">
       <NavLink
         to="/"
+        className="menu__item"
         activeClassName="menu__link--active"
         exact
       >
@@ -22,6 +22,7 @@ const Header = () => (
       </NavLink>
       <NavLink
         to="/categories"
+        className="menu__item"
         activeClassName="menu__link--active"
         exact
       >
@@ -29,6 +30,7 @@ const Header = () => (
       </NavLink>
       <NavLink
         to="/admin"
+        className="menu__item"
         activeClassName="menu__link--active"
         exact
       >
@@ -39,7 +41,7 @@ const Header = () => (
       <Menu>
         <NavLink
           to="/"
-          className="menu-item"
+          className="menu__item"
           activeClassName="menu__link--active"
           exact
         >
@@ -47,7 +49,7 @@ const Header = () => (
         </NavLink>
         <NavLink
           to="/categories"
-          className="menu-item"
+          className="menu__item"
           activeClassName="menu__link--active"
           exact
         >
@@ -55,11 +57,27 @@ const Header = () => (
         </NavLink>
         <NavLink
           to="/admin"
-          className="menu-item"
+          className="menu__item"
           activeClassName="menu__link--active"
           exact
         >
           Admin
+        </NavLink>
+        <NavLink
+          to="/contact"
+          className="menu__item"
+          activeClassName="menu__link--active"
+          exact
+        >
+          Contact
+        </NavLink>
+        <NavLink
+          to="/faq"
+          className="menu__item"
+          activeClassName="menu__link--active"
+          exact
+        >
+          FAQ
         </NavLink>
 
       </Menu>

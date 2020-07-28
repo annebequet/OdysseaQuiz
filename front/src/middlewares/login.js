@@ -10,9 +10,6 @@ const login = (store) => (next) => (action) => {
         username,
         password,
       })
-        .catch((Request) => {
-          console.log(Request);
-        })
         .then((response) => {
           console.log(response);
           console.log(response.data);
