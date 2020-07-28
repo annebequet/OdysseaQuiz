@@ -51,7 +51,7 @@ class UserController extends AbstractController
      * 
      * @Route("/api/users", methods={"POST"})
      */
-    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator)
+    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $entityManager)
     {
         // Le JSON est dans le contenu de la requête
         $content = $request->getContent();

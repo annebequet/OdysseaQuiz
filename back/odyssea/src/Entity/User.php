@@ -100,6 +100,7 @@ class User implements UserInterface
     {
         $this->contacts = new ArrayCollection();
         $this->scores = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int
