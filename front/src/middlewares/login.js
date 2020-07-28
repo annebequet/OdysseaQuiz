@@ -4,10 +4,10 @@ import { LOGIN, changeFieldValue } from 'src/actions';
 const login = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
-      const { email, password } = store.getState().headerLogin;
+      const { username, password } = store.getState().headerLogin;
 
       axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/login', {
-        email,
+        username,
         password,
       })
         .catch((Request) => {
@@ -16,7 +16,7 @@ const login = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           console.log(response.data);
-          store.dispatch(changeFieldValue('username', response.data));
+          store.dispatch(changeFieldValue('pseudo', response.data));
         })
         .catch((error) => {
           console.log(error);
