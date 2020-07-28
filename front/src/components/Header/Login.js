@@ -32,8 +32,8 @@ const Login = ({
       >
         <Field
           label="Adresse Email"
-          id="email"
-          type="email"
+          id="username"
+          type="username"
         />
         <Field
           label="Mot de passe"
