@@ -16,15 +16,15 @@ security:
             security: false
         main:
             anonymous: lazy
-            json_login:
-                check_path:    /api/login
+            provider: app_user_provider
             guard:
                 authenticators:
-                    - App\Security\LoginAuthenticator
+                    - App\Security\TokenAuthenticator
+            json_login:
+                check_path: /api/login
             logout:
                 path: app_logout
-                # where to redirect after logout
-                # target: 
+                success_handler: App\Security\LogoutHandler
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -37,3 +37,4 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/api/profile, roles: ROLE_USER }

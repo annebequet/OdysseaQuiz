@@ -64,6 +64,11 @@ class User implements UserInterface
     private $avatar;
 
     /**
+     * @ORM\Column(type="string", unique=true, nullable=true)
+     */
+    private $apiToken;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -325,11 +330,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function __toString() 
-    {
-        return (string) $this->username; 
-    }
-
     /**
      * Get the value of pseudo
      */ 
@@ -350,5 +350,28 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * Get the value of apiToken
+     */ 
+    public function getApiToken()
+    {
+        return $this->apiToken;
+    }
 
+    /**
+     * Set the value of apiToken
+     *
+     * @return  self
+     */ 
+    public function setApiToken($apiToken)
+    {
+        $this->apiToken = $apiToken;
+
+        return $this;
+    }
+
+    public function __toString() 
+    {
+        return (string) $this->email; 
+    }
 }
