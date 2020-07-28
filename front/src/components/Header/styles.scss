@@ -1,23 +1,18 @@
 @use 'src/styles/vars';
 
 .header {
+  width: 100%;
+  top: 0;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 3em;
   margin: 0;
   padding: 1em;
-  background-color: rgba(1, 1, 36, 0.8);
+  background-color: vars.$background-color-transparent;
   text-align: left;
   color: white;
-}
-
-.header__nav__form {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  color: orange;
-  font-weight: bold;
 }
 
 /* Responsive conditions : what sould not be displayed depending on the screen size */
@@ -30,11 +25,11 @@
   }
 /* Burger menu styles */
 .bm-burger-button {
-  position: fixed;
+  position: relative;
   width: 36px;
   height: 30px;
-  left: 0.4em;
-  top: 0.6em;
+  left: 0;
+  top: 0;
 }
 
 /* Color/shape of burger icon bars */
@@ -50,7 +45,7 @@
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
   height: 24px;
-  width: 24px;
+  width: 50px;
 }
 
 /* Color/shape of close button cross */
@@ -66,7 +61,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   position: absolute;
   height: 100%;
   margin-left: -18px;
-  margin-top: -25px;
+  margin-top: -10px;
 }
 
 /* General sidebar styles */
@@ -106,13 +101,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Desktop nav styles*/
 
 /* Nav Log */
-.header__log {
+.header__nav__form {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   color: orange;
-  font-size: medium;
+  font-weight: bold;
 }
+
 /* Header Register link */
 .header__nav__register {
   padding-right: 5em;
@@ -120,7 +116,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Login toggler */
 .login {
-  position: absolute;
+  position: fixed;
   right: 3em;
   width: 300px;
   display: flex;
@@ -151,7 +147,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
     font-size: medium;
   }
   &__submit {
-    background-color: vars.$color-alt;
+    background-color: vars.$background-color;
     color: orange;
     border: none;
     border-radius: 10px;

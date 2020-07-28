@@ -28,7 +28,7 @@ const Login = ({
       </button>
       <form
         className="login__form"
-        onClick={handleOnSubmit}
+        onSubmit={handleOnSubmit}
       >
         <Field
           label="Adresse Email"
