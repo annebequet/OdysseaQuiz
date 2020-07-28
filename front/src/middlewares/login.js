@@ -6,7 +6,7 @@ const login = (store) => (next) => (action) => {
     case LOGIN: {
       const { email, password } = store.getState().headerLogin;
 
-      axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/login', {
+      axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/login', {
         email,
         password,
       })
