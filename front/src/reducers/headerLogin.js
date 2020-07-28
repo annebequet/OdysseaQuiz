@@ -2,8 +2,8 @@ import { HANDLE_TOGGLER_CLICK, CHANGE_FIELD_VALUE} from '../actions';
 
 const initialState = {
   open: false,
+  pseudo: '',
   username: '',
-  email: '',
   password: '',
 };
 
