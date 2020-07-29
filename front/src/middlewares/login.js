@@ -11,12 +11,11 @@ const login = (store) => (next) => (action) => {
         password,
       })
         .catch((Request) => {
-          console.log(Request);
+          console.log('request : ', Request);
         })
         .then((response) => {
-          console.log(response);
-          console.log(response.data);
-          store.dispatch(changeFieldValue('pseudo', response.data));
+          console.log('response : ', response);
+          store.dispatch(changeFieldValue('pseudo', response.data.username));
         })
         .catch((error) => {
           console.log(error);
