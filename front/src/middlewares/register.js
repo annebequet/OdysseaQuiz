@@ -24,7 +24,7 @@ const register = (store) => (next) => (action) => {
       },
       {
         headers: {
-          'X-AUTH-TOKEN': localStorage.getItem('token'),
+          'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },
       })
         .then((response) => {
