@@ -44,10 +44,12 @@
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-  height: 24px;
-  width: 50px;
+  height: 50px;
+  width: 200px;
+  margin-right: 23%;
+  padding-left: 60px;
+  padding-bottom: 60px;
 }
-
 /* Color/shape of close button cross */
 .bm-cross {
   background: #bdc3c7;
@@ -59,9 +61,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 */
 .bm-menu-wrap {
   position: absolute;
-  height: 100%;
+  height: 50%;
   margin-left: -18px;
   margin-top: -10px;
+}
+
+svg:nth-child(1) {
+  width: 70%;
 }
 
 /* General sidebar styles */
@@ -157,4 +163,19 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 /* Link style */
+.menu__item {
+  color: orange;
+  font-size: medium;
+  font-weight: bold;
+  padding: 1em;
+  border: none;
+}
 
+.menu__link--active {
+  color: white;
+}
+
+.logo {
+  padding-top: 100px;
+  width: 200%;
+}

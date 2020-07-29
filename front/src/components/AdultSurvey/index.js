@@ -22,8 +22,8 @@ const AdultSurvey = ({ adultSurveyData }) => {
   );
 };
 
-AdultSurvey.propTypes = {
+/* AdultSurvey.propTypes = {
   adultSurveyData: PropTypes.object.isRequired,
-};
+}; */
 
 export default AdultSurvey;

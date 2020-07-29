@@ -10,7 +10,6 @@ const Field = ({
   setValue,
 }) => {
   const handleOnChange = (evt) => {
-    console.log('handleOnChange');
     setValue(evt.target.value);
   };
   return (
