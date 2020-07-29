@@ -5,8 +5,8 @@ import { register, changeField } from 'src/actions/register';
 const mapStateToProps = (state) => ({
   email: state.register.username,
   password: state.register.password,
-  lastName: state.register.last_name,
-  firstName: state.register.first_name,
+  lastName: state.register.lastName,
+  firstName: state.register.firstName,
   pseudo: state.register.pseudo,
   avatar: state.register.avatar,
   environment: state.register.environment,

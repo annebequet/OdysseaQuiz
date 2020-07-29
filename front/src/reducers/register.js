@@ -3,10 +3,10 @@ import { CHANGE_FIELD } from 'src/actions/register';
 export const initialState = {
   username: '',
   password: '',
-  last_name: '',
-  first_name: '',
+  lastName: '',
+  firstName: '',
   pseudo: '',
-
+  environment: 2,
 };
 
 const register = (state = initialState, action = {}) => {

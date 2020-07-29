@@ -24,7 +24,8 @@ const Register = ({
     <div className="register">
       <form className="register__form" onSubmit={handleSubmit}>
         <FieldRegister
-          name="email"
+          name="username"
+          type="email"
           placeholder="Adresse Email"
           onChange={changeField}
           value={email}
@@ -37,15 +38,15 @@ const Register = ({
           value={password}
         />
         <FieldRegister
-          name="last_name"
-          type="last_name"
+          name="lastName"
+          type="lastName"
           placeholder="Nom"
           onChange={changeField}
           value={lastName}
         />
         <FieldRegister
-          name="firt_name"
-          type="firt_name"
+          name="firstName"
+          type="firstName"
           placeholder="Prénom"
           onChange={changeField}
           value={firstName}
@@ -57,16 +58,25 @@ const Register = ({
           onChange={changeField}
           value={pseudo}
         />
-        <input
+        <FieldRegister
           name="avatar"
-          type="file"
+          type="avatar"
+          placeholder="Avatar"
+          onChange={changeField}
           value={avatar}
         />
-        <input
+        <select
           name="environment"
-          type="number"
+          onChange={changeField}
           value={environment}
-        />
+        >
+          <option value="1">
+            Enfant
+          </option>
+          <option value="2">
+            Adulte
+          </option>
+        </select>
         <button
           type="submit"
           className="register-form-button"
@@ -94,7 +104,6 @@ Register.defaultProps = {
   lastName: '',
   firstName: '',
   avatar: '',
-  environment: 1,
 };
 
 export default Register;
