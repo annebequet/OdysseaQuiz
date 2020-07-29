@@ -4,14 +4,14 @@ import FieldRegister from './FieldRegister';
 
 import './styles.scss';
 
-const Register = () => ({
+const Register = ({
   email,
   password,
   lastName,
   firstName,
   pseudo,
-  /* avatar,
-  environment, */
+  avatar,
+  environment,
   changeField,
   handleRegister,
 }) => {
@@ -57,7 +57,7 @@ const Register = () => ({
           onChange={changeField}
           value={pseudo}
         />
-        {/* <input
+        <input
           name="avatar"
           type="file"
           value={avatar}
@@ -66,10 +66,10 @@ const Register = () => ({
           name="environment"
           type="number"
           value={environment}
-        /> */}
+        />
         <button
           type="submit"
-          className="login-form-button"
+          className="register-form-button"
         >
           S'inscrire
         </button>
@@ -84,8 +84,8 @@ Register.propTypes = {
   pseudo: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
-  /* avatar: PropTypes.string,
-  environment: PropTypes.number.isRequired, */
+  avatar: PropTypes.string,
+  environment: PropTypes.number.isRequired,
   changeField: PropTypes.func.isRequired,
   handleRegister: PropTypes.func.isRequired,
 };
@@ -93,8 +93,8 @@ Register.propTypes = {
 Register.defaultProps = {
   lastName: '',
   firstName: '',
-  /* avatar: '',
-  environment: 1, */
+  avatar: '',
+  environment: 1,
 };
 
 export default Register;
