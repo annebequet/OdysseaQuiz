@@ -12,9 +12,8 @@ const login = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response);
-          const user = response.data;
-          console.log(user);
-          window.sessionStorage.setItem('user', user);
+          const { token } = response.data;
+          window.sessionStorage.setItem('token', token);
           store.dispatch(saveUser('roles', response.data.roles));
           store.dispatch(saveUser(response.data.username));
           store.dispatch(saveUser(response.data.logged));
