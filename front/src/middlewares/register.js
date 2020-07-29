@@ -21,6 +21,9 @@ const register = (store) => (next) => (action) => {
         firstName,
         pseudo,
         environment,
+        headers: {
+          'X-AUTH-TOKEN': localStorage.getItem('token'),
+        },
       })
         .then((response) => {
           console.log(response.data);
