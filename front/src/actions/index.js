@@ -27,7 +27,13 @@ export const checkIsLogged = () => ({
   type: CHECK_IS_LOGGED,
 });
 
-export const saveUser = (username) => ({
+export const saveUser = (
+  pseudo,
+  roles,
+  logged,
+) => ({
   type: SAVE_USER,
-  username,
+  pseudo,
+  roles,
+  isLogged: logged,
 });

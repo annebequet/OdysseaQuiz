@@ -10,6 +10,7 @@ const initialState = {
   pseudo: '',
   username: '',
   password: '',
+  isLogged: false,
 };
 
 const HeaderLogin = (state = initialState, action = {}) => {
@@ -30,15 +31,12 @@ const HeaderLogin = (state = initialState, action = {}) => {
         email: '',
         password: '',
         isLogged: true,
-        infos: {
-          pseudo: action.username,
-        },
+        pseudo: action.pseudo,
       };
     case LOGOUT:
       return {
         ...state,
         isLogged: false,
-        infos: {},
       };
     default:
       return state;

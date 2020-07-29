@@ -17,10 +17,13 @@ import './styles.scss';
 // == Composant
 const App = ({
   getSurveys,
+  checkIsLogged,
 }) => {
   useEffect(() => {
     getSurveys();
   }, []);
+
+  useEffect(checkIsLogged, []);
 
   return (
     <div className="app">
@@ -65,6 +68,7 @@ const App = ({
 
 App.propTypes = {
   getSurveys: PropTypes.func.isRequired,
+  checkIsLogged: PropTypes.func.isRequired,
 };
 
 // == Export

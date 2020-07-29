@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN, changeFieldValue, LOGOUT } from 'src/actions';
+import { LOGIN, LOGOUT, saveUser } from 'src/actions';
 
 const login = (store) => (next) => (action) => {
   switch (action.type) {
@@ -12,11 +12,12 @@ const login = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response);
-          console.log(response.data);
-          const { token, roles } = response.data;
-          window.sessionStorage.setItem('token', token);
-          window.sessionStorage.setItem('roles', roles);
-          store.dispatch(changeFieldValue('roles', response.data.roles));
+          const user = response.data;
+          console.log(user);
+          window.sessionStorage.setItem('user', user);
+          store.dispatch(saveUser('roles', response.data.roles));
+          store.dispatch(saveUser(response.data.username));
+          store.dispatch(saveUser(response.data.logged));
         })
         .catch((error) => {
           console.log(error);
