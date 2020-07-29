@@ -28,12 +28,12 @@ const Login = ({
       </button>
       <form
         className="login__form"
-        onClick={handleOnSubmit}
+        onSubmit={handleOnSubmit}
       >
         <Field
           label="Adresse Email"
-          id="email"
-          type="email"
+          id="username"
+          type="username"
         />
         <Field
           label="Mot de passe"

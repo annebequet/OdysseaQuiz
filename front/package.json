@@ -68,8 +68,10 @@
     "react-model": "^3.1.4",
     "react-redux": "*",
     "react-router-dom": "^5.2.0",
+    "react-survey": "^1.7.0",
     "redux": "*",
     "semantic-ui-react": "^1.0.0",
-    "styled-components": "*"
+    "styled-components": "*",
+    "survey-react": "^1.7.23"
   }
 }

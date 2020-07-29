@@ -3,12 +3,8 @@
 
 body {
   font-family: sans-serif;
-}
-.body::-webkit-scrollbar {
-  display: none;
-}
-.body {
-  -ms-overflow-style: none;
+  overflow: hidden scroll;
+  width: 100%;
 }
 
 /* 
