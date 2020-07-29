@@ -15,31 +15,37 @@ class Question
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"categories_get_one", "get_quest_by_cat"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Groups({"categories_get_one", "get_quest_by_cat"})
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"categories_get_one", "get_quest_by_cat"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"categories_get_one", "get_quest_by_cat"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"categories_get_one", "get_quest_by_cat"})
      */
     private $choices = [];
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"categories_get_one", "get_quest_by_cat"})
      */
     private $correctAnswer;
 
@@ -60,6 +66,7 @@ class Question
 
     /**
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="questions")
+     * @Groups("categories_get_one")
      */
     private $environment;
 
