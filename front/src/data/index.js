@@ -1,4 +1,4 @@
-const surveyJSON = {
+const adultSurveyData = {
   title: 'American History',
   showProgressBar: 'bottom',
   showTimerPanel: 'top',
@@ -58,4 +58,4 @@ const surveyJSON = {
   completedHtml: '<h4>You have answered correctly <b>{correctedAnswers}</b> questions from <b>{questionCount}</b>.</h4>',
 };
 
-export default surveyJSON;
+export default adultSurveyData;
