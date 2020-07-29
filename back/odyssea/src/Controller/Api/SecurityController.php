@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -10,7 +11,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/api/login", name="api_login", methods={"POST"})
      */
-    public function login()
+    public function login(EntityManagerInterface $entityManager)
     {
         $user = $this->getUser();
 
@@ -19,6 +20,11 @@ class SecurityController extends AbstractController
         }
 
         // @todo Renouveler le token à la connexion
+        $apitoken = md5(uniqid(rand(), true)); 
+        //dd($apitoken);
+        $user->setApiToken($apitoken);
+        $entityManager->flush();
+
         // @todo Et/ou avec une date d'expiration (mais pourquoi finalement ?)
         // @todo A chaque modif de mot de passe
 
@@ -34,5 +40,6 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
+        
     }
 }
