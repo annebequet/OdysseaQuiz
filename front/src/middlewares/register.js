@@ -6,7 +6,7 @@ const register = (store) => (next) => (action) => {
     case REGISTER: {
       const state = store.getState();
       const {
-        username,
+        email,
         password,
         lastName,
         firstName,
@@ -15,14 +15,16 @@ const register = (store) => (next) => (action) => {
       } = state.register;
 
       axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/register', {
-        username,
+        email,
         password,
         lastName,
         firstName,
         pseudo,
         environment,
+      },
+      {
         headers: {
-          'X-AUTH-TOKEN': localStorage.getItem('token'),
+          'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },
       })
         .then((response) => {

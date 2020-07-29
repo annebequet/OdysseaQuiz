@@ -17,16 +17,19 @@ class Category
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"categories_get", "categories_get_one"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Groups({"categories_get", "categories_get_one"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"categories_get", "categories_get_one"})
      */
     private $picture;
 
@@ -42,6 +45,7 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="category")
+     * @Groups("categories_get_one")
      */
     private $questions;
 

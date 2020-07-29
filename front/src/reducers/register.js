@@ -1,7 +1,7 @@
 import { CHANGE_FIELD } from 'src/actions/register';
 
 export const initialState = {
-  username: '',
+  email: '',
   password: '',
   lastName: '',
   firstName: '',

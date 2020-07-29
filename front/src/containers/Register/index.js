@@ -3,7 +3,7 @@ import Register from 'src/components/Register';
 import { register, changeField } from 'src/actions/register';
 
 const mapStateToProps = (state) => ({
-  email: state.register.username,
+  email: state.register.email,
   password: state.register.password,
   lastName: state.register.lastName,
   firstName: state.register.firstName,

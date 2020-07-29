@@ -24,7 +24,7 @@ const Register = ({
     <div className="register">
       <form className="register__form" onSubmit={handleSubmit}>
         <FieldRegister
-          name="username"
+          name="email"
           type="email"
           placeholder="Adresse Email"
           onChange={changeField}
