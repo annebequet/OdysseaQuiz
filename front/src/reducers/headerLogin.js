@@ -1,10 +1,16 @@
-import { HANDLE_TOGGLER_CLICK, CHANGE_FIELD_VALUE } from '../actions';
+import {
+  HANDLE_TOGGLER_CLICK,
+  CHANGE_FIELD_VALUE,
+  SAVE_USER,
+  LOGOUT,
+} from '../actions';
 
 const initialState = {
   open: false,
   pseudo: '',
   username: '',
   password: '',
+  isLogged: false,
 };
 
 const HeaderLogin = (state = initialState, action = {}) => {
@@ -18,6 +24,19 @@ const HeaderLogin = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.key]: action.value,
+      };
+    case SAVE_USER:
+      return {
+        ...state,
+        email: '',
+        password: '',
+        isLogged: true,
+        pseudo: action.pseudo,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        isLogged: false,
       };
     default:
       return state;

@@ -1,5 +1,5 @@
 // == Import npm
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
@@ -15,45 +15,61 @@ import Profile from 'src/components/Profile';
 import './styles.scss';
 
 // == Composant
-const App = () => (
-  <div className="app">
-    <Video />
-    <Header />
-    <Route
-      exact
-      path="/register"
-    >
-      <Page>
-        <Register />
-      </Page>
-    </Route>
-    <Route
-      exact
-      path="/"
-    >
-      <Page>
-        <Home />
-      </Page>
-    </Route>
-    <Route
-      exact
-      path="/categories"
-    >
-      <Page>
-        <Categories />
-      </Page>
-    </Route>
-    <Route
-      exact
-      path="/profile"
-    >
-      <Page>
-        <Profile />
-      </Page>
-    </Route>
-    <Footer />
-  </div>
-);
+const App = ({
+  getSurveys,
+  checkIsLogged,
+}) => {
+  useEffect(() => {
+    getSurveys();
+  }, []);
+
+  useEffect(checkIsLogged, []);
+
+  return (
+    <div className="app">
+      <Video />
+      <Header />
+      <Route
+        exact
+        path="/register"
+      >
+        <Page>
+          <Register />
+        </Page>
+      </Route>
+      <Route
+        exact
+        path="/"
+      >
+        <Page>
+          <Home />
+        </Page>
+      </Route>
+      <Route
+        exact
+        path="/categories"
+      >
+        <Page>
+          <Categories />
+        </Page>
+      </Route>
+      <Route
+        exact
+        path="/profile"
+      >
+        <Page>
+          <Profile />
+        </Page>
+      </Route>
+      <Footer />
+    </div>
+  );
+};
+
+App.propTypes = {
+  getSurveys: PropTypes.func.isRequired,
+  checkIsLogged: PropTypes.func.isRequired,
+};
 
 // == Export
 export default App;
