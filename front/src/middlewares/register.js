@@ -1,16 +1,30 @@
 import axios from 'axios';
-import { REGISTER  } from 'src/actions/register';
+import { REGISTER } from 'src/actions/register';
 
-const auth = (store) => (next) => (action) => {
+const register = (store) => (next) => (action) => {
   switch (action.type) {
     case REGISTER: {
       const state = store.getState();
-      const { email, password } = state.register;
-
-      axios.post('', {
-        email,
+      const {
+        username,
         password,
-      }
+        lastName,
+        firstName,
+        pseudo,
+        environment,
+      } = state.register;
+
+      axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/register', {
+        username,
+        password,
+        lastName,
+        firstName,
+        pseudo,
+        environment,
+        headers: {
+          'X-AUTH-TOKEN': localStorage.getItem('token'),
+        },
+      })
         .then((response) => {
           console.log(response.data);
         })
@@ -27,4 +41,4 @@ const auth = (store) => (next) => (action) => {
   }
 };
 
-export default auth;
+export default register;
