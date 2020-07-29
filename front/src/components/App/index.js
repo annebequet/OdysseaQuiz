@@ -16,6 +16,7 @@ import './styles.scss';
 
 // == Composant
 const App = ({
+  surveyLoading,
   getSurveys,
   checkIsLogged,
 }) => {
@@ -37,14 +38,18 @@ const App = ({
           <Register />
         </Page>
       </Route>
-      <Route
-        exact
-        path="/"
-      >
-        <Page>
-          <Home />
-        </Page>
-      </Route>
+      {!surveyLoading && (
+        <>
+          <Route
+            exact
+            path="/"
+          >
+            <Page>
+              <Home />
+            </Page>
+          </Route>
+        </>
+      )}
       <Route
         exact
         path="/categories"

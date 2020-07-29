@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN, LOGOUT, saveUser } from 'src/actions';
+import { LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser } from 'src/actions';
 
 const login = (store) => (next) => (action) => {
   switch (action.type) {
@@ -26,6 +26,16 @@ const login = (store) => (next) => (action) => {
       next(action);
       break;
     }
+    /*case CHECK_IS_LOGGED:
+      axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/', {}, { withCredentials: true })
+        .then((response) => {
+          console.log('CHECK_IS_LOGGED', response);
+          if (response.data.logged) {
+            store.dispatch(saveUser(response.data.info.username));
+          }
+        })
+        .catch((error) => console.log(error));
+      break; */
     case LOGOUT:
       axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/logout',
         {})

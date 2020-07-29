@@ -6,6 +6,7 @@ import 'survey-react/survey.css';
 import './styles.scss';
 
 const AdultSurvey = ({ adultSurveyData }) => {
+  console.log('tadaaaat ', adultSurveyData);
   Survey
     .StylesManager
     .applyTheme('modern');
@@ -22,8 +23,8 @@ const AdultSurvey = ({ adultSurveyData }) => {
   );
 };
 
-/* AdultSurvey.propTypes = {
+AdultSurvey.propTypes = {
   adultSurveyData: PropTypes.object.isRequired,
-}; */
+};
 
 export default AdultSurvey;
