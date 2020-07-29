@@ -12,7 +12,6 @@ const login = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response);
-          console.log(response.data);
           store.dispatch(changeFieldValue('pseudo', response.data));
         })
         .catch((error) => {
