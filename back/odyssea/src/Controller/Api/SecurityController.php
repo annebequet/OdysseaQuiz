@@ -34,6 +34,7 @@ class SecurityController extends AbstractController
             'username' => $user->getPseudo(),
             'roles' => $user->getRoles(),
             'token' => $user->getApiToken(),
+            'logged' => true
         ]);
     }
 
