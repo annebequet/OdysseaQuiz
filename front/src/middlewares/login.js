@@ -24,7 +24,7 @@ const login = (store) => (next) => (action) => {
       break;
     }
     case CHECK_IS_LOGGED:
-      axios.get('http://localhost:3001/users/{1}', {},
+      axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/islogged', {},
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -33,7 +33,8 @@ const login = (store) => (next) => (action) => {
         .then((response) => {
           console.log('CHECK_IS_LOGGED', response);
           if (response.data.logged) {
-            store.dispatch(saveUser('infos', response.data));
+            const { pseudo, roles } = response.data;
+            store.dispatch(saveUser(pseudo, roles));
           }
         })
         .catch((error) => {

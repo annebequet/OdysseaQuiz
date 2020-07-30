@@ -33,7 +33,7 @@ const HeaderLogin = (state = initialState, action = {}) => {
         password: '',
         isLogged: true,
         pseudo: action.pseudo,
-        roles: action.roles
+        roles: action.roles,
       };
     case LOGOUT:
       return {
