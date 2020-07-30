@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 
 // == Import
 import Video from 'src/components/Video';
-import Header from 'src/components/Header';
+import Header from 'src/containers/Header';
 import Footer from 'src/components/Footer';
 import Page from 'src/components/Page';
 import Register from 'src/containers/Register';

@@ -15,6 +15,7 @@ const login = (store) => (next) => (action) => {
           const { token, pseudo, roles } = response.data;
           window.sessionStorage.setItem('token', token);
           store.dispatch(saveUser(pseudo, roles));
+          window.sessionStorage.setItem('isLogged', true);
         })
         .catch((error) => {
           console.log(error);
@@ -35,6 +36,10 @@ const login = (store) => (next) => (action) => {
           if (response.data.logged) {
             const { pseudo, roles } = response.data;
             store.dispatch(saveUser(pseudo, roles));
+            const { isLogged } = store.getState().headerLogin;
+            if (window.sessionStorage.getItem('isLogged') === true) {
+              store.dispatch(saveUser(isLogged));
+            }
           }
         })
         .catch((error) => {

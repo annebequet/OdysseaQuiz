@@ -9,7 +9,7 @@ import WhaleLogo from 'src/assets/images/whale-logo.png';
 
 import './styles.scss';
 
-const Header = () => (
+const Header = ({ roles, isLogged }) => (
 
   <div className="header">
     <nav className="menu--desktop">
@@ -29,6 +29,7 @@ const Header = () => (
       >
         Catégories
       </NavLink>
+      {(roles.indexOf('ROLE_ADMIN') !== -1) && (
       <NavLink
         to="/admin"
         className="menu__item"
@@ -37,6 +38,7 @@ const Header = () => (
       >
         admin
       </NavLink>
+      )}
     </nav>
     <nav className="menu--burger">
       <Menu disableAutoFocus>
@@ -56,6 +58,7 @@ const Header = () => (
         >
           Catégories
         </NavLink>
+        {(roles.indexOf('ROLE_ADMIN') !== -1) && (
         <NavLink
           to="/admin"
           className="menu__item"
@@ -64,6 +67,7 @@ const Header = () => (
         >
           Admin
         </NavLink>
+        )}
         <NavLink
           to="/contact"
           className="menu__item"
@@ -83,11 +87,18 @@ const Header = () => (
         <img className="logo" alt="whale-logo" src={WhaleLogo} />
       </Menu>
     </nav>
+    {(!isLogged) && (
     <div className="header__nav__form">
       <RegisterButton />
       <Login />
     </div>
+    )}
   </div>
 );
+
+Header.propTypes = {
+  roles: PropTypes.array.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+};
 
 export default Header;

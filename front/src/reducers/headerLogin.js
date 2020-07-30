@@ -9,7 +9,7 @@ const initialState = {
   open: false,
   username: '',
   pseudo: '',
-  roles: '',
+  roles: [],
   password: '',
   isLogged: false,
 };
