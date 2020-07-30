@@ -15,7 +15,6 @@ const login = (store) => (next) => (action) => {
           const { token, pseudo, roles } = response.data;
           window.sessionStorage.setItem('token', token);
           store.dispatch(saveUser(pseudo, roles));
-          window.sessionStorage.setItem('isLogged', true);
         })
         .catch((error) => {
           console.log(error);
@@ -43,7 +42,7 @@ const login = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          window.sessionStorage.clear();
+          window.sessionStorage.removeItem('token');
         });
       next(action);
       break;
@@ -51,7 +50,7 @@ const login = (store) => (next) => (action) => {
       axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/logout',
         {})
         .then(() => {
-          window.sessionStorage.clear();
+          window.sessionStorage.removeItem('token');
           next(action);
         })
         .catch((error) => console.log(error));
