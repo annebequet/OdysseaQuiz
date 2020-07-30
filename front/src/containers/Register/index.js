@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Register from 'src/components/Register';
-import { register, changeField } from 'src/actions/register';
+import { register, changeField, handleSelect } from 'src/actions/register';
 
 const mapStateToProps = (state) => ({
   email: state.register.email,
@@ -9,7 +9,6 @@ const mapStateToProps = (state) => ({
   firstName: state.register.firstName,
   pseudo: state.register.pseudo,
   avatar: state.register.avatar,
-  environment: state.register.environment,
 });
 const mapDispatchToProps = (dispatch) => ({
   handleRegister: () => {

@@ -2,6 +2,7 @@ import { SAVE_SURVEYS } from 'src/actions/surveys';
 
 const initialState = {
   surveys: [],
+  surveyLoading: true,
 };
 
 export default (state = initialState, action = {}) => {
@@ -10,6 +11,7 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         surveys: action.surveys,
+        surveyLoading: false,
       };
     default:
       return state;

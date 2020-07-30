@@ -1,0 +1,39 @@
+@use 'src/styles/vars';
+
+.register__form {
+  margin: 4em;
+  top: 2em;
+  display: flex;
+  flex-direction: column;
+}
+.register-field {
+  &-label {
+    font-size: .8em;
+    color: orange;
+    font-weight: bold;
+  }
+  &-input {
+    border: none;
+    border-radius: 10px;
+    padding: vars.$gutter / 1.5;
+    margin-bottom: vars.$gutter;
+  }
+}
+.register-form-button {
+  border-radius: 10px;
+    padding: vars.$gutter / 1.5;
+    margin-bottom: vars.$gutter / 2;
+    font-size: .8em;
+    color: orange;
+    font-weight: bold;
+    background-color: white;
+    margin: 4em;
+}
+.register-field-input {
+
+  border: none;
+  color: orange;
+  margin-right: 4em;
+  font-weight: bold;
+  font-size: medium;
+}

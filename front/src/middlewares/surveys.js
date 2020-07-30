@@ -8,7 +8,6 @@ export default (store) => (next) => (action) => {
   switch (action.type) {
     case GET_SURVEYS:
       store.dispatch(saveSurveys(adultExempleSurveyData));
-      console.log(store.getState().surveys);
       break;
     default:
       next(action);

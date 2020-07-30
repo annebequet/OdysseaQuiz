@@ -1,4 +1,4 @@
-const adultSurveyData = {
+export default {
   title: 'American History',
   showProgressBar: 'bottom',
   showTimerPanel: 'top',
@@ -57,5 +57,3 @@ const adultSurveyData = {
   ],
   completedHtml: '<h4>You have answered correctly <b>{correctedAnswers}</b> questions from <b>{questionCount}</b>.</h4>',
 };
-
-export default adultSurveyData;

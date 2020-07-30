@@ -30,10 +30,10 @@ export const checkIsLogged = () => ({
 export const saveUser = (
   pseudo,
   roles,
-  logged,
+  isLogged,
 ) => ({
   type: SAVE_USER,
   pseudo,
   roles,
-  isLogged: logged,
+  isLogged,
 });

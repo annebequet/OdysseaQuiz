@@ -11,7 +11,6 @@ const Register = ({
   firstName,
   pseudo,
   avatar,
-  environment,
   changeField,
   handleRegister,
 }) => {
@@ -24,59 +23,54 @@ const Register = ({
     <div className="register">
       <form className="register__form" onSubmit={handleSubmit}>
         <FieldRegister
+          label="Adresse Email"
+          id="username"
           name="email"
           type="email"
-          placeholder="Adresse Email"
           onChange={changeField}
           value={email}
         />
         <FieldRegister
           name="password"
           type="password"
-          placeholder="Mot de passe"
+          label="Mot de passe"
+          id="password"
           onChange={changeField}
           value={password}
         />
         <FieldRegister
           name="lastName"
           type="lastName"
-          placeholder="Nom"
+          label="Nom"
+          id="lastName"
           onChange={changeField}
           value={lastName}
         />
         <FieldRegister
           name="firstName"
           type="firstName"
-          placeholder="Prénom"
+          label="Prénom"
+          id="lastName"
           onChange={changeField}
           value={firstName}
         />
         <FieldRegister
           name="pseudo"
           type="pseudo"
-          placeholder="Pseudo"
+          label="Pseudo"
+          id="pseudo"
           onChange={changeField}
           value={pseudo}
         />
         <FieldRegister
           name="avatar"
           type="avatar"
-          placeholder="Avatar"
+          label="Avatar"
+          id="avatar"
           onChange={changeField}
           value={avatar}
         />
-        <select
-          name="environment"
-          onChange={changeField}
-          value={environment}
-        >
-          <option value="1">
-            Enfant
-          </option>
-          <option value="2">
-            Adulte
-          </option>
-        </select>
+        {/* Here place a select to choose environment */}
         <button
           type="submit"
           className="register-form-button"
@@ -95,7 +89,6 @@ Register.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   avatar: PropTypes.string,
-  environment: PropTypes.number.isRequired,
   changeField: PropTypes.func.isRequired,
   handleRegister: PropTypes.func.isRequired,
 };

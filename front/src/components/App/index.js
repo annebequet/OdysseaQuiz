@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 
 // == Import
 import Video from 'src/components/Video';
-import Header from 'src/components/Header';
+import Header from 'src/containers/Header';
 import Footer from 'src/components/Footer';
 import Page from 'src/components/Page';
 import Register from 'src/containers/Register';
@@ -16,6 +16,7 @@ import './styles.scss';
 
 // == Composant
 const App = ({
+  surveyLoading,
   getSurveys,
   checkIsLogged,
 }) => {
@@ -37,14 +38,18 @@ const App = ({
           <Register />
         </Page>
       </Route>
-      <Route
-        exact
-        path="/"
-      >
-        <Page>
-          <Home />
-        </Page>
-      </Route>
+      {!surveyLoading && (
+        <>
+          <Route
+            exact
+            path="/"
+          >
+            <Page>
+              <Home />
+            </Page>
+          </Route>
+        </>
+      )}
       <Route
         exact
         path="/categories"
@@ -69,6 +74,7 @@ const App = ({
 App.propTypes = {
   getSurveys: PropTypes.func.isRequired,
   checkIsLogged: PropTypes.func.isRequired,
+  surveyLoading: PropTypes.bool.isRequired,
 };
 
 // == Export

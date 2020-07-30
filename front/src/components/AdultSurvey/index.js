@@ -5,25 +5,25 @@ import 'survey-react/survey.css';
 
 import './styles.scss';
 
-const AdultSurvey = ({ adultSurveyData }) => {
+const AdultSurvey = ({ surveyData }) => {
+  const handleOnComplete = (survey, options) => {
+    //Write survey results into database
+    console.log(JSON.stringify(survey.data));
+  };
+
   Survey
     .StylesManager
     .applyTheme('modern');
 
-  const model = new Survey.Model({ adultSurveyData });
-
-  const handleOnComplete = (survey, options) => {
-      //Write survey results into database
-      console.log('Survey results: ', JSON.stringify({ adultSurveyData }));
-   };
+  const model = new Survey.Model(surveyData);
 
   return (
     <Survey.Survey model={model} onComplete={handleOnComplete} />
   );
 };
 
-/* AdultSurvey.propTypes = {
-  adultSurveyData: PropTypes.object.isRequired,
-}; */
+AdultSurvey.propTypes = {
+  surveyData: PropTypes.object.isRequired,
+};
 
 export default AdultSurvey;
