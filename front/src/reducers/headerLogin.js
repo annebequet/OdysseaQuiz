@@ -39,6 +39,8 @@ const HeaderLogin = (state = initialState, action = {}) => {
       return {
         ...state,
         isLogged: false,
+        pseudo: '',
+        roles: '',
       };
     default:
       return state;

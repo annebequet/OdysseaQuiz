@@ -24,7 +24,7 @@ const login = (store) => (next) => (action) => {
       break;
     }
     case CHECK_IS_LOGGED:
-      axios.post('http://localhost:3001/users', {},
+      axios.get('http://localhost:3001/users/{1}', {},
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -36,7 +36,10 @@ const login = (store) => (next) => (action) => {
             store.dispatch(saveUser('infos', response.data));
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          window.sessionStorage.clear();
+        });
       next(action);
       break;
     case LOGOUT:
