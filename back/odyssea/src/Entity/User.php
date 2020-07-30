@@ -103,6 +103,8 @@ class User implements UserInterface
         $this->contacts = new ArrayCollection();
         $this->scores = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->avatar = 'https://image.flaticon.com/icons/svg/1805/1805880.svg';
+        $this->roles = ["ROLE_USER"];
     }
 
     public function getId(): ?int
@@ -134,7 +136,7 @@ class User implements UserInterface
 
     /**
      * @see UserInterface
-     */
+    */
     public function getRoles(): array
     {
         $roles = $this->roles;

@@ -58,6 +58,7 @@ class Category
     {
         $this->questions = new ArrayCollection();
         $this->scores = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,12 +32,32 @@ class SecurityController extends AbstractController
         $entityManager->flush();
 
         return $this->json([
-            'username' => $user->getPseudo(),
+            'pseudo' => $user->getPseudo(),
             'roles' => $user->getRoles(),
             'token' => $user->getApiToken(),
             'logged' => true
         ]);
     }
+
+
+    /**
+     * @Route("/api/islogged", name="app_islogged", methods={"GET"})
+     */
+    public function isLogged(Request $request, UserRepository $userRepository)
+    {
+        $apiToken = $request->headers->get('X-AUTH-TOKEN');      
+
+        if($apiToken === null){
+            return $this->json([
+                'logged' => false
+            ]);
+        }
+
+        $user = $userRepository->findBy(['apiToken' => $apiToken]);
+
+        return $this->json($user, 200, [], ['groups' => 'users_get_one']);
+    }
+
 
     /**
      * @Route("/api/logout", name="app_logout", methods={"GET"})
