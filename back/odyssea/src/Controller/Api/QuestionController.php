@@ -18,7 +18,7 @@ class QuestionController extends AbstractController
             'environment' => $environmentId,
             'category' => $categoryId
             ]);
-        dump($questions);
+        // dump($questions);
 
         return $this->json($questions, 200, [], ['groups' => 'get_quest_by_cat']);
     }
