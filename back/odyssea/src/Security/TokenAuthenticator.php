@@ -74,7 +74,8 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         $data = [
             // you may want to customize or obfuscate the message first
             // 'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
-            'message' => 'User not found',
+            'logged' => false,
+            'message' => 'User not found'
 
             // or to translate this message
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
