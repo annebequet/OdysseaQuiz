@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin_user.html.twig' %}
 
-{% block title %}Éditer : {{ user.email }}{% endblock %}
+{% block title %}Éditer : {{ user.pseudo }}{% endblock %}
 
 {% block body %}
-    <h1>Éditer : {{ user.email }}</h1>
+    <h1>Éditer : {{ user.pseudo }}</h1>
 
     {{ include('admin/user/_form.html.twig') }}
 
