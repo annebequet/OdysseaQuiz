@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+    <h1>
+        Liste des utilisateurs
+        {% if is_granted('ROLE_ADMIN') %}
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+            <a href="{{ path('admin_user_add') }}" class="glyphicon glyphicon-plus"></a>
+        </button>
+        {% endif %}
+    </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Rôle(s)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>
+                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                        <a href="{{ path('admin_user_read', {id: user.id}) }}" class="glyphicon glyphicon-list-alt"></a>
+                    </button>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                        <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="glyphicon glyphicon-pencil"></a>
+                    </button>
+                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                        <a href="{{ path('admin_user_delete', {id: user.id}) }}" class="glyphicon glyphicon-trash"></a>
+                    </button>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun utilisateur enregistré</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

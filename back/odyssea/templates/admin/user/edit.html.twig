@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Éditer : {{ user.email }}{% endblock %}
+
+{% block body %}
+    <h1>Éditer : {{ user.email }}</h1>
+
+    {{ include('admin/user/_form.html.twig') }}
+
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+            <a href="{{ path('admin_user_browse', {id: user.id}) }}" class="glyphicon glyphicon-arrow-left"></a>
+        </button>
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+            <a href="{{ path('admin_user_delete', {id: user.id}) }}" class="glyphicon glyphicon-trash"></a>
+        </button>
+{% endblock %}
