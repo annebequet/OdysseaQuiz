@@ -7,8 +7,9 @@ import {
 
 const initialState = {
   open: false,
-  pseudo: '',
   username: '',
+  pseudo: '',
+  roles: '',
   password: '',
   isLogged: false,
 };
@@ -32,6 +33,7 @@ const HeaderLogin = (state = initialState, action = {}) => {
         password: '',
         isLogged: true,
         pseudo: action.pseudo,
+        roles: action.roles
       };
     case LOGOUT:
       return {

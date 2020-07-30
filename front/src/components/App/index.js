@@ -74,6 +74,7 @@ const App = ({
 App.propTypes = {
   getSurveys: PropTypes.func.isRequired,
   checkIsLogged: PropTypes.func.isRequired,
+  surveyLoading: PropTypes.bool.isRequired,
 };
 
 // == Export

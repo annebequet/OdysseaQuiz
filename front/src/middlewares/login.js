@@ -12,11 +12,9 @@ const login = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response);
-          const { token } = response.data;
+          const { token, pseudo, roles } = response.data;
           window.sessionStorage.setItem('token', token);
-          store.dispatch(saveUser('roles', response.data.roles));
-          store.dispatch(saveUser(response.data.username));
-          store.dispatch(saveUser(response.data.logged));
+          store.dispatch(saveUser(pseudo, roles));
         })
         .catch((error) => {
           console.log(error);
@@ -25,16 +23,22 @@ const login = (store) => (next) => (action) => {
       next(action);
       break;
     }
-    /*case CHECK_IS_LOGGED:
-      axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/', {}, { withCredentials: true })
+    case CHECK_IS_LOGGED:
+      axios.post('http://localhost:3001/users', {},
+        {
+          headers: {
+            'X-AUTH-TOKEN': sessionStorage.getItem('token'),
+          },
+        })
         .then((response) => {
           console.log('CHECK_IS_LOGGED', response);
           if (response.data.logged) {
-            store.dispatch(saveUser(response.data.info.username));
+            store.dispatch(saveUser('infos', response.data));
           }
         })
         .catch((error) => console.log(error));
-      break; */
+      next(action);
+      break;
     case LOGOUT:
       axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/logout',
         {})
