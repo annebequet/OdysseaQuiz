@@ -7,6 +7,7 @@ import './styles.scss';
 const Login = ({
   open,
   handleTogglerClick,
+  onBlurLogin,
   login,
 }) => {
   const handleOnClick = () => {
@@ -16,6 +17,9 @@ const Login = ({
     evt.preventDefault();
     login();
   };
+  const handleBlur = () => {
+    onBlurLogin();
+  };
 
   return (
     <div className={`${open ? 'login login--open' : 'login'}`}>
@@ -23,6 +27,7 @@ const Login = ({
         onClick={handleOnClick}
         className="login__toggler"
         type="button"
+        onBlur={handleBlur}
       >
         Connexion
       </button>
@@ -53,6 +58,7 @@ const Login = ({
 
 Login.propTypes = {
   handleTogglerClick: PropTypes.func.isRequired,
+  onBlurLogin: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
 };
