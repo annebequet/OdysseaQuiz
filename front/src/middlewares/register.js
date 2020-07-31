@@ -21,11 +21,6 @@ const register = (store) => (next) => (action) => {
         firstName,
         pseudo,
         environment,
-      },
-      {
-        headers: {
-          'X-AUTH-TOKEN': sessionStorage.getItem('token'),
-        },
       })
         .then((response) => {
           console.log(response.data);
