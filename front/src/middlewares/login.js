@@ -15,7 +15,6 @@ const login = (store) => (next) => (action) => {
           const { token, pseudo, roles } = response.data;
           window.sessionStorage.setItem('token', token);
           store.dispatch(saveUser(pseudo, roles));
-          window.sessionStorage.setItem('isLogged', true);
         })
         .catch((error) => {
           console.log(error);
@@ -25,7 +24,7 @@ const login = (store) => (next) => (action) => {
       break;
     }
     case CHECK_IS_LOGGED:
-      axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/islogged', {},
+      axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/islogged',
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -33,18 +32,17 @@ const login = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log('CHECK_IS_LOGGED', response);
-          if (response.data.logged) {
-            const { pseudo, roles } = response.data;
+          if (response.data.logged === false) {
+            console.log('pas logé recommence');
+          }
+          else {
+            const { pseudo, roles } = response.data[0];
             store.dispatch(saveUser(pseudo, roles));
-            const { isLogged } = store.getState().headerLogin;
-            if (window.sessionStorage.getItem('isLogged') === true) {
-              store.dispatch(saveUser(isLogged));
-            }
           }
         })
         .catch((error) => {
           console.log(error);
-          window.sessionStorage.clear();
+          window.sessionStorage.removeItem('token');
         });
       next(action);
       break;
@@ -52,7 +50,7 @@ const login = (store) => (next) => (action) => {
       axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/logout',
         {})
         .then(() => {
-          window.sessionStorage.clear();
+          window.sessionStorage.removeItem('token');
           next(action);
         })
         .catch((error) => console.log(error));
