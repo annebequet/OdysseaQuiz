@@ -19,7 +19,7 @@ class UserController extends AbstractController
     /**
      * Get all Users
      * 
-     * @Route("/api/users", name="api_users_get", methods={"GET"})
+     * @Route("/users", name="api_users_get", methods={"GET"})
      */
     public function getAll(UserRepository $userRepository)
     {
@@ -32,7 +32,7 @@ class UserController extends AbstractController
     /**
      * Get one user
      * 
-     * @Route("/api/users/{id<\d+>}", name="api_users_get_one", methods={"GET"})
+     * @Route("/users/{id<\d+>}", name="api_users_get_one", methods={"GET"})
      */
     public function getOne($id, UserRepository $userRepository, User $user)
     {
@@ -51,8 +51,8 @@ class UserController extends AbstractController
     /**
      * Edit user (PUT)
      * 
-     * @Route("/api/users/{id<\d+>}", name="api_users_put", methods={"PUT"})
-     * @Route("/api/users/{id<\d+>}", name="api_users_patch", methods={"PATCH"})
+     * @Route("/users/{id<\d+>}", name="api_users_put", methods={"PUT"})
+     * @Route("/users/{id<\d+>}", name="api_users_patch", methods={"PATCH"})
      */
     public function put(User $user = null, EntityManagerInterface $em, SerializerInterface $serializer, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -83,7 +83,7 @@ class UserController extends AbstractController
     /**
      * Delete user
      * 
-     * @Route("/api/users/{id<\d+>}", name="api_users_delete", methods={"DELETE"})
+     * @Route("/users/{id<\d+>}", name="api_users_delete", methods={"DELETE"})
      */
     public function delete(User $user = null, EntityManagerInterface $em)
     {
