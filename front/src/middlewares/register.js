@@ -14,7 +14,7 @@ const register = (store) => (next) => (action) => {
         environment,
       } = state.register;
 
-      axios.post('/api/register', {
+      axios.post('http://54.226.34.31/api/register', {
         email,
         password,
         lastName,

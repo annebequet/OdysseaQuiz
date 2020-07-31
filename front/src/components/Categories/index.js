@@ -8,9 +8,13 @@ const Categories = ({ categories }) => (
   <div className="page__categories">
     <ul className="categories__ul">
       {categories.map(({ name }) => (
-        <li className="categories__item">
+        <li
+          key={name}
+          className="categories__item"
+        >
           <h3>{name} </h3>
           <img
+            alt="turtle"
             src={TurtleImage}
           />
         </li>
@@ -22,7 +26,7 @@ const Categories = ({ categories }) => (
 Categories.propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      name: PropTypes.string,
     }),
   ).isRequired,
 };
