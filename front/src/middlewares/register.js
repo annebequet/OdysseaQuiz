@@ -14,7 +14,7 @@ const register = (store) => (next) => (action) => {
         environment,
       } = state.register;
 
-      axios.post('/register', {
+      axios.post('/api/register', {
         email,
         password,
         lastName,

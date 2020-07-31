@@ -10,7 +10,7 @@ import Footer from 'src/components/Footer';
 import Page from 'src/components/Page';
 import Register from 'src/containers/Register';
 import Home from 'src/components/Home';
-import Categories from 'src/components/Categories';
+import Categories from 'src/containers/Categories';
 import Profile from 'src/components/Profile';
 import './styles.scss';
 
@@ -19,8 +19,10 @@ const App = ({
   surveyLoading,
   getSurveys,
   checkIsLogged,
+  getCategories,
 }) => {
   useEffect(() => {
+    getCategories();
     getSurveys();
   }, []);
 
@@ -72,6 +74,7 @@ const App = ({
 };
 
 App.propTypes = {
+  getCategories: PropTypes.func.isRequired,
   getSurveys: PropTypes.func.isRequired,
   checkIsLogged: PropTypes.func.isRequired,
   surveyLoading: PropTypes.bool.isRequired,

@@ -6,7 +6,7 @@ const login = (store) => (next) => (action) => {
     case LOGIN: {
       const { username, password } = store.getState().headerLogin;
 
-      axios.post('/login', {
+      axios.post('/api/login', {
         username,
         password,
       })
@@ -24,7 +24,7 @@ const login = (store) => (next) => (action) => {
       break;
     }
     case CHECK_IS_LOGGED:
-      axios.get('/islogged',
+      axios.get('/api/islogged',
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
