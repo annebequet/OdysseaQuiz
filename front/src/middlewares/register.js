@@ -14,7 +14,7 @@ const register = (store) => (next) => (action) => {
         environment,
       } = state.register;
 
-      axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/register', {
+      axios.post('/register', {
         email,
         password,
         lastName,
