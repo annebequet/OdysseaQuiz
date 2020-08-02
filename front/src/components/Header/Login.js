@@ -27,7 +27,7 @@ const Login = ({
         onClick={handleOnClick}
         className="login__toggler"
         type="button"
-        onBlur={handleBlur}
+        //onBlur={handleBlur}
       >
         Connexion
       </button>
