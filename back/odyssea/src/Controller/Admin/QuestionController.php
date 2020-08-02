@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Question;
+use App\Form\Admin\QuestionType;
 use App\Repository\QuestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,12 +17,12 @@ class QuestionController extends AbstractController
      * @Route("/admin/question/browse", name="admin_question_browse", methods={"GET"})
      * 
      */
-    public function browse(QuestionRepository $questionRepo)
+    public function browse(QuestionRepository $questionRepository)
     {
         // get the list of all questions
-        $questions = $questionRepo->findAll();
+        $questions = $questionRepository->findAll();
         // send it to the view
-        return $this->render('admin/Question/browse.html.twig', [
+        return $this->render('admin/question/browse.html.twig', [
             'question_list' => $questions,
         ]);
     }
@@ -32,57 +33,15 @@ class QuestionController extends AbstractController
      */
     public function read(QuestionRepository $questionRepo, $id)
     {
-        //récupérer l'objet Question, c'est fait par le Kernel de Symfony
-        $Question = $questionRepo->findQuestionWithAllInfos($id);
-        // $question = $questionRepo->find($id);
-
+        // get one question
+        $question = $questionRepo->find($id);
+        // send an error if not found
         if (is_null($question)) {
-            throw $this->createNotFoundException('Ce question n\'existe pas');
+            throw $this->createNotFoundException('Cette question n\'existe pas');
         }
-        // le passe au template 
+        // send it to the view
         return $this->render('admin/question/read.html.twig', [
             'question' => $question
-        ]);
-    }
-
-    /**
-     * @Route("/admin/question/edit/{id}", name="admin_question_edit", methods={"POST", "GET"}, requirements={"id"="\d+"})
-     * 
-     */
-    public function edit(Question $question, Request $request, Limace $slugger)
-    {
-        // récupérer le form et lui fournir l'objet question
-        $form = $this->createForm(QuestionType::class, $question);
-       
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            // Pour enregistrer l'objet en BDD
-            // On récupère un entityManager
-            $em = $this->getDoctrine()->getManager();
-
-            // On modifie le slug à partir du nouveau titre
-            //* On modifie une URL !
-            // @todo : gestion des redirections 301 d'URL
-            //$question->setSlug($slugger->slugify($question->getTitle()));
-
-            //* Le slug est maintenant modifié via QuestionListener
-
-            $em->persist($question);
-
-            $em->flush();
-
-            // @TODO : gérer les messages flash
-            $this->addFlash('succcess', 'Film modifié');
-
-            // rediriger sur le read
-            return $this->redirectToRoute('admin_question_read', ['id' => $question->getId()]);
-        }
-
-        return $this->render('admin/question/edit.html.twig', [
-            'question' => $question,
-            'form_question' => $form->createView(),
         ]);
     }
 
@@ -92,43 +51,62 @@ class QuestionController extends AbstractController
      */
     public function add(Request $request)
     {
-        // Notre nouveau question
+        // create a new question
         $question = new Question();
-        // récupérer le form et lui fournir l'objet question
-        $form = $this->createForm(QuestionType::class, $question, [
-            // https://symfony.com/doc/current/reference/forms/types/form.html#attr
-            'attr' => [
-                'novalidate' => 'novalidate',
-            ]
-        ]);
+        
+        // get the form
+        $form = $this->createForm(QuestionType::class, $question);
        
         $form->handleRequest($request);
-
+        
+        // if the form is submitted and valid, add it to the database via the entity manager
         if ($form->isSubmitted() && $form->isValid()) {
-            // Pour enregistrer l'objet en BDD
-            // On récupère un entityManager
-            $em = $this->getDoctrine()->getManager();
-
-            // on récupère le $question avec les donnés modifiées
-            //$question = $form->getData();
-            
-            // On crée le slug à partir du titre
-            // $question->setSlug($slugger->slugify($question->getTitle()));
-            
-            //* Le slug est maintenant modifié via QuestionListener
-            
+            $em = $this->getDoctrine()->getManager();            
             $em->persist($question);
-
             $em->flush();
 
-            // @TODO : gérer les messages flash
+            // TODO : gérer les messages flash
             $this->addFlash('succcess', 'Film ajouté');
 
-            // rediriger sur le read
+            // redirect to the details page
             return $this->redirectToRoute('admin_question_read', ['id' => $question->getId()]);
         }
         
+        // if not submitted yet, just display the form page
         return $this->render('admin/question/add.html.twig', [
+            'form_question' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/admin/question/edit/{id}", name="admin_question_edit", methods={"POST", "GET"}, requirements={"id"="\d+"})
+     * 
+     */
+    public function edit(Question $question, Request $request)
+    {
+        // get the Question Form
+        $form = $this->createForm(QuestionType::class, $question);
+       
+        $form->handleRequest($request);
+        
+        // if the form is submitted and valid, add it to the database via the entity manager
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($question);
+            $em->flush();
+
+            // TODO : gérer les messages flash
+            $this->addFlash('succcess', 'Film modifié');
+
+            // redirect to the details page
+            return $this->redirectToRoute('admin_question_read', ['id' => $question->getId()]);
+        }
+
+        // if not submitted yet, just display the form page with pre-filled infos
+        return $this->render('admin/question/edit.html.twig', [
+            'question' => $question,
             'form_question' => $form->createView(),
         ]);
     }

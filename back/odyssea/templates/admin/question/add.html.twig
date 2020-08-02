@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une question{% endblock %}
+
+{% block body %}
+<h1>Ajouter une question</h1>
+
+{{ form_start(form_question) }}
+{{ form_errors(form_question) }}
+
+{{ form_row(form_question.type) }}
+
+{{ form_row(form_question.name) }}
+
+{{ form_row(form_question.title) }}
+
+{{ form_row(form_question.category) }}
+
+{{ form_row(form_question.environment) }}
+
+<br>
+<input type="submit" />
+{{ form_end(form_question) }}
+
+<br>
+<a href="{{ path('admin_question_browse') }}">Retourner à la liste</a>
+{% endblock %}
