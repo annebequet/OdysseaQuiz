@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_SURVEYS, saveSurveys } from 'src/actions/surveys';
+import { GET_SURVEYS, saveSurveys, SEND_RESULTS } from 'src/actions/surveys';
 
 // Surveys en statique
 import adultExempleSurveyData from 'src/data';
@@ -8,7 +8,14 @@ export default (store) => (next) => (action) => {
   switch (action.type) {
     case GET_SURVEYS:
       store.dispatch(saveSurveys(adultExempleSurveyData));
+      next(action);
       break;
+    case SEND_RESULTS: {
+      const { numberOfCorrectAnswers } = store.getState().surveys;
+      console.log(numberOfCorrectAnswers);
+      next(action);
+      break;
+    }
     default:
       next(action);
       break;
