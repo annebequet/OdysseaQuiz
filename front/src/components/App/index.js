@@ -11,6 +11,8 @@ import Page from 'src/components/Page';
 import Register from 'src/containers/Register';
 import Home from 'src/components/Home';
 import Categories from 'src/containers/Categories';
+
+import Category from 'src/containers/Category';
 import Profile from 'src/components/Profile';
 import './styles.scss';
 
@@ -60,6 +62,15 @@ const App = ({
           <Categories />
         </Page>
       </Route>
+      <Route
+        exact
+        path="/categories/:slug"
+        component={({ match }) => (
+          <Page>
+            <Category slug={match.params.slug} />
+          </Page>
+        )}
+      />
       <Route
         exact
         path="/profile"

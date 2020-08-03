@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Route, Link } from 'react-router-dom';
+
 import TurtleImage from 'src/assets/images/turtle.jpg';
+
+import Page from 'src/components/Page';
+import Category from 'src/containers/Category';
+
+import { getSlugFromTitle } from 'src/selectors/categories';
 
 import './styles.scss';
 
@@ -8,16 +15,21 @@ const Categories = ({ categories }) => (
   <div className="page__categories">
     <ul className="categories__ul">
       {categories.map(({ name }) => (
-        <li
+        <Link
+          to={`/categories/${getSlugFromTitle(name)}`}
+          className="category_link"
           key={name}
-          className="categories__item"
         >
-          <h3>{name} </h3>
-          <img
-            alt="turtle"
-            src={TurtleImage}
-          />
-        </li>
+          <li
+            className="categories__item"
+          >
+            <h3>{name} </h3>
+            <img
+              alt="turtle"
+              src={TurtleImage}
+            />
+          </li>
+        </Link>
       ))}
     </ul>
   </div>

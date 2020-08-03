@@ -63,7 +63,6 @@ const AdultSurvey = ({
             showCompletedPage={false}
             mode="display"
             questionsOnPageMode="singlePage"
-            completeText="Fin"
             showProgressBar="off"
             showTimerPanel="none"
             maxTimeToFinishPage={0}
