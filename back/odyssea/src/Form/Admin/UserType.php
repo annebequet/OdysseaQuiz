@@ -66,6 +66,7 @@ class UserType extends AbstractType
                 'label' => 'Environnement',
                 'placeholder' => 'Choisissez un environnement'
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
