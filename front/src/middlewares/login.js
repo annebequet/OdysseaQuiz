@@ -12,9 +12,9 @@ const login = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response);
-          const { token, pseudo, roles } = response.data;
+          const { token, pseudo, roles, avatar } = response.data;
           window.sessionStorage.setItem('token', token);
-          store.dispatch(saveUser(pseudo, roles));
+          store.dispatch(saveUser(pseudo, roles, avatar));
         })
         .catch((error) => {
           console.log(error);
@@ -36,8 +36,8 @@ const login = (store) => (next) => (action) => {
             console.log('pas logé recommence');
           }
           else {
-            const { pseudo, roles } = response.data[0];
-            store.dispatch(saveUser(pseudo, roles));
+            const { pseudo, roles, avatar } = response.data[0];
+            store.dispatch(saveUser(pseudo, roles, avatar));
           }
         })
         .catch((error) => {
@@ -47,7 +47,7 @@ const login = (store) => (next) => (action) => {
       next(action);
       break;
     case LOGOUT:
-      axios.post('http://54.226.34.31/api/logout',
+      axios.get('http://54.226.34.31/api/logout',
         {})
         .then(() => {
           window.sessionStorage.removeItem('token');

@@ -11,7 +11,7 @@ import Page from 'src/components/Page';
 import Register from 'src/containers/Register';
 import Home from 'src/components/Home';
 import Categories from 'src/containers/Categories';
-import Profile from 'src/components/Profile';
+import Profile from 'src/containers/Profile';
 import './styles.scss';
 
 // == Composant

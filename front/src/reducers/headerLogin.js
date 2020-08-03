@@ -13,6 +13,7 @@ const initialState = {
   roles: [],
   password: '',
   isLogged: false,
+  avatar: '',
 };
 
 const HeaderLogin = (state = initialState, action = {}) => {
@@ -40,6 +41,7 @@ const HeaderLogin = (state = initialState, action = {}) => {
         isLogged: true,
         pseudo: action.pseudo,
         roles: action.roles,
+        avatar: action.avatar,
       };
     case LOGOUT:
       return {
@@ -47,6 +49,7 @@ const HeaderLogin = (state = initialState, action = {}) => {
         isLogged: false,
         pseudo: '',
         roles: '',
+        avatar: '',
       };
     default:
       return state;
