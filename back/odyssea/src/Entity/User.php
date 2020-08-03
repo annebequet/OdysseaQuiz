@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\Gallery;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
@@ -60,12 +61,6 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"users_get", "users_get_one"})
-     */
-    private $avatar;
-
-    /**
      * @ORM\Column(type="string", unique=true, nullable=true)
      */
     private $apiToken;
@@ -97,13 +92,18 @@ class User implements UserInterface
      */
     private $scores;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Gallery::class)
+     */
+    private $avatar;
+
     
     public function __construct()
     {
         $this->contacts = new ArrayCollection();
         $this->scores = new ArrayCollection();
         $this->createdAt = new \DateTime();
-        $this->avatar = 'https://image.flaticon.com/icons/svg/1805/1805880.svg';
+        // $this->avatar = 1;
         $this->roles = ["ROLE_USER"];
     }
 
@@ -221,18 +221,6 @@ class User implements UserInterface
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-
-        return $this;
-    }
-    
-    public function getAvatar(): ?string
-    {
-        return $this->avatar;
-    }
-
-    public function setAvatar(?string $avatar): self
-    {
-        $this->avatar = $avatar;
 
         return $this;
     }
@@ -378,5 +366,17 @@ class User implements UserInterface
     public function __toString() 
     {
         return (string) $this->email; 
+    }
+
+    public function getAvatar(): ?Gallery
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?Gallery $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
     }
 }
