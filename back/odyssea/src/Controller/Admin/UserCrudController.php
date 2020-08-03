@@ -35,7 +35,8 @@ class UserCrudController extends AbstractCrudController
                         'User' => 'ROLE_USER'
                 ])
                 ->allowMultipleChoices(),
-            AssociationField::new('environment'),
+            AssociationField::new('environment')
+            ->setFormTypeOptions(['required' => true]),
 
         ];
     }
