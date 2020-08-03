@@ -21,7 +21,7 @@ security:
                 authenticators:
                     - App\Security\TokenAuthenticator
             json_login:
-                check_path: /api/login
+                check_path: /login
             logout:
                 path: app_logout
                 success_handler: App\Security\LogoutHandler
@@ -37,4 +37,4 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/api/profile, roles: ROLE_USER }
+        - { path: ^/profile, roles: ROLE_USER }

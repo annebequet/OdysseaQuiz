@@ -14,18 +14,13 @@ const register = (store) => (next) => (action) => {
         environment,
       } = state.register;
 
-      axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/register', {
+      axios.post('http://54.226.34.31/api/register', {
         email,
         password,
         lastName,
         firstName,
         pseudo,
         environment,
-      },
-      {
-        headers: {
-          'X-AUTH-TOKEN': sessionStorage.getItem('token'),
-        },
       })
         .then((response) => {
           console.log(response.data);

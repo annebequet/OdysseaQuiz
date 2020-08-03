@@ -1,5 +1,6 @@
 import {
   HANDLE_TOGGLER_CLICK,
+  ON_BLUR_LOGIN,
   CHANGE_FIELD_VALUE,
   SAVE_USER,
   LOGOUT,
@@ -17,6 +18,11 @@ const initialState = {
 const HeaderLogin = (state = initialState, action = {}) => {
   switch (action.type) {
     case HANDLE_TOGGLER_CLICK:
+      return {
+        ...state,
+        open: !state.open,
+      };
+    case ON_BLUR_LOGIN:
       return {
         ...state,
         open: !state.open,
