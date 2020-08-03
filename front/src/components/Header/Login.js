@@ -17,9 +17,9 @@ const Login = ({
     evt.preventDefault();
     login();
   };
-  const handleBlur = () => {
+ /*  const handleBlur = () => {
     onBlurLogin();
-  };
+  }; */
 
   return (
     <div className={`${open ? 'login login--open' : 'login'}`}>
@@ -27,13 +27,13 @@ const Login = ({
         onClick={handleOnClick}
         className="login__toggler"
         type="button"
-        //onBlur={handleBlur}
       >
         Connexion
       </button>
       <form
         className="login__form"
         onSubmit={handleOnSubmit}
+        /* onBlur={handleBlur} */
       >
         <Field
           label="Adresse Email"
