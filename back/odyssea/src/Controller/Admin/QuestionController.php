@@ -126,5 +126,4 @@ class QuestionController extends AbstractController
 
     }
 
-
 }

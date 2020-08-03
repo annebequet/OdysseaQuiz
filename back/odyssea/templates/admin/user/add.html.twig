@@ -1,0 +1,13 @@
+{% extends 'base_admin_user.html.twig' %}
+
+{% block title %}Ajouter un utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un utilisateur</h1>
+
+    {{ include('admin/user/_form.html.twig') }}
+
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+        <a href="{{ path('admin_user_browse', {id: user.id}) }}" class="glyphicon glyphicon-arrow-left"></a>
+    </button>
+{% endblock %}

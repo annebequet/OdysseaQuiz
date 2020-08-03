@@ -16,7 +16,6 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
             // atm only radiogroup is available
             ->add('type' , ChoiceType::class, [
                 'label' => 'Nombre de réponse(s) possible(s) :',
@@ -69,6 +68,7 @@ class QuestionType extends AbstractType
                 'label' => 'Environnement ',
                 'choice_label' => 'name',
             ])
+
         ;
     }
 
@@ -76,7 +76,6 @@ class QuestionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Question::class,
-            attr
         ]);
     }
 }

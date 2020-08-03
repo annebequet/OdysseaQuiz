@@ -1,0 +1,50 @@
+{% extends 'base_admin_user.html.twig' %}
+
+{% block title %}Détails de l'utilisateur : {{ user.email }}{% endblock %}
+
+{% block body %}
+    <h1>Détails de l'utilisateur : {{ user.pseudo }}</h1>
+    <div class="d-flex">
+        <img class="avatar mr-4" src="{{ user.avatar }}">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{ user.firstName }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ user.lastName }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Roles</th>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Environnement</th>
+                    <td>{{ user.environment }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+        <a href="{{ path('admin_user_browse') }}" class="glyphicon glyphicon-arrow-left"></a>
+    </button>
+    {% if is_granted('ROLE_ADMIN') %}
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+        <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="glyphicon glyphicon-pencil"></a>
+    </button>
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+        <a href="{{ path('admin_user_delete', {id: user.id}) }}" class="glyphicon glyphicon-trash"></a>
+    </button>
+    {% endif %}
+{% endblock %}

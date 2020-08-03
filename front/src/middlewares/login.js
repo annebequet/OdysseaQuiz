@@ -6,7 +6,7 @@ const login = (store) => (next) => (action) => {
     case LOGIN: {
       const { username, password } = store.getState().headerLogin;
 
-      axios.post('/login', {
+      axios.post('http://54.226.34.31/api/login', {
         username,
         password,
       })
@@ -24,7 +24,7 @@ const login = (store) => (next) => (action) => {
       break;
     }
     case CHECK_IS_LOGGED:
-      axios.get('/islogged',
+      axios.get('http://54.226.34.31/api/islogged',
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -47,7 +47,7 @@ const login = (store) => (next) => (action) => {
       next(action);
       break;
     case LOGOUT:
-      axios.post('/api/logout',
+      axios.post('http://54.226.34.31/api/logout',
         {})
         .then(() => {
           window.sessionStorage.removeItem('token');
