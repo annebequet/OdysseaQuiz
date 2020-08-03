@@ -1,17 +1,18 @@
 export default {
-  title: 'American History',
+  title: 'American History coucou',
   showProgressBar: 'bottom',
   showTimerPanel: 'top',
   maxTimeToFinishPage: 10,
   maxTimeToFinish: 25,
   firstPageIsStarted: true,
-  startSurveyText: 'Start Quiz',
+  startSurveyText: 'Commencer',
+  locale: 'fr',
   pages: [
     {
       questions: [
         {
           type: 'html',
-          html: "You are about to start quiz by history. <br/>You have 10 seconds for every page and 25 seconds for the whole survey of 3 questions.<br/>Please click on <b>'Start Quiz'</b> button when you are ready.",
+          html: "Vous êtes sur le point de commencer notre super quiz. <br/>Vous avez 10 secondes par page et 25 secondes en total pour ce quiz de 3 questions.<br/>Cliquez sur le bouton <b>'Commencer'</b> quand vous êtes prêts. Enjoy !",
         },
       ],
     }, {

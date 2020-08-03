@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { surveyCompleted, sendResults, updateResults } from 'src/actions/surveys';
+import { sendResults, endQuiz} from 'src/actions/surveys';
 
 import AdultSurvey from 'src/components/AdultSurvey';
 
@@ -12,17 +12,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  surveyCompleted: (answers) => {
-    dispatch(surveyCompleted(answers));
+  sendResults: (answers, numberOfCorrectAnswers) => {
+    dispatch(sendResults(answers, numberOfCorrectAnswers));
   },
 
-  updateResults: (numberOfCorrectAnswers) => {
-    dispatch(updateResults(numberOfCorrectAnswers));
-  },
-
-  sendResults: () => {
-    dispatch(sendResults());
-  },
+  endQuiz: () => dispatch(endQuiz()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdultSurvey);

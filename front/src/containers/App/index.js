@@ -13,6 +13,7 @@ const mapDispatchToProps = (dispatch) => ({
   getCategories: () => dispatch(getCategories()),
   getSurveys: () => dispatch(getSurveys()),
   checkIsLogged: () => dispatch(checkIsLogged()),
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

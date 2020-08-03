@@ -11,8 +11,7 @@ export default (store) => (next) => (action) => {
       next(action);
       break;
     case SEND_RESULTS: {
-      const { numberOfCorrectAnswers } = store.getState().surveys;
-      console.log(numberOfCorrectAnswers);
+      const resultsToSend = action.numberOfCorrectAnswers;
       next(action);
       break;
     }
