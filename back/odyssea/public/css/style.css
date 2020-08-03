@@ -1,0 +1,28 @@
+.form-check {
+    padding-left : 0px;
+}
+
+.form-check-label {
+    margin-left: 20px;
+    font-weight: normal;
+}
+
+.col-form-label {
+    font-weight : bold;
+}
+
+fieldset {
+    padding-left: 0px;
+}
+
+.navbar {
+    background-color: cadetblue;
+}
+
+.avatar {
+    width: 15%;
+}
+
+.avatar-small {
+    width: 5%;
+}
