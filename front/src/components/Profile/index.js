@@ -9,9 +9,13 @@ const Profile = ({
   avatar,
   categories,
 }) => (
-  <div>
+  <div className="profile">
     <h3>Pseudo : {pseudo}</h3>
-    <img src={avatar}></img>
+    <img
+      className="odyssea__avatar"
+      alt="odyssea__avatar"
+      src={avatar}
+    />
     <ul className="categories__ul">
       {categories.map(({ name }) => (
         <li
