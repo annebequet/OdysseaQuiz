@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Gallery;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -10,6 +11,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -28,7 +31,8 @@ class UserCrudController extends AbstractCrudController
             TextField::new('pseudo'),
             TextField::new('last_name', 'Nom'),
             TextField::new('first_name', 'Prénom'),
-            TextField::new('password', 'Mot de passe')->hideOnIndex(),
+            TextField::new('password', 'Mot de passe')
+                ->hideOnIndex(),
             ChoiceField::new('roles')
                 ->setChoices([
                         'Admin' => 'ROLE_ADMIN',
@@ -36,7 +40,7 @@ class UserCrudController extends AbstractCrudController
                 ])
                 ->allowMultipleChoices(),
             AssociationField::new('environment')
-            ->setFormTypeOptions(['required' => true]),
+                ->setRequired(true),
 
         ];
     }
