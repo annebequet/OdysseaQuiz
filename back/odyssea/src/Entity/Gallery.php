@@ -72,4 +72,9 @@ class Gallery
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->imageUrl;
+    }
 }
