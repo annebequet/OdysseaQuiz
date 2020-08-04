@@ -20,6 +20,8 @@ const AdultSurvey = ({
     endQuiz();
   }, []);
 
+  console.log(surveyData);
+
   // Write survey results into database and state
   const handleOnComplete = (survey) => {
     const answers = survey.data;

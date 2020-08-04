@@ -10,10 +10,9 @@ const Category = ({
   getSurveys,
 }) => {
   useEffect(() => {
-    getSurveys();
+    getSurveys(category);
   }, []);
 
-  console.log('ma page de catégorie : ', category);
   return (
     <div className="category">
       {!surveyLoading && (
