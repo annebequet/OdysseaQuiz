@@ -24,3 +24,33 @@ export const handleSingularOrPlural = (numberOfCorrectAnswers) => {
     : pluralTitle;
   return title;
 };
+
+export const transformQuestionsInSurveyObject = (quiz, category) => {
+  const newQuestions = quiz.map((question) => ({
+    questions: [
+      question,
+    ],
+  }));
+
+  return {
+    title: category,
+    showProgressBar: 'bottom',
+    showTimerPanel: 'top',
+    maxTimeToFinishPage: 10,
+    maxTimeToFinish: 25,
+    firstPageIsStarted: true,
+    startSurveyText: 'Commencer',
+    locale: 'fr',
+    pages: [
+      {
+        questions: [
+          {
+            type: 'html',
+            html: "Vous êtes sur le point de commencer notre super quiz. <br/>Vous avez 10 secondes par page et 25 secondes en total pour ce quiz de 10 questions.<br/>Cliquez sur le bouton <b>'Commencer'</b> quand vous êtes prêts. Enjoy !",
+          },
+        ],
+      }, ...newQuestions,
+    ],
+    completedHtml: '<h4>You have answered correctly <b>{correctedAnswers}</b> questions from <b>{questionCount}</b>.</h4>',
+  };
+};

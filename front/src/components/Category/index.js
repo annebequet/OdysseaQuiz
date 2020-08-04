@@ -18,7 +18,7 @@ const Category = ({
     <div className="category">
       {!surveyLoading && (
         <>
-          <AdultSurvey category={category} />
+          <AdultSurvey category={category.name} />
         </>
       )}
     </div>
