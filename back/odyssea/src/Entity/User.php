@@ -3,12 +3,15 @@
 namespace App\Entity;
 
 use App\Entity\Gallery;
-use App\Repository\GalleryRepository;
-use Doctrine\ORM\Mapping as ORM;
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use App\Repository\UserRepository;
+use App\Repository\GalleryRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\OptionsResolver\Options;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
 
