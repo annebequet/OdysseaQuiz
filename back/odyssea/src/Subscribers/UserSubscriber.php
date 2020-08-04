@@ -30,9 +30,16 @@ class UserSubscriber implements EventSubscriberInterface
 
     public function setPassword(BeforeEntityPersistedEvent $event)
     {
+        // Get the data sent through the form
         $entity = $event->getEntityInstance();
+
+        // Encode the password
         $passwordHashed = $this->passwordEncoder->encodePassword($entity, $entity->getPassword());
+
+        // Set it to the User entity
         $entity->setPassword($passwordHashed);
+
+        // If an avatar isn't selected, set it by default to the first avatar in the Gallery table (sea lion)
         if(empty($entity->getAvatar())) {
             $entity->setAvatar($this->galleryRepository->find(1));
         }
@@ -40,8 +47,13 @@ class UserSubscriber implements EventSubscriberInterface
 
     public function setUpdatedPassword(BeforeEntityUpdatedEvent $event)
     {
+        // Get the data sent through the form
         $entity = $event->getEntityInstance();
+
+        // Encode the updated password
         $passwordHashed = $this->passwordEncoder->encodePassword($entity, $entity->getPassword());
+
+        // Set the updated password to the User entity and update its updatedAt time
         $entity->setUpdatedAt(new \DateTime());
         $entity->setPassword($passwordHashed);
     }
