@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Profile from 'src/components/Profile';
-import { handleEdit, changeInput } from '../../actions/profile';
+import { handleEdit, changeInput, handleDelete } from '../../actions/profile';
 
 const mapStateToProps = (state) => ({
   categories: state.categories.categories,
@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeInput: (value, key) => {
     dispatch(changeInput(value, key));
+  },
+  handleDelete: () => {
+    dispatch(handleDelete());
   },
 });
 
