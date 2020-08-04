@@ -19,6 +19,7 @@ import './styles.scss';
 const App = ({
   checkIsLogged,
   getCategories,
+  categoriesLoading,
 }) => {
   useEffect(() => {
     getCategories();
@@ -46,23 +47,27 @@ const App = ({
           <Home />
         </Page>
       </Route>
-      <Route
-        exact
-        path="/categories"
-      >
-        <Page>
-          <Categories />
-        </Page>
-      </Route>
-      <Route
-        exact
-        path="/categories/:slug"
-        component={({ match }) => (
-          <Page>
-            <Category slug={match.params.slug} />
-          </Page>
-        )}
-      />
+      {!categoriesLoading && (
+        <>
+          <Route
+            exact
+            path="/categories"
+          >
+            <Page>
+              <Categories />
+            </Page>
+          </Route>
+          <Route
+            exact
+            path="/categories/:slug"
+            component={({ match }) => (
+              <Page>
+                <Category slug={match.params.slug} />
+              </Page>
+            )}
+          />
+        </>
+      )}
       <Route
         exact
         path="/profile"
@@ -79,6 +84,7 @@ const App = ({
 App.propTypes = {
   getCategories: PropTypes.func.isRequired,
   checkIsLogged: PropTypes.func.isRequired,
+  categoriesLoading: PropTypes.bool.isRequired,
 };
 
 // == Export

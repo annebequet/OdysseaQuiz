@@ -4,8 +4,8 @@ import { GET_SURVEYS, saveSurveys, SEND_RESULTS } from 'src/actions/surveys';
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case GET_SURVEYS: {
-      const slug = action.categorySlug;
-      axios.get(`http://localhost/Apotheose/Odyssea/back/odyssea/public/questions/1/${slug}`, {
+      const categorySlug = action.category.id;
+      axios.get(`http://localhost/Apotheose/Odyssea/back/odyssea/public/questions/1/${categorySlug}`, {
         headers: {
           'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },

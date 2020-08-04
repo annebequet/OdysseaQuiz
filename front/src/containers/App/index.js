@@ -4,7 +4,9 @@ import { getCategories } from 'src/actions/categories';
 
 import App from 'src/components/App';
 
-const mapStateToProps = null;
+const mapStateToProps = (state) => ({
+  categoriesLoading: state.categories.categoriesLoading,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   getCategories: () => dispatch(getCategories()),

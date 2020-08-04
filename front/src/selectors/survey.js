@@ -1,3 +1,4 @@
+//Function that changes the css styles of the qui to display the results
 export const changeCSSStyles = (survey, options) => {
   const span = document.createElement('span');
   const isCorrect = options.question.isAnswerCorrect();

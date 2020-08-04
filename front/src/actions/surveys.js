@@ -3,9 +3,9 @@ export const GET_SURVEYS = 'GET_SURVEYS';
 export const SAVE_SURVEYS = 'SAVE_SURVEYS';
 export const END_QUIZ = 'END_QUIZ';
 
-export const getSurveys = (categorySlug) => ({
+export const getSurveys = (category) => ({
   type: GET_SURVEYS,
-  categorySlug,
+  category,
 });
 
 export const sendResults = (answers, numberOfCorrectAnswers) => ({
