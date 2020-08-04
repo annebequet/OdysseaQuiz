@@ -31,18 +31,18 @@ class UserCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             EmailField::new('email'),
             TextField::new('pseudo'),
-            TextField::new('last_name', 'Nom'),
             TextField::new('first_name', 'Prénom'),
+            TextField::new('last_name', 'Nom'),
             TextField::new('password', 'Mot de passe')
                 ->hideOnIndex(),
             $avatarChoices->onlyOnForms(),
-            ChoiceField::new('roles')
+            ChoiceField::new('roles', 'Rôles')
                 ->setChoices([
                         'Admin' => 'ROLE_ADMIN',
                         'User' => 'ROLE_USER'
                 ])
                 ->allowMultipleChoices(),
-            AssociationField::new('environment')
+            AssociationField::new('environment', 'Environnement')
                 ->setRequired(true),
 
         ];
