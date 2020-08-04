@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Entity\User;
+use App\Repository\GalleryRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,8 +33,9 @@ class SecurityController extends AbstractController
         $entityManager->flush();
 
         return $this->json([
+            'id' => $user->getId(),
             'pseudo' => $user->getPseudo(),
-            'avatar' => $user->getAvatar(),
+            'avatar' => $user->getAvatar()->getImageUrl(),
             'roles' => $user->getRoles(),
             'token' => $user->getApiToken(),
             'logged' => true
@@ -73,7 +75,7 @@ class SecurityController extends AbstractController
      * 
      * @Route("/register", methods={"POST"})
      */
-    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder)
+    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, GalleryRepository $galleryRepository)
     {
         // Get the content of the request
         $content = $request->getContent();
@@ -99,6 +101,12 @@ class SecurityController extends AbstractController
         // Encode the password and set it to the entity
         $passwordHashed = $passwordEncoder->encodePassword($user, $user->getPassword());
         $user->setPassword($passwordHashed);
+
+        // if the User didnt select an avatar, set it by default to the 1rst avatar in the database (sea lion)
+        if($user->getAvatar() === null) {
+            $user->setAvatar($galleryRepository->find(1));
+        };
+
         
         // Add the new user to the database
         $entityManager = $this->getDoctrine()->getManager();
