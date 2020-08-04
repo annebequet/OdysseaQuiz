@@ -4,6 +4,7 @@ import {
 
 const initialState = {
   categories: [],
+  categoriesLoading: true,
 };
 
 const categories = (state = initialState, action = {}) => {
@@ -12,6 +13,7 @@ const categories = (state = initialState, action = {}) => {
       return {
         ...state,
         categories: action.categories,
+        categoriesLoading: false,
       };
     default:
       return state;
