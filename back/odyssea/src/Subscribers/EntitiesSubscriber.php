@@ -6,7 +6,7 @@ use App\Entity\Question;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class QuestionSubscriber implements EventSubscriberInterface
+class EntitiesSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
@@ -19,12 +19,8 @@ class QuestionSubscriber implements EventSubscriberInterface
     {
         // Get the data sent through the form
         $entity = $event->getEntityInstance();
-
-        // Verify if the entity is a Question
-        if ($entity instanceof Question) {
             
-            // Update its updatedAt time
-            $entity->setUpdatedAt(new \DateTime());
-        }
+        // Update its updatedAt time
+        $entity->setUpdatedAt(new \DateTime());
     }
 }
