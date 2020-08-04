@@ -70,8 +70,8 @@
     "react-router-dom": "^5.2.0",
     "react-survey": "^1.7.0",
     "redux": "*",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^1.1.0",
+    "semantic-ui-react": "^1.0.0",
+    "slugify": "^1.4.5",
     "styled-components": "*",
     "survey-react": "^1.7.23"
   }
