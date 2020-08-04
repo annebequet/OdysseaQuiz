@@ -1,7 +1,14 @@
 import { connect } from 'react-redux';
 
 import Profile from 'src/components/Profile';
-import { handleEdit, changeInput, handleDelete } from '../../actions/profile';
+import {
+  handleEditPseudo,
+  handleEditEmail,
+  handleEditPassword,
+  changeInput,
+  handleDelete,
+  getUser,
+} from '../../actions/profile';
 
 const mapStateToProps = (state) => ({
   categories: state.categories.categories,
@@ -13,14 +20,23 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleEdit: () => {
-    dispatch(handleEdit());
+  handleEditPseudo: () => {
+    dispatch(handleEditPseudo());
+  },
+  handleEditEmail: () => {
+    dispatch(handleEditEmail());
+  },
+  handleEditPassword: () => {
+    dispatch(handleEditPassword());
   },
   changeInput: (value, key) => {
     dispatch(changeInput(value, key));
   },
   handleDelete: () => {
     dispatch(handleDelete());
+  },
+  getUser: () => {
+    dispatch(getUser());
   },
 });
 

@@ -35,7 +35,7 @@ class SecurityController extends AbstractController
         return $this->json([
             'id' => $user->getId(),
             'pseudo' => $user->getPseudo(),
-            'avatar' => $user->getAvatar()->getImageUrl(),
+            'avatar' => $user->getAvatar(),
             'roles' => $user->getRoles(),
             'token' => $user->getApiToken(),
             'logged' => true

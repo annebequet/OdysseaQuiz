@@ -6,7 +6,7 @@ const categories = (store) => (next) => (action) => {
     case GET_CATEGORIES: {
       axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/categories')
         .then((response) => {
-          console.log('rghd', response.data);
+          console.log(response.data);
           store.dispatch(saveCategories(response.data));
         })
         .catch((error) => {

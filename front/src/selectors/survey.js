@@ -26,7 +26,45 @@ export const handleSingularOrPlural = (numberOfCorrectAnswers) => {
   return title;
 };
 
-export const transformQuestionsInSurveyObject = (quiz, category) => {
+const shuffle = (array) => {
+  let currentIndex = array.length;
+  let temporaryValue;
+  let randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+};
+
+const get10RandomQuestions = (quiz) => {
+  return shuffle(quiz);
+  // eslint-disable-next-line no-unreachable
+  return quiz.slice(0, 10);
+};
+
+const getIntroductionQuizText = (quiz) => {
+  let text;
+  if (quiz.length === 0) {
+    text = "Nous n'avons pas encore de questions pour cette catégorie, revenez bientôt !";
+  }
+  else {
+    text = "Vous êtes sur le point de commencer notre super quiz. <br/>Vous avez 10 secondes par page et 25 secondes en total pour ce quiz de 10 questions.<br/>Cliquez sur le bouton <b>'Commencer'</b> quand vous êtes prêts. Enjoy !";
+  }
+  return text;
+};
+
+export const transformQuestionsInSurveyObject = (allQuestions, category) => {
+  const quiz = get10RandomQuestions(allQuestions);
+
   const newQuestions = quiz.map((question) => ({
     questions: [
       question,
@@ -47,7 +85,7 @@ export const transformQuestionsInSurveyObject = (quiz, category) => {
         questions: [
           {
             type: 'html',
-            html: "Vous êtes sur le point de commencer notre super quiz. <br/>Vous avez 10 secondes par page et 25 secondes en total pour ce quiz de 10 questions.<br/>Cliquez sur le bouton <b>'Commencer'</b> quand vous êtes prêts. Enjoy !",
+            html: getIntroductionQuizText(quiz),
           },
         ],
       }, ...newQuestions,
