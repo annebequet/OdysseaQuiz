@@ -16,15 +16,21 @@ const Profile = ({
   newPseudo,
   newEmail,
   newPassword,
+  handleDelete,
   // selectedOption,
 }) => {
   /* const handleOptionChange = (evt) => {
     selectedOption(evt.target.value);
   }; */
-  const handleEditSubmit = (evt) => {
-    evt.preventDefault();
+  const handleEditSubmit = () => {
     handleEdit();
   };
+
+  const handleDeleteSubmit = (evt) => {
+    evt.preventDefault();
+    handleDelete();
+  };
+
   return (
     <div className="profile">
       <div className="profile__edit">
@@ -105,6 +111,7 @@ const Profile = ({
         <button
           className="profile__button--delete"
           type="button"
+          onClick={handleDeleteSubmit}
         >
           Supprimer mon compte
         </button>
@@ -136,6 +143,7 @@ Profile.propTypes = {
   avatar: PropTypes.string,
   pseudo: PropTypes.string.isRequired,
   handleEdit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
   changeInput: PropTypes.func.isRequired,
   newPseudo: PropTypes.string.isRequired,
   newEmail: PropTypes.string.isRequired,

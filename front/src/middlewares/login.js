@@ -14,9 +14,10 @@ const login = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response);
-          const { token, pseudo, roles, avatar } = response.data;
+          const { token, pseudo, roles, avatar, id } = response.data;
           window.sessionStorage.setItem('token', token);
-          store.dispatch(saveUser(pseudo, roles, avatar));
+          window.sessionStorage.setItem('id', id);
+          store.dispatch(saveUser(pseudo, roles, avatar, id));
         })
         .catch((error) => {
           console.log(error);
@@ -38,13 +39,15 @@ const login = (store) => (next) => (action) => {
             console.log('pas logé recommence');
           }
           else {
+            const id = sessionStorage.getItem('id');
             const { pseudo, roles, avatar } = response.data[0];
-            store.dispatch(saveUser(pseudo, roles, avatar));
+            store.dispatch(saveUser(pseudo, roles, avatar, id));
           }
         })
         .catch((error) => {
           console.log(error);
           window.sessionStorage.removeItem('token');
+          window.sessionStorage.removeItem('id');
         });
       next(action);
       break;

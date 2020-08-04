@@ -32,6 +32,7 @@ class SecurityController extends AbstractController
         $entityManager->flush();
 
         return $this->json([
+            'id' => $user->getId(),
             'pseudo' => $user->getPseudo(),
             'avatar' => $user->getAvatar(),
             'roles' => $user->getRoles(),
