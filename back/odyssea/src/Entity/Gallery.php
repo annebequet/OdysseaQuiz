@@ -21,7 +21,7 @@ class Gallery
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Groups({"avatars_get", "avatar_get_one"})
+     * @Groups({"avatars_get", "avatar_get_one", "users_get", "users_get_one"})
      */
     private $imageUrl;
 

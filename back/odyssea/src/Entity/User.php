@@ -60,6 +60,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups("users_get_one")
      */
     private $password;
 
@@ -97,6 +98,7 @@ class User implements UserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Gallery::class)
+     * @Groups({"users_get", "users_get_one"})
      */
     private $avatar;
     

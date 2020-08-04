@@ -179,3 +179,7 @@ svg:nth-child(1) {
   padding-top: 100px;
   width: 200%;
 }
+/* if user is logged */
+.menu__item--logout:hover {
+  color: white,
+}

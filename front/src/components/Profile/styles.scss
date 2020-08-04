@@ -1,0 +1,49 @@
+@use 'src/styles/vars';
+
+.profile {
+  margin: 1em;
+  text-shadow: 4px 2px 4px black;
+  &__pseudo {
+    font-size: larger;
+    margin-bottom: 2em;
+  }
+  &__edit {
+    display: flex;
+    flex-direction: column;
+  }
+  & label:hover {
+    cursor: default;
+  }
+  .profile__edit__form {
+    & label {
+      color: orange;
+      font-weight: bold;
+    }
+    & input {
+      border: none;
+      margin-top: 0.7em;
+      border-radius: 10px;
+      padding: vars.$gutter / 1.5;
+      margin-bottom: vars.$gutter *2;
+    }
+  }
+  &__edit--submit {
+    border-radius: 10px;
+    border: none;
+    padding: vars.$gutter / 1.5;
+    margin-bottom: vars.$gutter;
+    background-color: vars.$background-color;
+    color: vars.$title-color;
+    font-weight: bold;
+
+  }
+  &__button--delete {
+    font-weight: bold;
+    border: none;
+    margin-top: 2em;
+    color: red;
+    border-radius: 10px;
+    padding: vars.$gutter / 1.8;
+    background-color: vars.$background-color;
+  }
+}

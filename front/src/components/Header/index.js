@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { bubble as Menu } from 'react-burger-menu';
 
-import Login from 'src/containers/Login';
-import RegisterButton from './RegisterButton';
 import WhaleLogo from 'src/assets/images/whale-logo.png';
+
+import Login from 'src/containers/Login';
+import LoggedNav from 'src/containers/LoggedNav';
+import RegisterButton from './RegisterButton';
 
 import './styles.scss';
 
-const Header = ({ roles, isLogged }) => (
 
+const Header = ({ roles, isLogged }) => (
   <div className="header">
     <nav className="menu--desktop">
       <NavLink
@@ -30,14 +32,14 @@ const Header = ({ roles, isLogged }) => (
         Catégories
       </NavLink>
       {(roles.indexOf('ROLE_ADMIN') !== -1) && (
-      <NavLink
-        to="/admin"
-        className="menu__item"
-        activeClassName="menu__link--active"
-        exact
-      >
-        admin
-      </NavLink>
+        <NavLink
+          to="/admin"
+          className="menu__item"
+          activeClassName="menu__link--active"
+          exact
+        >
+          admin
+        </NavLink>
       )}
     </nav>
     <nav className="menu--burger">
@@ -59,14 +61,14 @@ const Header = ({ roles, isLogged }) => (
           Catégories
         </NavLink>
         {(roles.indexOf('ROLE_ADMIN') !== -1) && (
-        <NavLink
-          to="/admin"
-          className="menu__item"
-          activeClassName="menu__link--active"
-          exact
-        >
-          Admin
-        </NavLink>
+          <NavLink
+            to="/admin"
+            className="menu__item"
+            activeClassName="menu__link--active"
+            exact
+          >
+            Admin
+          </NavLink>
         )}
         <NavLink
           to="/contact"
@@ -88,10 +90,13 @@ const Header = ({ roles, isLogged }) => (
       </Menu>
     </nav>
     {(!isLogged) && (
-    <div className="header__nav__form">
-      <RegisterButton />
-      <Login />
-    </div>
+      <div className="header__nav__form">
+        <RegisterButton />
+        <Login />
+      </div>
+    )}
+    {(isLogged) && (
+    <LoggedNav />
     )}
   </div>
 );
