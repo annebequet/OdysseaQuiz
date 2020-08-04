@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
 
-import { HANDLE_EDIT, HANDLE_DELETE } from 'src/actions/profile';
+import { HANDLE_EDIT, HANDLE_DELETE, GET_USER } from 'src/actions/profile';
 
 const categories = (store) => (next) => (action) => {
   switch (action.type) {
@@ -19,6 +18,24 @@ const categories = (store) => (next) => (action) => {
           'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },
       })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      next(action);
+      break;
+    }
+    case GET_USER: {
+      const id = sessionStorage.getItem('id');
+      axios.get(`http://localhost/Apotheose/Odyssea/back/odyssea/public/users/${id}`,
+        {
+          headers: {
+            'X-AUTH-TOKEN': sessionStorage.getItem('token'),
+          },
+        })
         .then((response) => {
           console.log(response.data);
         })

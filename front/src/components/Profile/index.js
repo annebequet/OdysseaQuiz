@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.scss';
@@ -10,6 +10,7 @@ import Field from './Field';
 const Profile = ({
   pseudo,
   avatar,
+  getUser,
   categories,
   handleEdit,
   changeInput,
@@ -19,11 +20,11 @@ const Profile = ({
   handleDelete,
   // selectedOption,
 }) => {
-  /* const handleOptionChange = (evt) => {
-    selectedOption(evt.target.value);
-  }; */
-  const handleEditSubmit = (evt) => {
-    evt.preventDefault();
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  const handleEditSubmit = () => {
     handleEdit();
   };
 
@@ -39,7 +40,7 @@ const Profile = ({
           <img
             className="profile__odyssea__avatar"
             alt="odyssea__avatar"
-            src={avatar}
+            src={avatar.imageUrl}
           />
           <h3 className="profile__pseudo">Pseudo : {pseudo}</h3>
         </div>
@@ -136,12 +137,13 @@ const Profile = ({
 };
 
 Profile.propTypes = {
+  getUser: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
     }),
   ).isRequired,
-  avatar: PropTypes.string,
+  avatar: PropTypes.object,
   pseudo: PropTypes.string.isRequired,
   handleEdit: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
@@ -153,7 +155,7 @@ Profile.propTypes = {
 };
 
 Profile.defaultProps = {
-  avatar: '',
+  avatar: {},
 };
 
 export default Profile;
