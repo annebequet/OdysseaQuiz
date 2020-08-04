@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Entity\Gallery;
+use App\Repository\GalleryRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -94,7 +96,6 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity=Gallery::class)
      */
     private $avatar;
-
     
     public function __construct()
     {
