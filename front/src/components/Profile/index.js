@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.scss';
@@ -10,8 +10,11 @@ import Field from './Field';
 const Profile = ({
   pseudo,
   avatar,
+  getUser,
   categories,
-  handleEdit,
+  handleEditPseudo,
+  handleEditEmail,
+  handleEditPassword,
   changeInput,
   newPseudo,
   newEmail,
@@ -19,12 +22,21 @@ const Profile = ({
   handleDelete,
   // selectedOption,
 }) => {
-  /* const handleOptionChange = (evt) => {
-    selectedOption(evt.target.value);
-  }; */
-  const handleEditSubmit = (evt) => {
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  const handleEditPseudoSubmit = (evt) => {
     evt.preventDefault();
-    handleEdit();
+    handleEditPseudo();
+  };
+  const handleEditEmailSubmit = (evt) => {
+    evt.preventDefault();
+    handleEditEmail();
+  };
+  const handleEditPasswordSubmit = (evt) => {
+    evt.preventDefault();
+    handleEditPassword();
   };
 
   const handleDeleteSubmit = (evt) => {
@@ -39,12 +51,13 @@ const Profile = ({
           <img
             className="profile__odyssea__avatar"
             alt="odyssea__avatar"
-            src={avatar}
+            src={avatar.imageUrl}
           />
           <h3 className="profile__pseudo">Pseudo : {pseudo}</h3>
         </div>
         <div className="profile__wrap__right">
-          <form className="profile__edit__form" onSubmit={handleEditSubmit}>
+          {/* FORM FOR PSEUDO EDIT */}
+          <form className="profile__edit__form --pseudo" onSubmit={handleEditPseudoSubmit}>
             <div>
               <label>Changez votre pseudo</label>
             </div>
@@ -54,6 +67,15 @@ const Profile = ({
               onChange={changeInput}
               value={newPseudo}
             />
+            <button
+              className="profile__edit--submit"
+              type="submit"
+            >
+              Envoyez vos modifications
+            </button>
+          </form>
+          {/* FORM FOR EMAIL EDIT */}
+          <form className="profile__edit__form --email" onSubmit={handleEditEmailSubmit}>
             <div>
               <label>Changez votre adresse e-mail</label>
             </div>
@@ -63,6 +85,15 @@ const Profile = ({
               onChange={changeInput}
               value={newEmail}
             />
+            <button
+              className="profile__edit--submit"
+              type="submit"
+            >
+              Envoyez vos modifications
+            </button>
+          </form>
+          {/* FORM FOR PASSWORD EDIT */}
+          <form className="profile__edit__form --password" onSubmit={handleEditPasswordSubmit}>
             <div>
               <label>Changez votre Mot de passe</label>
             </div>
@@ -72,8 +103,14 @@ const Profile = ({
               onChange={changeInput}
               value={newPassword}
             />
-
-            {/* <label>Changez vos types de quiz</label>
+            <button
+              className="profile__edit--submit"
+              type="submit"
+            >
+              Envoyez vos modifications
+            </button>
+          </form>
+          {/* <label>Changez vos types de quiz</label>
 
              <div className="radio">
               <label>
@@ -98,13 +135,6 @@ const Profile = ({
               </label>
             </div> */}
 
-            <button
-              className="profile__edit--submit"
-              type="submit"
-            >
-              Envoyez vos modifications
-            </button>
-          </form>
         </div>
       </div>
 
@@ -136,14 +166,17 @@ const Profile = ({
 };
 
 Profile.propTypes = {
+  getUser: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
     }),
   ).isRequired,
-  avatar: PropTypes.string,
+  avatar: PropTypes.object,
   pseudo: PropTypes.string.isRequired,
-  handleEdit: PropTypes.func.isRequired,
+  handleEditPseudo: PropTypes.func.isRequired,
+  handleEditEmail: PropTypes.func.isRequired,
+  handleEditPassword: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   changeInput: PropTypes.func.isRequired,
   newPseudo: PropTypes.string.isRequired,
@@ -153,7 +186,7 @@ Profile.propTypes = {
 };
 
 Profile.defaultProps = {
-  avatar: '',
+  avatar: {},
 };
 
 export default Profile;
