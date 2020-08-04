@@ -3,14 +3,17 @@
 namespace App\Entity;
 
 use App\Entity\Gallery;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
 use App\Repository\UserRepository;
+use App\Repository\GalleryRepository;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\OptionsResolver\Options;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -96,7 +99,6 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity=Gallery::class)
      */
     private $avatar;
-
     
     public function __construct()
     {

@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\GalleryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\GalleryRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=GalleryRepository::class)
@@ -14,11 +15,13 @@ class Gallery
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"avatars_get", "avatar_get_one"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
+     * @Groups({"avatars_get", "avatar_get_one"})
      */
     private $imageUrl;
 
@@ -31,6 +34,12 @@ class Gallery
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"avatars_get", "avatar_get_one"})
+     */
+    private $name;
 
     public function getId(): ?int
     {
@@ -69,6 +78,23 @@ class Gallery
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->imageUrl;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
