@@ -22,7 +22,8 @@ const Profile = ({
   /* const handleOptionChange = (evt) => {
     selectedOption(evt.target.value);
   }; */
-  const handleEditSubmit = () => {
+  const handleEditSubmit = (evt) => {
+    evt.preventDefault();
     handleEdit();
   };
 
