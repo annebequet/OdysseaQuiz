@@ -10,12 +10,15 @@ const Home = ({ adultSurveyExemple }) => (
   <div>
     <img src={reactLogo} alt="react logo" />
     <h1>ODYSSEA QUIZ</h1>
-    <AdultSurvey survey={adultSurveyExemple} />
+    <AdultSurvey
+      survey={adultSurveyExemple}
+      category="allez, un petit exemple"
+    />
   </div>
 );
 
 Home.propTypes = {
-  adultSurveyExemple: PropTypes.object.isRequired,
+  adultSurveyExemple: PropTypes.array.isRequired,
 };
 
 export default Home;
