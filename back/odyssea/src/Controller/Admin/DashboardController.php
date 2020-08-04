@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
 use App\Controller\Admin\UserCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,7 +46,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Tableau de bord', 'fa fa-home');
-        // yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user-o', User::class);
+        yield MenuItem::linkToCrud('Catégories', 'fas fa-fish', Category::class);
         // MenuItem::linkToLogout('Logout', 'fa fa-exit'),
     }
 }
