@@ -2496,7 +2496,7 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
-clsx@^1.0.4:
+clsx@^1.0.4, clsx@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
   integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
@@ -5326,7 +5326,7 @@ jest-worker@^26.0.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jquery@^3.5.1, jquery@x.*:
+jquery@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
@@ -8378,23 +8378,16 @@ selfsigned@^1.10.7:
   dependencies:
     node-forge "0.9.0"
 
-semantic-ui-css@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/semantic-ui-css/-/semantic-ui-css-2.4.1.tgz#f5aea39fafb787cbd905ec724272a3f9cba9004a"
-  integrity sha512-Pkp0p9oWOxlH0kODx7qFpIRYpK1T4WJOO4lNnpNPOoWKCrYsfHqYSKgk5fHfQtnWnsAKy7nLJMW02bgDWWFZFg==
-  dependencies:
-    jquery x.*
-
-semantic-ui-react@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-1.1.0.tgz#efbb1f4e3a7063d6d7e3032a2ac58d8841f837d1"
-  integrity sha512-gVXgn+ZEUo2pyRTZB566PcSLqEJWx5rCnba+fwzGp3fWBRhio1lcNKt0o2tNldiJFLkMexGRceXQiTWcscD8eA==
+semantic-ui-react@^1.0.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-1.1.1.tgz#7d32e4cf5e07e7272b705ca287c39c61bd4c0284"
+  integrity sha512-QtzLNkK4MUe1HQo4S7/tIkSp4NFtxSGDzTMKxmvztMJ6jt+nKGmMyjpyxJsrm3ohU8Z3sTyBUyiBsDYW4jNtjw==
   dependencies:
     "@babel/runtime" "^7.10.5"
     "@semantic-ui-react/event-stack" "^3.1.0"
     "@stardust-ui/react-component-event-listener" "~0.38.0"
     "@stardust-ui/react-component-ref" "~0.38.0"
-    classnames "^2.2.6"
+    clsx "^1.1.1"
     keyboard-key "^1.1.0"
     lodash "^4.17.19"
     prop-types "^15.7.2"

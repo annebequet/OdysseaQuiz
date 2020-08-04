@@ -12,7 +12,7 @@ import Register from 'src/containers/Register';
 import Home from 'src/containers/Home';
 import Categories from 'src/containers/Categories';
 import Category from 'src/containers/Category';
-import Profile from 'src/components/Profile';
+import Profile from 'src/containers/Profile';
 import './styles.scss';
 
 // == Composant

@@ -7,7 +7,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newEmail, newPassword, newPseudo } = state.profile;
 
-      axios.put('http://localhost/Apotheose/Odyssea/back/odyssea/public/', {
+      axios.put('http://localhost/Apotheose/Odyssea/back/odyssea/public/users/id', {
         newEmail,
         newPassword,
         newPseudo,
