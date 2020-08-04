@@ -20,8 +20,6 @@ const AdultSurvey = ({
     endQuiz();
   }, []);
 
-  console.log(surveyData);
-
   // Write survey results into database and state
   const handleOnComplete = (survey) => {
     const answers = survey.data;
@@ -39,10 +37,6 @@ const AdultSurvey = ({
   const getResultTitle = (numberOfCorrectAnswers) => {
     const title = handleSingularOrPlural(numberOfCorrectAnswers);
     return title;
-  };
-
-  const handleQuizEnd = () => {
-    endQuiz();
   };
 
   // eslint-disable-next-line max-len
@@ -75,7 +69,7 @@ const AdultSurvey = ({
             className="endQuiz"
             type="button"
             value="fin"
-            onClick={handleQuizEnd}
+            onClick={endQuiz}
           />
         </div>
       )}

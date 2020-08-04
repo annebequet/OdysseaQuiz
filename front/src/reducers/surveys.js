@@ -33,7 +33,7 @@ export default (state = initialState, action = {}) => {
     case GET_SURVEYS:
       return {
         ...state,
-        surveyCategory: '',
+        surveyCategory: action.category.name,
       };
     case END_QUIZ:
       return {

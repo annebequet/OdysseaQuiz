@@ -5,13 +5,13 @@ export default (store) => (next) => (action) => {
   switch (action.type) {
     case GET_SURVEYS: {
       const categorySlug = action.category.id;
-      axios.get(`http://localhost/Apotheose/Odyssea/back/odyssea/public/questions/1/${categorySlug}`, {
+      const environmentSlug= store.getState().profile.environment;
+      axios.get(`http://localhost/Apotheose/Odyssea/back/odyssea/public/questions/${environmentSlug}/${categorySlug}`, {
         headers: {
           'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },
       })
         .then((response) => {
-          console.log('mon quiz', response.data);
           store.dispatch(saveSurveys(response.data));
         })
         .catch((error) => {
@@ -21,6 +21,7 @@ export default (store) => (next) => (action) => {
       break;
     }
     case SEND_RESULTS: {
+      // TODO (not in MVP)
       const resultsToSend = action.numberOfCorrectAnswers;
       next(action);
       break;
