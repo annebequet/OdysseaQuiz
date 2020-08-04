@@ -2,7 +2,6 @@
 
 namespace App\Subscribers;
 
-use App\Entity\Question;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
