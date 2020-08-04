@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 use App\Entity\Question;
 use App\Entity\Category;
 use App\Controller\Admin\UserCrudController;
+use App\Entity\Environment;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -49,8 +50,9 @@ class DashboardController extends AbstractDashboardController
     {
         return [
         yield MenuItem::linktoDashboard('Tableau de bord', 'fa fa-home'),
-        yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class)
-        yield MenuItem::linkToCrud('Catégories', 'fas fa-fish', Category::class);
+        yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class),
+        yield MenuItem::linkToCrud('Catégories', 'fas fa-fish', Category::class),
+        yield MenuItem::linkToCrud('Environnement', 'fab fa-pagelines', Environment::class)
         // MenuItem::linkToLogout('Logout', 'fa fa-exit'),
         ];
     }
