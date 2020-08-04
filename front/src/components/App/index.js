@@ -9,23 +9,19 @@ import Header from 'src/containers/Header';
 import Footer from 'src/components/Footer';
 import Page from 'src/components/Page';
 import Register from 'src/containers/Register';
-import Home from 'src/components/Home';
+import Home from 'src/containers/Home';
 import Categories from 'src/containers/Categories';
-
 import Category from 'src/containers/Category';
 import Profile from 'src/components/Profile';
 import './styles.scss';
 
 // == Composant
 const App = ({
-  surveyLoading,
-  getSurveys,
   checkIsLogged,
   getCategories,
 }) => {
   useEffect(() => {
     getCategories();
-    getSurveys();
   }, []);
 
   useEffect(checkIsLogged, []);
@@ -42,18 +38,14 @@ const App = ({
           <Register />
         </Page>
       </Route>
-      {!surveyLoading && (
-        <>
-          <Route
-            exact
-            path="/"
-          >
-            <Page>
-              <Home />
-            </Page>
-          </Route>
-        </>
-      )}
+      <Route
+        exact
+        path="/"
+      >
+        <Page>
+          <Home />
+        </Page>
+      </Route>
       <Route
         exact
         path="/categories"
@@ -86,9 +78,7 @@ const App = ({
 
 App.propTypes = {
   getCategories: PropTypes.func.isRequired,
-  getSurveys: PropTypes.func.isRequired,
   checkIsLogged: PropTypes.func.isRequired,
-  surveyLoading: PropTypes.bool.isRequired,
 };
 
 // == Export

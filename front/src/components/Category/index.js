@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import AdultSurvey from 'src/containers/AdultSurvey';
 
 import './styles.scss';
 
-const Category = ({ category }) => (
-  <div className="category">category</div>
-);
+const Category = ({
+  surveyLoading,
+  category,
+  getSurveys,
+}) => {
+  useEffect(() => {
+    getSurveys();
+  }, []);
+
+  console.log('ma page de catégorie : ', category);
+  return (
+    <div className="category">
+      {!surveyLoading && (
+        <>
+          <AdultSurvey category={category} />
+        </>
+      )}
+    </div>
+  );
+};
+
+Category.propTypes = {
+  category: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  getSurveys: PropTypes.func.isRequired,
+  surveyLoading: PropTypes.bool.isRequired,
+};
 
 export default Category;

@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import TurtleImage from 'src/assets/images/turtle.jpg';
-
-import Page from 'src/components/Page';
-import Category from 'src/containers/Category';
 
 import { getSlugFromTitle } from 'src/selectors/categories';
 

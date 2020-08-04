@@ -1,7 +1,13 @@
 import { SAVE_SURVEYS, SEND_RESULTS, END_QUIZ } from 'src/actions/surveys';
 
+import adultExempleSurveyData from 'src/data';
+
 const initialState = {
-  surveys: [],
+  exempleSurveys: {
+    adultSurveyExemple: adultExempleSurveyData,
+    surveys: {},
+  },
+  surveys: {},
   surveyLoading: true,
   isCompleted: false,
   surveyAnswers: {},

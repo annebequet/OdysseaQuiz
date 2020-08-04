@@ -14,5 +14,5 @@ export const getSlugFromTitle = (title = '') => {
 };
 
 export const getCategoryBySlug = (categoryList, slug) => categoryList.find(
-  (category) => getSlugFromTitle(category.title) === slug,
+  (category) => getSlugFromTitle(category.name) === slug,
 );

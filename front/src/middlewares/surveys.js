@@ -2,7 +2,6 @@ import axios from 'axios';
 import { GET_SURVEYS, saveSurveys, SEND_RESULTS } from 'src/actions/surveys';
 
 // Surveys en statique
-import adultExempleSurveyData from 'src/data';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
