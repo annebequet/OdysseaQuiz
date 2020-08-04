@@ -5,10 +5,14 @@
   text-shadow: 4px 2px 4px black;
   &__pseudo {
     font-size: larger;
+    margin-bottom: 2em;
   }
   &__edit {
     display: flex;
     flex-direction: column;
+  }
+  & label:hover {
+    cursor: default;
   }
   .profile__edit__form {
     & label {

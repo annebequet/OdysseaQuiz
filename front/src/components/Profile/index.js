@@ -116,7 +116,7 @@ const Profile = ({
           Supprimer mon compte
         </button>
       </div>
-      <ul className="categories__ul">
+      {/* <ul className="categories__ul">
         {categories.map(({ name }) => (
           <li
             key={name}
@@ -129,7 +129,7 @@ const Profile = ({
             />
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
