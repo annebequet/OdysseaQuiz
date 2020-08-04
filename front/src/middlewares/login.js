@@ -56,6 +56,7 @@ const login = (store) => (next) => (action) => {
         {})
         .then(() => {
           window.sessionStorage.removeItem('token');
+          window.location.href = 'http://localhost:8080/';
           next(action);
         })
         .catch((error) => console.log(error));

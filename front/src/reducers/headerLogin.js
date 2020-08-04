@@ -13,7 +13,7 @@ const initialState = {
   roles: [],
   password: '',
   isLogged: false,
-  avatar: '',
+  avatar: {},
   id: '',
 };
 

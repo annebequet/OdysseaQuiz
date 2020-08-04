@@ -12,7 +12,9 @@ const Profile = ({
   avatar,
   getUser,
   categories,
-  handleEdit,
+  handleEditPseudo,
+  handleEditEmail,
+  handleEditPassword,
   changeInput,
   newPseudo,
   newEmail,
@@ -24,8 +26,17 @@ const Profile = ({
     getUser();
   }, []);
 
-  const handleEditSubmit = () => {
-    handleEdit();
+  const handleEditPseudoSubmit = (evt) => {
+    evt.preventDefault();
+    handleEditPseudo();
+  };
+  const handleEditEmailSubmit = (evt) => {
+    evt.preventDefault();
+    handleEditEmail();
+  };
+  const handleEditPasswordSubmit = (evt) => {
+    evt.preventDefault();
+    handleEditPassword();
   };
 
   const handleDeleteSubmit = (evt) => {
@@ -45,7 +56,8 @@ const Profile = ({
           <h3 className="profile__pseudo">Pseudo : {pseudo}</h3>
         </div>
         <div className="profile__wrap__right">
-          <form className="profile__edit__form" onSubmit={handleEditSubmit}>
+          {/* FORM FOR PSEUDO EDIT */}
+          <form className="profile__edit__form --pseudo" onSubmit={handleEditPseudoSubmit}>
             <div>
               <label>Changez votre pseudo</label>
             </div>
@@ -55,6 +67,15 @@ const Profile = ({
               onChange={changeInput}
               value={newPseudo}
             />
+            <button
+              className="profile__edit--submit"
+              type="submit"
+            >
+              Envoyez vos modifications
+            </button>
+          </form>
+          {/* FORM FOR EMAIL EDIT */}
+          <form className="profile__edit__form --email" onSubmit={handleEditEmailSubmit}>
             <div>
               <label>Changez votre adresse e-mail</label>
             </div>
@@ -64,6 +85,15 @@ const Profile = ({
               onChange={changeInput}
               value={newEmail}
             />
+            <button
+              className="profile__edit--submit"
+              type="submit"
+            >
+              Envoyez vos modifications
+            </button>
+          </form>
+          {/* FORM FOR PASSWORD EDIT */}
+          <form className="profile__edit__form --password" onSubmit={handleEditPasswordSubmit}>
             <div>
               <label>Changez votre Mot de passe</label>
             </div>
@@ -73,8 +103,14 @@ const Profile = ({
               onChange={changeInput}
               value={newPassword}
             />
-
-            {/* <label>Changez vos types de quiz</label>
+            <button
+              className="profile__edit--submit"
+              type="submit"
+            >
+              Envoyez vos modifications
+            </button>
+          </form>
+          {/* <label>Changez vos types de quiz</label>
 
              <div className="radio">
               <label>
@@ -99,13 +135,6 @@ const Profile = ({
               </label>
             </div> */}
 
-            <button
-              className="profile__edit--submit"
-              type="submit"
-            >
-              Envoyez vos modifications
-            </button>
-          </form>
         </div>
       </div>
 
@@ -145,7 +174,9 @@ Profile.propTypes = {
   ).isRequired,
   avatar: PropTypes.object,
   pseudo: PropTypes.string.isRequired,
-  handleEdit: PropTypes.func.isRequired,
+  handleEditPseudo: PropTypes.func.isRequired,
+  handleEditEmail: PropTypes.func.isRequired,
+  handleEditPassword: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   changeInput: PropTypes.func.isRequired,
   newPseudo: PropTypes.string.isRequired,
