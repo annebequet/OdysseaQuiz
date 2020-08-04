@@ -4,9 +4,7 @@ import { getCategories } from 'src/actions/categories';
 
 import App from 'src/components/App';
 
-const mapStateToProps = (state) => ({
-  surveyLoading: state.surveys.surveyLoading,
-});
+const mapStateToProps = null;
 
 const mapDispatchToProps = (dispatch) => ({
   getCategories: () => dispatch(getCategories()),

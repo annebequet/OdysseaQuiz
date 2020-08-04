@@ -10,7 +10,7 @@ const Category = ({
   getSurveys,
 }) => {
   useEffect(() => {
-    getSurveys();
+    getSurveys(category.id);
   }, []);
 
   console.log('ma page de catégorie : ', category);

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { sendResults, endQuiz, getSurveys } from 'src/actions/surveys';
+import { sendResults, endQuiz } from 'src/actions/surveys';
 
 import AdultSurvey from 'src/components/AdultSurvey';
 
@@ -16,7 +16,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(sendResults(answers, numberOfCorrectAnswers));
   },
 
-  getSurveys: () => dispatch(getSurveys()),
   endQuiz: () => dispatch(endQuiz()),
 });
 
