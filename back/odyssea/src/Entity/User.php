@@ -383,4 +383,9 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getImageUrl()
+    {
+        return $this->avatar->getImageUrl();
+    }
 }
