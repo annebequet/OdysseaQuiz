@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de la question : {{ question.title }}{% endblock %}
+
+{% block body %}
+<h1>Edition</h1>
+
+{{ form_start(form_question) }}
+{{ form_errors(form_question) }}
+
+{{ form_row(form_question.type) }}
+
+{{ form_row(form_question.name) }}
+
+{{ form_row(form_question.title) }}
+
+{{ form_row(form_question.category) }}
+
+{{ form_row(form_question.environment) }}
+
+<br>
+<button class="btn btn-primary">Modifier</button>
+{{ form_end(form_question) }}
+
+<br>
+
+<a href="{{ path('admin_question_browse') }}">Retourner à la liste</a> -
+<a href="{{ path('admin_question_read', {"id" : question.id}) }}"> Voir</a> -
+<a href="{{ path('admin_question_delete', {"id" : question.id}) }}">Supprimer</a>
+
+{% endblock %}

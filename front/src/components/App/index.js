@@ -9,21 +9,20 @@ import Header from 'src/containers/Header';
 import Footer from 'src/components/Footer';
 import Page from 'src/components/Page';
 import Register from 'src/containers/Register';
-import Home from 'src/components/Home';
+import Home from 'src/containers/Home';
 import Categories from 'src/containers/Categories';
-import Profile from 'src/components/Profile';
+import Category from 'src/containers/Category';
+import Profile from 'src/containers/Profile';
 import './styles.scss';
 
 // == Composant
 const App = ({
-  surveyLoading,
-  getSurveys,
   checkIsLogged,
   getCategories,
+  categoriesLoading,
 }) => {
   useEffect(() => {
     getCategories();
-    getSurveys();
   }, []);
 
   useEffect(checkIsLogged, []);
@@ -40,26 +39,35 @@ const App = ({
           <Register />
         </Page>
       </Route>
-      {!surveyLoading && (
+      <Route
+        exact
+        path="/"
+      >
+        <Page>
+          <Home />
+        </Page>
+      </Route>
+      {!categoriesLoading && (
         <>
           <Route
             exact
-            path="/"
+            path="/categories"
           >
             <Page>
-              <Home />
+              <Categories />
             </Page>
           </Route>
+          <Route
+            exact
+            path="/categories/:slug"
+            component={({ match }) => (
+              <Page>
+                <Category slug={match.params.slug} />
+              </Page>
+            )}
+          />
         </>
       )}
-      <Route
-        exact
-        path="/categories"
-      >
-        <Page>
-          <Categories />
-        </Page>
-      </Route>
       <Route
         exact
         path="/profile"
@@ -75,9 +83,8 @@ const App = ({
 
 App.propTypes = {
   getCategories: PropTypes.func.isRequired,
-  getSurveys: PropTypes.func.isRequired,
   checkIsLogged: PropTypes.func.isRequired,
-  surveyLoading: PropTypes.bool.isRequired,
+  categoriesLoading: PropTypes.bool.isRequired,
 };
 
 // == Export
