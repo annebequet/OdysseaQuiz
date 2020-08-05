@@ -22,6 +22,7 @@ const Categories = ({ categories }) => (
           >
             <h3>{name} </h3>
             <img
+              className="category__img"
               alt="turtle"
               src={TurtleImage}
             />

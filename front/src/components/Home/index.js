@@ -8,7 +8,6 @@ import './styles.scss';
 
 const Home = ({ adultExempleSurvey, childrenExempleSurvey }) => (
   <div>
-    <img src={reactLogo} alt="react logo" />
     <h1>ODYSSEA QUIZ</h1>
     <Quiz
       survey={adultExempleSurvey}

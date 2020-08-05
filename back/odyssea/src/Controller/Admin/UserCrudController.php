@@ -22,7 +22,7 @@ class UserCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        $avatarImage = AvatarField::new('avatar');
+        $avatarImage = AvatarField::new('imageUrl');
 
         $avatarChoices = AssociationField:: new('avatar');
 
