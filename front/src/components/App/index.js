@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 // == Import
 import Video from 'src/components/Video';
@@ -19,42 +19,32 @@ import './styles.scss';
 // == Composant
 const App = ({
   checkIsLogged,
-  getCategories,
-  categoriesLoading,
-  isLogged,
 }) => {
-  useEffect(() => {
-    getCategories();
-  }, []);
-
   useEffect(checkIsLogged, []);
 
   return (
     <div className="app">
       <Video />
       <Header />
-      {!categoriesLoading && (
-        <>
-          <Route
-            exact
-            path="/categories"
-          >
-            <Page>
-              <Categories />
-            </Page>
-          </Route>
-          <Route
-            exact
-            path="/categories/:slug"
-            component={({ match }) => (
-              <Page>
-                <Category slug={match.params.slug} />
-              </Page>
-            )}
-          />
-        </>
-      )}
       <Switch>
+        <Route
+          exact
+          path="/categories"
+        >
+          <Page>
+            <Categories />
+          </Page>
+        </Route>
+        <Route
+          exact
+          path="/categories/:slug"
+          component={({ match }) => (
+            <Page>
+              <Category slug={match.params.slug} />
+            </Page>
+          )}
+        />
+
         <Route
           exact
           path="/register"
@@ -92,10 +82,7 @@ const App = ({
 };
 
 App.propTypes = {
-  getCategories: PropTypes.func.isRequired,
   checkIsLogged: PropTypes.func.isRequired,
-  categoriesLoading: PropTypes.bool.isRequired,
-  isLogged: PropTypes.bool.isRequired,
 };
 
 // == Export
