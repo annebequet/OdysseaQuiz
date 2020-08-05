@@ -17,13 +17,13 @@ class Category
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"categories_get", "categories_get_one"})
+     * @Groups({"categories_get", "categories_get_one", "users_get_one"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Groups({"categories_get", "categories_get_one"})
+     * @Groups({"categories_get", "categories_get_one", "users_get_one"})
      */
     private $name;
 

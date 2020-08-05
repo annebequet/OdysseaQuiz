@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Entity\Score;
 use App\Repository\UserRepository;
 use App\Repository\ScoreRepository;
-use App\Normalizer\EntityNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -134,7 +133,6 @@ class UserController extends AbstractController
             return $this->json(['message' => 'Score added'], Response::HTTP_CREATED);
 
         } else {
-            
                    
             // if there's already a score, calculate the new totals
             $points = ($scoreLine->getPoints()) + ($score->getPoints());
@@ -151,7 +149,5 @@ class UserController extends AbstractController
 
             return $this->json(['message' => 'Score updated'], Response::HTTP_OK);
         }
-// manque un return ici ?
-
     }
 }

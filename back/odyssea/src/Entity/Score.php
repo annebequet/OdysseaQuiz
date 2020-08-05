@@ -30,6 +30,7 @@ class Score
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"users_get_one"})
      */
     private $score;
 
@@ -52,12 +53,14 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"users_get_one"})
      */
     private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"users_get_one"})
      */
     private $environment;
 
