@@ -15,11 +15,7 @@ const Category = ({
 
   return (
     <div className="category">
-      {!surveyLoading && (
-        <>
-          <Quiz />
-        </>
-      )}
+      <Quiz />
     </div>
   );
 };
