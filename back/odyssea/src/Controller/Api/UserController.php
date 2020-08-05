@@ -147,9 +147,6 @@ class UserController extends AbstractController
             // Set the updated_at time
             $scoreLine->setUpdatedAt(new \DateTime());
 
-            // Serialize the updated data according to an User entity
-            $updatedData = $serializer->deserialize($request->getContent(), Score::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $score]);
-
             $em->flush();
 
             return $this->json(['message' => 'Score updated'], Response::HTTP_OK);
