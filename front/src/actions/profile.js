@@ -4,6 +4,7 @@ export const HANDLE_EDIT_EMAIL = 'HANDLE_EDIT_EMAIL';
 export const HANDLE_EDIT_PASSWORD = 'HANDLE_EDIT_PASSWORD';
 export const HANDLE_DELETE = 'HANDLE_DELETE';
 export const GET_USER = 'GET_USER';
+export const SAVE_PSEUDO = 'SAVE_PSEUDO';
 
 export const handleEditPseudo = () => ({
   type: HANDLE_EDIT_PSEUDO,
@@ -29,4 +30,9 @@ export const handleDelete = () => ({
 
 export const getUser = () => ({
   type: GET_USER,
+});
+
+export const savePseudo = (pseudo) => ({
+  type: SAVE_PSEUDO,
+  pseudo,
 });
