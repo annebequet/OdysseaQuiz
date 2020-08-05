@@ -90,7 +90,7 @@ class Gallery
 
     public function __toString()
     {
-        return $this->imageUrl;
+        return $this->name;
     }
 
     public function getName(): ?string

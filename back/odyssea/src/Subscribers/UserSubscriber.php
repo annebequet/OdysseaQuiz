@@ -61,8 +61,7 @@ class UserSubscriber implements EventSubscriberInterface
             // Encode the updated password
             $passwordHashed = $this->passwordEncoder->encodePassword($entity, $entity->getPassword());
 
-            // Set the updated password to the User entity and update its updatedAt time
-            $entity->setUpdatedAt(new \DateTime());
+            // Set the updated password to the User entity
             $entity->setPassword($passwordHashed);
         }
     }
