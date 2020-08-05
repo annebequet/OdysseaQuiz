@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 // == Import
 import Video from 'src/components/Video';
@@ -13,6 +13,7 @@ import Home from 'src/containers/Home';
 import Categories from 'src/containers/Categories';
 import Category from 'src/containers/Category';
 import Profile from 'src/containers/Profile';
+import Error404 from 'src/components/Error404';
 import './styles.scss';
 
 // == Composant
@@ -20,6 +21,7 @@ const App = ({
   checkIsLogged,
   getCategories,
   categoriesLoading,
+  isLogged,
 }) => {
   useEffect(() => {
     getCategories();
@@ -72,10 +74,24 @@ const App = ({
         exact
         path="/profile"
       >
-        <Page>
-          <Profile />
-        </Page>
+        {isLogged && (
+          <Page>
+            <Profile />
+          </Page>
+        )}
+        {!isLogged && (
+        <Redirect path="/" />
+        )}
       </Route>
+      <Route
+        exact
+        path="/:slug"
+        component={({ match }) => (
+          <Page>
+            <Error404 slug={!match.params} />
+          </Page>
+        )}
+      />
       <Footer />
     </div>
   );
@@ -85,6 +101,7 @@ App.propTypes = {
   getCategories: PropTypes.func.isRequired,
   checkIsLogged: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 // == Export
