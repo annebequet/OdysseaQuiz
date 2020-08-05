@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -20,7 +20,7 @@ class UserController extends AbstractController
 {
     /**
      * Get all Users
-     * 
+     *
      * @Route("/users", name="api_users_get", methods={"GET"})
      */
     public function getAll(UserRepository $userRepository)
@@ -33,7 +33,7 @@ class UserController extends AbstractController
 
     /**
      * Get one user
-     * 
+     *
      * @Route("/users/{id<\d+>}", name="api_users_get_one", methods={"GET"})
      */
     public function getOne($id, UserRepository $userRepository, User $user)
@@ -52,7 +52,7 @@ class UserController extends AbstractController
 
     /**
      * Edit user (PUT)
-     * 
+     *
      * @Route("/users/{id<\d+>}", name="api_users_put", methods={"PUT"})
      * @Route("/users/{id<\d+>}", name="api_users_patch", methods={"PATCH"})
      */
@@ -68,11 +68,10 @@ class UserController extends AbstractController
 
         // Get the password, encode and set it to User
         $password = $user->getPassword();
-        if (!empty($password))
-            {
-                $passwordHashed = $passwordEncoder->encodePassword($user, $password);
-                $user->setPassword($passwordHashed);
-            }
+        if (!empty($password)) {
+            $passwordHashed = $passwordEncoder->encodePassword($user, $password);
+            $user->setPassword($passwordHashed);
+        }
 
         // Set the updated_at time
         $user->setUpdatedAt(new \DateTime());
@@ -84,7 +83,7 @@ class UserController extends AbstractController
 
     /**
      * Delete user
-     * 
+     *
      * @Route("/users/{id<\d+>}", name="api_users_delete", methods={"DELETE"})
      */
     public function delete(User $user = null, EntityManagerInterface $em)
@@ -150,6 +149,5 @@ class UserController extends AbstractController
 
             return $this->json(['message' => 'Score updated'], Response::HTTP_OK);
         }
-
     }
 }
