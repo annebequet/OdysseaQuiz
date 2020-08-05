@@ -1,5 +1,9 @@
+import React from 'react';
 import axios from 'axios';
-import { LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser } from 'src/actions';
+import { Redirect } from 'react-router-dom';
+import {
+  LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser,
+} from 'src/actions';
 
 // http://54.226.34.31/api/*
 
@@ -14,7 +18,9 @@ const login = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response);
-          const { token, pseudo, roles, avatar, id } = response.data;
+          const {
+            token, pseudo, roles, avatar, id,
+          } = response.data;
           window.sessionStorage.setItem('token', token);
           window.sessionStorage.setItem('id', id);
           store.dispatch(saveUser(pseudo, roles, avatar, id));
@@ -56,8 +62,8 @@ const login = (store) => (next) => (action) => {
         {})
         .then(() => {
           window.sessionStorage.removeItem('token');
-          window.location.href = 'http://localhost:8080/';
-          next(action);
+            <Redirect path="/" />;
+            next(action);
         })
         .catch((error) => console.log(error));
       break;

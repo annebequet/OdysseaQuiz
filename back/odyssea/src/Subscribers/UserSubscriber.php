@@ -2,6 +2,7 @@
 
 namespace App\Subscribers;
 
+use App\Entity\User;
 use App\Repository\GalleryRepository;
 use DateTime;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
@@ -33,15 +34,19 @@ class UserSubscriber implements EventSubscriberInterface
         // Get the data sent through the form
         $entity = $event->getEntityInstance();
 
-        // Encode the password
-        $passwordHashed = $this->passwordEncoder->encodePassword($entity, $entity->getPassword());
+        // Verify if the entity is an User
+        if ($entity instanceof User) {
 
-        // Set it to the User entity
-        $entity->setPassword($passwordHashed);
+            // Encode the password
+            $passwordHashed = $this->passwordEncoder->encodePassword($entity, $entity->getPassword());
 
-        // If an avatar isn't selected, set it by default to the first avatar in the Gallery table (sea lion)
-        if(empty($entity->getAvatar())) {
-            $entity->setAvatar($this->galleryRepository->find(1));
+            // Set it to the User entity
+            $entity->setPassword($passwordHashed);
+
+            // If an avatar isn't selected, set it by default to the first avatar in the Gallery table (sea lion)
+            if (empty($entity->getAvatar())) {
+                $entity->setAvatar($this->galleryRepository->find(1));
+            }
         }
     }
 
@@ -50,11 +55,14 @@ class UserSubscriber implements EventSubscriberInterface
         // Get the data sent through the form
         $entity = $event->getEntityInstance();
 
-        // Encode the updated password
-        $passwordHashed = $this->passwordEncoder->encodePassword($entity, $entity->getPassword());
+        // Verify if the entity is an User
+        if ($entity instanceof User) {
+            
+            // Encode the updated password
+            $passwordHashed = $this->passwordEncoder->encodePassword($entity, $entity->getPassword());
 
-        // Set the updated password to the User entity and update its updatedAt time
-        $entity->setUpdatedAt(new \DateTime());
-        $entity->setPassword($passwordHashed);
+            // Set the updated password to the User entity
+            $entity->setPassword($passwordHashed);
+        }
     }
 }
