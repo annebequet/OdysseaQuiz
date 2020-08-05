@@ -4,7 +4,7 @@ import { sendResults, endQuiz } from 'src/actions/surveys';
 
 import { transformQuestionsInSurveyObject } from 'src/selectors/survey';
 
-import AdultSurvey from 'src/components/AdultSurvey';
+import Quiz from 'src/components/Quiz';
 
 const mapStateToProps = (state, ownProps) => {
   // eslint-disable-next-line max-len
@@ -31,4 +31,4 @@ const mapDispatchToProps = (dispatch) => ({
   endQuiz: () => dispatch(endQuiz()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdultSurvey);
+export default connect(mapStateToProps, mapDispatchToProps)(Quiz);

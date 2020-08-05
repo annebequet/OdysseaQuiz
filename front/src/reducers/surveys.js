@@ -4,7 +4,7 @@ import adultExempleSurveyData from 'src/data';
 
 const initialState = {
   exempleSurveys: {
-    adultSurveyExemple: adultExempleSurveyData,
+    SurveyExemple: adultExempleSurveyData,
     childrenExempleSurvey: {},
   },
   surveyCategory: '',
