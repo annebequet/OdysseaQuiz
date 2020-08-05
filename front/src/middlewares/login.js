@@ -62,7 +62,8 @@ const login = (store) => (next) => (action) => {
         {})
         .then(() => {
           window.sessionStorage.removeItem('token');
-            <Redirect path="/" />;
+          window.sessionStorage.removeItem('id');
+            <Redirect to="/" />;
             next(action);
         })
         .catch((error) => console.log(error));

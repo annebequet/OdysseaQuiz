@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 // == Import
 import Video from 'src/components/Video';
@@ -33,22 +33,6 @@ const App = ({
     <div className="app">
       <Video />
       <Header />
-      <Route
-        exact
-        path="/register"
-      >
-        <Page>
-          <Register />
-        </Page>
-      </Route>
-      <Route
-        exact
-        path="/"
-      >
-        <Page>
-          <Home />
-        </Page>
-      </Route>
       {!categoriesLoading && (
         <>
           <Route
@@ -70,28 +54,38 @@ const App = ({
           />
         </>
       )}
-      <Route
-        exact
-        path="/profile"
-      >
-        {isLogged && (
+      <Switch>
+        <Route
+          exact
+          path="/register"
+        >
           <Page>
-            <Profile />
+            <Register />
           </Page>
-        )}
-        {!isLogged && (
-        <Redirect path="/" />
-        )}
-      </Route>
-      <Route
-        exact
-        path="/:slug"
-        component={({ match }) => (
+        </Route>
+        <Route
+          exact
+          path="/"
+        >
           <Page>
-            <Error404 slug={!match.params} />
+            <Home />
           </Page>
-        )}
-      />
+        </Route>
+        <Route
+          exact
+          path="/profile/:slug"
+          component={({ match }) => (
+            <Page>
+              <Profile slug={match.params.slug} />
+            </Page>
+          )}
+        />
+        <Route path="*">
+          <Page>
+            <Error404 />
+          </Page>
+        </Route>
+      </Switch>
       <Footer />
     </div>
   );
