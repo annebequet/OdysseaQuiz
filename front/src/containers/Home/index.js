@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import Home from 'src/components/Home';
 
 const mapStateToProps = (state) => ({
-  SurveyExemple: state.surveys.exempleSurveys.SurveyExemple,
+  adultExempleSurvey: state.surveys.exempleSurveys.adultExempleSurvey,
+  childrenExempleSurvey: state.surveys.exempleSurveys.childrenExempleSurvey,
 });
 
 const mapDispatchToProps = {};

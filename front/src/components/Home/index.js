@@ -6,23 +6,26 @@ import reactLogo from './react-logo.svg';
 
 import './styles.scss';
 
-const Home = ({ SurveyExemple }) => (
+const Home = ({ adultExempleSurvey, childrenExempleSurvey }) => (
   <div>
     <img src={reactLogo} alt="react logo" />
     <h1>ODYSSEA QUIZ</h1>
     <Quiz
-      survey={SurveyExemple}
+      survey={adultExempleSurvey}
       category="Exemple adulte"
+      isExempleQuiz
     />
     <Quiz
-      survey={SurveyExemple}
+      survey={childrenExempleSurvey}
       category="Exemple enfant"
+      isExempleQuiz
     />
   </div>
 );
 
 Home.propTypes = {
-  SurveyExemple: PropTypes.array.isRequired,
+  adultExempleSurvey: PropTypes.array.isRequired,
+  childrenExempleSurvey: PropTypes.array.isRequired,
 };
 
 export default Home;

@@ -84,6 +84,7 @@ Quiz.propTypes = {
   endQuiz: PropTypes.func.isRequired,
   surveyAnswers: PropTypes.object.isRequired,
   grade: PropTypes.number.isRequired,
+  isExempleQuiz: PropTypes.bool.isRequired,
 };
 
 export default Quiz;
