@@ -4,7 +4,9 @@ import {
   logout,
 } from 'src/actions';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({
+  pseudo: state.headerLogin.pseudo,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   handleLogout: () => {
