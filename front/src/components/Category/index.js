@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import AdultSurvey from 'src/containers/AdultSurvey';
+import Quiz from 'src/containers/Quiz';
 
 import './styles.scss';
 
@@ -17,7 +17,7 @@ const Category = ({
     <div className="category">
       {!surveyLoading && (
         <>
-          <AdultSurvey />
+          <Quiz />
         </>
       )}
     </div>

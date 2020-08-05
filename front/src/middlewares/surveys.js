@@ -21,8 +21,31 @@ export default (store) => (next) => (action) => {
       break;
     }
     case SEND_RESULTS: {
-      // TODO (not in MVP)
-      const resultsToSend = action.numberOfCorrectAnswers;
+      // If the user used the exempleSurvey, then we do not send the results.
+      if (action.isExempleQuiz) {
+        const state = store.getState();
+        const { environment: environmentId } = state.profile;
+        const { id: categoryId } = state.surveys.surveyCategory;
+        const userId = sessionStorage.getItem('id');
+        const points = action.numberOfCorrectAnswers;
+        axios.post(`http://localhost/Apotheose/Odyssea/back/odyssea/public`, {
+          environmentId,
+          categoryId,
+          userId,
+          points,
+        },
+        {
+          headers: {
+            'X-AUTH-TOKEN': sessionStorage.getItem('token'),
+          },
+        })
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
       next(action);
       break;
     }
