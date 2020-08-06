@@ -25,11 +25,6 @@ const HeaderLogin = (state = initialState, action = {}) => {
         ...state,
         open: !state.open,
       };
-    case LOGIN:
-      return {
-        ...state,
-        open: false,
-      };
     case ON_BLUR_LOGIN:
       return {
         ...state,

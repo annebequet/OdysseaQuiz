@@ -3,6 +3,7 @@ import Categories from 'src/components/Categories';
 
 const mapStateToProps = (state) => ({
   categories: state.categories.categories,
+  isLogged: state.headerLogin.isLogged,
 });
 
 const mapDispatchToProps = () => ({});
