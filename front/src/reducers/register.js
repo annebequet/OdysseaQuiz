@@ -6,7 +6,7 @@ export const initialState = {
   lastName: '',
   firstName: '',
   pseudo: '',
-  environment: 2,
+  environment: '',
 };
 
 const register = (state = initialState, action = {}) => {

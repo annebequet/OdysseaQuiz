@@ -6,7 +6,7 @@ import { changeCSSStyles, handleSingularOrPlural } from 'src/selectors/survey';
 
 import './styles.scss';
 
-const AdultSurvey = ({
+const Quiz = ({
   surveyData,
   isCompleted,
   surveyAnswers,
@@ -77,7 +77,7 @@ const AdultSurvey = ({
   );
 };
 
-AdultSurvey.propTypes = {
+Quiz.propTypes = {
   surveyData: PropTypes.object.isRequired,
   isCompleted: PropTypes.bool.isRequired,
   sendResults: PropTypes.func.isRequired,
@@ -86,4 +86,4 @@ AdultSurvey.propTypes = {
   grade: PropTypes.number.isRequired,
 };
 
-export default AdultSurvey;
+export default Quiz;
