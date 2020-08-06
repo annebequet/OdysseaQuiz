@@ -26,12 +26,11 @@ class ScoreCrudController extends AbstractCrudController
             IdField::new('id')
                 ->onlyOnIndex(),
             $username = TextField:: new('pseudo', 'Joueur'),
-            AssociationField::new('user', 'Email'),
-            IntegerField::new('Score', 'Score moyen'),
-            IntegerField::new('quizNb', 'Nb de quiz joués'),
-            IntegerField::new('points', 'Total de pts cumulés'),
             AssociationField::new('category', 'Catégorie'),
             AssociationField::new('environment', 'Environnement'),
+            IntegerField::new('Score', 'Score moyen'),
+            IntegerField::new('quizNb', 'Nb de quiz joués'),
+            IntegerField::new('points', 'Total de pts cumulés')
         ];
 
         return $fields;
