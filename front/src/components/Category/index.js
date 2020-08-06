@@ -18,7 +18,6 @@ const Category = ({
       {!surveyLoading && (
       <Quiz />
       )}
-    </div>
   );
 };
 

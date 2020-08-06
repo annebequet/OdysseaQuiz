@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Quiz from 'src/containers/Quiz';
-import reactLogo from './react-logo.svg';
 
 import './styles.scss';
 

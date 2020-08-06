@@ -10,16 +10,9 @@ import './styles.scss';
 
 const Categories = ({
   categories,
-  getCategories,
-  categoriesLoading,
-}) => {
-  useEffect(() => {
-    getCategories();
-  }, []);
 
   return (
     <div className="page__categories">
-      {!categoriesLoading && (
       <ul className="categories__ul">
         {categories.map(({ name }) => (
           <Link
@@ -40,12 +33,12 @@ const Categories = ({
           </Link>
         ))}
       </ul>
-      )}
     </div>
   );
 };
-
 Categories.propTypes = {
+  getCategories: PropTypes.func.isRequired,
+  categoriesLoading: PropTypes.bool.isRequired,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
