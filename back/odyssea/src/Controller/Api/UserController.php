@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -56,26 +57,38 @@ class UserController extends AbstractController
      * @Route("/users/{id<\d+>}", name="api_users_put", methods={"PUT"})
      * @Route("/users/{id<\d+>}", name="api_users_patch", methods={"PATCH"})
      */
-    public function put(User $user = null, EntityManagerInterface $em, SerializerInterface $serializer, Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function put(User $user = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder)
     {
-        // Check if the User exists, if not, return 404
-        if ($user === null) {
-            return $this->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+        if(!$user) {
+            return $this->json(['error' => 'utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
-        // Serialize the updated data according to an User entity
-        $updatedData = $serializer->deserialize($request->getContent(), User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);
-
-        // Get the password, encode and set it to User
+        $content = $request->getContent();
         $password = $user->getPassword();
-        if (!empty($password)) {
-            $passwordHashed = $passwordEncoder->encodePassword($user, $password);
-            $user->setPassword($passwordHashed);
+
+        $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
+
+        //? VALIDATION
+        $errors = $validator->validate($updatedUser);
+
+        if(count($errors) > 0) {
+            $errorsArray = [];
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        // Set the updated_at time
-        $user->setUpdatedAt(new \DateTime());
+        //? HASH PASSWORD
+        $newPassword = $updatedUser->getPassword();
 
+        if($newPassword !== $password) {
+            $encodedPassword = $passwordEncoder->encodePassword($updatedUser, trim($newPassword));
+            $updatedUser->setPassword($encodedPassword);
+        }
+
+        //? SAVE
+        $em = $this->getDoctrine()->getManager();
         $em->flush();
 
         return $this->json(['message' => 'User updated'], Response::HTTP_OK);
