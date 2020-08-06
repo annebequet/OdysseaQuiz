@@ -16,7 +16,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(saveSurveys(response.data));
         })
         .catch((error) => {
-          console.log('une errreeeeur ', error);
+          console.log(error);
         });
       next(action);
       break;

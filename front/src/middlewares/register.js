@@ -24,7 +24,6 @@ const register = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
-          window.location.href = '/';
         })
         .catch((error) => {
           console.log(error);
