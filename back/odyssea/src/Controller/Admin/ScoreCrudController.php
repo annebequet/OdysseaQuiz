@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Score;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -37,4 +38,13 @@ class ScoreCrudController extends AbstractCrudController
         ->disable(Action::NEW, Action::EDIT, Action::DELETE);
     }
 
+   public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle('index', 'Scores')
+            // ->setPageTitle('new', 'Score')
+            // ->setPageTitle('edit', 'Score')
+            // ->setPageTitle('detail', 'Score')
+        ;
+    }
 }
