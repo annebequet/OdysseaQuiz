@@ -4,7 +4,9 @@ import {
   HANDLE_EDIT_EMAIL,
   HANDLE_EDIT_PSEUDO,
   HANDLE_EDIT_PASSWORD,
-  HANDLE_DELETE, GET_USER,
+  HANDLE_DELETE,
+  GET_USER,
+  HANDLE_EDIT_ENVIRONMENT,
 } from 'src/actions/profile';
 
 const categories = (store) => (next) => (action) => {
@@ -45,6 +47,7 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error);
@@ -85,6 +88,29 @@ const categories = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      next(action);
+      break;
+    }
+    case HANDLE_EDIT_ENVIRONMENT: {
+      const state = store.getState();
+      const { newEnvironment: environment } = state.profile;
+      const id = sessionStorage.getItem('id');
+      axios.put(`http://localhost/Apotheose/Odyssea/back/odyssea/public/users/${id}`, {
+        environment,
+      },
+      {
+        headers: {
+          'X-AUTH-TOKEN': sessionStorage.getItem('token'),
+        },
+      })
+        .then((response) => {
+          console.log(response.data);
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error);

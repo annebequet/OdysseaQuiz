@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 import TurtleImage from 'src/assets/images/turtle.jpg';
 import Field from './Field';
+import FieldRadio from './FieldRadio';
 
 /* Commentaries are for the switch environment item */
 
@@ -15,10 +16,12 @@ const Profile = ({
   handleEditPseudo,
   handleEditEmail,
   handleEditPassword,
+  handleEditEnvironment,
   changeInput,
   newPseudo,
   newEmail,
   newPassword,
+  newEnvironment,
   handleDelete,
   // selectedOption,
 }) => {
@@ -38,7 +41,10 @@ const Profile = ({
     evt.preventDefault();
     handleEditPassword();
   };
-
+  const handleEditEnvironmentSubmit = (evt) => {
+    evt.preventDefault();
+    handleEditEnvironment();
+  };
   const handleDeleteSubmit = (evt) => {
     evt.preventDefault();
     handleDelete();
@@ -110,30 +116,25 @@ const Profile = ({
               Envoyez vos modifications
             </button>
           </form>
-          {/* <label>Changez vos types de quiz</label>
-
-             <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  value="option1"
-                  checked={selectedOption === '1'}
-                  onChange={handleOptionChange}
-                />
-                Enfant
-              </label>
+          {/* FORM FOR ENVIRONMENT EDIT */}
+          <form className="profile__edit__form --environment" onSubmit={handleEditEnvironmentSubmit}>
+            <div>
+              <label>Changez votre difficulté de jeu!</label>
             </div>
-            <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  value="option2"
-                  checked={selectedOption === '2'}
-                  onChange={handleOptionChange}
-                />
-                Adulte
-              </label>
-            </div> */}
+            <FieldRadio
+              name="newEnvironment"
+              label="environment"
+              id="environment"
+              onChange={changeInput}
+              value={newEnvironment}
+            />
+            <button
+              className="profile__edit--submit"
+              type="submit"
+            >
+              Envoyez vos modifications
+            </button>
+          </form>
 
         </div>
       </div>
@@ -178,12 +179,13 @@ Profile.propTypes = {
   handleEditPseudo: PropTypes.func.isRequired,
   handleEditEmail: PropTypes.func.isRequired,
   handleEditPassword: PropTypes.func.isRequired,
+  handleEditEnvironment: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   changeInput: PropTypes.func.isRequired,
   newPseudo: PropTypes.string.isRequired,
   newEmail: PropTypes.string.isRequired,
   newPassword: PropTypes.string.isRequired,
-  // selectedOption: PropTypes.func.isRequired,
+  newEnvironment: PropTypes.string.isRequired,
 };
 
 Profile.defaultProps = {

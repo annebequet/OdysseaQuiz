@@ -4,7 +4,7 @@ export const initialState = {
   newEmail: '',
   newPassword: '',
   newPseudo: '',
-  environment: '',
+  newEnvironment: '',
 };
 
 const register = (state = initialState, action = {}) => {
