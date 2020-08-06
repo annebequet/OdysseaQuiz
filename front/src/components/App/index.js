@@ -19,14 +19,21 @@ import './styles.scss';
 // == Composant
 const App = ({
   checkIsLogged,
+  getCategories,
+  categoriesLoading,
 }) => {
   useEffect(checkIsLogged, []);
+
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   return (
     <div className="app">
       <Video />
       <Header />
       <Switch>
+        {!categoriesLoading && (
         <Route
           exact
           path="/categories"
@@ -35,6 +42,9 @@ const App = ({
             <Categories />
           </Page>
         </Route>
+        )}
+
+        {!categoriesLoading && (
         <Route
           exact
           path="/categories/:slug"
@@ -44,7 +54,7 @@ const App = ({
             </Page>
           )}
         />
-
+        )}
         <Route
           exact
           path="/register"
@@ -83,6 +93,8 @@ const App = ({
 
 App.propTypes = {
   checkIsLogged: PropTypes.func.isRequired,
+  getCategories: PropTypes.func.isRequired,
+  categoriesLoading: PropTypes.bool.isRequired,
 };
 
 // == Export
