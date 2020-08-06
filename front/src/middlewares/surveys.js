@@ -23,16 +23,16 @@ export default (store) => (next) => (action) => {
     }
     case SEND_RESULTS: {
       // If the user used the exempleSurvey, then we do not send the results.
-      if (action.isExempleQuiz) {
+      if (!action.isExempleQuiz) {
         const state = store.getState();
-        const { environment: environmentId } = state.profile;
-        const { id: categoryId } = state.surveys.surveyCategory;
-        const userId = sessionStorage.getItem('id');
+        const environment = sessionStorage.getItem('environment');
+        const { id: category } = state.surveys.surveyCategory;
+        const user = sessionStorage.getItem('id');
         const points = action.numberOfCorrectAnswers;
-        axios.post(`http://localhost/Apotheose/Odyssea/back/odyssea/public`, {
-          environmentId,
-          categoryId,
-          userId,
+        axios.post(`http://localhost/Apotheose/Odyssea/back/odyssea/public/score`, {
+          environment,
+          category,
+          user,
           points,
         },
         {
