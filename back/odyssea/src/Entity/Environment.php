@@ -17,7 +17,7 @@ class Environment
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("categories_get_one")
+     * @Groups({"users_get_one", "categories_get_one"})
      */
     private $id;
 
