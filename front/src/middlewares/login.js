@@ -21,11 +21,12 @@ const login = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           const {
-            token, pseudo, roles, avatar, id,
+            token, pseudo, roles, avatar, id, environment,
           } = response.data;
           window.sessionStorage.setItem('token', token);
           window.sessionStorage.setItem('id', id);
-          store.dispatch(saveUser(pseudo, roles, avatar, id));
+          window.sessionStorage.setItem('environment', environment[0]);
+          store.dispatch(saveUser(pseudo, roles, avatar, id, environment[0]));
         })
         .catch((error) => {
           console.log(error);
@@ -65,6 +66,7 @@ const login = (store) => (next) => (action) => {
         .then(() => {
           window.sessionStorage.removeItem('token');
           window.sessionStorage.removeItem('id');
+          window.sessionStorage.removeItem('environment');
             <Route
               exact
               path="/"

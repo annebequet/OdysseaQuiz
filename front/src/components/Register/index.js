@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FieldRegister from './FieldRegister';
+import FieldRadioRegister from './FieldRadioRegister';
 
 import './styles.scss';
 
@@ -11,6 +12,7 @@ const Register = ({
   firstName,
   pseudo,
   avatar,
+  environment,
   changeField,
   handleRegister,
 }) => {
@@ -71,6 +73,14 @@ const Register = ({
           value={avatar}
         />
         {/* Here place a select to choose environment */}
+        <FieldRadioRegister
+          name="environment"
+          type="radio"
+          label="environment"
+          id="environment"
+          onChange={changeField}
+          value={environment}
+        />
         <button
           type="submit"
           className="register-form-button"
@@ -91,12 +101,14 @@ Register.propTypes = {
   avatar: PropTypes.string,
   changeField: PropTypes.func.isRequired,
   handleRegister: PropTypes.func.isRequired,
+  environment: PropTypes.string.isRequired,
 };
 
 Register.defaultProps = {
   lastName: '',
   firstName: '',
   avatar: '',
+
 };
 
 export default Register;
