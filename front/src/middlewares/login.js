@@ -21,7 +21,7 @@ const login = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           const {
-            token, pseudo, roles, avatar, id, environment,
+            token, pseudo, roles, avatar, id, environmentId: environment,
           } = response.data;
           window.sessionStorage.setItem('token', token);
           window.sessionStorage.setItem('id', id);
