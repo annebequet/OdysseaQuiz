@@ -8,16 +8,18 @@ import './styles.scss';
 const Home = ({ adultExempleSurvey, childrenExempleSurvey }) => (
   <div>
     <h1>ODYSSEA QUIZ</h1>
-    <Quiz
-      survey={adultExempleSurvey}
-      category="Exemple adulte"
-      isExempleQuiz
-    />
-    <Quiz
-      survey={childrenExempleSurvey}
-      category="Exemple enfant"
-      isExempleQuiz
-    />
+    <div className="exempleSurveys">
+      <Quiz
+        survey={adultExempleSurvey}
+        category="Exemple adulte"
+        isExempleQuiz
+      />
+      <Quiz
+        survey={childrenExempleSurvey}
+        category="Exemple enfant"
+        isExempleQuiz
+      />
+    </div>
   </div>
 );
 
