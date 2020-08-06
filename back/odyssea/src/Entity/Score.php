@@ -29,7 +29,7 @@ class Score
     private $points;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="decimal", precision=2, scale=1, nullable=true)
      * @Groups({"users_get_one"})
      */
     private $score;
@@ -98,12 +98,12 @@ class Score
         return $this;
     }
 
-    public function getScore(): ?int
+    public function getScore()
     {
         return $this->score;
     }
 
-    public function setScore(?int $score): self
+    public function setScore($score): self
     {
         $this->score = $score;
 
