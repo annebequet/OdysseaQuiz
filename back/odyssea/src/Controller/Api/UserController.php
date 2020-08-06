@@ -125,7 +125,7 @@ class UserController extends AbstractController
         if (empty($scoreLine)) { 
             // The user played for the first time
             $score->setQuizNb(1);
-            $score->setScore($score->getPoints());
+            $score->setScore(($score->getPoints())*10);
             // Add the new score to the database
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($score);
@@ -137,7 +137,7 @@ class UserController extends AbstractController
             // if there's already a score, calculate the new totals
             $points = ($scoreLine->getPoints()) + ($score->getPoints());
             $quizNb = ($scoreLine->getQuizNb()) + 1;
-            $scoreTotal = $points/$quizNb;
+            $scoreTotal = ($points/$quizNb)*10;
             // and set them
             $scoreLine->setPoints($points);
             $scoreLine->setQuizNb($quizNb);
