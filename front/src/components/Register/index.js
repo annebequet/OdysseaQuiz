@@ -15,6 +15,7 @@ const Register = ({
   environment,
   changeField,
   handleRegister,
+  isRegistered,
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -23,6 +24,7 @@ const Register = ({
 
   return (
     <div className="register">
+      {!isRegistered && (
       <form className="register__form" onSubmit={handleSubmit}>
         <FieldRegister
           label="Adresse Email"
@@ -88,6 +90,11 @@ const Register = ({
           S'inscrire
         </button>
       </form>
+      )}
+      {isRegistered && (
+        // eslint-disable-next-line max-len
+        <div>Bravo pour votre inscription, vous pouvez maintenant vous connecter et commencer à jouer dans le grand bain !</div>
+      )}
     </div>
   );
 };
@@ -102,6 +109,7 @@ Register.propTypes = {
   changeField: PropTypes.func.isRequired,
   handleRegister: PropTypes.func.isRequired,
   environment: PropTypes.string.isRequired,
+  isRegistered: PropTypes.bool.isRequired,
 };
 
 Register.defaultProps = {

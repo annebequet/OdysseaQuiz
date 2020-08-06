@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
   pseudo: state.register.pseudo,
   avatar: state.register.avatar,
   environment: state.register.environment,
+  isRegistered: state.register.isRegistered,
 });
 const mapDispatchToProps = (dispatch) => ({
   handleRegister: () => {
