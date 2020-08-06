@@ -38,7 +38,7 @@ class SecurityController extends AbstractController
             'avatar' => $user->getAvatar(),
             'roles' => $user->getRoles(),
             'token' => $user->getApiToken(),
-            'environmentId' => $user->getEnvironment(),
+            'environmentId' => $user->getEnvironment()->getId(),
             'logged' => true
         ]);
     }

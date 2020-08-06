@@ -4,15 +4,16 @@ import adultExempleSurveyData from 'src/data';
 
 const initialState = {
   exempleSurveys: {
-    adultSurveyExemple: adultExempleSurveyData,
-    childrenExempleSurvey: {},
+    adultExempleSurvey: adultExempleSurveyData,
+    childrenExempleSurvey: adultExempleSurveyData,
   },
   surveyCategory: '',
+  surveyTitle: '',
   surveys: {},
   surveyLoading: true,
   isCompleted: false,
   surveyAnswers: {},
-  numberOfCorrectAnswers: 0,
+  points: 0,
 };
 
 export default (state = initialState, action = {}) => {
@@ -33,14 +34,15 @@ export default (state = initialState, action = {}) => {
     case GET_SURVEYS:
       return {
         ...state,
-        surveyCategory: action.category.name,
+        surveyCategory: action.category,
+        surveyTitle: action.category.name,
       };
     case END_QUIZ:
       return {
         ...state,
         isCompleted: false,
         surveyAnswers: {},
-        numberOfCorrectAnswers: 0,
+        points: 0,
       };
     default:
       return state;

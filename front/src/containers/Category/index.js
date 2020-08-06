@@ -14,7 +14,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getSurveys: (categorySlug) => dispatch(getSurveys(categorySlug)),
+  getSurveys: (categorySlug) => {
+    dispatch(getSurveys(categorySlug));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

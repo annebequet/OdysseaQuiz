@@ -8,7 +8,9 @@ import { getSlugFromTitle } from 'src/selectors/categories';
 
 import './styles.scss';
 
-const Categories = ({ categories }) => (
+const Categories = ({
+  categories,
+}) => (
   <div className="page__categories">
     <ul className="categories__ul">
       {categories.map(({ name }) => (
@@ -16,15 +18,16 @@ const Categories = ({ categories }) => (
           to={`/categories/${getSlugFromTitle(name)}`}
           className="category_link"
           key={name}
-        >
+          >
           <li
             className="categories__item"
-          >
+            >
             <h3>{name} </h3>
             <img
+              className="category__img"
               alt="turtle"
               src={TurtleImage}
-            />
+              />
           </li>
         </Link>
       ))}
