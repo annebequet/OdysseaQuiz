@@ -25,8 +25,8 @@ const login = (store) => (next) => (action) => {
           } = response.data;
           window.sessionStorage.setItem('token', token);
           window.sessionStorage.setItem('id', id);
-          window.sessionStorage.setItem('environment', environment[0]);
-          store.dispatch(saveUser(pseudo, roles, avatar, id, environment[0]));
+          window.sessionStorage.setItem('environment', environment);
+          store.dispatch(saveUser(pseudo, roles, avatar, id));
         })
         .catch((error) => {
           console.log(error);
@@ -57,6 +57,7 @@ const login = (store) => (next) => (action) => {
           console.log(error);
           window.sessionStorage.removeItem('token');
           window.sessionStorage.removeItem('id');
+          window.sessionStorage.removeItem('environment');
         });
       next(action);
       break;
