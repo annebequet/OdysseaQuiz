@@ -1,8 +1,4 @@
-import React from 'react';
 import axios from 'axios';
-import { Route } from 'react-router-dom';
-import Page from 'src/components/Page';
-import Home from 'src/containers/Home';
 import {
   LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser,
 } from 'src/actions';
@@ -68,15 +64,8 @@ const login = (store) => (next) => (action) => {
           window.sessionStorage.removeItem('token');
           window.sessionStorage.removeItem('id');
           window.sessionStorage.removeItem('environment');
-            <Route
-              exact
-              path="/"
-            >
-              <Page>
-                <Home />
-              </Page>
-            </Route>;
-            next(action);
+          window.location.href = '/';
+          next(action);
         })
         .catch((error) => console.log(error));
       break;
