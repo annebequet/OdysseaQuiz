@@ -1,3 +1,15 @@
 .sv_main{
   max-width: 500px;
 }
+
+@media (min-width: 768px) {
+  .exempleSurveys{
+  display: flex;
+  justify-content: space-around;
+  }
+}
+
+.survey{
+  display: flex;
+  justify-content: center;
+}
