@@ -93,6 +93,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Score::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"users_get_one"})
      */
     private $scores;
 
