@@ -3,11 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Environment;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 
 class EnvironmentCrudController extends AbstractCrudController
 {
@@ -21,17 +22,24 @@ class EnvironmentCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->onlyOnIndex(),
-            TextField::new('name'),
+            TextField::new('name', 'Nom'),
         ];
     }
 
     public function configureActions(Actions $actions): Actions
     {
     return $actions
-        // ...
         // this will forbid to create or delete entities in the backend
-        ->disable(Action::NEW, Action::DELETE)
-    ;
+        ->disable(Action::NEW, Action::DELETE);
     }
-    
+   
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle('index', 'Environnements')
+            // ->setPageTitle('new', 'Environnement')
+            ->setPageTitle('edit', 'Environnement')
+            ->setPageTitle('detail', 'Environnement')
+        ;
+    }
 }

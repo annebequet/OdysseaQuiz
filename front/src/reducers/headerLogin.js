@@ -4,6 +4,7 @@ import {
   CHANGE_FIELD_VALUE,
   SAVE_USER,
   LOGOUT,
+  LOGIN,
 } from '../actions';
 
 const initialState = {
@@ -23,6 +24,11 @@ const HeaderLogin = (state = initialState, action = {}) => {
       return {
         ...state,
         open: !state.open,
+      };
+    case LOGIN:
+      return {
+        ...state,
+        open: false,
       };
     case ON_BLUR_LOGIN:
       return {
