@@ -37,7 +37,7 @@ Category.propTypes = {
 };
 
 Category.defaultProps = {
-  category: '',
+  category: {},
 };
 
 export default Category;
