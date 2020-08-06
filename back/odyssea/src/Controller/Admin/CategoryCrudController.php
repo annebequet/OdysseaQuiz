@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
@@ -26,5 +27,10 @@ class CategoryCrudController extends AbstractCrudController
             // https://q-cf.bstatic.com/images/hotel/max1024x768/249/249219414.jpg
         ];
     }
-    
+   
+    // public function configureCrud(Crud $crud): Crud
+    // {
+    //     return $crud
+    //         ->setPageTitle('Catégories', '%entity_label_plural% listing');
+    // }
 }
