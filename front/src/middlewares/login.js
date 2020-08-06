@@ -64,7 +64,7 @@ const login = (store) => (next) => (action) => {
           window.sessionStorage.removeItem('token');
           window.sessionStorage.removeItem('id');
           window.sessionStorage.removeItem('environment');
-          window.location.href = '/';
+          window.location.replace('/');
           next(action);
         })
         .catch((error) => console.log(error));
