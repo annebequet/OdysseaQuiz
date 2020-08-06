@@ -5,7 +5,7 @@ export default (store) => (next) => (action) => {
   switch (action.type) {
     case GET_SURVEYS: {
       const categorySlug = action.category.id;
-      const environmentSlug= store.getState().profile.environment;
+      const environmentSlug = sessionStorage.getItem('environment');
       axios.get(`http://localhost/Apotheose/Odyssea/back/odyssea/public/questions/${environmentSlug}/${categorySlug}`, {
         headers: {
           'X-AUTH-TOKEN': sessionStorage.getItem('token'),
