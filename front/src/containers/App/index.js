@@ -9,7 +9,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   checkIsLogged: () => dispatch(checkIsLogged()),
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

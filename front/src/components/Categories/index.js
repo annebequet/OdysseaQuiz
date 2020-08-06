@@ -10,12 +10,6 @@ import './styles.scss';
 
 const Categories = ({
   categories,
-  categoriesLoading,
-  getCategories,
-}) => {
-  useEffect(() => {
-    getCategories();
-  }, []);
 
   return (
     <div className="page__categories">
@@ -50,6 +44,8 @@ Categories.propTypes = {
       name: PropTypes.string,
     }),
   ).isRequired,
+  getCategories: PropTypes.func.isRequired,
+  categoriesLoading: PropTypes.bool.isRequired,
 };
 
 export default Categories;
