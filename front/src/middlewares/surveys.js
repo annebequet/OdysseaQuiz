@@ -12,10 +12,11 @@ export default (store) => (next) => (action) => {
         },
       })
         .then((response) => {
+          console.log('response', response);
           store.dispatch(saveSurveys(response.data));
         })
         .catch((error) => {
-          console.log(error);
+          console.log('une errreeeeur ', error);
         });
       next(action);
       break;
