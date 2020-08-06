@@ -30,10 +30,14 @@ Category.propTypes = {
   category: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   getSurveys: PropTypes.func.isRequired,
   surveyLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
+};
+
+Category.defaultProps = {
+  category: '',
 };
 
 export default Category;
