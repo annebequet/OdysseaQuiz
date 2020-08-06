@@ -44,6 +44,7 @@ const App = ({
             </Page>
           )}
         />
+
         <Route
           exact
           path="/register"
