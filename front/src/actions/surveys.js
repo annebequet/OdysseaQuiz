@@ -8,10 +8,12 @@ export const getSurveys = (category) => ({
   category,
 });
 
-export const sendResults = (answers, numberOfCorrectAnswers) => ({
+export const sendResults = (answers, numberOfCorrectAnswers, isExempleQuiz, isChildQuiz) => ({
   type: SEND_RESULTS,
   answers,
   numberOfCorrectAnswers,
+  isExempleQuiz,
+  isChildQuiz
 });
 
 export const saveSurveys = (surveys) => ({
