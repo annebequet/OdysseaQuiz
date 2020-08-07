@@ -6,6 +6,7 @@ import {
   handleEditEmail,
   handleEditPassword,
   changeInput,
+  handleEditEnvironment,
   handleDelete,
   getUser,
 } from '../../actions/profile';
@@ -17,6 +18,7 @@ const mapStateToProps = (state) => ({
   newEmail: state.profile.newEmail,
   newPseudo: state.profile.newPseudo,
   newPassword: state.profile.newPassword,
+  newEnvironment: state.profile.newEnvironment,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -28,6 +30,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleEditPassword: () => {
     dispatch(handleEditPassword());
+  },
+  handleEditEnvironment: () => {
+    dispatch(handleEditEnvironment());
   },
   changeInput: (value, key) => {
     dispatch(changeInput(value, key));

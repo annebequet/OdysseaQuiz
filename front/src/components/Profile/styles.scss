@@ -16,9 +16,6 @@
     display: flex;
     flex-direction: column;
   }
-  & label:hover {
-    cursor: default;
-  }
   .profile__edit__form {
     & label {
       color: orange;
