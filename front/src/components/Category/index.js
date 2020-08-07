@@ -37,6 +37,7 @@ Category.propTypes = {
   getSurveys: PropTypes.func.isRequired,
   surveyLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 Category.defaultProps = {
