@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -56,26 +57,47 @@ class UserController extends AbstractController
      * @Route("/users/{id<\d+>}", name="api_users_put", methods={"PUT"})
      * @Route("/users/{id<\d+>}", name="api_users_patch", methods={"PATCH"})
      */
-    public function put(User $user = null, EntityManagerInterface $em, SerializerInterface $serializer, Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function put(User $user = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder)
     {
-        // Check if the User exists, if not, return 404
-        if ($user === null) {
-            return $this->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+        // Verify if the user exists
+        if(!$user) {
+            return $this->json(['error' => 'utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
-        // Serialize the updated data according to an User entity
-        $updatedData = $serializer->deserialize($request->getContent(), User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);
+        // Get the content of the request
+        $content = $request->getContent();
 
-        // Get the password, encode and set it to User
+        // Get the User password
         $password = $user->getPassword();
-        if (!empty($password)) {
-            $passwordHashed = $passwordEncoder->encodePassword($user, $password);
-            $user->setPassword($passwordHashed);
+
+        // Deserialiaze the json content into a User entity
+        $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
+
+        // Validate the entity with the validator service
+        $errors = $validator->validate($updatedUser);
+
+        // If there are errors, return the array in JSON format
+        if(count($errors) > 0) {
+            $errorsArray = [];
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        // Set the updated_at time
-        $user->setUpdatedAt(new \DateTime());
+        // Get the password from the form
+        $newPassword = $updatedUser->getPassword();
 
+        // If the new password is different than the old one
+        if($newPassword !== $password) {
+            // Encode the password
+            $encodedPassword = $passwordEncoder->encodePassword($updatedUser, trim($newPassword));
+            // Set it to the User
+            $updatedUser->setPassword($encodedPassword);
+        }
+
+        // Save and flush
+        $em = $this->getDoctrine()->getManager();
         $em->flush();
 
         return $this->json(['message' => 'User updated'], Response::HTTP_OK);
@@ -125,7 +147,7 @@ class UserController extends AbstractController
         if (empty($scoreLine)) { 
             // The user played for the first time
             $score->setQuizNb(1);
-            $score->setScore($score->getPoints());
+            $score->setScore(($score->getPoints())*10);
             // Add the new score to the database
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($score);
@@ -137,7 +159,7 @@ class UserController extends AbstractController
             // if there's already a score, calculate the new totals
             $points = ($scoreLine->getPoints()) + ($score->getPoints());
             $quizNb = ($scoreLine->getQuizNb()) + 1;
-            $scoreTotal = $points/$quizNb;
+            $scoreTotal = ($points/$quizNb)*10;
             // and set them
             $scoreLine->setPoints($points);
             $scoreLine->setQuizNb($quizNb);

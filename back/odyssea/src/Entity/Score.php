@@ -169,4 +169,9 @@ class Score
 
         return $this;
     }
+
+    public function getPseudo()
+    {
+        return $this->user->getPseudo();
+    }
 }

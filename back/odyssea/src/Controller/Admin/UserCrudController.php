@@ -19,7 +19,6 @@ class UserCrudController extends AbstractCrudController
         return User::class;
     }
 
-    
     public function configureFields(string $pageName): iterable
     {
         $avatarImage = AvatarField::new('imageUrl');
@@ -55,5 +54,15 @@ class UserCrudController extends AbstractCrudController
         }
 
         return $fields;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle('index', 'Utilisateurs')
+            ->setPageTitle('new', 'Utilisateur')
+            ->setPageTitle('edit', 'Utilisateur')
+            ->setPageTitle('detail', 'Utilisateur')
+        ;
     }
 }
