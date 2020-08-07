@@ -9,6 +9,7 @@ const Category = ({
   category,
   getSurveys,
   isLogged,
+  error,
 }) => {
   useEffect(() => {
     getSurveys(category);
@@ -21,8 +22,8 @@ const Category = ({
         isChildQuiz={false}
       />
       )}
-      {!isLogged && (
-        <div>Il faut être connecté pour s'inscrire ! Sautez dans l'eau !</div>
+      {error && !isLogged && (
+        <div>Il faut être connecté pour jouer ! Sautez dans l'eau !</div>
       )}
     </div>
   );
