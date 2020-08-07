@@ -3,14 +3,15 @@ import {
   LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser,
 } from 'src/actions';
 
-// http://54.226.34.31/api/*
+// http://54.226.34.31/*
+// http://localhost/Apotheose/Odyssea/back/odyssea/public/*
 
 const login = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
       const { username, password } = store.getState().headerLogin;
 
-      axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/login', {
+      axios.post('http://54.226.34.31/login', {
         username,
         password,
       })
@@ -32,7 +33,7 @@ const login = (store) => (next) => (action) => {
       break;
     }
     case CHECK_IS_LOGGED:
-      axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/islogged',
+      axios.get('http://54.226.34.31/api/islogged',
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -58,7 +59,7 @@ const login = (store) => (next) => (action) => {
       next(action);
       break;
     case LOGOUT:
-      axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/logout',
+      axios.get('http://54.226.34.31/api/logout',
         {})
         .then(() => {
           window.sessionStorage.removeItem('token');

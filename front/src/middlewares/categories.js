@@ -4,7 +4,7 @@ import { GET_CATEGORIES, saveCategories } from 'src/actions/categories';
 const categories = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_CATEGORIES: {
-      axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/categories')
+      axios.get('http://54.226.34.31/categories')
         .then((response) => {
           console.log(response.data);
           store.dispatch(saveCategories(response.data));
