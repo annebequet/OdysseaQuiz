@@ -24,12 +24,12 @@ class UserSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            BeforeEntityPersistedEvent::class => ['setPassword'],
+            BeforeEntityPersistedEvent::class => ['setPasswordAndAvatar'],
             BeforeEntityUpdatedEvent::class => ['setUpdatedPassword']
         ];
     }
 
-    public function setPassword(BeforeEntityPersistedEvent $event)
+    public function setPasswordAndAvatar(BeforeEntityPersistedEvent $event)
     {
         // Get the data sent through the form
         $entity = $event->getEntityInstance();
@@ -47,22 +47,6 @@ class UserSubscriber implements EventSubscriberInterface
             if (empty($entity->getAvatar())) {
                 $entity->setAvatar($this->galleryRepository->find(1));
             }
-        }
-    }
-
-    public function setUpdatedPassword(BeforeEntityUpdatedEvent $event)
-    {
-        // Get the data sent through the form
-        $entity = $event->getEntityInstance();
-
-        // Verify if the entity is an User
-        if ($entity instanceof User) {
-            
-            // Encode the updated password
-            $passwordHashed = $this->passwordEncoder->encodePassword($entity, $entity->getPassword());
-
-            // Set the updated password to the User entity
-            $entity->setPassword($passwordHashed);
         }
     }
 }
