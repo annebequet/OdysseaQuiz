@@ -7,7 +7,7 @@ const categories = (store) => (next) => (action) => {
       axios.get('http://54.226.34.31/api/categories')
         .then((response) => {
           console.log(response.data);
-          store.dispatch(saveCategories(response.data.categories));
+          store.dispatch(saveCategories(response.data));
         })
         .catch((error) => {
           console.log(error);
