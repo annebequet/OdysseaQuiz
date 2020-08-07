@@ -2,8 +2,6 @@
 
 .header {
   width: 100%;
-  top: 0;
-  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -177,7 +175,7 @@ svg:nth-child(1) {
 
 .logo {
   padding-top: 100px;
-  width: 200%;
+  width: 200px;
 }
 /* if user is logged */
 .menu__item--logout:hover {

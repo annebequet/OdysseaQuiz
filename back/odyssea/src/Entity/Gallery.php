@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\GalleryRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -21,7 +22,7 @@ class Gallery
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Groups({"avatars_get", "avatar_get_one"})
+     * @Groups({"avatars_get", "avatar_get_one", "users_get", "users_get_one"})
      */
     private $imageUrl;
 
@@ -40,6 +41,11 @@ class Gallery
      * @Groups({"avatars_get", "avatar_get_one"})
      */
     private $name;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -84,7 +90,7 @@ class Gallery
 
     public function __toString()
     {
-        return $this->imageUrl;
+        return $this->name;
     }
 
     public function getName(): ?string

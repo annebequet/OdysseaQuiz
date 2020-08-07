@@ -1,17 +1,19 @@
-import { SAVE_SURVEYS, SEND_RESULTS, END_QUIZ } from 'src/actions/surveys';
+import { SAVE_SURVEYS, SEND_RESULTS, END_QUIZ, GET_SURVEYS } from 'src/actions/surveys';
 
 import adultExempleSurveyData from 'src/data';
 
 const initialState = {
   exempleSurveys: {
-    adultSurveyExemple: adultExempleSurveyData,
-    surveys: {},
+    adultExempleSurvey: adultExempleSurveyData,
+    childrenExempleSurvey: adultExempleSurveyData,
   },
+  surveyCategory: '',
+  surveyTitle: '',
   surveys: {},
   surveyLoading: true,
   isCompleted: false,
   surveyAnswers: {},
-  numberOfCorrectAnswers: 0,
+  points: 0,
 };
 
 export default (state = initialState, action = {}) => {
@@ -29,12 +31,18 @@ export default (state = initialState, action = {}) => {
         surveyAnswers: action.answers,
         numberOfCorrectAnswers: action.numberOfCorrectAnswers,
       };
+    case GET_SURVEYS:
+      return {
+        ...state,
+        surveyCategory: action.category,
+        surveyTitle: action.category.name,
+      };
     case END_QUIZ:
       return {
         ...state,
         isCompleted: false,
         surveyAnswers: {},
-        numberOfCorrectAnswers: 0,
+        points: 0,
       };
     default:
       return state;

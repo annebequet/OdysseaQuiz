@@ -6,7 +6,7 @@ import { changeCSSStyles, handleSingularOrPlural } from 'src/selectors/survey';
 
 import './styles.scss';
 
-const AdultSurvey = ({
+const Quiz = ({
   surveyData,
   isCompleted,
   surveyAnswers,
@@ -39,10 +39,6 @@ const AdultSurvey = ({
     return title;
   };
 
-  const handleQuizEnd = () => {
-    endQuiz();
-  };
-
   // eslint-disable-next-line max-len
   /* We have two surveys : one to use as a quiz, the second one to display the results. The completion of the quiz passes the const isCompleted to true, so as to display the second survey with the results. */
   return (
@@ -73,7 +69,7 @@ const AdultSurvey = ({
             className="endQuiz"
             type="button"
             value="fin"
-            onClick={handleQuizEnd}
+            onClick={endQuiz}
           />
         </div>
       )}
@@ -81,7 +77,7 @@ const AdultSurvey = ({
   );
 };
 
-AdultSurvey.propTypes = {
+Quiz.propTypes = {
   surveyData: PropTypes.object.isRequired,
   isCompleted: PropTypes.bool.isRequired,
   sendResults: PropTypes.func.isRequired,
@@ -90,4 +86,4 @@ AdultSurvey.propTypes = {
   grade: PropTypes.number.isRequired,
 };
 
-export default AdultSurvey;
+export default Quiz;

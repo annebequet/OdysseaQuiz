@@ -1,13 +1,26 @@
-export const SEND_EDIT = 'SEND_EDIT';
 export const CHANGE_INPUT = 'CHANGE_INPUT';
-export const HANDLE_EDIT = 'HANDLE_EDIT';
+export const HANDLE_EDIT_PSEUDO = 'HANDLE_EDIT_PSEUDO';
+export const HANDLE_EDIT_EMAIL = 'HANDLE_EDIT_EMAIL';
+export const HANDLE_EDIT_PASSWORD = 'HANDLE_EDIT_PASSWORD';
+export const HANDLE_EDIT_ENVIRONMENT = 'HANDLE_EDIT_ENVIRONMENT';
+export const HANDLE_DELETE = 'HANDLE_DELETE';
+export const GET_USER = 'GET_USER';
+export const SAVE_PSEUDO = 'SAVE_PSEUDO';
 
-export const handleEdit = () => ({
-  type: HANDLE_EDIT,
+export const handleEditPseudo = () => ({
+  type: HANDLE_EDIT_PSEUDO,
 });
 
-export const sendEdit = () => ({
-  type: SEND_EDIT,
+export const handleEditEmail = () => ({
+  type: HANDLE_EDIT_EMAIL,
+});
+
+export const handleEditPassword = () => ({
+  type: HANDLE_EDIT_PASSWORD,
+});
+
+export const handleEditEnvironment = () => ({
+  type: HANDLE_EDIT_ENVIRONMENT,
 });
 
 export const changeInput = (value, name) => ({
@@ -15,3 +28,18 @@ export const changeInput = (value, name) => ({
   name,
   value,
 });
+
+export const handleDelete = () => ({
+  type: HANDLE_DELETE,
+});
+
+export const getUser = () => ({
+  type: GET_USER,
+});
+
+export const savePseudo = (pseudo) => ({
+  type: SAVE_PSEUDO,
+  pseudo,
+});
+
+

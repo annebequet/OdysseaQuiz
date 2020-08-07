@@ -11,39 +11,13 @@ import RegisterButton from './RegisterButton';
 
 import './styles.scss';
 
-
-const Header = ({ roles, isLogged }) => (
-  <div className="header">
-    <nav className="menu--desktop">
-      <NavLink
-        to="/"
-        className="menu__item"
-        activeClassName="menu__link--active"
-        exact
-      >
-        Accueil
-      </NavLink>
-      <NavLink
-        to="/categories"
-        className="menu__item"
-        activeClassName="menu__link--active"
-        exact
-      >
-        Catégories
-      </NavLink>
-      {(roles.indexOf('ROLE_ADMIN') !== -1) && (
-        <NavLink
-          to="/admin"
-          className="menu__item"
-          activeClassName="menu__link--active"
-          exact
-        >
-          admin
-        </NavLink>
-      )}
-    </nav>
-    <nav className="menu--burger">
-      <Menu disableAutoFocus>
+const Header = ({ roles, isLogged, loginAdmin }) => {
+  const handleAdmin = () => {
+    loginAdmin();
+  };
+  return (
+    <div className="header">
+      <nav className="menu--desktop">
         <NavLink
           to="/"
           className="menu__item"
@@ -61,49 +35,78 @@ const Header = ({ roles, isLogged }) => (
           Catégories
         </NavLink>
         {(roles.indexOf('ROLE_ADMIN') !== -1) && (
+        <a
+          href="http://localhost/Apotheose/Odyssea/back/odyssea/public/admin"
+          className="menu__item"
+          onClick={handleAdmin}
+        >
+          admin
+        </a>
+        )}
+      </nav>
+      <nav className="menu--burger">
+        <Menu disableAutoFocus>
           <NavLink
-            to="/admin"
+            to="/"
             className="menu__item"
             activeClassName="menu__link--active"
             exact
           >
-            Admin
+            Accueil
           </NavLink>
-        )}
-        <NavLink
-          to="/contact"
-          className="menu__item"
-          activeClassName="menu__link--active"
-          exact
-        >
-          Contact
-        </NavLink>
-        <NavLink
-          to="/faq"
-          className="menu__item"
-          activeClassName="menu__link--active"
-          exact
-        >
-          FAQ
-        </NavLink>
-        <img className="logo" alt="whale-logo" src={WhaleLogo} />
-      </Menu>
-    </nav>
-    {(!isLogged) && (
+          <NavLink
+            to="/categories"
+            className="menu__item"
+            activeClassName="menu__link--active"
+            exact
+          >
+            Catégories
+          </NavLink>
+          {(roles.indexOf('ROLE_ADMIN') !== -1) && (
+          <a
+            href="http://localhost/Apotheose/Odyssea/back/odyssea/public/admin"
+            className="menu__item"
+            onClick={handleAdmin}
+          >
+            Admin
+          </a>
+          )}
+          <NavLink
+            to="/contact"
+            className="menu__item"
+            activeClassName="menu__link--active"
+            exact
+          >
+            Contact
+          </NavLink>
+          <NavLink
+            to="/faq"
+            className="menu__item"
+            activeClassName="menu__link--active"
+            exact
+          >
+            FAQ
+          </NavLink>
+          <img className="logo" alt="whale-logo" src={WhaleLogo} />
+        </Menu>
+      </nav>
+      {(!isLogged) && (
       <div className="header__nav__form">
         <RegisterButton />
         <Login />
       </div>
-    )}
-    {(isLogged) && (
-    <LoggedNav />
-    )}
-  </div>
-);
+      )}
+      {(isLogged) && (
+      <LoggedNav />
+      )}
+    </div>
+  );
+};
 
 Header.propTypes = {
   roles: PropTypes.array.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  loginAdmin: PropTypes.func.isRequired,
 };
 
 export default Header;

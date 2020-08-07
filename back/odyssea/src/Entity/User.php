@@ -60,6 +60,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups("users_get_one")
      */
     private $password;
 
@@ -92,11 +93,13 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Score::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"users_get_one"})
      */
     private $scores;
 
     /**
      * @ORM\ManyToOne(targetEntity=Gallery::class)
+     * @Groups({"users_get", "users_get_one"})
      */
     private $avatar;
     
@@ -380,5 +383,10 @@ class User implements UserInterface
         $this->avatar = $avatar;
 
         return $this;
+    }
+
+    public function getImageUrl()
+    {
+        return $this->avatar->getImageUrl();
     }
 }
