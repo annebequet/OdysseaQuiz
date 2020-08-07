@@ -11,7 +11,7 @@ const login = (store) => (next) => (action) => {
     case LOGIN: {
       const { username, password } = store.getState().headerLogin;
 
-      axios.post('http://54.226.34.31/login', {
+      axios.post('http://54.226.34.31/api/login', {
         username,
         password,
       })
