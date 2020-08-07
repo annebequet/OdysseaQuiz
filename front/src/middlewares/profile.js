@@ -38,6 +38,7 @@ const categories = (store) => (next) => (action) => {
       const { newPseudo: pseudo } = state.profile;
       const id = sessionStorage.getItem('id');
       axios.put(`http://54.226.34.31/back/api/users/${id}`, {
+
         pseudo,
       },
       {
