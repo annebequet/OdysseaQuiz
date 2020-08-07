@@ -6,7 +6,7 @@ export default (store) => (next) => (action) => {
     case GET_SURVEYS: {
       const categorySlug = action.category.id;
       const environmentSlug = sessionStorage.getItem('environment');
-      axios.get(`http://localhost/Apotheose/Odyssea/back/odyssea/public/questions/${environmentSlug}/${categorySlug}`, {
+      axios.get(`http://54.226.34.31/back/api/questions/${environmentSlug}/${categorySlug}`, {
         headers: {
           'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },
@@ -30,7 +30,7 @@ export default (store) => (next) => (action) => {
         const { id: category } = state.surveys.surveyCategory;
         const user = sessionStorage.getItem('id');
         const points = action.numberOfCorrectAnswers;
-        axios.post(`http://localhost/Apotheose/Odyssea/back/odyssea/public/score`, {
+        axios.post(`http://54.226.34.31/back/api/score`, {
           environment,
           category,
           user,
