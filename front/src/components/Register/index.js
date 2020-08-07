@@ -27,7 +27,7 @@ const Register = ({
     <div className="register">
       {error && !isRegistered && (
         // eslint-disable-next-line max-len
-        <div>Erreur d'enregistrement, on reste calme, on rajuste ses brassières, et on réessaie :) </div>
+        <div>Erreur d'enregistrement, on reste calme, on rajuste ses brassières, et on réessaie : </div>
       )}
       {!isRegistered && (
       <form className="register__form" onSubmit={handleSubmit}>
@@ -79,11 +79,12 @@ const Register = ({
           onChange={changeField}
           value={avatar}
         />
-        {/* Here place a select to choose environment */}
+        <div>
+          <label>Changez votre difficulté de jeu!</label>
+        </div>
         <FieldRadioRegister
           name="environment"
           type="radio"
-          label="environment"
           id="environment"
           onChange={changeField}
           value={environment}

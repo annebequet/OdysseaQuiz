@@ -51,12 +51,13 @@ FieldRadio.propTypes = {
   value: PropTypes.string.isRequired,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
 FieldRadio.defaultProps = {
   type: 'radio',
+  label: '',
 };
 
 export default FieldRadio;
