@@ -31,7 +31,7 @@ export default (state = initialState, action = {}) => {
         isCompleted: !action.isChildQuiz,
         isChildQuizCompleted: action.isChildQuiz,
         surveyAnswers: action.answers,
-        numberOfCorrectAnswers: action.numberOfCorrectAnswers,
+        points: action.numberOfCorrectAnswers,
       };
     case GET_SURVEYS:
       return {
