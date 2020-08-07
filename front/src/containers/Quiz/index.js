@@ -13,13 +13,11 @@ const mapStateToProps = (state, ownProps) => {
   const category = ownProps.category ? ownProps.category : state.surveys.surveyTitle;
   // eslint-disable-next-line max-len
   const isCompleted = ownProps.isChildQuiz ? state.surveys.isChildQuizCompleted : state.surveys.isCompleted;
-  const isChildQuiz = !!ownProps.isChildQuiz;
 
   // eslint-disable-next-line max-len
   // Function to turn the object received by the request into an object that would fit the library SurveyJS expectations
   const surveyData = transformQuestionsInSurveyObject(survey, category);
   return {
-    isChildQuiz,
     surveyData,
     isCompleted,
     surveyAnswers: state.surveys.surveyAnswers,
@@ -29,7 +27,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   sendResults: (answers, numberOfCorrectAnswers) => {
-    dispatch(sendResults(answers, numberOfCorrectAnswers, ownProps.isExempleQuiz));
+    dispatch(sendResults(
+      answers,
+      numberOfCorrectAnswers,
+      ownProps.isExempleQuiz,
+      ownProps.isChildQuiz,
+    ));
   },
 
   endQuiz: () => dispatch(endQuiz()),

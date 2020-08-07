@@ -29,7 +29,8 @@ export default (state = initialState, action = {}) => {
     case SEND_RESULTS:
       return {
         ...state,
-        isCompleted: true,
+        isCompleted: !action.isChildQuiz,
+        isChildQuizCompleted: action.isChildQuiz,
         surveyAnswers: action.answers,
         numberOfCorrectAnswers: action.numberOfCorrectAnswers,
       };

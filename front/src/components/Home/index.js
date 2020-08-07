@@ -13,6 +13,7 @@ const Home = ({ adultExempleSurvey, childrenExempleSurvey }) => (
         survey={adultExempleSurvey}
         category="Exemple adulte"
         isExempleQuiz
+        isChildQuiz={false}
       />
       <Quiz
         survey={childrenExempleSurvey}
