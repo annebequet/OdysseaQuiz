@@ -13,7 +13,7 @@ class GalleryController extends AbstractController
     /**
      * Get all avatars
      * 
-     * @Route("/avatars", name="api_avatars_get", methods={"GET"})
+     * @Route("/api/avatars", name="api_avatars_get", methods={"GET"})
      */
     public function getAll(GalleryRepository $galleryRepository)
     {
@@ -26,7 +26,7 @@ class GalleryController extends AbstractController
     /**
      * Get one avatar
      * 
-     * @Route("/avatars/{id<\d+>}", name="api_avatars_get_one", methods={"GET"})
+     * @Route("/api/avatars/{id<\d+>}", name="api_avatars_get_one", methods={"GET"})
      */
     public function getOne($id, GalleryRepository $galleryRepository, Gallery $avatar)
     {
