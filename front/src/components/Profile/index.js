@@ -123,7 +123,6 @@ const Profile = ({
             </div>
             <FieldRadio
               name="newEnvironment"
-              label="environment"
               id="environment"
               onChange={changeInput}
               value={newEnvironment}

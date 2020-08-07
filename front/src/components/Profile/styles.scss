@@ -22,11 +22,12 @@
     }
     & input {
       border: none;
-      margin-top: 0.7em;
+      margin-top: 0.3em;
       border-radius: 10px;
       padding: vars.$gutter / 1.5;
     }
   }
+  
   &__edit--submit {
     border-radius: 10px;
     border: none;
@@ -46,4 +47,24 @@
     padding: vars.$gutter / 1.8;
     background-color: vars.$background-color;
   }
+}
+.field--radio {
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+    vertical-align: middle;border: none;
+    &__details {
+      vertical-align: middle;
+    }
+    input[type='radio']{
+      transform: scale(1.5);
+    }
+      
+}
+.profile-field-input--radio {
+      margin-left: 1em;
+      margin-right: 1em;
+      width: 20px;  
+      /* transform: scale(2); */
+      
 }

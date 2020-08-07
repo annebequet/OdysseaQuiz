@@ -13,7 +13,7 @@ class CategoryController extends AbstractController
     /**
      * Get all Categories
      * 
-     * @Route("/categories", name="api_categories_get", methods={"GET"})
+     * @Route("/api/categories", name="api_categories_get", methods={"GET"})
      */
     public function getAll(CategoryRepository $categoryRepository)
     {
@@ -25,7 +25,7 @@ class CategoryController extends AbstractController
     /**
      * Get one category
      * 
-     * @Route("/categories/{id<\d+>}", name="api_categories_get_one", methods={"GET"})
+     * @Route("/api/categories/{id<\d+>}", name="api_categories_get_one", methods={"GET"})
      */
     public function getOne($id, CategoryRepository $categoryRepository, Category $category)
     {

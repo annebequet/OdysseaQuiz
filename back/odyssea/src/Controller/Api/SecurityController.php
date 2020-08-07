@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="api_login", methods={"POST"})
+     * @Route("/api/login", name="api_login", methods={"POST"})
      */
     public function login(EntityManagerInterface $entityManager)
     {
@@ -45,7 +45,7 @@ class SecurityController extends AbstractController
 
 
     /**
-     * @Route("/islogged", name="app_islogged", methods={"GET"})
+     * @Route("/api/islogged", name="app_islogged", methods={"GET"})
      */
     public function isLogged(Request $request, UserRepository $userRepository)
     {
@@ -64,7 +64,7 @@ class SecurityController extends AbstractController
 
 
     /**
-     * @Route("/logout", name="app_logout", methods={"GET"})
+     * @Route("/api/logout", name="app_logout", methods={"GET"})
      */
     public function logout(User $user)
     {
@@ -73,7 +73,7 @@ class SecurityController extends AbstractController
     /**
      * Add User
      * 
-     * @Route("/register", methods={"POST"})
+     * @Route("/api/register", methods={"POST"})
      */
     public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, GalleryRepository $galleryRepository)
     {
