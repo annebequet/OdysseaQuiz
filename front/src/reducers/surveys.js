@@ -1,4 +1,4 @@
-import { SAVE_SURVEYS, SEND_RESULTS, END_QUIZ, GET_SURVEYS } from 'src/actions/surveys';
+import { SAVE_SURVEYS, SEND_RESULTS, END_QUIZ, GET_SURVEYS, SET_ERROR } from 'src/actions/surveys';
 
 import adultExempleSurveyData from 'src/data';
 
@@ -12,10 +12,10 @@ const initialState = {
   surveys: {},
   surveyLoading: true,
   isCompleted: false,
-  isChildQuiz: false,
   isChildQuizCompleted: false,
   surveyAnswers: {},
   points: 0,
+  error: false,
 };
 
 export default (state = initialState, action = {}) => {
@@ -39,6 +39,11 @@ export default (state = initialState, action = {}) => {
         ...state,
         surveyCategory: action.category,
         surveyTitle: action.category.name,
+      };
+    case SET_ERROR:
+      return {
+        ...state,
+        error: true,
       };
     case END_QUIZ:
       return {

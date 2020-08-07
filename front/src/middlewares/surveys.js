@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_SURVEYS, saveSurveys, SEND_RESULTS } from 'src/actions/surveys';
+import { GET_SURVEYS, saveSurveys, SEND_RESULTS, setError } from 'src/actions/surveys';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -17,6 +17,7 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
+          store.dispatch(setError());
         });
       next(action);
       break;
