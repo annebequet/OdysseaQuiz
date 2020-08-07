@@ -12,6 +12,8 @@ const initialState = {
   surveys: {},
   surveyLoading: true,
   isCompleted: false,
+  isChildQuiz: false,
+  isChildQuizCompleted: false,
   surveyAnswers: {},
   points: 0,
 };
