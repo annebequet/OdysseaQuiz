@@ -13,7 +13,7 @@ export const sendResults = (answers, numberOfCorrectAnswers, isExempleQuiz, isCh
   answers,
   numberOfCorrectAnswers,
   isExempleQuiz,
-  isChildQuiz
+  isChildQuiz,
 });
 
 export const saveSurveys = (surveys) => ({

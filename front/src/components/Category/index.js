@@ -17,7 +17,9 @@ const Category = ({
   return (
     <div className="category">
       {!surveyLoading && isLogged && (
-      <Quiz />
+      <Quiz
+        isChildQuiz={false}
+      />
       )}
       {!isLogged && (
         <div>Il faut être connecté pour s'inscrire ! Sautez dans l'eau !</div>
