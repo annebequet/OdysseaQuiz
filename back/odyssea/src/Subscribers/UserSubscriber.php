@@ -4,6 +4,7 @@ namespace App\Subscribers;
 
 use App\Entity\User;
 use App\Repository\GalleryRepository;
+use App\Repository\UserRepository;
 use DateTime;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
@@ -25,7 +26,6 @@ class UserSubscriber implements EventSubscriberInterface
     {
         return [
             BeforeEntityPersistedEvent::class => ['setPasswordAndAvatar'],
-            BeforeEntityUpdatedEvent::class => ['setUpdatedPassword']
         ];
     }
 

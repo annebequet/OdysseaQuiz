@@ -31,13 +31,12 @@ class UserCrudController extends AbstractCrudController
             ->onlyWhenCreating();
 
         $mdpUpdate = TextField::new('password', 'Mot de passe')
-            ->setFormType(PasswordType::class)
             ->setFormTypeOptions([
-                'empty_data' => '',
                 'mapped' => false
             ])
             ->setRequired(false)
-            ->onlyWhenUpdating();
+            ->hideOnForm()
+            ->hideOnIndex();
 
         $fields = [
             $avatarImage->onlyOnIndex(),
