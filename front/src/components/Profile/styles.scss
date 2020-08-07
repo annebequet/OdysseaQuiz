@@ -3,8 +3,14 @@
 .profile {
   margin: 1em;
   text-shadow: 4px 2px 4px black;
+  overflow: hidden;
+  height: 100vh;
+  .profile__odyssea__avatar {
+    max-width: 290px
+  }
   &__pseudo {
     font-size: larger;
+    margin-bottom: 2em;
   }
   &__edit {
     display: flex;
@@ -20,7 +26,6 @@
       margin-top: 0.7em;
       border-radius: 10px;
       padding: vars.$gutter / 1.5;
-      margin-bottom: vars.$gutter *2;
     }
   }
   &__edit--submit {

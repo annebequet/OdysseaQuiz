@@ -36,11 +36,13 @@ export const saveUser = (
   pseudo,
   roles,
   avatar,
+  id,
   isLogged,
 ) => ({
   type: SAVE_USER,
   pseudo,
   roles,
   avatar,
+  id,
   isLogged,
 });

@@ -8,13 +8,16 @@ const mapStateToProps = (state, ownProps) => {
   // Thanks to this function, we will find the category through the slug, and return it.
   const category = getCategoryBySlug(state.categories.categories, ownProps.slug);
   return {
+    isLogged: state.headerLogin.isLogged,
     surveyLoading: state.surveys.surveyLoading,
     category,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getSurveys: (categorySlug) => dispatch(getSurveys(categorySlug)),
+  getSurveys: (categorySlug) => {
+    dispatch(getSurveys(categorySlug));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

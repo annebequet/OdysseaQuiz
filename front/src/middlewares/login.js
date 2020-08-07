@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser } from 'src/actions';
+import {
+  LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser,
+} from 'src/actions';
 
 // http://54.226.34.31/api/*
 
@@ -14,9 +16,13 @@ const login = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response);
-          const { token, pseudo, roles, avatar } = response.data;
+          const {
+            token, pseudo, roles, avatar, id, environmentId: environment,
+          } = response.data;
           window.sessionStorage.setItem('token', token);
-          store.dispatch(saveUser(pseudo, roles, avatar));
+          window.sessionStorage.setItem('id', id);
+          window.sessionStorage.setItem('environment', environment);
+          store.dispatch(saveUser(pseudo, roles, avatar, id));
         })
         .catch((error) => {
           console.log(error);
@@ -38,13 +44,16 @@ const login = (store) => (next) => (action) => {
             console.log('pas logé recommence');
           }
           else {
+            const id = sessionStorage.getItem('id');
             const { pseudo, roles, avatar } = response.data[0];
-            store.dispatch(saveUser(pseudo, roles, avatar));
+            store.dispatch(saveUser(pseudo, roles, avatar, id));
           }
         })
         .catch((error) => {
           console.log(error);
           window.sessionStorage.removeItem('token');
+          window.sessionStorage.removeItem('id');
+          window.sessionStorage.removeItem('environment');
         });
       next(action);
       break;
@@ -53,6 +62,9 @@ const login = (store) => (next) => (action) => {
         {})
         .then(() => {
           window.sessionStorage.removeItem('token');
+          window.sessionStorage.removeItem('id');
+          window.sessionStorage.removeItem('environment');
+          window.location.replace('/');
           next(action);
         })
         .catch((error) => console.log(error));

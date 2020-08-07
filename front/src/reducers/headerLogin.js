@@ -4,6 +4,7 @@ import {
   CHANGE_FIELD_VALUE,
   SAVE_USER,
   LOGOUT,
+  LOGIN,
 } from '../actions';
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
   roles: [],
   password: '',
   isLogged: false,
-  avatar: '',
+  avatar: {},
+  id: '',
 };
 
 const HeaderLogin = (state = initialState, action = {}) => {
@@ -42,6 +44,7 @@ const HeaderLogin = (state = initialState, action = {}) => {
         pseudo: action.pseudo,
         roles: action.roles,
         avatar: action.avatar,
+        id: action.id,
       };
     case LOGOUT:
       return {

@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
+use App\Entity\Gallery;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
 use App\Repository\UserRepository;
+use App\Repository\GalleryRepository;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\OptionsResolver\Options;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -56,14 +60,9 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups("users_get_one")
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"users_get", "users_get_one"})
-     */
-    private $avatar;
 
     /**
      * @ORM\Column(type="string", unique=true, nullable=true)
@@ -94,16 +93,22 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Score::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"users_get_one"})
      */
     private $scores;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Gallery::class)
+     * @Groups({"users_get", "users_get_one"})
+     */
+    private $avatar;
     
     public function __construct()
     {
         $this->contacts = new ArrayCollection();
         $this->scores = new ArrayCollection();
         $this->createdAt = new \DateTime();
-        $this->avatar = 'https://image.flaticon.com/icons/svg/1805/1805880.svg';
+        // $this->avatar = 1;
         $this->roles = ["ROLE_USER"];
     }
 
@@ -221,18 +226,6 @@ class User implements UserInterface
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-
-        return $this;
-    }
-    
-    public function getAvatar(): ?string
-    {
-        return $this->avatar;
-    }
-
-    public function setAvatar(?string $avatar): self
-    {
-        $this->avatar = $avatar;
 
         return $this;
     }
@@ -378,5 +371,22 @@ class User implements UserInterface
     public function __toString() 
     {
         return (string) $this->email; 
+    }
+
+    public function getAvatar(): ?Gallery
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?Gallery $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getImageUrl()
+    {
+        return $this->avatar->getImageUrl();
     }
 }
