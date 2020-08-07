@@ -59,18 +59,24 @@ class UserController extends AbstractController
      */
     public function put(User $user = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder)
     {
+        // Verify if the user exists
         if(!$user) {
             return $this->json(['error' => 'utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
+        // Get the content of the request
         $content = $request->getContent();
+
+        // Get the User password
         $password = $user->getPassword();
 
+        // Deserialiaze the json content into a User entity
         $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
 
-        //? VALIDATION
+        // Validate the entity with the validator service
         $errors = $validator->validate($updatedUser);
 
+        // If there are errors, return the array in JSON format
         if(count($errors) > 0) {
             $errorsArray = [];
             foreach ($errors as $error) {
@@ -79,15 +85,18 @@ class UserController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        //? HASH PASSWORD
+        // Get the password from the form
         $newPassword = $updatedUser->getPassword();
 
+        // If the new password is different than the old one
         if($newPassword !== $password) {
+            // Encode the password
             $encodedPassword = $passwordEncoder->encodePassword($updatedUser, trim($newPassword));
+            // Set it to the User
             $updatedUser->setPassword($encodedPassword);
         }
 
-        //? SAVE
+        // Save and flush
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 

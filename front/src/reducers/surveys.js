@@ -29,7 +29,7 @@ export default (state = initialState, action = {}) => {
         ...state,
         isCompleted: true,
         surveyAnswers: action.answers,
-        numberOfCorrectAnswers: action.numberOfCorrectAnswers,
+        points: action.numberOfCorrectAnswers,
       };
     case GET_SURVEYS:
       return {
