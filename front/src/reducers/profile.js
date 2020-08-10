@@ -1,6 +1,7 @@
-import { CHANGE_INPUT, SAVE_AVATARS } from 'src/actions/profile';
+import { CHANGE_INPUT, SAVE_AVATARS, SAVE_EMAIL, SAVE_PSEUDO} from 'src/actions/profile';
 
 export const initialState = {
+  email: '',
   newEmail: '',
   newPassword: '',
   newPseudo: '',
@@ -20,6 +21,11 @@ const register = (state = initialState, action = {}) => {
       return {
         ...state,
         avatars: action.avatars,
+      };
+    case SAVE_EMAIL:
+      return {
+        ...state,
+        email: action.email,
       };
     default:
       return state;
