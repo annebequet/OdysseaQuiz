@@ -45,7 +45,7 @@ class SecurityController extends AbstractController
 
 
     /**
-     * @Route("/api/islogged", name="app_islogged", methods={"GET"})
+     * @Route("/api/islogged", name="api_islogged", methods={"GET"})
      */
     public function isLogged(Request $request, UserRepository $userRepository)
     {
@@ -64,7 +64,7 @@ class SecurityController extends AbstractController
 
 
     /**
-     * @Route("/api/logout", name="app_logout", methods={"GET"})
+     * @Route("/api/logout", name="api_logout", methods={"GET"})
      */
     public function logout(User $user)
     {
