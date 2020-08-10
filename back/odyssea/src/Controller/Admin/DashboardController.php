@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 
+use App\Entity\User;
 use App\Entity\Score;
 use App\Entity\Gallery;
 use App\Entity\Category;
@@ -51,12 +52,15 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
+
         yield MenuItem::linktoDashboard('Tableau de bord', 'fas fa-dharmachakra'),
+        yield MenuItem::linkToCrud('Environnement', 'fab fa-pagelines', Environment::class),
+        yield MenuItem::linkToCrud('Mots de passe', 'fas fa-key', User::class)
+            ->setController(PasswordCrudController::class),
+        yield MenuItem::linkToCrud('Avatars', 'fa fa-picture-o', Gallery::class),
+        yield MenuItem::linkToCrud('Scores', 'fas fa-anchor', Score::class),
         yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class),
         yield MenuItem::linkToCrud('Catégories', 'fas fa-fish', Category::class),
-        yield MenuItem::linkToCrud('Avatars', 'fa fa-picture-o', Gallery::class),
-        yield MenuItem::linkToCrud('Environnement', 'fab fa-pagelines', Environment::class),
-        yield MenuItem::linkToCrud('Scores', 'fas fa-anchor', Score::class)
         // MenuItem::linkToLogout('Logout', 'fa fa-exit'),
         ];
     }

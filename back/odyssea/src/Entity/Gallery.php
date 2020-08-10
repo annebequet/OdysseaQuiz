@@ -24,6 +24,9 @@ class Gallery
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Groups({"avatars_get", "avatar_get_one", "users_get", "users_get_one"})
+     * @Assert\Url(
+     *    message = "L'url '{{ value }}' n'est pas valide.",
+     * )
      */
     private $imageUrl;
 

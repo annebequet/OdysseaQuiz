@@ -55,6 +55,8 @@ class UserCrudController extends AbstractCrudController
                 ->allowMultipleChoices(),
             AssociationField::new('environment', 'Environnement')
                 ->setRequired(true),
+            //! DateTimeField::new('createdAt')
+            //! ->onlyOnDetail(),
 
         ];
 
