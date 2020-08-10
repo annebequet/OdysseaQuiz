@@ -1,8 +1,6 @@
 .page__content {
   padding-top: 3em;
-  height: 100vh;
+  display: inline-block;
+  width: 100vw;
 }
 
-.page {
-  display: inline-block;
-}
