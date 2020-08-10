@@ -3,12 +3,13 @@
 namespace App\Controller\Api;
 
 use App\Entity\User;
-use App\Repository\GalleryRepository;
 use App\Repository\UserRepository;
+use App\Repository\GalleryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -66,8 +67,23 @@ class SecurityController extends AbstractController
     /**
      * @Route("/api/logout", name="api_logout", methods={"GET"})
      */
-    public function logout(User $user)
+    public function logout(EntityManagerInterface $entityManager)
     {
+        $user = $this->getUser();
+
+        //if there is not, throw an exception
+        if (!$user) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $user->setApiToken(null);
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return new JsonResponse([
+            'message' => 'User disconnected.',
+        ]);
     }
 
     /**
