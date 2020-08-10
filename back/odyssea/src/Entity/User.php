@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -29,7 +30,9 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"users_get", "users_get_one"})
+     * @Groups({"users_get", "users_get_one"})* @Assert\Email(
+     *     message = "Entrez un email valide."
+     * )
      */
     private $email;
 
@@ -42,12 +45,27 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      * @Groups({"users_get", "users_get_one"})
+     * @Assert\Length(
+     *      min = 6,
+     *      max = 12,
+     *      minMessage = "Votre prénom doit contenir plus de {{ limit }} caractères",
+     *      maxMessage = "Votre prénom ne peut contenir plus de {{ limit }} caractères",
+     *      allowEmptyString = true
+     * )
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=16)
      * @Groups({"users_get", "users_get_one"})
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 6,
+     *      max = 12,
+     *      minMessage = "Votre pseudo doit contenir plus de {{ limit }} caractères",
+     *      maxMessage = "Votre pseudo ne peut contenir plus de {{ limit }} caractères",
+     *      allowEmptyString = false
+     * )
      */
     private $pseudo;
 
