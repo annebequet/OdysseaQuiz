@@ -27,7 +27,7 @@ class UserController extends AbstractController
     public function getAll(UserRepository $userRepository)
     {
         $users = $userRepository->findAll();
-        dump($users);
+        //dump($users);
 
         return $this->json($users, 200, [], ['groups' => 'users_get']);
     }
@@ -41,7 +41,7 @@ class UserController extends AbstractController
     {
         // Custom request
         $userFull = $userRepository->find($user);
-        dump($userFull);
+        //dump($userFull);
 
         // Check if the User exists, if not, return 404
         if ($user === null) {
