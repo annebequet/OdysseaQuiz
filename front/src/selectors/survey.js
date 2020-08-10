@@ -66,14 +66,15 @@ export const transformQuestionsInSurveyObject = (allQuestions, category) => {
   const quiz = get10RandomQuestions(allQuestions);
 
   const newQuestions = quiz.map((question) => {
-    console.log(question['choices']);
+    question["choices"] = Object.values(question["choices"]);
     return {
-      //question['choices']: { ...[question.choices]},
       questions: [
         question,
       ],
     };
   });
+
+  console.log(newQuestions);
 
   return {
     title: category,
