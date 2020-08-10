@@ -61,7 +61,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newPassword: password } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/users/${id}`, {
+      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
         password,
       },
       {
@@ -81,7 +81,7 @@ const categories = (store) => (next) => (action) => {
     }
     case GET_USER: {
       const id = sessionStorage.getItem('id');
-      axios.get(`http://54.226.34.31/back/users/${id}`,
+      axios.get(`http://54.226.34.31/back/api/users/${id}`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -101,7 +101,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newEnvironment: environment } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/users/${id}`, {
+      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
         environment,
       },
       {
@@ -122,7 +122,7 @@ const categories = (store) => (next) => (action) => {
     }
     case HANDLE_DELETE: {
       const id = sessionStorage.getItem('id');
-      axios.delete(`http://54.226.34.31/back/users/${id}`,
+      axios.delete(`http://54.226.34.31/back/api/users/${id}`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
