@@ -8,10 +8,7 @@ import './styles.scss';
 const Register = ({
   email,
   password,
-  lastName,
-  firstName,
   pseudo,
-  avatar,
   environment,
   changeField,
   handleRegister,
@@ -48,36 +45,12 @@ const Register = ({
           value={password}
         />
         <FieldRegister
-          name="lastName"
-          type="lastName"
-          label="Nom"
-          id="lastName"
-          onChange={changeField}
-          value={lastName}
-        />
-        <FieldRegister
-          name="firstName"
-          type="firstName"
-          label="Prénom"
-          id="lastName"
-          onChange={changeField}
-          value={firstName}
-        />
-        <FieldRegister
           name="pseudo"
           type="pseudo"
           label="Pseudo"
           id="pseudo"
           onChange={changeField}
           value={pseudo}
-        />
-        <FieldRegister
-          name="avatar"
-          type="avatar"
-          label="Avatar"
-          id="avatar"
-          onChange={changeField}
-          value={avatar}
         />
         <div>
           <label>Changez votre difficulté de jeu!</label>
@@ -106,24 +79,14 @@ const Register = ({
 };
 
 Register.propTypes = {
-  lastName: PropTypes.string,
-  firstName: PropTypes.string,
   pseudo: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
-  avatar: PropTypes.string,
   changeField: PropTypes.func.isRequired,
   handleRegister: PropTypes.func.isRequired,
   environment: PropTypes.string.isRequired,
   isRegistered: PropTypes.bool.isRequired,
   error: PropTypes.bool.isRequired,
-};
-
-Register.defaultProps = {
-  lastName: '',
-  firstName: '',
-  avatar: '',
-
 };
 
 export default Register;

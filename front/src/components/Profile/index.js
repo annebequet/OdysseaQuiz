@@ -5,6 +5,8 @@ import './styles.scss';
 import TurtleImage from 'src/assets/images/turtle.jpg';
 import Field from './Field';
 import FieldRadio from './FieldRadio';
+import FieldRadioAvatars from './FieldRadioAvatars';
+import { handleEditAvatar } from '../../actions/profile';
 
 /* Commentaries are for the switch environment item */
 
@@ -22,12 +24,24 @@ const Profile = ({
   newEmail,
   newPassword,
   newEnvironment,
+  newAvatar,
   handleDelete,
+  handleEditAvatar,
+  getAvatars,
+  avatars,
   // selectedOption,
 }) => {
   useEffect(() => {
     getUser();
   }, []);
+  useEffect(() => {
+    getAvatars();
+  }, []);
+
+  const handleEditAvatarSubmit = (evt) => {
+    evt.preventDefault();
+    handleEditAvatar();
+  };
 
   const handleEditPseudoSubmit = (evt) => {
     evt.preventDefault();
@@ -62,6 +76,25 @@ const Profile = ({
           <h3 className="profile__pseudo">Pseudo : {pseudo}</h3>
         </div>
         <div className="profile__wrap__right">
+          {/* FORM FOR AVATAR EDIT */}
+          <form className="profile__edit__form --environment" onSubmit={handleEditAvatarSubmit}>
+            <div>
+              <label>Changez votre difficulté de jeu!</label>
+            </div>
+          <FieldRadioAvatars
+            name="newAvatar"
+            id="newAvatar"
+            onChange={changeInput}
+            value={newAvatar}
+            avatars={avatars}
+          />
+          <button
+              className="profile__edit--submit"
+              type="submit"
+            >
+              Envoyez vos modifications
+            </button>
+          </form>
           {/* FORM FOR PSEUDO EDIT */}
           <form className="profile__edit__form --pseudo" onSubmit={handleEditPseudoSubmit}>
             <div>
@@ -179,16 +212,27 @@ Profile.propTypes = {
   handleEditEmail: PropTypes.func.isRequired,
   handleEditPassword: PropTypes.func.isRequired,
   handleEditEnvironment: PropTypes.func.isRequired,
+  handleEditAvatar: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   changeInput: PropTypes.func.isRequired,
   newPseudo: PropTypes.string.isRequired,
   newEmail: PropTypes.string.isRequired,
   newPassword: PropTypes.string.isRequired,
   newEnvironment: PropTypes.string.isRequired,
+  newAvatar: PropTypes.string,
+  getAvatars: PropTypes.func.isRequired,
+  avatars: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      imageUrl: PropTypes.string,
+      name: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
 Profile.defaultProps = {
-  avatar: {},
+  avatar: '',
+  newAvatar: '',
 };
 
 export default Profile;

@@ -18,7 +18,6 @@ class CategoryController extends AbstractController
     public function getAll(CategoryRepository $categoryRepository)
     {
         $categories = $categoryRepository->findAll();
-        dump($categories);
 
         return $this->json($categories, 200, [], ['groups' => 'categories_get']);
     }
