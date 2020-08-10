@@ -59,7 +59,11 @@ const login = (store) => (next) => (action) => {
       break;
     case LOGOUT:
       axios.get('http://54.226.34.31/back/api/logout',
-        {})
+        {
+          headers: {
+            'X-AUTH-TOKEN': sessionStorage.getItem('token'),
+          },
+        })
         .then(() => {
           window.sessionStorage.removeItem('token');
           window.sessionStorage.removeItem('id');

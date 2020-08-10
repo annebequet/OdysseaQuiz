@@ -12,7 +12,6 @@ export const changeCSSStyles = (survey, options) => {
   if (!isCorrect) {
     header.style.backgroundColor = 'salmon';
     const radio = options.htmlElement.querySelector(`input[value="${options.question.correctAnswer}"]`);
-    console.log('ma réponse : ', options.question.correctAnswer);
     radio.parentElement.style.color = 'green';
   }
   header.appendChild(span);
