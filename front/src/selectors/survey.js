@@ -65,11 +65,15 @@ const getIntroductionQuizText = (quiz) => {
 export const transformQuestionsInSurveyObject = (allQuestions, category) => {
   const quiz = get10RandomQuestions(allQuestions);
 
-  const newQuestions = quiz.map((question) => ({
-    questions: [
-      question,
-    ],
-  }));
+  const newQuestions = quiz.map((question) => {
+    console.log(question['choices']);
+    return {
+      //question['choices']: { ...[question.choices]},
+      questions: [
+        question,
+      ],
+    };
+  });
 
   return {
     title: category,
