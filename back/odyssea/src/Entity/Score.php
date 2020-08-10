@@ -21,6 +21,7 @@ class Score
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotNull
      */
     private $quizNb;
 
@@ -32,6 +33,12 @@ class Score
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Groups({"users_get_one"})
+     * ! probablement plus pénible qu'utile >
+     * @Assert\Range(
+     *      min = "0",
+     *      max = "100",
+     *      notInRangeMessage = "Le score doit se situer entre {{ min }} et {{ max }} (valeur actuelle : {{ value }})."
+     * )
      */
     private $score;
 
@@ -48,6 +55,7 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull
      */
     private $user;
 
@@ -55,6 +63,7 @@ class Score
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"users_get_one"})
+     * @Assert\NotNull
      */
     private $category;
 
@@ -62,6 +71,7 @@ class Score
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"users_get_one"})
+     * @Assert\NotNull
      */
     private $environment;
 

@@ -88,6 +88,7 @@ class User implements UserInterface
      * @ORM\Column(type="json")
      * @Groups("users_get_one")
      * @Assert\NotBlank
+     * @Assert\Count(min=1)
      */
     private $roles = [];
 
