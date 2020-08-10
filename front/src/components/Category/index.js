@@ -9,6 +9,7 @@ const Category = ({
   category,
   getSurveys,
   isLogged,
+  error,
 }) => {
   useEffect(() => {
     getSurveys(category);
@@ -17,10 +18,12 @@ const Category = ({
   return (
     <div className="category">
       {!surveyLoading && isLogged && (
-      <Quiz />
+      <Quiz
+        isChildQuiz={false}
+      />
       )}
-      {!isLogged && (
-        <div>Il faut être connecté pour s'inscrire ! Sautez dans l'eau !</div>
+      {error && !isLogged && (
+        <div>Il faut être connecté pour jouer ! Sautez dans l'eau !</div>
       )}
     </div>
   );
@@ -34,6 +37,7 @@ Category.propTypes = {
   getSurveys: PropTypes.func.isRequired,
   surveyLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 Category.defaultProps = {

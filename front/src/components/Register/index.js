@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import FieldRegister from './FieldRegister';
 import FieldRadioRegister from './FieldRadioRegister';
@@ -16,6 +16,7 @@ const Register = ({
   changeField,
   handleRegister,
   isRegistered,
+  error,
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -24,6 +25,10 @@ const Register = ({
 
   return (
     <div className="register">
+      {error && !isRegistered && (
+        // eslint-disable-next-line max-len
+        <div>Erreur d'enregistrement, on reste calme, on rajuste ses brassières, et on réessaie : </div>
+      )}
       {!isRegistered && (
       <form className="register__form" onSubmit={handleSubmit}>
         <FieldRegister
@@ -74,11 +79,12 @@ const Register = ({
           onChange={changeField}
           value={avatar}
         />
-        {/* Here place a select to choose environment */}
+        <div>
+          <label>Changez votre difficulté de jeu!</label>
+        </div>
         <FieldRadioRegister
           name="environment"
           type="radio"
-          label="environment"
           id="environment"
           onChange={changeField}
           value={environment}
@@ -110,6 +116,7 @@ Register.propTypes = {
   handleRegister: PropTypes.func.isRequired,
   environment: PropTypes.string.isRequired,
   isRegistered: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 Register.defaultProps = {
