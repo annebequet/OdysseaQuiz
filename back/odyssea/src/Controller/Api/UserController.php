@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Score;
 use App\Repository\UserRepository;
 use App\Repository\ScoreRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -95,6 +96,9 @@ class UserController extends AbstractController
             // Set it to the User
             $updatedUser->setPassword($encodedPassword);
         }
+
+        // Set the new updatedAt datetime
+        $em = $updatedUser->setUpdatedAt(new \DateTime());
 
         // Save and flush
         $em = $this->getDoctrine()->getManager();
