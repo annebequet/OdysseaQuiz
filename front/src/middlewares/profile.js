@@ -15,7 +15,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newEmail: email } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://localhost/Apotheose/Odyssea/back/odyssea/public/users/${id}`, {
+      axios.put(`http://localhost/Apotheose/Odyssea/back/odyssea/public/api/users/${id}`, {
         email,
       },
       {
@@ -37,7 +37,8 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newPseudo: pseudo } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://localhost/Apotheose/Odyssea/back/odyssea/public/users/${id}`, {
+      axios.put(`http://localhost/Apotheose/Odyssea/back/odyssea/public/api/users/${id}`, {
+
         pseudo,
       },
       {
@@ -47,7 +48,7 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
-          window.location.reload();
+          window.location.href = `http://localhost/Apotheose/Odyssea/back/odyssea/public/api/users/${id}`;
         })
         .catch((error) => {
           console.log(error);
@@ -60,7 +61,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newPassword: password } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://localhost/Apotheose/Odyssea/back/odyssea/public/users/${id}`, {
+      axios.put(`http://localhost/Apotheose/Odyssea/back/odyssea/public/api/users/${id}`, {
         password,
       },
       {
@@ -80,7 +81,7 @@ const categories = (store) => (next) => (action) => {
     }
     case GET_USER: {
       const id = sessionStorage.getItem('id');
-      axios.get(`http://localhost/Apotheose/Odyssea/back/odyssea/public/users/${id}`,
+      axios.get(`http://localhost/Apotheose/Odyssea/back/odyssea/public/api/users/${id}`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -100,7 +101,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newEnvironment: environment } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://localhost/Apotheose/Odyssea/back/odyssea/public/users/${id}`, {
+      axios.put(`http://localhost/Apotheose/Odyssea/back/odyssea/public/api/users/${id}`, {
         environment,
       },
       {
@@ -110,7 +111,7 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
-          window.location.reload();
+          window.location.href = `http://localhost/Apotheose/Odyssea/back/odyssea/public/api/users/${id}`;
         })
         .catch((error) => {
           console.log(error);
@@ -121,7 +122,7 @@ const categories = (store) => (next) => (action) => {
     }
     case HANDLE_DELETE: {
       const id = sessionStorage.getItem('id');
-      axios.delete(`http://localhost/Apotheose/Odyssea/back/odyssea/public/users/${id}`,
+      axios.delete(`http://localhost/Apotheose/Odyssea/back/odyssea/public/api/users/${id}`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -129,7 +130,7 @@ const categories = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log(response.data);
-          window.location.href = 'http://localhost:8080/';
+          window.location.href = `http://localhost:8080/`;
         })
         .catch((error) => {
           console.log(error);

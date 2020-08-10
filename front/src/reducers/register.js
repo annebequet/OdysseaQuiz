@@ -1,4 +1,4 @@
-import { CHANGE_FIELD, REGISTER } from 'src/actions/register';
+import { CHANGE_FIELD, VALIDATE_REGISTRATION, SET_ERROR } from 'src/actions/register';
 
 export const initialState = {
   email: '',
@@ -8,6 +8,7 @@ export const initialState = {
   pseudo: '',
   environment: '',
   isRegistered: false,
+  error: false,
 };
 
 const register = (state = initialState, action = {}) => {
@@ -17,10 +18,16 @@ const register = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
-    case REGISTER:
+    case VALIDATE_REGISTRATION:
       return {
         ...state,
         isRegistered: true,
+        error: false,
+      };
+    case SET_ERROR:
+      return {
+        ...state,
+        error: true,
       };
     default:
       return state;

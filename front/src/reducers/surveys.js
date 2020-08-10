@@ -1,4 +1,4 @@
-import { SAVE_SURVEYS, SEND_RESULTS, END_QUIZ, GET_SURVEYS } from 'src/actions/surveys';
+import { SAVE_SURVEYS, SEND_RESULTS, END_QUIZ, GET_SURVEYS, SET_ERROR } from 'src/actions/surveys';
 
 import adultExempleSurveyData from 'src/data';
 
@@ -12,8 +12,10 @@ const initialState = {
   surveys: {},
   surveyLoading: true,
   isCompleted: false,
+  isChildQuizCompleted: false,
   surveyAnswers: {},
   points: 0,
+  error: false,
 };
 
 export default (state = initialState, action = {}) => {
@@ -27,9 +29,10 @@ export default (state = initialState, action = {}) => {
     case SEND_RESULTS:
       return {
         ...state,
-        isCompleted: true,
+        isCompleted: !action.isChildQuiz,
+        isChildQuizCompleted: action.isChildQuiz,
         surveyAnswers: action.answers,
-        numberOfCorrectAnswers: action.numberOfCorrectAnswers,
+        points: action.numberOfCorrectAnswers,
       };
     case GET_SURVEYS:
       return {
@@ -37,12 +40,18 @@ export default (state = initialState, action = {}) => {
         surveyCategory: action.category,
         surveyTitle: action.category.name,
       };
+    case SET_ERROR:
+      return {
+        ...state,
+        error: true,
+      };
     case END_QUIZ:
       return {
         ...state,
         isCompleted: false,
-        surveyAnswers: {},
-        points: 0,
+        isChildQuizCompleted: false,
+        //surveyAnswers: {},
+        //points: 0,
       };
     default:
       return state;

@@ -37,3 +37,23 @@
   font-weight: bold;
   font-size: medium;
 }
+
+.field--radio {
+  font-weight: bold;
+  font-size: medium;
+  color: vars.$title-color;
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
+  input[type='radio']{
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 20px;
+    margin-top: 0.3em;
+    transform: scale(1.5);
+  }
+}
+label {
+  color: orange;
+  font-weight: bold;
+}

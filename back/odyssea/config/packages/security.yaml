@@ -36,7 +36,7 @@ security:
             logout:
                 path: app_logout
                 #target: api_login
-                #success_handler: App\Security\LogoutHandler
+                success_handler: App\Security\LogoutHandler
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

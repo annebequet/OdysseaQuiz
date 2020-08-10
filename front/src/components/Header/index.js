@@ -36,7 +36,7 @@ const Header = ({ roles, isLogged, loginAdmin }) => {
         </NavLink>
         {(roles.indexOf('ROLE_ADMIN') !== -1) && (
         <a
-          href="http://localhost/Apotheose/Odyssea/back/odyssea/public/admin"
+          href="http://localhost/Apotheose/Odyssea/back/odyssea/public/admin/login"
           className="menu__item"
           onClick={handleAdmin}
         >
@@ -64,7 +64,7 @@ const Header = ({ roles, isLogged, loginAdmin }) => {
           </NavLink>
           {(roles.indexOf('ROLE_ADMIN') !== -1) && (
           <a
-            href="http://localhost/Apotheose/Odyssea/back/odyssea/public/admin"
+            href="http://localhost/Apotheose/Odyssea/back/odyssea/public/admin/login"
             className="menu__item"
             onClick={handleAdmin}
           >

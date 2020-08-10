@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     isLogged: state.headerLogin.isLogged,
     surveyLoading: state.surveys.surveyLoading,
+    error: state.surveys.error,
     category,
   };
 };

@@ -11,6 +11,7 @@ const mapStateToProps = (state) => ({
   avatar: state.register.avatar,
   environment: state.register.environment,
   isRegistered: state.register.isRegistered,
+  error: state.register.error,
 });
 const mapDispatchToProps = (dispatch) => ({
   handleRegister: () => {

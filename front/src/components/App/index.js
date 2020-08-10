@@ -31,6 +31,7 @@ const App = ({
   return (
     <div className="app">
       <Video />
+      <div className="mainPage">
       <Header />
       <Switch>
         {!categoriesLoading && (
@@ -87,6 +88,7 @@ const App = ({
         </Route>
       </Switch>
       <Footer />
+      </div>
     </div>
   );
 };
