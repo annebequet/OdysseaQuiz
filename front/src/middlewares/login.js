@@ -3,7 +3,8 @@ import {
   LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser,
 } from 'src/actions';
 
-// http://54.226.34.31/api/*
+// http://54.226.34.31/*
+// http://localhost/Apotheose/Odyssea/back/odyssea/public/*
 
 const login = (store) => (next) => (action) => {
   switch (action.type) {
@@ -59,11 +60,7 @@ const login = (store) => (next) => (action) => {
       break;
     case LOGOUT:
       axios.get('http://54.226.34.31/back/api/logout',
-        {
-          headers: {
-            'X-AUTH-TOKEN': sessionStorage.getItem('token'),
-          },
-        })
+        {})
         .then(() => {
           window.sessionStorage.removeItem('token');
           window.sessionStorage.removeItem('id');
