@@ -8,8 +8,6 @@ const register = (store) => (next) => (action) => {
       const {
         email,
         password,
-        lastName,
-        firstName,
         pseudo,
         environment,
       } = state.register;
@@ -17,8 +15,6 @@ const register = (store) => (next) => (action) => {
       axios.post('http://54.226.34.31/back/api/register', {
         email,
         password,
-        lastName,
-        firstName,
         pseudo,
         environment,
       })

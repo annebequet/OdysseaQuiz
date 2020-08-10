@@ -6,6 +6,9 @@ export const HANDLE_EDIT_ENVIRONMENT = 'HANDLE_EDIT_ENVIRONMENT';
 export const HANDLE_DELETE = 'HANDLE_DELETE';
 export const GET_USER = 'GET_USER';
 export const SAVE_PSEUDO = 'SAVE_PSEUDO';
+export const HANDLE_EDIT_AVATAR = 'HANDLE_EDIT_AVATAR';
+export const GET_AVATARS = 'GET_AVATARS';
+export const SAVE_AVATARS = 'SAVE_AVATARS';
 
 export const handleEditPseudo = () => ({
   type: HANDLE_EDIT_PSEUDO,
@@ -42,4 +45,15 @@ export const savePseudo = (pseudo) => ({
   pseudo,
 });
 
+export const handleEditAvatar = () => ({
+  type: HANDLE_EDIT_AVATAR,
+});
 
+export const getAvatars = () => ({
+  type: GET_AVATARS,
+});
+
+export const saveAvatars = (avatars) => ({
+  type: SAVE_AVATARS,
+  avatars,
+});
