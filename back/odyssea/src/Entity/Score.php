@@ -33,7 +33,6 @@ class Score
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Groups({"users_get_one"})
-     * ! probablement plus pénible qu'utile >
      * @Assert\Range(
      *      min = "0",
      *      max = "100",
