@@ -5,9 +5,15 @@ namespace App\Entity;
 use App\Repository\QuestionRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
+ * @UniqueEntity(
+ *      fields="name",
+ *      message="{{ value }} est déjà utilisé."
+ * )
  */
 class Question
 {
@@ -22,30 +28,52 @@ class Question
     /**
      * @ORM\Column(type="string", length=50)
      * @Groups({"categories_get_one", "get_quest_by_cat"})
+     * @Assert\NotBlank(
+     *      message = "Vous devez sélectionner le type de la question."
+     * )
      */
     private $type;
 
+    //! dans blank normalizer = 'trim',
+    //! sa march pas
+    //! forcer le minuscule + l'absence d'espace
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"categories_get_one", "get_quest_by_cat"})
+     * @Assert\NotBlank(
+     *      message = "Vous devez rentrer un slug pour identifier la question."
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"categories_get_one", "get_quest_by_cat"})
+     * @Assert\NotBlank(
+     *      message = "Vous devez poser une question."
+     * )
      */
     private $title;
 
+    //! dans blank normalizer = 'trim',
+    //! sa march pas
     /**
      * @ORM\Column(type="json")
      * @Groups({"categories_get_one", "get_quest_by_cat"})
+     * @Assert\NotBlank(
+     *      message = "Vous devez entrer plusieurs choix."
+     * )
      */
     private $choices = [];
 
+    //! dans blank normalizer = 'trim',
+    //! sa march pas
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"categories_get_one", "get_quest_by_cat"})
+     * @Assert\NotBlank(
+     *      message = "Vous devez copier la bonne réponse dans ce champs."
+     * )
      */
     private $correctAnswer;
 

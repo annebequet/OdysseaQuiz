@@ -13,10 +13,20 @@ use Symfony\Component\OptionsResolver\Options;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ *      fields="email",
+ *      message="{{ value }} est déjà utilisé."
+ * )
+ * @UniqueEntity(
+ *      fields="pseudo",
+ *      message="{{ value }} est déjà utilisé."
+ * )
  */
 class User implements UserInterface
 {
@@ -30,30 +40,57 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups({"users_get", "users_get_one"})
+     * @Assert\Email(
+     *     message = "Entrez un email valide."
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      * @Groups({"users_get", "users_get_one"})
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 18,
+     *      minMessage = "Le nom doit contenir plus de {{ limit }} caractères.",
+     *      maxMessage = "Le nom ne peut contenir plus de {{ limit }} caractères.",
+     *      allowEmptyString = true
+     * )
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      * @Groups({"users_get", "users_get_one"})
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 18,
+     *      minMessage = "Le prénom doit contenir plus de {{ limit }} caractères.",
+     *      maxMessage = "Le prénom ne peut contenir plus de {{ limit }} caractères.",
+     *      allowEmptyString = true
+     * )
      */
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=16)
+     * @ORM\Column(type="string", unique=true, length=16)
      * @Groups({"users_get", "users_get_one"})
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 6,
+     *      max = 12,
+     *      minMessage = "Le pseudo doit contenir plus de {{ limit }} caractères.",
+     *      maxMessage = "Le pseudo ne peut contenir plus de {{ limit }} caractères.",
+     *      allowEmptyString = false
+     * )
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="json")
      * @Groups("users_get_one")
+     * @Assert\NotBlank
+     * @Assert\Count(min=1)
      */
     private $roles = [];
 
@@ -61,6 +98,9 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Groups("users_get_one")
+     * @Assert\Length(
+     *      min=4
+     * )
      */
     private $password;
 
@@ -83,6 +123,9 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"users_get", "users_get_one"})
+     * @Assert\NotBlank(
+     *      message = "Choisissez un environnement de jeu."
+     * )
      */
     private $environment;
 

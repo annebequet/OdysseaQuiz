@@ -7,9 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=EnvironmentRepository::class)
+ * @UniqueEntity(
+ *      fields="name",
+ *      message="{{ value }} est déjà utilisé."
+ * )
  */
 class Environment
 {
@@ -24,6 +30,11 @@ class Environment
     /**
      * @ORM\Column(type="string", length=20)
      * @Groups({"users_get", "users_get_one", "categories_get_one"})
+     * @Assert\Length(
+     *      max=12,
+     *      maxMessage="Le nom de la catégorie est trop long, merci d'en choisir un autre.",
+     *      allowEmptyString = false
+     * )
      */
     private $name;
 

@@ -6,9 +6,19 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\GalleryRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=GalleryRepository::class)
+ * @UniqueEntity(
+ *      fields="imageUrl",
+ *      message="L'image {{ value }} a déjà été postée."
+ * )
+ * @UniqueEntity(
+ *      fields="name",
+ *      message="{{ value }} est déjà utilisé."
+ * )
  */
 class Gallery
 {
@@ -23,6 +33,10 @@ class Gallery
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Groups({"avatars_get", "avatar_get_one", "users_get", "users_get_one"})
+     * @Assert\NotBlank
+     * @Assert\Url(
+     *    message = "L'url '{{ value }}' n'est pas valide.",
+     * )
      */
     private $imageUrl;
 
