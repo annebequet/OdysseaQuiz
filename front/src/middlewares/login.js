@@ -60,7 +60,11 @@ const login = (store) => (next) => (action) => {
       break;
     case LOGOUT:
       axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/logout',
-        {})
+        {
+          headers: {
+            'X-AUTH-TOKEN': sessionStorage.getItem('token'),
+          },
+        })
         .then(() => {
           window.sessionStorage.removeItem('token');
           window.sessionStorage.removeItem('id');
