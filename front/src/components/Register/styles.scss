@@ -13,7 +13,6 @@
     font-weight: bold;
   }
   &-input {
-    border: none;
     border-radius: 10px;
     padding: vars.$gutter / 1.5;
     margin-bottom: vars.$gutter;
@@ -31,7 +30,6 @@
 }
 .register-field-input {
 
-  border: none;
   color: orange;
   margin-right: 4em;
   font-weight: bold;

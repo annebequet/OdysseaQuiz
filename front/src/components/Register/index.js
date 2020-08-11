@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import FieldRegister from './FieldRegister';
 import FieldRadioRegister from './FieldRadioRegister';
+import ErrorMessage from 'src/components/ErrorMessage';
 
 import './styles.scss';
 
@@ -14,21 +15,62 @@ const Register = ({
   handleRegister,
   isRegistered,
   error,
+  displayErrors,
+  errorsFound,
 }) => {
+  const checkErrors = () => {
+    const errors = {};
+    if (!pseudo) {
+      errors.pseudo = 'champ obligatoire';
+    }
+    else if (pseudo < 4) {
+      errors.pseudo = 'Il faut au moins 4 caractères';
+    }
+
+    if (!email) {
+      errors.email = 'champ obligatoire';
+    }
+    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+      errors.email = 'Adresse email invalide';
+    }
+    if (!password) {
+      errors.password = 'Champ obligatoire';
+    }
+    else if (password.length < 4) {
+      errors.password = 'Il faut au moins 4 caractères';
+    }
+
+    if (Object.keys(errors).length === 0) {
+      return true;
+    }
+    return errors;
+  };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleRegister();
+
+    const errors = checkErrors();
+    if (errors === true) {
+      handleRegister();
+    }
+    displayErrors(errors);
   };
+
+  console.log(errorsFound);
 
   return (
     <div className="register">
       {error && !isRegistered && (
-        // eslint-disable-next-line max-len
-        <div>Erreur d'enregistrement, on reste calme, on rajuste ses brassières, et on réessaie : </div>
+        <ErrorMessage errors={errorsFound} />
+      )}
+
+      {Object.keys(errorsFound).length > 0 && !isRegistered && (
+        <ErrorMessage errors={errorsFound} />
       )}
       {!isRegistered && (
       <form className="register__form" onSubmit={handleSubmit}>
         <FieldRegister
+          error={!errorsFound.email ? 'undefined' : errorsFound.email}
           label="Adresse Email"
           id="username"
           name="email"
@@ -37,6 +79,7 @@ const Register = ({
           value={email}
         />
         <FieldRegister
+          error={!errorsFound.password ? 'undefined' : errorsFound.password}
           name="password"
           type="password"
           label="Mot de passe"
@@ -45,6 +88,7 @@ const Register = ({
           value={password}
         />
         <FieldRegister
+          error={!errorsFound.pseudo ? 'undefined' : errorsFound.pseudo}
           name="pseudo"
           type="pseudo"
           label="Pseudo"
@@ -87,6 +131,8 @@ Register.propTypes = {
   environment: PropTypes.string.isRequired,
   isRegistered: PropTypes.bool.isRequired,
   error: PropTypes.bool.isRequired,
+  displayErrors: PropTypes.func.isRequired,
+  errorsFound: PropTypes.object.isRequired,
 };
 
 export default Register;

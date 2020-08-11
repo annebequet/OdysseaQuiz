@@ -1,4 +1,6 @@
-import { CHANGE_FIELD, VALIDATE_REGISTRATION, SET_ERROR } from 'src/actions/register';
+import {
+  CHANGE_FIELD, VALIDATE_REGISTRATION, SET_ERROR, DISPLAY_ERRORS,
+} from 'src/actions/register';
 
 export const initialState = {
   email: '',
@@ -7,6 +9,7 @@ export const initialState = {
   environment: '',
   isRegistered: false,
   error: false,
+  errors: {},
 };
 
 const register = (state = initialState, action = {}) => {
@@ -26,6 +29,11 @@ const register = (state = initialState, action = {}) => {
       return {
         ...state,
         error: true,
+      };
+    case DISPLAY_ERRORS:
+      return {
+        ...state,
+        errors: action.errors,
       };
     default:
       return state;

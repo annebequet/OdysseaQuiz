@@ -3,6 +3,7 @@ export const REGISTER = 'REGISTER';
 export const HANDLE_SELECT = 'HANDLE_SELECT';
 export const SET_ERROR = 'SET_ERROR';
 export const VALIDATE_REGISTRATION = 'VALIDATE_REGISTRATION';
+export const DISPLAY_ERRORS = 'DISPLAY_ERRORS';
 
 export const changeField = (value, name) => ({
   type: CHANGE_FIELD,
@@ -20,4 +21,9 @@ export const setError = () => ({
 
 export const validateRegistration = () => ({
   type: VALIDATE_REGISTRATION,
+});
+
+export const displayErrors = (errors) => ({
+  type: DISPLAY_ERRORS,
+  errors,
 });
