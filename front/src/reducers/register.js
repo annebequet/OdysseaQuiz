@@ -3,8 +3,6 @@ import { CHANGE_FIELD, VALIDATE_REGISTRATION, SET_ERROR } from 'src/actions/regi
 export const initialState = {
   email: '',
   password: '',
-  lastName: '',
-  firstName: '',
   pseudo: '',
   environment: '',
   isRegistered: false,

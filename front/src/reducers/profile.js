@@ -1,10 +1,13 @@
-import { CHANGE_INPUT } from 'src/actions/profile';
+import { CHANGE_INPUT, SAVE_AVATARS, SAVE_EMAIL, SAVE_PSEUDO} from 'src/actions/profile';
 
 export const initialState = {
+  email: '',
   newEmail: '',
   newPassword: '',
   newPseudo: '',
   newEnvironment: '',
+  newAvatar: '',
+  avatars: [],
 };
 
 const register = (state = initialState, action = {}) => {
@@ -13,6 +16,16 @@ const register = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.name]: action.value,
+      };
+    case SAVE_AVATARS:
+      return {
+        ...state,
+        avatars: action.avatars,
+      };
+    case SAVE_EMAIL:
+      return {
+        ...state,
+        email: action.email,
       };
     default:
       return state;

@@ -9,16 +9,21 @@ import {
   handleEditEnvironment,
   handleDelete,
   getUser,
+  getAvatars,
+  handleEditAvatar,
 } from '../../actions/profile';
 
 const mapStateToProps = (state) => ({
   categories: state.categories.categories,
   pseudo: state.headerLogin.pseudo,
+  email: state.profile.email,
   avatar: state.headerLogin.avatar,
+  avatars: state.profile.avatars,
   newEmail: state.profile.newEmail,
   newPseudo: state.profile.newPseudo,
   newPassword: state.profile.newPassword,
   newEnvironment: state.profile.newEnvironment,
+  newAvatar: state.profile.newAvatar,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -40,8 +45,14 @@ const mapDispatchToProps = (dispatch) => ({
   handleDelete: () => {
     dispatch(handleDelete());
   },
+  getAvatars: () => {
+    dispatch(getAvatars());
+  },
   getUser: () => {
     dispatch(getUser());
+  },
+  handleEditAvatar: () => {
+    dispatch(handleEditAvatar());
   },
 });
 
