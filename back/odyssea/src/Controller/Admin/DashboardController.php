@@ -54,6 +54,11 @@ class DashboardController extends AbstractDashboardController
         return [
 
         yield MenuItem::linktoDashboard('Tableau de bord', 'fas fa-dharmachakra'),
+        yield MenuItem::linkToCrud('Mots de passe', 'fas fa-key', User::class)
+            ->setController(PasswordCrudController::class),
+        yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class),
+        yield MenuItem::linkToCrud('Catégories', 'fas fa-fish', Category::class),
+        yield MenuItem::linkToCrud('Avatars', 'fa fa-picture-o', Gallery::class),
         yield MenuItem::linkToCrud('Environnement', 'fab fa-pagelines', Environment::class),
         yield MenuItem::linkToCrud('Mots de passe', 'fas fa-key', User::class)
             ->setController(PasswordCrudController::class),

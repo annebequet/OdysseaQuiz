@@ -101,7 +101,7 @@ class SecurityController extends AbstractController
 
         // Validate the entity with the validator service
         $errors = $validator->validate($user);
-
+        
         // If there are errors, return the array in JSON format
         if (count($errors) > 0) {
             $errorsArray = [];
@@ -109,9 +109,9 @@ class SecurityController extends AbstractController
                 $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
             }
 
-            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+            //return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
             // We can also return the full array of JSON object
-            //return $this->json($errors, 400);
+            return $this->json($errors, 400);
         }
 
         // Encode the password and set it to the entity

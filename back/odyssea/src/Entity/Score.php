@@ -6,9 +6,15 @@ use App\Repository\ScoreRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+//!https://symfonycasts.com/screencast/symfony3-security/validation-unique-entity
 /**
  * @ORM\Entity(repositoryClass=ScoreRepository::class)
+ * @UniqueEntity(
+ *      fields={"user", "category", "environment"},
+ *      message="L'utilisateur possède déjà un score dans la catégorie de cet environnement."
+ * )
  */
 class Score
 {

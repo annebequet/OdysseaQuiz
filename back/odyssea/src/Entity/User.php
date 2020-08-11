@@ -19,10 +19,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * ! https://symfony.com/doc/current/reference/constraints/UniqueEntity.html
- * ! pseudo ne marche pas ? faire la migration pour unique peut-être ? (pas faite pour l'instant) 
  * @UniqueEntity(
- *      fields={"email", "pseudo"},
+ *      fields="email",
+ *      message="{{ value }} est déjà utilisé."
+ * )
+ * @UniqueEntity(
+ *      fields="pseudo",
  *      message="{{ value }} est déjà utilisé."
  * )
  */
