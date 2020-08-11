@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Route, Switch, useHistory } from 'react-router-dom';
 
 // == Import
+import Title from 'src/containers/Title';
 import Video from 'src/containers/Video';
 import Header from 'src/containers/Header';
 import Footer from 'src/components/Footer';
@@ -22,7 +23,6 @@ const App = ({
   getCategories,
   categoriesLoading,
   updateLocation,
-  location,
 }) => {
   useEffect(checkIsLogged, []);
 
@@ -35,13 +35,9 @@ const App = ({
     updateLocation(location.pathname);
   }), [history]);
 
-  const titleClassName = location === '/' ? 'title__frontPage' : 'title__otherPages';
-
   return (
     <div className="app">
-      <div className="title">
-        <h1 className={titleClassName}>ODYSSEA QUIZ</h1>
-      </div>
+      <Title />
       <Video />
       <div className="mainPage">
         <Header />
@@ -110,7 +106,6 @@ App.propTypes = {
   getCategories: PropTypes.func.isRequired,
   updateLocation: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
-  location: PropTypes.string.isRequired,
 };
 
 // == Export
