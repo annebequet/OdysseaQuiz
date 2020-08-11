@@ -10,6 +10,7 @@ const FieldRegister = ({
   label,
   onChange,
   error,
+  handleBlur,
 }) => {
   const handleChange = (evt) => {
     onChange(evt.target.value, name);
@@ -34,6 +35,7 @@ const FieldRegister = ({
         type={type}
         placeholder={label}
         name={name}
+        onBlur={handleBlur}
       />
 
     </div>
@@ -47,6 +49,7 @@ FieldRegister.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   error: PropTypes.string,
+  handleBlur: PropTypes.bool.isRequired,
 };
 
 FieldRegister.defaultProps = {

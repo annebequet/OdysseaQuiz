@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import ErrorMessage from 'src/components/ErrorMessage';
 import FieldRegister from './FieldRegister';
 import FieldRadioRegister from './FieldRadioRegister';
-import ErrorMessage from 'src/components/ErrorMessage';
 
 import './styles.scss';
 
@@ -18,6 +18,7 @@ const Register = ({
   displayErrors,
   errorsFound,
 }) => {
+  // Check Submit errors
   const checkErrors = () => {
     const errors = {};
     if (!pseudo) {
@@ -44,6 +45,39 @@ const Register = ({
       return true;
     }
     return errors;
+  };
+  // Check input Errors
+  const [handleBlur, setHandleBlur] = useState(false);
+
+  const failEmail = () => {
+    if (!email) {
+      return <span>Entrez un email</span>;
+    }
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i.test(email)) {
+      return <span>Entrez un email valide</span>;
+    }
+    return false;
+  };
+  const failPassword = () => {
+    if (!password) {
+      return <span>Entrez un mot de passe!</span>;
+    }
+    if (password.length < 4) {
+      return <span>Entrez un mot de passe d'au moins 4 caractères</span>;
+    }
+    return false;
+  };
+  const failPseudo = () => {
+    if (!pseudo) {
+      return <span>Entrez un pseudo!</span>;
+    }
+    if (pseudo.length < 4) {
+      return <span>Il faut au moins 4 caractères</span>;
+    }
+    if (pseudo.length > 12) {
+      return <span>Il ne faut pas plus de 12 caractères</span>;
+    }
+    return false;
   };
 
   const handleSubmit = (evt) => {
@@ -77,7 +111,9 @@ const Register = ({
           type="email"
           onChange={changeField}
           value={email}
+          handleBlur={() => setHandleBlur(!handleBlur)}
         />
+        {handleBlur && failEmail()}
         <FieldRegister
           error={!errorsFound.password ? 'undefined' : errorsFound.password}
           name="password"
@@ -86,7 +122,9 @@ const Register = ({
           id="password"
           onChange={changeField}
           value={password}
+          handleBlur={() => setHandleBlur(!handleBlur)}
         />
+        {handleBlur && failPassword()}
         <FieldRegister
           error={!errorsFound.pseudo ? 'undefined' : errorsFound.pseudo}
           name="pseudo"
@@ -95,9 +133,11 @@ const Register = ({
           id="pseudo"
           onChange={changeField}
           value={pseudo}
+          handleBlur={() => setHandleBlur(!handleBlur)}
         />
+        {handleBlur && failPseudo()}
         <div>
-          <label>Changez votre difficulté de jeu!</label>
+          <label>Choisissez votre difficulté de jeu!</label>
         </div>
         <FieldRadioRegister
           name="environment"
