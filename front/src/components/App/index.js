@@ -22,6 +22,7 @@ const App = ({
   getCategories,
   categoriesLoading,
   updateLocation,
+  location,
 }) => {
   useEffect(checkIsLogged, []);
 
@@ -34,8 +35,13 @@ const App = ({
     updateLocation(location.pathname);
   }), [history]);
 
+  const titleClassName = location === '/' ? 'title__frontPage' : 'title__otherPages';
+
   return (
     <div className="app">
+      <div className="title">
+        <h1 className={titleClassName}>ODYSSEA QUIZ</h1>
+      </div>
       <Video />
       <div className="mainPage">
         <Header />
@@ -104,6 +110,7 @@ App.propTypes = {
   getCategories: PropTypes.func.isRequired,
   updateLocation: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
+  location: PropTypes.string.isRequired,
 };
 
 // == Export

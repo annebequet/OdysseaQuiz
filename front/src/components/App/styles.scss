@@ -22,9 +22,42 @@
 h1 {
   font-size: xx-large;
   font-weight: 900;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+  font-family: 'GT America Extended', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.title__frontPage {
+  position: absolute;
+  top: 30vh;
+  font-size: 5vw;
+}
+
+.title__otherPages {  
+  position: fixed;
+  top: 1em;
+  font-size: 1.6rem;
+  z-index: 2;
+  color: #197285;
 }
 
 .app .category__img {
   max-width: 150px;
+}
+
+/* small screen size */
+@media (max-width: 768px) {
+  .title__otherPages {
+    color: white;
+  }
+  .title__frontPage {
+    position: fixed;
+    top: 1em;
+    font-size: 1.6rem;
+    z-index: 2;
+  }
 }
