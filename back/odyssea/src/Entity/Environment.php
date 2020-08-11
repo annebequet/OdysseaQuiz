@@ -32,7 +32,7 @@ class Environment
      * @Groups({"users_get", "users_get_one", "categories_get_one"})
      * @Assert\Length(
      *      max=12,
-     *      maxMessage="Le nom de la catégorie est trop long, merci d'en choisir un autre.",
+     *      maxMessage="Le nom est trop long, merci d'en choisir un autre.",
      *      allowEmptyString = false
      * )
      */

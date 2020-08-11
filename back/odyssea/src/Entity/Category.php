@@ -16,6 +16,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *      fields="name",
  *      message="{{ value }} est déjà utilisé."
  * )
+ * @UniqueEntity(
+ *      fields="picture",
+ *      message="L'image {{ value }} est déjà utilisée."
+ * )
  */
 class Category
 {
@@ -33,7 +37,10 @@ class Category
      * @Assert\Length(
      *      max=12,
      *      maxMessage="Le nom de la catégorie est trop long, merci d'en choisir un autre.",
-     *      allowEmptyString = false
+     *      allowEmptyString=false
+     * )
+     * @Assert\NotBlank(
+     *      message="Veuillez remplir ce champs"
      * )
      */
     private $name;
@@ -41,9 +48,11 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"categories_get", "categories_get_one"})
-     * @Assert\NotBlank
      * @Assert\Url(
      *    message = "L'url '{{ value }}' n'est pas valide.",
+     * )
+     * @Assert\NotBlank(
+     *      message="Veuillez remplir ce champs"
      * )
      */
     private $picture;

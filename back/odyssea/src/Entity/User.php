@@ -43,6 +43,9 @@ class User implements UserInterface
      * @Assert\Email(
      *     message = "Entrez un email valide."
      * )
+     * @Assert\NotBlank(
+     *      message= "Veuillez remplir ce champs"
+     * )
      */
     private $email;
 
@@ -100,6 +103,9 @@ class User implements UserInterface
      * @Groups("users_get_one")
      * @Assert\Length(
      *      min=4
+     * )
+     * @Assert\NotBlank(
+     *      message = "Veuillez remplir ce champs."
      * )
      */
     private $password;

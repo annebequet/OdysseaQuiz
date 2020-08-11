@@ -14,6 +14,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *      fields="name",
  *      message="{{ value }} est déjà utilisé."
  * )
+ * @UniqueEntity(
+ *      fields="title",
+ *      message="Cette question est déjà posée."
+ * )
  */
 class Question
 {
@@ -46,6 +50,7 @@ class Question
      */
     private $name;
 
+    //! si on joue au timer, ne pas mettre des questions de plus de 200 caractères
     /**
      * @ORM\Column(type="text")
      * @Groups({"categories_get_one", "get_quest_by_cat"})
@@ -66,7 +71,7 @@ class Question
      */
     private $choices = [];
 
-    //! dans blank normalizer = 'trim',
+    //! dans NotBlank normalizer='trim',
     //! sa march pas
     /**
      * @ORM\Column(type="string", length=255)

@@ -33,7 +33,9 @@ class Gallery
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Groups({"avatars_get", "avatar_get_one", "users_get", "users_get_one"})
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *      message= "Veuillez remplir ce champs"
+     * )
      * @Assert\Url(
      *    message = "L'url '{{ value }}' n'est pas valide.",
      * )
@@ -53,6 +55,13 @@ class Gallery
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"avatars_get", "avatar_get_one"})
+     * @Assert\NotBlank(
+     *      message= "Veuillez remplir ce champs"
+     * )
+     * @Assert\Length(
+     *      min=3,
+     *      max=18
+     * )
      */
     private $name;
 
