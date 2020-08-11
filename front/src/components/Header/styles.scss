@@ -11,6 +11,8 @@
   background-color: vars.$background-color-transparent;
   text-align: left;
   color: white;
+  position: fixed;
+  top: 0;
 }
 
 /* Responsive conditions : what sould not be displayed depending on the screen size */
