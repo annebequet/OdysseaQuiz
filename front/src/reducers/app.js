@@ -3,7 +3,7 @@ import {
 } from '../actions';
 
 const initialState = {
-  location: '/',
+  location: window.location.pathname,
 };
 
 const app = (state = initialState, action = {}) => {

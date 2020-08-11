@@ -40,12 +40,9 @@ const Register = ({
     else if (password.length < 4) {
       errors.password = 'Il faut au moins 4 caractères';
     }
-
-    if (Object.keys(errors).length === 0) {
-      return true;
-    }
     return errors;
   };
+
   // Check input Errors
   const [handleBlur, setHandleBlur] = useState(false);
 
@@ -83,14 +80,17 @@ const Register = ({
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
+    console.log('je passe dans le handleSubmit');
+
     const errors = checkErrors();
-    if (errors === true) {
+
+    if (Object.keys(errors).length === 0) {
       handleRegister();
     }
     displayErrors(errors);
   };
 
-  console.log(errorsFound);
+  console.log('les erreurs trouvées :', errorsFound);
 
   return (
     <div className="register">
@@ -111,7 +111,7 @@ const Register = ({
           type="email"
           onChange={changeField}
           value={email}
-          handleBlur={() => setHandleBlur(!handleBlur)}
+          //handleBlur={() => setHandleBlur(!handleBlur)}
         />
         {handleBlur && failEmail()}
         <FieldRegister
@@ -122,7 +122,7 @@ const Register = ({
           id="password"
           onChange={changeField}
           value={password}
-          handleBlur={() => setHandleBlur(!handleBlur)}
+          //handleBlur={() => setHandleBlur(!handleBlur)}
         />
         {handleBlur && failPassword()}
         <FieldRegister
@@ -133,7 +133,7 @@ const Register = ({
           id="pseudo"
           onChange={changeField}
           value={pseudo}
-          handleBlur={() => setHandleBlur(!handleBlur)}
+          //handleBlur={() => setHandleBlur(!handleBlur)}
         />
         {handleBlur && failPseudo()}
         <div>
