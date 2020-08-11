@@ -18,7 +18,7 @@ class GalleryController extends AbstractController
     public function getAll(GalleryRepository $galleryRepository)
     {
         $avatars = $galleryRepository->findAll();
-        dump($avatars);
+        //dump($avatars);
 
         return $this->json($avatars, 200, [], ['groups' => 'avatars_get']);
     }

@@ -34,9 +34,7 @@ security:
             json_login:
                 check_path: api_login
             logout:
-                path: api_logout
-                #target: api_login
-                success_handler: App\Security\LogoutHandler
+                path: api/logout
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

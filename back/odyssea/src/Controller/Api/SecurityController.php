@@ -46,7 +46,7 @@ class SecurityController extends AbstractController
 
 
     /**
-     * @Route("/api/islogged", name="app_islogged", methods={"GET"})
+     * @Route("/api/islogged", name="api_islogged", methods={"GET"})
      */
     public function isLogged(Request $request, UserRepository $userRepository)
     {
@@ -67,8 +67,23 @@ class SecurityController extends AbstractController
     /**
      * @Route("/api/logout", name="api_logout", methods={"GET"})
      */
-    public function logout()
+    public function logout(EntityManagerInterface $entityManager)
     {
+        $user = $this->getUser();
+
+        //if there is not, throw an exception
+        if (!$user) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $user->setApiToken(null);
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return new JsonResponse([
+            'message' => 'User disconnected.',
+        ]);
     }
 
     /**

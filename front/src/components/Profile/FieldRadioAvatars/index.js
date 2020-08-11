@@ -17,19 +17,11 @@ const FieldRadioAvatars = ({
 
   return (
     <div className={value.length > 0 ? 'field field--radio--avatars field--has-content' : 'field field--radio--avatars'}>
-      <label
-        htmlFor={inputId}
-        className="register-field-label"
-      >
-        {label}
-      </label>
-
       {avatars.map(({ imageUrl, id, name: avatarName }) => (
-        <>
+        <div className="profile__avatar__input" key={avatarName}>
           <img className="avatars" src={imageUrl} />
           <label className="field--radio__details--avatars">{avatarName}</label>
           <input
-            key={id}
             value={id}
             onChange={handleChange}
             id={id}
@@ -38,7 +30,7 @@ const FieldRadioAvatars = ({
             placeholder={label}
             name={name}
           />
-        </>
+        </div>
       ))}
 
     </div>

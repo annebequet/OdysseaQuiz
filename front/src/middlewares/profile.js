@@ -10,6 +10,7 @@ import {
   HANDLE_EDIT_AVATAR,
   GET_AVATARS,
   saveAvatars,
+  saveEmail,
 } from 'src/actions/profile';
 
 const categories = (store) => (next) => (action) => {
@@ -132,6 +133,7 @@ const categories = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log(response.data);
+          store.dispatch(saveEmail(response.data.email));
         })
         .catch((error) => {
           console.log(error);
