@@ -19,7 +19,8 @@ class QuestionController extends AbstractController
             'category' => $categoryId
             ]);
         // dump($questions);
-
+        //! une erreur à mettre ?
+        
         return $this->json($questions, 200, [], ['groups' => 'get_quest_by_cat']);
     }
 }

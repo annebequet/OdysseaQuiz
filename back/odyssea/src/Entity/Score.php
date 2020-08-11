@@ -5,9 +5,16 @@ namespace App\Entity;
 use App\Repository\ScoreRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ScoreRepository::class)
+ * ! attention ici 
+ * @UniqueEntity(
+ *      fields={"user", "category", "environment"},
+ *      message="L'utilisateur possède déjà un score dans la catégorie de cet environnement, merci de contacter le support."
+ * )
  */
 class Score
 {
@@ -20,6 +27,7 @@ class Score
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotNull
      */
     private $quizNb;
 
@@ -31,6 +39,11 @@ class Score
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Groups({"users_get_one"})
+     * @Assert\Range(
+     *      min = "0",
+     *      max = "100",
+     *      notInRangeMessage = "Le score doit se situer entre {{ min }} et {{ max }} (valeur actuelle : {{ value }})."
+     * )
      */
     private $score;
 
@@ -47,6 +60,7 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull
      */
     private $user;
 
@@ -54,6 +68,7 @@ class Score
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"users_get_one"})
+     * @Assert\NotNull
      */
     private $category;
 
@@ -61,6 +76,7 @@ class Score
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"users_get_one"})
+     * @Assert\NotNull
      */
     private $environment;
 

@@ -131,7 +131,7 @@ class UserController extends AbstractController
      *
      * @Route("/api/score", name="api_add_score", methods={"POST"})
     */
-    public function addScore(EntityManagerInterface $em, SerializerInterface $serializer, ScoreRepository $scoreRepository, Request $request)
+    public function addScore(EntityManagerInterface $em, SerializerInterface $serializer, ScoreRepository $scoreRepository, Request $request, ValidatorInterface $validator)
     {
         // Get the content of the request
         $content = $request->getContent();
@@ -139,6 +139,17 @@ class UserController extends AbstractController
         // Deserialiaze the json content into a Score entity
         $score = $serializer->deserialize($content, Score::class, 'json');
 
+        // Validate the entity with the validator service
+        $errors = $validator->validate($score);
+
+        // If there are errors, return the array in JSON format
+        if(count($errors) > 0) {
+            $errorsArray = [];
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
         //dd($score);
 
         $scoreLine = $scoreRepository->findOneBy([
