@@ -16,6 +16,7 @@ import {
 const mapStateToProps = (state) => ({
   categories: state.categories.categories,
   pseudo: state.headerLogin.pseudo,
+  email: state.profile.email,
   avatar: state.headerLogin.avatar,
   avatars: state.profile.avatars,
   newEmail: state.profile.newEmail,
