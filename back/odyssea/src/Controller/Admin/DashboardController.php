@@ -56,7 +56,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Catégories', 'fas fa-fish', Category::class),
         yield MenuItem::linkToCrud('Avatars', 'fa fa-picture-o', Gallery::class),
         yield MenuItem::linkToCrud('Environnement', 'fab fa-pagelines', Environment::class),
-        yield MenuItem::linkToCrud('Scores', 'fas fa-anchor', Score::class)
+        yield MenuItem::linkToCrud('Scores', 'fas fa-anchor', Score::class),
+        yield MenuItem::linkToUrl('Home', 'fa fa-home','http://localhost:8080')
         // MenuItem::linkToLogout('Logout', 'fa fa-exit'),
         ];
     }

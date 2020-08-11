@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Ocean from 'src/assets/videos/ocean.mp4';
 import './styles.scss';
 
 const Video = () => (
@@ -9,9 +10,8 @@ const Video = () => (
       loop
       muted
       style={{
-        position: 'fixed',
         width: '100%',
-        height: '100%',
+        height: '100vh',
         left: '0',
         top: '0',
         objectFit: 'cover',
@@ -19,7 +19,7 @@ const Video = () => (
       }}
     >
       <source
-        src="https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/rytughwRxj1s1gmp3/videoblocks-underwater-landscape-of-coral-reef-amazing-underwater-marine-life-world-scuba-diving-and-snorkeling_baj3ircnz__d3d6d16680620376fe9c58e37c21cfb7__P360.mp4"
+        src={Ocean}
         type="video/mp4"
       />
     </video>
