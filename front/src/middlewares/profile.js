@@ -47,6 +47,7 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          window.location.reload(true);
         })
         .catch((error) => {
           console.log(error);
@@ -69,6 +70,7 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          window.location.reload(true);
         })
         .catch((error) => {
           console.log(error);
@@ -92,7 +94,7 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
-          window.location.href = `http://localhost/Apotheose/Odyssea/back/odyssea/public/api/users/${id}`;
+          window.location.reload(true);
         })
         .catch((error) => {
           console.log(error);
@@ -156,7 +158,7 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
-          window.location.href = `http://localhost/Apotheose/Odyssea/back/odyssea/public/api/users/${id}`;
+          window.location.reload(true);
         })
         .catch((error) => {
           console.log(error);
@@ -175,7 +177,7 @@ const categories = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log(response.data);
-          window.location.href = `http://localhost:8080/`;
+          window.location.replace('/');
         })
         .catch((error) => {
           console.log(error);
