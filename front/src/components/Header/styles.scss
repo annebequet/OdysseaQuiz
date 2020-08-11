@@ -34,12 +34,12 @@
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: orange;
+  background: #197285;
 }
 
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
-  background: #a90000;
+  background: #197285;
 }
 
 /* Position and sizing of clickable cross button */
@@ -53,6 +53,17 @@
 /* Color/shape of close button cross */
 .bm-cross {
   background: #bdc3c7;
+}
+
+.btn-primary {
+  background-color: vars.$background-color-transparent;
+  border: 1px solid white;
+}
+
+.btn-primary:hover {
+  background-color: vars.$background-color-transparent;
+  border-color: #197285;
+  color: #197285;
 }
 
 /*
@@ -111,13 +122,26 @@ svg:nth-child(1) {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  color: orange;
+  color: white;
   font-weight: bold;
 }
 
+
 /* Header Register link */
+.header__nav__register:a:hover {
+  color: #197285;
+  text-decoration: none;
+}
+
+.header__nav__form--active {
+  color: #197285;
+  text-decoration: none;
+}
+
 .header__nav__register {
   padding-right: 5em;
+  color: white;
+  text-decoration: none;
 }
 
 /* Login toggler */
@@ -164,15 +188,20 @@ svg:nth-child(1) {
 
 /* Link style */
 .menu__item {
-  color: orange;
+  color: white;
   font-size: medium;
   font-weight: bold;
   padding: 1em;
   border: none;
 }
 
+.menu__link--active:hover {
+  color: #197285;
+  text-decoration: none;
+}
+
 .menu__link--active {
-  color: white;
+  color: #197285;
 }
 
 .logo {
@@ -181,5 +210,11 @@ svg:nth-child(1) {
 }
 /* if user is logged */
 .menu__item--logout:hover {
-  color: white,
+  color: #197285,
 }
+
+.menu__item:hover {
+  color: #197285;
+  text-decoration: none;
+}
+
