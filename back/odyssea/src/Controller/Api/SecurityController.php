@@ -24,6 +24,8 @@ class SecurityController extends AbstractController
     {
         $user = $this->getUser();
 
+        //! messages de TA à traduire 
+
         if (!$user) {
             throw $this->createAccessDeniedException();
         }
@@ -82,7 +84,7 @@ class SecurityController extends AbstractController
         $entityManager->flush();
 
         return new JsonResponse([
-            'message' => 'User disconnected.',
+            'message' => 'Utilisateur déconnecté.',
         ]);
     }
 
@@ -122,7 +124,6 @@ class SecurityController extends AbstractController
         if($user->getAvatar() === null) {
             $user->setAvatar($galleryRepository->find(1));
         };
-
         
         // Add the new user to the database
         $entityManager = $this->getDoctrine()->getManager();
