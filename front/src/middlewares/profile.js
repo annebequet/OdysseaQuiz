@@ -53,7 +53,7 @@ const categories = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response.data);
-          store.dispatch(setRequestError(error.response.data));
+          store.dispatch(setRequestError({ 'avatar': ['choisissez un avatar'] }));
         });
 
       next(action);
@@ -122,6 +122,8 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          // As there is no redirection, we want to reset the error State
+          store.dispatch(setRequestError({}));
         })
         .catch((error) => {
           console.log(error.response.data);
@@ -169,7 +171,7 @@ const categories = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response.data);
-          store.dispatch(setRequestError(error.response.data));
+          store.dispatch(setRequestError({ 'environnement': ['choisissez un environnement'] }));
         });
 
       next(action);
