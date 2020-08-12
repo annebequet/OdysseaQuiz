@@ -47,7 +47,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"categories_get", "categories_get_one"})
+     * @Groups({"categories_get", "categories_get_one", "users_get_one"})
      * @Assert\Url(
      *    message = "L'url '{{ value }}' n'est pas valide.",
      * )

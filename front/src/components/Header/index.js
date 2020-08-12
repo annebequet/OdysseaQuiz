@@ -15,6 +15,7 @@ const Header = ({ roles, isLogged, loginAdmin }) => {
   const handleAdmin = () => {
     loginAdmin();
   };
+
   return (
     <div className="header">
       <nav className="menu--desktop">

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setRequestError } from 'src/actions/errorHandler';
 
 import {
   HANDLE_EDIT_EMAIL,
@@ -11,6 +12,7 @@ import {
   GET_AVATARS,
   saveAvatars,
   saveEmail,
+  saveScores,
 } from 'src/actions/profile';
 
 const categories = (store) => (next) => (action) => {
@@ -47,9 +49,11 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          window.location.reload(true);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
+          store.dispatch(setRequestError({ 'avatar': ['choisissez un avatar'] }));
         });
 
       next(action);
@@ -69,9 +73,11 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          window.location.reload(true);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
+          store.dispatch(setRequestError(error.response.data));
         });
 
       next(action);
@@ -92,10 +98,11 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
-          window.location.href = `http://54.226.34.31/back/api/users/${id}`;
+          window.location.reload(true);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
+          store.dispatch(setRequestError(error.response.data));
         });
 
       next(action);
@@ -115,9 +122,12 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          // As there is no redirection, we want to reset the error State
+          store.dispatch(setRequestError({}));
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
+          store.dispatch(setRequestError(error.response.data));
         });
 
       next(action);
@@ -134,9 +144,10 @@ const categories = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response.data);
           store.dispatch(saveEmail(response.data.email));
+          store.dispatch(saveScores(response.data.scores));
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response);
         });
 
       next(action);
@@ -156,10 +167,11 @@ const categories = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log(response.data);
-          window.location.href = `http://54.226.34.31/back/api/users/${id}`;
+          window.location.reload(true);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
+          store.dispatch(setRequestError({ 'environnement': ['choisissez un environnement'] }));
         });
 
       next(action);
@@ -175,7 +187,7 @@ const categories = (store) => (next) => (action) => {
         })
         .then((response) => {
           console.log(response.data);
-          window.location.href = 'http://54.226.34.31/';
+          window.location.replace('/');
         })
         .catch((error) => {
           console.log(error);

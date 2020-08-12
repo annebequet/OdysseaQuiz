@@ -5,9 +5,11 @@ import { Accordion, Button, Card } from 'react-bootstrap';
 import './styles.scss';
 
 import TurtleImage from 'src/assets/images/turtle.jpg';
+import ErrorMessage from 'src/components/ErrorMessage';
 import Field from './Field';
 import FieldRadio from './FieldRadio';
 import FieldRadioAvatars from './FieldRadioAvatars';
+import { getScores } from '../../actions/profile';
 
 /* Commentaries are for the switch environment item */
 
@@ -31,6 +33,8 @@ const Profile = ({
   handleEditAvatar,
   getAvatars,
   avatars,
+  scores,
+  requestErrors,
   // selectedOption,
 }) => {
   useEffect(() => {
@@ -68,6 +72,9 @@ const Profile = ({
 
   return (
     <div className="profile">
+      {Object.keys(requestErrors).length > 0 && (
+        <ErrorMessage errors={requestErrors} />
+      )}
       <div className="profile__edit">
         <div className="profile__wrap__left">
           <img
@@ -233,21 +240,25 @@ const Profile = ({
 
         </div>
       </div>
-      {/* <ul className="categories__ul">
-        {categories.map(({ name }) => (
-          <li
-            key={name}
-            className="categories__item"
-          >
-            <h3>{name} </h3>
-            <img
-              className="category__img"
-              alt="turtle"
-              src={TurtleImage}
-            />
-          </li>
-        ))}
-      </ul> */}
+      <div>
+        <ul className="categories__ul">
+          <h3 className="profil__title">Consultez vos scores par catégories!</h3>
+          {scores.map((score) => (
+            <li
+              key={score.category.id}
+              className="categories__item"
+            >
+              <h3>{score.category.name} </h3>
+              <p>{score.score} / 10</p>
+              <img
+                className="category__img"
+                alt="category__picture"
+                src={score.category.picture}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
@@ -282,6 +293,8 @@ Profile.propTypes = {
       name: PropTypes.string,
     }),
   ).isRequired,
+  scores: PropTypes.array.isRequired,
+  requestErrors: PropTypes.object.isRequired,
 };
 
 Profile.defaultProps = {
