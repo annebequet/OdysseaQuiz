@@ -20,7 +20,7 @@ const Login = ({
   };
 
   return (
-    <>
+    <div>
       <Button variant="primary" onClick={handleShow}>
         Se Connecter
       </Button>
@@ -48,7 +48,6 @@ const Login = ({
               className="login__submit"
               type="submit"
               variant="primary"
-              onClick={handleClose}
             >
               Se Connecter
             </Button>
@@ -60,7 +59,7 @@ const Login = ({
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 
