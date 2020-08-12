@@ -101,11 +101,10 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Groups("users_get_one")
-     * @Assert\Length(
-     *      min=4
-     * )
-     * @Assert\NotBlank(
-     *      message = "Veuillez remplir ce champs."
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/",
+     *     message="Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre."
      * )
      */
     private $password;
@@ -129,7 +128,7 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"users_get", "users_get_one"})
-     * @Assert\NotBlank(
+     * @Assert\NotNull(
      *      message = "Choisissez un environnement de jeu."
      * )
      */
@@ -149,6 +148,9 @@ class User implements UserInterface
     /**
      * @ORM\ManyToOne(targetEntity=Gallery::class)
      * @Groups({"users_get", "users_get_one"})
+     * @Assert\NotNull(
+     *      message = "Choisissez un avatar."
+     * )
      */
     private $avatar;
     
