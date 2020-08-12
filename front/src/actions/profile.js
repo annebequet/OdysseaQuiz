@@ -10,6 +10,7 @@ export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const HANDLE_EDIT_AVATAR = 'HANDLE_EDIT_AVATAR';
 export const GET_AVATARS = 'GET_AVATARS';
 export const SAVE_AVATARS = 'SAVE_AVATARS';
+export const SAVE_SCORES = 'SAVE_SCORES';
 
 export const handleEditPseudo = () => ({
   type: HANDLE_EDIT_PSEUDO,
@@ -62,4 +63,9 @@ export const getAvatars = () => ({
 export const saveAvatars = (avatars) => ({
   type: SAVE_AVATARS,
   avatars,
+});
+
+export const saveScores = (scores) => ({
+  type: SAVE_SCORES,
+  scores,
 });

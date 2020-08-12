@@ -21,7 +21,9 @@ const register = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response.data);
           store.dispatch(validateRegistration());
-          window.location.replace('/');
+          setTimeout(() => {
+            window.location.replace('/');
+          }, 10000);
         })
         .catch((error) => {
           console.log(error);
