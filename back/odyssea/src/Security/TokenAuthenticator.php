@@ -75,7 +75,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             // you may want to customize or obfuscate the message first
             // 'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
             'logged' => false,
-            'message' => 'User not found'
+            'message' => 'Utilisateur non trouvé'
 
             // or to translate this message
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
@@ -91,7 +91,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     {
         $data = [
             // you might translate this message
-            'message' => 'Missing credentials.'
+            'message' => 'Vous devez vous connecter pour accéder à cette page.'
         ];
 
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);

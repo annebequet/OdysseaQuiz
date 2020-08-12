@@ -24,8 +24,6 @@ class SecurityController extends AbstractController
     {
         $user = $this->getUser();
 
-        //! messages de TA à traduire 
-
         if (!$user) {
             throw $this->createAccessDeniedException();
         }
