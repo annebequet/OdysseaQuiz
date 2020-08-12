@@ -10,3 +10,10 @@
 .text__otherPages{
   display: none;
 }
+
+@media (max-width: 768px) {
+  .title{
+  position: fixed;
+  z-index: 3;
+  }
+}
