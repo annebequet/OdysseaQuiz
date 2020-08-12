@@ -23,8 +23,10 @@ const Register = ({
   errorPseudo,
   requestErrors,
 }) => {
-  const findErrors = (errorMessage) => {
-    setTimeout(() => setError(errorMessage), 800);
+  const findErrors = () => {
+    setTimeout(() => setError(failEmail(email)), 800);
+    setTimeout(() => setError(failPassword(password)), 800);
+    setTimeout(() => setError(failPseudo(pseudo)), 800);
   };
 
   const handleSubmit = (evt) => {
@@ -55,7 +57,7 @@ const Register = ({
           type="email"
           onChange={changeField}
           value={email}
-          onBlur={findErrors(failEmail(email))}
+          handleBlur={findErrors}
         />
         {errorEmail.length !== 0 && (
           <span>{errorEmail}</span>
@@ -69,7 +71,7 @@ const Register = ({
           id="password"
           onChange={changeField}
           value={password}
-          onBlur={findErrors(failPassword(password))}
+          handleBlur={findErrors}
         />
         {errorPassword.length !== 0 && (
           <span>{errorPassword}</span>
@@ -83,7 +85,7 @@ const Register = ({
           id="pseudo"
           onChange={changeField}
           value={pseudo}
-          onBlur={findErrors(failPseudo(pseudo))}
+          handleBlur={findErrors}
         />
         {errorPseudo.length !== 0 && (
           <span>{errorPseudo}</span>

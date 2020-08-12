@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, useHistory } from 'react-router-dom';
 
@@ -36,7 +36,7 @@ const App = ({
   }), [history]);
 
   return (
-    <div className="app">
+    <div className="app">     
       <Title />
       <Video />
       <div className="mainPage">
