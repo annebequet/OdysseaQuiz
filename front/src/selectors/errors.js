@@ -14,8 +14,8 @@ export const failPassword = (password) => {
   if (!password) {
     return { password: 'Entrez un mot de passe' };
   }
-  if (password.length < 4) {
-    return { password: 'Entrez un mot de passe d\'au moins 4 caractères' };
+  if (!/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/i.test(password)) {
+    return { password: 'Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre.' };
   }
   return { password: '' };
 };

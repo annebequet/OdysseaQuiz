@@ -26,7 +26,7 @@ const login = (store) => (next) => (action) => {
           store.dispatch(saveUser(pseudo, roles, avatar, id));
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response);
         });
 
       next(action);

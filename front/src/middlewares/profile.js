@@ -51,7 +51,7 @@ const categories = (store) => (next) => (action) => {
           window.location.reload(true);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
         });
 
       next(action);
@@ -74,7 +74,7 @@ const categories = (store) => (next) => (action) => {
           window.location.reload(true);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
         });
 
       next(action);
@@ -98,7 +98,7 @@ const categories = (store) => (next) => (action) => {
           window.location.reload(true);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
         });
 
       next(action);
@@ -120,7 +120,7 @@ const categories = (store) => (next) => (action) => {
           console.log(response.data);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
         });
 
       next(action);
@@ -140,7 +140,7 @@ const categories = (store) => (next) => (action) => {
           store.dispatch(saveScores(response.data.scores));
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response);
         });
 
       next(action);
@@ -163,7 +163,7 @@ const categories = (store) => (next) => (action) => {
           window.location.reload(true);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
         });
 
       next(action);
