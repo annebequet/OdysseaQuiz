@@ -44,7 +44,7 @@ const Register = ({
   };
 
   // Check input Errors
-  const [handleBlurAndFocus, setHandleBlurAndFocus] = useState(false);
+  const [handleFocus, setHandleFocus] = useState(false);
 
   const failEmail = () => {
     if (!email) {
@@ -111,9 +111,9 @@ const Register = ({
           type="email"
           onChange={changeField}
           value={email}
-          handleBlurAndFocus={() => setHandleBlurAndFocus(!handleBlurAndFocus)}
+          handleFocus={() => setHandleFocus(true)}
         />
-        {handleBlurAndFocus && failEmail()}
+        {handleFocus && failEmail()}
         <FieldRegister
           error={!errorsFound.password ? 'undefined' : errorsFound.password}
           name="password"
@@ -122,9 +122,9 @@ const Register = ({
           id="password"
           onChange={changeField}
           value={password}
-          handleBlurAndFocus={() => setHandleBlurAndFocus(!handleBlurAndFocus)}
+          handleFocus={() => setHandleFocus(true)}
         />
-        {handleBlurAndFocus && failPassword()}
+        {handleFocus && failPassword()}
         <FieldRegister
           error={!errorsFound.pseudo ? 'undefined' : errorsFound.pseudo}
           name="pseudo"
@@ -133,9 +133,9 @@ const Register = ({
           id="pseudo"
           onChange={changeField}
           value={pseudo}
-          handleBlurAndFocus={() => setHandleBlurAndFocus(!handleBlurAndFocus)}
+          handleFocus={() => setHandleFocus(true)}
         />
-        {handleBlurAndFocus && failPseudo()}
+        {handleFocus && failPseudo()}
         <div>
           <label>Choisissez votre difficulté de jeu!</label>
         </div>
