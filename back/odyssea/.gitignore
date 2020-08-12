@@ -6,6 +6,7 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
+!/var/cache/dev/translations/catalogue.fr.LpJPAqK.php
 /vendor/
 ###< symfony/framework-bundle ###
 
