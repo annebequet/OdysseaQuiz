@@ -7,7 +7,7 @@ const ErrorMessage = ({ errors }) => {
   console.log('les erreurs dans le message : ', errors);
   return (
     <div className="errorMessage">
-      <p>Erreur d'enregistrement, on reste calme, on rajuste ses brassières, et on réessaie</p>
+      <p>Erreur d'enregistrement, on reste calme, on rajuste ses brassières, et on réessaie. Quelques conseils : </p>
     </div>
   );
 };
