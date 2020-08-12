@@ -7,7 +7,6 @@ import './styles.scss';
 
 const Home = ({ adultExempleSurvey, childrenExempleSurvey }) => (
   <div>
-    <h1>ODYSSEA QUIZ</h1>
     <div className="exempleSurveys">
       <Quiz
         survey={adultExempleSurvey}
