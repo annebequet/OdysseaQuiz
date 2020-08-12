@@ -8,6 +8,7 @@ import TurtleImage from 'src/assets/images/turtle.jpg';
 import Field from './Field';
 import FieldRadio from './FieldRadio';
 import FieldRadioAvatars from './FieldRadioAvatars';
+import { getScores } from '../../actions/profile';
 
 /* Commentaries are for the switch environment item */
 
@@ -31,6 +32,7 @@ const Profile = ({
   handleEditAvatar,
   getAvatars,
   avatars,
+  scores,
   // selectedOption,
 }) => {
   useEffect(() => {
@@ -233,21 +235,25 @@ const Profile = ({
 
         </div>
       </div>
-      {/* <ul className="categories__ul">
-        {categories.map(({ name }) => (
-          <li
-            key={name}
-            className="categories__item"
-          >
-            <h3>{name} </h3>
-            <img
-              className="category__img"
-              alt="turtle"
-              src={TurtleImage}
-            />
-          </li>
-        ))}
-      </ul> */}
+      <div>
+        <ul className="categories__ul">
+          <h3 className="profil__title">Consultez vos scores par catégories!</h3>
+          {scores.map(({ category, score }) => (
+            <li
+              key={category.name}
+              className="categories__item"
+            >
+              <h3>{category.name} </h3>
+              <p>{score}</p>
+              <img
+                className="category__img"
+                alt="category__picture"
+                src={TurtleImage}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
@@ -281,6 +287,14 @@ Profile.propTypes = {
       imageUrl: PropTypes.string,
       name: PropTypes.string,
     }),
+  ).isRequired,
+  scores: PropTypes.arrayOf(
+    PropTypes.shape({
+      score: PropTypes.number,
+      category: PropTypes.arrayOf({
+        name: PropTypes.string,
+      }),
+    }).isRequired,
   ).isRequired,
 };
 

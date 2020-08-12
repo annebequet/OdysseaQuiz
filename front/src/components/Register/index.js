@@ -86,6 +86,7 @@ const Register = ({
         {errorEmail.length !== 0 && (
           <span>{errorEmail}</span>
         )}
+
         <FieldRegister
           error={errorPassword.length === 0 ? 'undefined' : errorEmail}
           name="password"
@@ -99,6 +100,7 @@ const Register = ({
         {errorPassword.length !== 0 && (
           <span>{errorPassword}</span>
         )}
+
         <FieldRegister
           error={errorPseudo.length === 0 ? 'undefined' : errorEmail}
           name="pseudo"
@@ -112,6 +114,7 @@ const Register = ({
         {errorPseudo.length !== 0 && (
           <span>{errorPseudo}</span>
         )}
+
         <div>
           <label>Choisissez votre difficulté de jeu!</label>
         </div>

@@ -11,12 +11,13 @@ import {
   GET_AVATARS,
   saveAvatars,
   saveEmail,
+  saveScores,
 } from 'src/actions/profile';
 
 const categories = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_AVATARS: {
-      axios.get(`http://localhost/Apotheose/Odyssea/back/odyssea/public/api/avatars`,
+      axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/avatars',
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -136,6 +137,7 @@ const categories = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response.data);
           store.dispatch(saveEmail(response.data.email));
+          store.dispatch(saveScores(response.data.scores));
         })
         .catch((error) => {
           console.log(error);
