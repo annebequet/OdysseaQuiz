@@ -80,17 +80,17 @@ const Register = ({
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
+    handleRegister();
+
     console.log('je passe dans le handleSubmit');
 
     const errors = checkErrors();
 
     if (Object.keys(errors).length === 0) {
-      handleRegister();
+      //handleRegister();
     }
     displayErrors(errors);
   };
-
-  console.log('les erreurs trouvées :', errorsFound);
 
   return (
     <div className="register">

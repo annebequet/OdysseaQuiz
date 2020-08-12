@@ -24,7 +24,7 @@ const register = (store) => (next) => (action) => {
           window.location.replace('/');
         })
         .catch((error) => {
-          console.log(error);
+          console.log('mes erreurs de requête : ', error.response.data);
           store.dispatch(setError());
         });
 
