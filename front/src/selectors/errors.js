@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const failEmail = (email) => {
   if (!email) {
     return { email: 'Entrez un email' };
@@ -29,4 +31,22 @@ export const failPseudo = (pseudo) => {
     return { pseudo: 'Entrez un pseudo de moins de 12 caractères' };
   }
   return { pseudo: '' };
+};
+
+export const Normalizer = (errors) => {
+  let key;
+  let txt;
+  const list = [];
+
+  for (key in errors) {
+    txt = errors[key];
+    list.push(<li key={key}>
+      {key}
+      <ul>
+        {txt.map((errorMessage) => <li>{errorMessage}</li>)}
+      </ul>
+    </li>);
+  }
+
+  return list;
 };

@@ -46,7 +46,7 @@ const shuffle = (array) => {
 };
 
 const get10RandomQuestions = (quiz) => {
-  return shuffle(quiz);
+  shuffle(quiz);
   // eslint-disable-next-line no-unreachable
   return quiz.slice(0, 10);
 };
@@ -73,8 +73,6 @@ export const transformQuestionsInSurveyObject = (allQuestions, category) => {
       ],
     };
   });
-
-  console.log(newQuestions);
 
   return {
     title: category,
