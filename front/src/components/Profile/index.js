@@ -294,6 +294,7 @@ Profile.propTypes = {
     }),
   ).isRequired,
   scores: PropTypes.array.isRequired,
+  requestErrors: PropTypes.object.isRequired,
 };
 
 Profile.defaultProps = {

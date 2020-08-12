@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser,
 } from 'src/actions';
+import { setRequestError } from 'src/actions/errorHandler';
 
 // http://54.226.34.31/*
 // http://localhost/Apotheose/Odyssea/back/odyssea/public/*
@@ -27,6 +28,7 @@ const login = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response);
+          store.dispatch(setRequestError({ 'Erreur de connexion': ['Demande à BobMorgane'] }));
         });
 
       next(action);
