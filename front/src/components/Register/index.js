@@ -15,66 +15,44 @@ const Register = ({
   handleRegister,
   isRegistered,
   error,
-  displayErrors,
-  errorsFound,
+  setError,
+  errorEmail,
+  errorPassword,
+  errorPseudo,
 }) => {
-  // Check Submit errors
-  const checkErrors = () => {
-    const errors = {};
-    if (!pseudo) {
-      errors.pseudo = 'champ obligatoire';
-    }
-    else if (pseudo < 4) {
-      errors.pseudo = 'Il faut au moins 4 caractères';
-    }
-
-    if (!email) {
-      errors.email = 'champ obligatoire';
-    }
-    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-      errors.email = 'Adresse email invalide';
-    }
-    if (!password) {
-      errors.password = 'Champ obligatoire';
-    }
-    else if (password.length < 4) {
-      errors.password = 'Il faut au moins 4 caractères';
-    }
-    return errors;
+  const findErrors = (errorMessage) => {
+    setTimeout(() => setError(errorMessage), 800);
   };
-
-  // Check input Errors
-  const [handleFocus, setHandleFocus] = useState(false);
 
   const failEmail = () => {
     if (!email) {
-      return <span>Entrez un email</span>;
+      return { email: 'Entrez un email' };
     }
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i.test(email)) {
-      return <span>Entrez un email valide</span>;
+      return { email: 'Entrez un email valide' };
     }
-    return false;
+    return { email: '' };
   };
   const failPassword = () => {
     if (!password) {
-      return <span>Entrez un mot de passe!</span>;
+      return { password: 'Entrez un mot de passe' };
     }
     if (password.length < 4) {
-      return <span>Entrez un mot de passe d'au moins 4 caractères</span>;
+      return { password: 'Entrez un mot de passe d\'au moins 4 caractères' };
     }
-    return false;
+    return { password: '' };
   };
   const failPseudo = () => {
     if (!pseudo) {
-      return <span>Entrez un pseudo!</span>;
+      return { pseudo: 'Entrez un pseudo' };
     }
     if (pseudo.length < 4) {
-      return <span>Il faut au moins 4 caractères</span>;
+      return { pseudo: 'Entrez un pseudo d\'au moins 4 caractères' };
     }
     if (pseudo.length > 12) {
-      return <span>Il ne faut pas plus de 12 caractères</span>;
+      return { pseudo: 'Entrez un pseudo de moins de 12 caractères' };
     }
-    return false;
+    return { pseudo: '' };
   };
 
   const handleSubmit = (evt) => {
@@ -82,60 +60,61 @@ const Register = ({
 
     console.log('je passe dans le handleSubmit');
 
-    const errors = checkErrors();
-
-    if (Object.keys(errors).length === 0) {
+    if (
+      errorEmail.length === 0
+      && errorPassword.length === 0
+      && errorPseudo.length === 0
+    ) {
       handleRegister();
     }
-    displayErrors(errors);
   };
-
-  console.log('les erreurs trouvées :', errorsFound);
 
   return (
     <div className="register">
-      {error && !isRegistered && (
-        <ErrorMessage errors={errorsFound} />
-      )}
-
-      {Object.keys(errorsFound).length > 0 && !isRegistered && (
-        <ErrorMessage errors={errorsFound} />
-      )}
       {!isRegistered && (
       <form className="register__form" onSubmit={handleSubmit}>
         <FieldRegister
-          error={!errorsFound.email ? 'undefined' : errorsFound.email}
+          error={errorEmail.length === 0 ? 'undefined' : errorEmail}
           label="Adresse Email"
           id="username"
           name="email"
           type="email"
           onChange={changeField}
           value={email}
-          handleFocus={() => setHandleFocus(true)}
+          onBlur={findErrors(failEmail())}
         />
-        {handleFocus && failEmail()}
+        {errorEmail.length !== 0 && (
+          <span>{errorEmail}</span>
+        )}
+
         <FieldRegister
-          error={!errorsFound.password ? 'undefined' : errorsFound.password}
+          error={errorPassword.length === 0 ? 'undefined' : errorEmail}
           name="password"
           type="password"
           label="Mot de passe"
           id="password"
           onChange={changeField}
           value={password}
-          handleFocus={() => setHandleFocus(true)}
+          handleBlurAndFocus={findErrors(failPassword())}
         />
-        {handleFocus && failPassword()}
+        {errorPassword.length !== 0 && (
+          <span>{errorPassword}</span>
+        )}
+
         <FieldRegister
-          error={!errorsFound.pseudo ? 'undefined' : errorsFound.pseudo}
+          error={errorPseudo.length === 0 ? 'undefined' : errorEmail}
           name="pseudo"
           type="pseudo"
           label="Pseudo"
           id="pseudo"
           onChange={changeField}
           value={pseudo}
-          handleFocus={() => setHandleFocus(true)}
+          onBlur={findErrors(failPseudo())}
         />
-        {handleFocus && failPseudo()}
+        {errorPseudo.length !== 0 && (
+          <span>{errorPseudo}</span>
+        )}
+
         <div>
           <label>Choisissez votre difficulté de jeu!</label>
         </div>
@@ -171,8 +150,10 @@ Register.propTypes = {
   environment: PropTypes.string.isRequired,
   isRegistered: PropTypes.bool.isRequired,
   error: PropTypes.bool.isRequired,
-  displayErrors: PropTypes.func.isRequired,
-  errorsFound: PropTypes.object.isRequired,
+  setError: PropTypes.func.isRequired,
+  errorEmail: PropTypes.string.isRequired,
+  errorPassword: PropTypes.string.isRequired,
+  errorPseudo: PropTypes.string.isRequired,
 };
 
 export default Register;

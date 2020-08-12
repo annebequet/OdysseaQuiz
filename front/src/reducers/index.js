@@ -4,6 +4,7 @@ import surveys from './surveys';
 import register from './register';
 import categories from './categories';
 import profile from './profile';
+import errorHandler from './errorHandler';
 import app from './app';
 
 export default combineReducers({
@@ -13,4 +14,5 @@ export default combineReducers({
   categories,
   profile,
   app,
+  errorHandler,
 });
