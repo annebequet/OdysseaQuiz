@@ -23,7 +23,7 @@ class SecurityController extends AbstractController
             'translation_domain' => 'admin',
             'page_title' => 'Odyssea Admin',
             'csrf_token_intention' => md5(uniqid(rand(), true)),
-            'target_path' => '/admin',
+            'target_path' => 'http://54.226.34.31/back/admin',
             'username_label' => 'Email',
             'password_label' => 'Mot de passe',
             'sign_in_label' => 'Se connecter',
