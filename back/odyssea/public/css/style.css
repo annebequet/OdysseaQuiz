@@ -1,28 +1,20 @@
-.form-check {
-    padding-left : 0px;
+.error404 {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+}
+    
+.error404__title {
+      line-height: 2em;
+      font-weight: 900;
+      font-size: 4em;
 }
 
-.form-check-label {
-    margin-left: 20px;
-    font-weight: normal;
+.error404__img {
+      margin: auto;
+      padding: 3em;
+      max-width: 550px;
+      border-radius: 200px;
 }
 
-.col-form-label {
-    font-weight : bold;
-}
-
-fieldset {
-    padding-left: 0px;
-}
-
-.navbar {
-    background-color: cadetblue;
-}
-
-.avatar {
-    width: 15%;
-}
-
-.avatar-small {
-    width: 5%;
-}
+  
