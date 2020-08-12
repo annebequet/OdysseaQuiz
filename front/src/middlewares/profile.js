@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setRequestError } from 'src/actions/errorHandler';
 
 import {
   HANDLE_EDIT_EMAIL,
@@ -52,6 +53,7 @@ const categories = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response.data);
+          store.dispatch(setRequestError(error.response.data));
         });
 
       next(action);
@@ -75,6 +77,7 @@ const categories = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response.data);
+          store.dispatch(setRequestError(error.response.data));
         });
 
       next(action);
@@ -99,6 +102,7 @@ const categories = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response.data);
+          store.dispatch(setRequestError(error.response.data));
         });
 
       next(action);
@@ -121,6 +125,7 @@ const categories = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response.data);
+          store.dispatch(setRequestError(error.response.data));
         });
 
       next(action);
@@ -164,6 +169,7 @@ const categories = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response.data);
+          store.dispatch(setRequestError(error.response.data));
         });
 
       next(action);

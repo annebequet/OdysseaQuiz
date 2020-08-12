@@ -5,6 +5,7 @@ import { Accordion, Button, Card } from 'react-bootstrap';
 import './styles.scss';
 
 import TurtleImage from 'src/assets/images/turtle.jpg';
+import ErrorMessage from 'src/components/ErrorMessage';
 import Field from './Field';
 import FieldRadio from './FieldRadio';
 import FieldRadioAvatars from './FieldRadioAvatars';
@@ -33,6 +34,7 @@ const Profile = ({
   getAvatars,
   avatars,
   scores,
+  requestErrors,
   // selectedOption,
 }) => {
   useEffect(() => {
@@ -70,6 +72,9 @@ const Profile = ({
 
   return (
     <div className="profile">
+      {Object.keys(requestErrors).length > 0 && (
+        <ErrorMessage errors={requestErrors} />
+      )}
       <div className="profile__edit">
         <div className="profile__wrap__left">
           <img

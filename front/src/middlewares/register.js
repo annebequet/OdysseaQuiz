@@ -27,7 +27,6 @@ const register = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
-          console.log('2 ', error.errors);
           if (error.response.status === 500) {
             store.dispatch(setRequestError({ 'environnement': ['choisissez un environnement'] }));
           } else {
