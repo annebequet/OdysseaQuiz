@@ -101,11 +101,10 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Groups("users_get_one")
-     * @Assert\Length(
-     *      min=4
-     * )
-     * @Assert\NotBlank(
-     *      message = "Veuillez remplir ce champs."
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$/",
+     *     message="Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre."
      * )
      */
     private $password;
