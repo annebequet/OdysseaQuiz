@@ -238,13 +238,13 @@ const Profile = ({
       <div>
         <ul className="categories__ul">
           <h3 className="profil__title">Consultez vos scores par catégories!</h3>
-          {scores.map(({ category, score }) => (
+          {scores.map((score) => (
             <li
-              key={category.name}
+              key={score.category.id}
               className="categories__item"
             >
-              <h3>{category.name} </h3>
-              <p>{score}</p>
+              <h3>{score.category.name} </h3>
+              <p>{score.score}</p>
               <img
                 className="category__img"
                 alt="category__picture"
@@ -288,14 +288,7 @@ Profile.propTypes = {
       name: PropTypes.string,
     }),
   ).isRequired,
-  scores: PropTypes.arrayOf(
-    PropTypes.shape({
-      score: PropTypes.number,
-      category: PropTypes.arrayOf({
-        name: PropTypes.string,
-      }),
-    }).isRequired,
-  ).isRequired,
+  scores: PropTypes.array.isRequired,
 };
 
 Profile.defaultProps = {
