@@ -244,11 +244,11 @@ const Profile = ({
               className="categories__item"
             >
               <h3>{score.category.name} </h3>
-              <p>{score.score}</p>
+              <p>{score.score} / 10</p>
               <img
                 className="category__img"
                 alt="category__picture"
-                src={TurtleImage}
+                src={score.category.picture}
               />
             </li>
           ))}
