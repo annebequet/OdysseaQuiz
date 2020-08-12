@@ -20,15 +20,19 @@ const register = (store) => (next) => (action) => {
         environment,
       })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(validateRegistration());
           setTimeout(() => {
             window.location.replace('/');
           }, 10000);
         })
         .catch((error) => {
-          console.log(error.response.data);
-          store.dispatch(setRequestError(error.response.data));
+          console.log(error);
+          console.log('2 ', error.errors);
+          if (error.response.status === 500) {
+            store.dispatch(setRequestError({ 'environnement': ['choisissez un environnement'] }));
+          } else {
+            store.dispatch(setRequestError(error.response.data));
+          }
         });
 
       next(action);

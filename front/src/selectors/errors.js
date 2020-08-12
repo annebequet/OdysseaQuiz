@@ -43,7 +43,7 @@ export const Normalizer = (errors) => {
     list.push(<li key={key}>
       {key}
       <ul>
-        {txt.map((errorMessage) => <li>{errorMessage}</li>)}
+        {txt.map((errorMessage) => <li key={errorMessage}>{errorMessage}</li>)}
       </ul>
     </li>);
   }
