@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+
+import { failEmail, failPassword, failPseudo } from 'src/selectors/errors';
+
 import ErrorMessage from 'src/components/ErrorMessage';
 import FieldRegister from './FieldRegister';
 import FieldRadioRegister from './FieldRadioRegister';
@@ -14,52 +17,19 @@ const Register = ({
   changeField,
   handleRegister,
   isRegistered,
-  error,
   setError,
   errorEmail,
   errorPassword,
   errorPseudo,
+  requestErrors,
 }) => {
   const findErrors = (errorMessage) => {
     setTimeout(() => setError(errorMessage), 800);
   };
 
-  const failEmail = () => {
-    if (!email) {
-      return { email: 'Entrez un email' };
-    }
-    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i.test(email)) {
-      return { email: 'Entrez un email valide' };
-    }
-    return { email: '' };
-  };
-  const failPassword = () => {
-    if (!password) {
-      return { password: 'Entrez un mot de passe' };
-    }
-    if (password.length < 4) {
-      return { password: 'Entrez un mot de passe d\'au moins 4 caractères' };
-    }
-    return { password: '' };
-  };
-  const failPseudo = () => {
-    if (!pseudo) {
-      return { pseudo: 'Entrez un pseudo' };
-    }
-    if (pseudo.length < 4) {
-      return { pseudo: 'Entrez un pseudo d\'au moins 4 caractères' };
-    }
-    if (pseudo.length > 12) {
-      return { pseudo: 'Entrez un pseudo de moins de 12 caractères' };
-    }
-    return { pseudo: '' };
-  };
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
-    console.log('je passe dans le handleSubmit');
-
+    handleRegister();
     if (
       errorEmail.length === 0
       && errorPassword.length === 0
@@ -68,9 +38,13 @@ const Register = ({
       handleRegister();
     }
   };
-
   return (
     <div className="register">
+
+      {Object.keys(requestErrors).length > 0 && !isRegistered && (
+        <ErrorMessage errors={requestErrors} />
+      )}
+
       {!isRegistered && (
       <form className="register__form" onSubmit={handleSubmit}>
         <FieldRegister
@@ -81,7 +55,7 @@ const Register = ({
           type="email"
           onChange={changeField}
           value={email}
-          onBlur={findErrors(failEmail())}
+          onBlur={findErrors(failEmail(email))}
         />
         {errorEmail.length !== 0 && (
           <span>{errorEmail}</span>
@@ -95,7 +69,7 @@ const Register = ({
           id="password"
           onChange={changeField}
           value={password}
-          handleBlurAndFocus={findErrors(failPassword())}
+          onBlur={findErrors(failPassword(password))}
         />
         {errorPassword.length !== 0 && (
           <span>{errorPassword}</span>
@@ -109,7 +83,7 @@ const Register = ({
           id="pseudo"
           onChange={changeField}
           value={pseudo}
-          onBlur={findErrors(failPseudo())}
+          onBlur={findErrors(failPseudo(pseudo))}
         />
         {errorPseudo.length !== 0 && (
           <span>{errorPseudo}</span>
@@ -135,7 +109,7 @@ const Register = ({
       )}
       {isRegistered && (
         // eslint-disable-next-line max-len
-        <div>Bravo pour votre inscription, vous pouvez maintenant vous connecter et commencer à jouer dans le grand bain !</div>
+        <p className="errorMessage">Bravo pour votre inscription, vous pouvez maintenant vous connecter et commencer à jouer dans le grand bain !</p>
       )}
     </div>
   );
@@ -149,11 +123,11 @@ Register.propTypes = {
   handleRegister: PropTypes.func.isRequired,
   environment: PropTypes.string.isRequired,
   isRegistered: PropTypes.bool.isRequired,
-  error: PropTypes.bool.isRequired,
   setError: PropTypes.func.isRequired,
   errorEmail: PropTypes.string.isRequired,
   errorPassword: PropTypes.string.isRequired,
   errorPseudo: PropTypes.string.isRequired,
+  requestErrors: PropTypes.object.isRequired,
 };
 
 export default Register;

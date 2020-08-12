@@ -16,8 +16,6 @@ const FieldRegister = ({
     onChange(evt.target.value, name);
   };
 
-  console.log(error);
-
   const inputId = `register-field-${name}`;
 
   return (
@@ -55,7 +53,7 @@ FieldRegister.propTypes = {
 FieldRegister.defaultProps = {
   value: '',
   type: 'text',
-  error: false,
+  error: 'undefined',
 };
 
 export default FieldRegister;

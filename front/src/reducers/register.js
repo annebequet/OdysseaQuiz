@@ -1,5 +1,5 @@
 import {
-  CHANGE_FIELD, VALIDATE_REGISTRATION, SET_ERROR } from 'src/actions/register';
+  CHANGE_FIELD, VALIDATE_REGISTRATION } from 'src/actions/register';
 
 export const initialState = {
   email: '',
@@ -7,7 +7,6 @@ export const initialState = {
   pseudo: '',
   environment: '',
   isRegistered: false,
-  error: false,
 };
 
 const register = (state = initialState, action = {}) => {
@@ -22,11 +21,6 @@ const register = (state = initialState, action = {}) => {
         ...state,
         isRegistered: true,
         error: false,
-      };
-    case SET_ERROR:
-      return {
-        ...state,
-        error: true,
       };
     default:
       return state;

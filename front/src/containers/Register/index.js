@@ -13,7 +13,9 @@ const mapStateToProps = (state) => ({
   errorEmail: state.errorHandler.email,
   errorPassword: state.errorHandler.password,
   errorPseudo: state.errorHandler.pseudo,
+  requestErrors: state.errorHandler.requestErrors,
 });
+
 const mapDispatchToProps = (dispatch) => ({
   handleRegister: () => {
     dispatch(register());

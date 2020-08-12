@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { REGISTER, setError, validateRegistration } from 'src/actions/register';
+import { REGISTER, validateRegistration } from 'src/actions/register';
+import { setRequestError } from 'src/actions/errorHandler';
 
 const register = (store) => (next) => (action) => {
   switch (action.type) {
@@ -26,8 +27,8 @@ const register = (store) => (next) => (action) => {
           }, 10000);
         })
         .catch((error) => {
-          console.log(error);
-          store.dispatch(setError());
+          console.log(error.response.data);
+          store.dispatch(setRequestError(error.response.data));
         });
 
       next(action);

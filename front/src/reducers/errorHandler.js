@@ -1,11 +1,13 @@
 import {
   SET_ERROR,
+  SET_REQUEST_ERROR,
 } from '../actions/errorHandler';
 
 const initialState = {
   email: '',
   password: '',
   pseudo: '',
+  requestErrors: {},
 };
 
 const categories = (state = initialState, action = {}) => {
@@ -14,6 +16,11 @@ const categories = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.key]: action.value,
+      };
+    case SET_REQUEST_ERROR:
+      return {
+        ...state,
+        requestErrors: action.errors,
       };
     default:
       return state;

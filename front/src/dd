@@ -1,5 +1,0 @@
-
-
-    {Object.keys(errorsFound).length > 0 && !isRegistered && (
-      <ErrorMessage errors={errorsFound} />
-    )}
