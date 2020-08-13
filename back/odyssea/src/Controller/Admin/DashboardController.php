@@ -51,7 +51,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
-        yield MenuItem::linktoDashboard('Tableau de bord', 'fas fa-dharmachakra'),
+        yield MenuItem::linktoDashboard('Utilisateurs', 'fas fa-dharmachakra'),
         yield MenuItem::linkToCrud('Mots de passe', 'fas fa-key', User::class)
             ->setController(PasswordCrudController::class),
         yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class),
