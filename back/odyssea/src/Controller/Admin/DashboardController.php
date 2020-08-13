@@ -51,7 +51,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
-        yield MenuItem::linktoDashboard('Tableau de bord', 'fas fa-dharmachakra'),
+        yield MenuItem::linktoDashboard('Utilisateurs', 'fas fa-dharmachakra'),
         yield MenuItem::linkToCrud('Mots de passe', 'fas fa-key', User::class)
             ->setController(PasswordCrudController::class),
         yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class),
@@ -59,7 +59,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Avatars', 'fa fa-picture-o', Gallery::class),
         yield MenuItem::linkToCrud('Environnement', 'fab fa-pagelines', Environment::class),
         yield MenuItem::linkToCrud('Scores', 'fas fa-anchor', Score::class),
-        yield MenuItem::linkToUrl('Home', 'fa fa-home','http://localhost:8080')
+        yield MenuItem::linkToUrl('Home', 'fa fa-home','http://54.226.34.31/')
         // MenuItem::linkToLogout('Logout', 'fa fa-exit'),
         ];
     }

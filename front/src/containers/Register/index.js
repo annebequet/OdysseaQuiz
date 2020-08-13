@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Register from 'src/components/Register';
 import { register, changeField } from 'src/actions/register';
+import { setError } from 'src/actions/errorHandler';
 
 const mapStateToProps = (state) => ({
   email: state.register.email,
@@ -9,13 +10,21 @@ const mapStateToProps = (state) => ({
   environment: state.register.environment,
   isRegistered: state.register.isRegistered,
   error: state.register.error,
+  errorEmail: state.errorHandler.email,
+  errorPassword: state.errorHandler.password,
+  errorPseudo: state.errorHandler.pseudo,
+  requestErrors: state.errorHandler.requestErrors,
 });
+
 const mapDispatchToProps = (dispatch) => ({
   handleRegister: () => {
     dispatch(register());
   },
   changeField: (value, key) => {
     dispatch(changeField(value, key));
+  },
+  setError: (error) => {
+    dispatch(setError(error));
   },
 });
 

@@ -46,7 +46,7 @@ class UserController extends AbstractController
 
         // Check if the User exists, if not, return 404
         if ($user === null) {
-            return $this->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+            return $this->json(['error' => 'Utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
         return $this->json($userFull, 200, [], ['groups' => 'users_get_one']);
@@ -62,7 +62,7 @@ class UserController extends AbstractController
     {
         // Verify if the user exists
         if(!$user) {
-            return $this->json(['error' => 'utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
+            return $this->json(['error' => 'Utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
         // Get the content of the request
@@ -104,7 +104,7 @@ class UserController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
-        return $this->json(['message' => 'User updated'], Response::HTTP_OK);
+        return $this->json(['message' => 'Utilisateur modifié'], Response::HTTP_OK);
     }
 
     /**
@@ -116,14 +116,14 @@ class UserController extends AbstractController
     {
         // Check if the User exists, if not, return 404
         if ($user === null) {
-            return $this->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+            return $this->json(['error' => 'Utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
         // Remove the User from the database
         $em->remove($user);
         $em->flush();
 
-        return $this->json(['message' => 'User deleted'], Response::HTTP_OK);
+        return $this->json(['message' => 'Utilisateur supprimé'], Response::HTTP_OK);
     }
 
     /**
@@ -139,6 +139,7 @@ class UserController extends AbstractController
         // Deserialiaze the json content into a Score entity
         $score = $serializer->deserialize($content, Score::class, 'json');
 
+        //dd($score);
         // Validate the entity with the validator service
         $errors = $validator->validate($score);
 
@@ -150,7 +151,6 @@ class UserController extends AbstractController
             }
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-        //dd($score);
 
         $scoreLine = $scoreRepository->findOneBy([
             'user' => $score->getUser(),
@@ -167,7 +167,7 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($score);
             $entityManager->flush();
-            return $this->json(['message' => 'Score added'], Response::HTTP_CREATED);
+            return $this->json(['message' => 'Score ajouté'], Response::HTTP_CREATED);
 
         } else {
                    
@@ -184,7 +184,7 @@ class UserController extends AbstractController
 
             $em->flush();
 
-            return $this->json(['message' => 'Score updated'], Response::HTTP_OK);
+            return $this->json(['message' => 'Score modifié'], Response::HTTP_OK);
         }
     }
 }

@@ -1,0 +1,71 @@
+.introductionInformations {
+  top: 20vh;
+  position: absolute;
+  width: 100vw;
+}
+
+.title {
+  z-index: 1000;
+}
+.text {
+  position: absolute;    
+    color: white;
+    padding-top: 4em;
+    font-size: 1.2rem;
+    width: 70%;
+}
+
+.introductionText {
+  display: flex;
+  justify-content: center;
+}
+
+.text__otherPages{
+  display: none;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  font-weight: 900;
+  color: white;
+  font-family: 'GT America Extended', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.title__frontPage {
+  font-size: 5vw;
+}
+
+.title__otherPages {  
+  position: fixed;
+  top: 1em;
+  font-size: 1.6rem;
+  z-index: 2;
+  color: #197285;
+}
+
+/* small screen size */
+@media (max-width: 768px) {
+  .title__otherPages {
+    color: white;
+    top: 0.5em;
+  }
+  .title__frontPage {
+    top: 1em;
+    font-size: 1.6rem;
+    z-index: 2;
+    top: 0.5em;
+  }
+  .title {
+    top: 0;
+    z-index: 3;
+    position: fixed;
+    width: 100%;
+    position: fixed;
+    height: 3em;
+    background-color: #197285;
+    justify-content: center;
+    padding: 0.5em;
+  }
+}

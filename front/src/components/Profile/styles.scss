@@ -5,12 +5,14 @@
   text-shadow: 4px 2px 4px black;
   height: 100vh;
   margin-bottom: 3em;
+  z-index: 1;
   .profile__odyssea__avatar {
     max-width: 290px
   }
   &__pseudo {
-    font-size: larger;
-    margin-bottom: 2em;
+    font-size: 2em;
+    margin-bottom: 1em;
+    padding: 0.5em;
   }
   &__edit {
     display: flex;
@@ -27,8 +29,11 @@
       border-radius: 10px;
       padding: vars.$gutter / 1.5;
     }
+    
   }
-  
+  .profile__wrap__right {
+      z-index: 0;
+  }
   &__edit--submit {
     border-radius: 10px;
     border: none;
@@ -77,7 +82,23 @@
   margin: 1em;
   transform: scale(2);
 }
+.field--radio--avatars {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
 .avatars {
   margin: 1em;
   width: 150px;
 }
+
+.accordion {
+  margin: 0 auto;
+  min-width: 200px;
+  max-width: 500px;
+  &__card {
+    background-color: vars.$background-color-transparent;
+  }
+}
+
