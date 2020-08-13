@@ -48,6 +48,7 @@ const App = ({
       <div className="mainPage">
         <Header />
         <FrontPageInformations />
+        <div className="frontPageImage" />
         <Switch>
           {!categoriesLoading && (
           <Route
