@@ -1,13 +1,13 @@
 // == Import npm
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, useHistory } from 'react-router-dom';
 
 // == Import
-import Video from 'src/containers/Video';
+import Video from 'src/components/Video';
 import Header from 'src/containers/Header';
 import Footer from 'src/components/Footer';
-import Page from 'src/components/Page';
+import Page from 'src/containers/Page';
 import Register from 'src/containers/Register';
 import Home from 'src/containers/Home';
 import Categories from 'src/containers/Categories';
@@ -40,8 +40,8 @@ const App = ({
 
   return (
     <div className="app">
-      
-      <div className="mainPage"><Video />
+      <Video />
+      <div className="mainPage">
         <Header />
         <Switch>
           {!categoriesLoading && (
