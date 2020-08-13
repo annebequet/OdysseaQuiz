@@ -40,8 +40,8 @@ const App = ({
 
   return (
     <div className="app">
-      
-      <div className="mainPage"><Video />
+      <Video />
+      <div className="mainPage">
         <Header />
         <Switch>
           {!categoriesLoading && (
