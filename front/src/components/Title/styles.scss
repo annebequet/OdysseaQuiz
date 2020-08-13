@@ -41,14 +41,13 @@
   position: fixed;
   top: 1em;
   font-size: 1.6rem;
-  z-index: 2;
-  color: #197285;
+  z-index: 10;
+  color: white
 }
 
 /* small screen size */
 @media (max-width: 768px) {
   .title__otherPages {
-    color: white;
     top: 0.5em;
   }
   .title__frontPage {
