@@ -1,11 +1,13 @@
-.page {
-  background-image: url('https://cdn.pixabay.com/photo/2012/03/03/23/52/animal-21649_1280.jpg');
+@use 'src/styles/vars';
+
+.page {  
+  background-image: url('https://cdn.pixabay.com/photo/2016/10/10/22/05/jellyfish-1730018_1280.jpg');
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .page__content {
-  padding-top: 7em;
+  padding-top: 20em;
   display: inline-block;
   width: 100vw;
 }

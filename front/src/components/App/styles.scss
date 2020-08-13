@@ -21,4 +21,25 @@
   max-width: 150px;
 }
 
+.frontPageImage {
+  background-image: linear-gradient(rgb(0,1,26, 0), rgb(0,1,26));  
+  height: 40vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.playText {
+  color: white;
+  padding-top: 8rem;
+}
+
+.frontPageImageBottom {
+  background-image: linear-gradient(rgb(0,1,26), (rgb(0,1,26, 0)));  
+  height: 40vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 

@@ -1,7 +1,9 @@
 // == Import npm
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import {
+  Route, Switch, useHistory, Redirect,
+} from 'react-router-dom';
 
 // == Import
 import Video from 'src/components/Video';
@@ -16,6 +18,7 @@ import Profile from 'src/containers/Profile';
 import Contact from 'src/components/Contact';
 import Faq from 'src/components/Faq';
 import Error404 from 'src/components/Error404';
+import FrontPageInformations from 'src/components/FrontPageInformations';
 import './styles.scss';
 
 // == Composant
@@ -25,6 +28,8 @@ const App = ({
   categoriesLoading,
   updateLocation,
   clearErrors,
+  isLogged,
+  location,
 }) => {
   useEffect(checkIsLogged, []);
 
@@ -43,6 +48,14 @@ const App = ({
       <Video />
       <div className="mainPage">
         <Header />
+        {location === '/' && (
+        <FrontPageInformations />
+        )}
+        {location === '/' && (
+        <div className="frontPageImage">
+          <h1 className="playText">A vous de jouer !</h1>
+        </div>
+        )}
         <Switch>
           {!categoriesLoading && (
           <Route
@@ -70,9 +83,13 @@ const App = ({
             exact
             path="/register"
           >
-            <Page>
-              <Register />
-            </Page>
+            {!isLogged ? (
+              <Page>
+                <Register />
+              </Page>
+            ) : (
+              <Redirect to={{ pathname: '/' }} />
+            )}
           </Route>
           <Route
             exact
@@ -101,7 +118,7 @@ const App = ({
           </Route>
           <Route
             exact
-            path="/Faq"
+            path="/faq"
           >
             <Page>
               <Faq />
@@ -113,6 +130,9 @@ const App = ({
             </Page>
           </Route>
         </Switch>
+        {location === '/' && (
+        <div className="frontPageImageBottom" />
+        )}
         <Footer />
       </div>
     </div>
@@ -125,6 +145,8 @@ App.propTypes = {
   updateLocation: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+  location: PropTypes.string.isRequired,
 };
 
 // == Export
