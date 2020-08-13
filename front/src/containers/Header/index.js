@@ -5,6 +5,7 @@ import { loginAdmin } from 'src/actions/admin';
 const mapStateToProps = (state) => ({
   roles: state.headerLogin.roles,
   isLogged: state.headerLogin.isLogged,
+  location: state.app.location,
 });
 
 const mapDispatchToProps = (dispatch) => ({

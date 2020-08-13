@@ -3,6 +3,13 @@
 .header {
   width: 100%;
   display: flex;
+  flex-direction: column;  
+  color: white;
+  z-index: 1000;
+}
+
+.fullMenu {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   height: 4em;
@@ -10,15 +17,23 @@
   padding: 1em;
   background-color: vars.$background-color-transparent;
   text-align: left;
-  color: white;
   position: fixed;
   top: 0;
-  z-index: 1000;
+  z-index: 4;
+  width: 100%
+}
+
+.header__frontPage{
+  height: 100vh;
 }
 
 /* small screen size */
 @media (max-width: 768px) {
   .header {
+    top: 3em;
+  }
+  .fullMenu{
+    position: fixed;
     top: 3em;
   }
 }

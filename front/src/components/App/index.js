@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Route, Switch, useHistory } from 'react-router-dom';
 
 // == Import
-import Title from 'src/containers/Title';
 import Video from 'src/containers/Video';
 import Header from 'src/containers/Header';
 import Footer from 'src/components/Footer';
@@ -39,7 +38,6 @@ const App = ({
 
   return (
     <div className="app">
-      <Title />
       <Video />
       <div className="mainPage">
         <Header />

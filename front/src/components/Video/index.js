@@ -4,17 +4,16 @@ import PropTypes from 'prop-types';
 import Ocean from 'src/assets/videos/ocean.mp4';
 import './styles.scss';
 
-const Video = ({ location }) => {
-  console.log('ma localisation : ', location);
-  const videoPosition = location === '/' ? 'relative' : 'fixed';
+const Video = ({ location }) =>
+// const videoPosition = location === '/' ? 'fixed' : 'absolute';
 
-  return (
+  (
     <video
       autoPlay
       loop
       muted
       style={{
-        position: videoPosition,
+        position: 'fixed',
         width: '100%',
         height: '100vh',
         left: '0',
@@ -29,8 +28,6 @@ const Video = ({ location }) => {
       />
     </video>
   );
-};
-
 Video.propTypes = {
   location: PropTypes.string,
 };
