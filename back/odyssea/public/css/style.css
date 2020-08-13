@@ -1,28 +1,22 @@
-.form-check {
-    padding-left : 0px;
+body {
+    background-image: url('https://www.publicdomainpictures.net/pictures/20000/velka/jellyfish-background-871299518276q0p.jpg');
+    background-repeat: no-repeat;
+    color:white;
+    font-weight: bold;
 }
 
-.form-check-label {
-    margin-left: 20px;
-    font-weight: normal;
+.error {
+    margin: 15%;
 }
 
-.col-form-label {
-    font-weight : bold;
+.title {
+    font-size: 4em;
 }
 
-fieldset {
-    padding-left: 0px;
+.text {
+    font-size: 2em;
 }
 
-.navbar {
-    background-color: cadetblue;
-}
-
-.avatar {
-    width: 15%;
-}
-
-.avatar-small {
-    width: 5%;
+.link {
+    color: white;
 }
