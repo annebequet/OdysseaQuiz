@@ -1,5 +1,9 @@
+@use 'src/styles/vars';
+
 .sv_main{
   max-width: 500px;
+  font-family: vars.$font-family;
+  font-size: 20px;
 }
 
 @media (min-width: 768px) {
@@ -10,9 +14,23 @@
 }
 
 .survey{
-  margin-top: 3em;
   display: flex;
   justify-content: center;
   display: inline-block;
   margin-bottom: 2em;
+}
+
+.sv_header{
+  background-color: #3C74C8;
+  opacity: 0.6;
+  height: 100px;
+  padding: 0;
+}
+
+.sv_header span {
+  color: white;
+}
+
+.sv_body {
+  border-top: white;
 }
