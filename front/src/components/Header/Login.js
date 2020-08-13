@@ -10,11 +10,19 @@ import './styles.scss';
 const Login = ({
   login,
   requestErrors,
+  clearErrors,
 }) => {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false);
+    clearErrors();
+  };
+
+  const handleShow = () => {
+    setShow(true);
+    clearErrors();
+  };
 
   const handleOnSubmit = (evt) => {
     evt.preventDefault();
@@ -70,6 +78,7 @@ const Login = ({
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   requestErrors: PropTypes.object.isRequired,
 };
 export default Login;
