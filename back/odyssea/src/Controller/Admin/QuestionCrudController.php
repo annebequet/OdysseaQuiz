@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Question;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
@@ -48,6 +49,14 @@ class QuestionCrudController extends AbstractCrudController
             ->setPageTitle('new', 'Question')
             ->setPageTitle('edit', 'Question')
             ->setPageTitle('detail', 'Question')
+        ;
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('category')
+            ->add('environment')
         ;
     }
 }
