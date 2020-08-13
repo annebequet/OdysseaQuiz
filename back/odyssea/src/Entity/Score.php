@@ -10,11 +10,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ScoreRepository::class)
- * ! attention ici 
- * @UniqueEntity(
- *      fields={"user", "category", "environment"},
- *      message="L'utilisateur possède déjà un score dans la catégorie de cet environnement, merci de contacter le support."
- * )
  */
 class Score
 {
@@ -27,7 +22,6 @@ class Score
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\NotNull
      */
     private $quizNb;
 

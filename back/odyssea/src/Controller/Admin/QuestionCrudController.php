@@ -31,7 +31,8 @@ class QuestionCrudController extends AbstractCrudController
                         '1 bonne réponse sur 4' => 'radiogroup'
                         ]),
             TextField::new('name', 'Slug')
-                ->hideOnIndex(),
+                ->hideOnIndex()                
+                ->setHelp('Utilisez seulement des minuscules et des tirets.'),
             TextareaField::new('title', 'Question'),
             ArrayField::new('choices', 'Réponses proposées')
                 ->setHelp('Entrez 4 réponses seulement'),

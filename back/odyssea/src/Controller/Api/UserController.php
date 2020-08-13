@@ -139,6 +139,7 @@ class UserController extends AbstractController
         // Deserialiaze the json content into a Score entity
         $score = $serializer->deserialize($content, Score::class, 'json');
 
+        //dd($score);
         // Validate the entity with the validator service
         $errors = $validator->validate($score);
 
@@ -150,7 +151,6 @@ class UserController extends AbstractController
             }
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-        //dd($score);
 
         $scoreLine = $scoreRepository->findOneBy([
             'user' => $score->getUser(),
