@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import Field from 'src/containers/Field';
 import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ErrorMessage from 'src/components/ErrorMessage';
 
 import './styles.scss';
 
 const Login = ({
   login,
+  requestErrors,
 }) => {
   const [show, setShow] = useState(false);
 
@@ -20,7 +22,7 @@ const Login = ({
   };
 
   return (
-    <>
+    <div>
       <Button variant="primary" onClick={handleShow}>
         Se Connecter
       </Button>
@@ -48,23 +50,26 @@ const Login = ({
               className="login__submit"
               type="submit"
               variant="primary"
-              onClick={handleClose}
             >
               Se Connecter
             </Button>
           </form>
         </Modal.Body>
         <Modal.Footer>
+          {Object.keys(requestErrors).length > 0 && (
+          <ErrorMessage className="cocorico" errors={requestErrors} />
+          )}
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
+  requestErrors: PropTypes.object.isRequired,
 };
 export default Login;

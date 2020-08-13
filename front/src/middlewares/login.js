@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser,
 } from 'src/actions';
+import { setRequestError } from 'src/actions/errorHandler';
 
 // http://54.226.34.31/*
 // http://localhost/Apotheose/Odyssea/back/odyssea/public/*
@@ -11,7 +12,7 @@ const login = (store) => (next) => (action) => {
     case LOGIN: {
       const { username, password } = store.getState().headerLogin;
 
-      axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/login', {
+      axios.post('http://54.226.34.31/back/api/login', {
         username,
         password,
       })
@@ -26,14 +27,15 @@ const login = (store) => (next) => (action) => {
           store.dispatch(saveUser(pseudo, roles, avatar, id));
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response);
+          store.dispatch(setRequestError({ 'Erreur de connexion': ['Demande à BobMorgane'] }));
         });
 
       next(action);
       break;
     }
     case CHECK_IS_LOGGED:
-      axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/islogged',
+      axios.get('http://54.226.34.31/back/api/islogged',
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -59,7 +61,7 @@ const login = (store) => (next) => (action) => {
       next(action);
       break;
     case LOGOUT:
-      axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/logout',
+      axios.get('http://54.226.34.31/back/api/logout',
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),

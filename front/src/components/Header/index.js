@@ -15,6 +15,7 @@ const Header = ({ roles, isLogged, loginAdmin }) => {
   const handleAdmin = () => {
     loginAdmin();
   };
+
   return (
     <div className="header">
       <nav className="menu--desktop">
@@ -36,7 +37,7 @@ const Header = ({ roles, isLogged, loginAdmin }) => {
         </NavLink>
         {(roles.indexOf('ROLE_ADMIN') !== -1) && (
         <a
-          href="http://localhost/Apotheose/Odyssea/back/odyssea/public/admin/login"
+          href="http://54.226.34.31/back/admin/login"
           className="menu__item"
           onClick={handleAdmin}
         >
@@ -64,7 +65,7 @@ const Header = ({ roles, isLogged, loginAdmin }) => {
           </NavLink>
           {(roles.indexOf('ROLE_ADMIN') !== -1) && (
           <a
-            href="http://localhost/Apotheose/Odyssea/back/odyssea/public/admin/login"
+            href="http://54.226.34.31/back/admin/login"
             className="menu__item"
             onClick={handleAdmin}
           >

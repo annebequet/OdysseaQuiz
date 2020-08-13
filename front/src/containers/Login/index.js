@@ -8,6 +8,7 @@ import {
 
 const mapStateToProps = (state) => ({
   open: state.headerLogin.open,
+  requestErrors: state.errorHandler.requestErrors,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,8 +2,14 @@
   padding-bottom: 3em;
 }
 .page__content {
-  padding-top: 3em;
+  padding-top: 4em;
   display: inline-block;
   width: 100vw;
 }
 
+/* small screen size */
+@media (max-width: 768px) {
+  .page__content{
+    padding-top: 8em;
+  }
+}

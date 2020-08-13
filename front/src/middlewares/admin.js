@@ -4,7 +4,7 @@ import { LOGIN_ADMIN } from 'src/actions/admin';
 const register = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN_ADMIN: {
-      axios.get('http://localhost/Apotheose/Odyssea/back/odyssea/public/admin/login', {
+      axios.get('http://54.226.34.31/back/admin/login', {
         headers: {
           'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },

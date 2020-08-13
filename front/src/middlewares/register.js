@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { REGISTER, setError, validateRegistration } from 'src/actions/register';
+import { REGISTER, validateRegistration } from 'src/actions/register';
+import { setRequestError } from 'src/actions/errorHandler';
 
 const register = (store) => (next) => (action) => {
   switch (action.type) {
@@ -12,19 +13,25 @@ const register = (store) => (next) => (action) => {
         environment,
       } = state.register;
 
-      axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/register', {
+      axios.post('http://54.226.34.31/back/api/register', {
         email,
         password,
         pseudo,
         environment,
       })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(validateRegistration());
-        })
+          /* setTimeout(() => {
+            window.location.replace('/');
+          }, 10000);*/
+        }) 
         .catch((error) => {
           console.log(error);
-          store.dispatch(setError());
+          if (error.response.status === 500) {
+            store.dispatch(setRequestError({ 'environnement': ['choisissez un environnement'] }));
+          } else {
+            store.dispatch(setRequestError(error.response.data));
+          }
         });
 
       next(action);

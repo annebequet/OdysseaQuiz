@@ -103,7 +103,7 @@ class User implements UserInterface
      * @Groups("users_get_one")
      * @Assert\NotBlank
      * @Assert\Regex(
-     *     pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/",
+     *     pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,200}$/",
      *     message="Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre."
      * )
      */
@@ -148,9 +148,6 @@ class User implements UserInterface
     /**
      * @ORM\ManyToOne(targetEntity=Gallery::class)
      * @Groups({"users_get", "users_get_one"})
-     * @Assert\NotNull(
-     *      message = "Choisissez un avatar."
-     * )
      */
     private $avatar;
     
