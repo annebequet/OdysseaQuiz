@@ -3,14 +3,14 @@ export const changeCSSStyles = (survey, options) => {
   const span = document.createElement('span');
   const isCorrect = options.question.isAnswerCorrect();
   span.innerHTML = isCorrect
-    ? 'Correct'
-    : 'Incorrect';
+    ? '<br>Correct'
+    : '<br>Incorrect';
   span.style.color = isCorrect
-    ? 'green'
-    : 'red';
+    ? 'rgba(1, 1, 36)'
+    : 'white';
   const header = options.htmlElement.querySelector('h5');
   if (!isCorrect) {
-    header.style.backgroundColor = 'salmon';
+    header.style.backgroundColor = 'rgb(255, 165, 0, 0.5)';
     const radio = options.htmlElement.querySelector(`input[value="${options.question.correctAnswer}"]`);
     radio.parentElement.style.color = 'green';
   }
@@ -78,7 +78,7 @@ export const transformQuestionsInSurveyObject = (allQuestions, category) => {
     title: category,
     showProgressBar: 'bottom',
     showTimerPanel: 'top',
-    maxTimeToFinishPage: 60,
+    //maxTimeToFinishPage: 60,
     //maxTimeToFinish: 25,
     firstPageIsStarted: true,
     startSurveyText: 'Commencer',

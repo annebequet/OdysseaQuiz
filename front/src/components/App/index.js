@@ -130,9 +130,9 @@ const App = ({
             </Page>
           </Route>
         </Switch>
-        {location === '/' && (
+        {/*{location === '/' && (
         <div className="frontPageImageBottom" />
-        )}
+        )}*/}
         <Footer />
       </div>
     </div>
