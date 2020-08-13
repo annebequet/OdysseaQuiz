@@ -85,9 +85,9 @@ const Profile = ({
           <h3 className="profile__pseudo">Pseudo : {pseudo}</h3>
         </div>
         <div className="profile__wrap__right">
-          <Accordion>
+          <Accordion className="accordion">
             {/* FORM FOR AVATAR EDIT */}
-            <Card>
+            <Card className="accordion__card">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
                   <label>Changez votre avatar!</label>
@@ -114,7 +114,7 @@ const Profile = ({
               </Accordion.Collapse>
             </Card>
             {/* FORM FOR PSEUDO EDIT */}
-            <Card>
+            <Card className="accordion__card">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="1">
                   <label>Changez votre pseudo</label>
@@ -140,7 +140,7 @@ const Profile = ({
               </Accordion.Collapse>
             </Card>
             {/* FORM FOR EMAIL EDIT */}
-            <Card>
+            <Card className="accordion__card">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="2">
                   <label>Changez votre adresse e-mail</label>
@@ -166,7 +166,7 @@ const Profile = ({
               </Accordion.Collapse>
             </Card>
             {/* FORM FOR PASSWORD EDIT */}
-            <Card>
+            <Card className="accordion__card">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="3">
                   <label>Changez votre Mot de passe</label>
@@ -191,7 +191,7 @@ const Profile = ({
               </Accordion.Collapse>
             </Card>
             {/* FORM FOR ENVIRONMENT EDIT */}
-            <Card>
+            <Card className="accordion__card">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="4">
                   <label>Changez votre difficulté de jeu!</label>
@@ -216,7 +216,7 @@ const Profile = ({
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
-            <Card>
+            <Card className="accordion__card">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="5">
                   <label style={{ color: 'red' }}>Supprimer mon compte</label>

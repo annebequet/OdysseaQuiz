@@ -13,7 +13,7 @@
   color: white;
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 1000;
 }
 
 /* small screen size */
@@ -43,6 +43,7 @@
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
   background: #197285;
+  
 }
 
 /* Color/shape of burger icon bars on hover*/
@@ -159,7 +160,7 @@ svg:nth-child(1) {
   text-decoration: none;
 }
 
-/* Login toggler */
+/* Login */
 .login {
   position: fixed;
   right: 3em;
