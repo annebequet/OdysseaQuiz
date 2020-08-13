@@ -40,12 +40,15 @@ class Question
 
     //! dans blank normalizer = 'trim',
     //! sa march pas
-    //! forcer le minuscule + l'absence d'espace
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"categories_get_one", "get_quest_by_cat"})
      * @Assert\NotBlank(
      *      message = "Vous devez rentrer un slug pour identifier la question."
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[a-z]+(?:-[a-z]+)*$/",
+     *     message="N'utilisez que des lettres minuscules et des tirets (ex : baleine-en-chocolat)."
      * )
      */
     private $name;
@@ -60,8 +63,6 @@ class Question
      */
     private $title;
 
-    //! dans blank normalizer = 'trim',
-    //! sa march pas
     /**
      * @ORM\Column(type="json")
      * @Groups({"categories_get_one", "get_quest_by_cat"})
@@ -71,8 +72,6 @@ class Question
      */
     private $choices = [];
 
-    //! dans NotBlank normalizer='trim',
-    //! sa march pas
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"categories_get_one", "get_quest_by_cat"})
