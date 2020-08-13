@@ -29,8 +29,57 @@
 
 .sv_header span {
   color: white;
+  font-size: 30px;
+  font-family: 'GT America Extended';
+  font-weight: 100;
+}
+
+.sv_header h3 {
+  padding-top: 0;
 }
 
 .sv_body {
-  border-top: white;
+  border-top: 2px solid  blue;
 }
+
+.sv_main input[type=button] {
+  background-color: rgba(1,1,36,.8);
+  border: 1px solid #fff;
+  font-size: 1.2rem;
+  font-family: 'GT America Extended';
+  font-weight: 100;
+}
+
+.sv_main input[type=button]:hover {
+  background-color: white;
+  color: vars.$light-color;
+  border: 1px solid vars.$light-color;
+  font-size: 1.2rem;
+  font-family: 'GT America Extended';
+  font-weight: 100;
+}
+
+.sv_q_title h5 {
+  display: inline-block;
+  padding: 0;
+  color: vars.$background-color;
+  font-family: 'GT America Extended';
+}
+
+.sv_q_title span {
+  display: inline-block;
+  padding: 0;
+  color: vars.$background-color;
+}
+
+.sv_q_radiogroup_label{
+  display: flex;
+}
+
+.sv_q_radiogroup_label span {
+  margin: 0;
+  padding: 0;
+  font-family: 'GT America Extended';
+  color: vars.$light-color;
+}
+
