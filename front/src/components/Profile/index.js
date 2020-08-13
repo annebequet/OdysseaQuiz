@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { Accordion, Button, Card } from 'react-bootstrap';
+import { Accordion, Button, Card, ProgressBar } from 'react-bootstrap';
 import './styles.scss';
 
 import TurtleImage from 'src/assets/images/turtle.jpg';
@@ -240,21 +240,21 @@ const Profile = ({
 
         </div>
       </div>
-      <div>
+      <div className="profile__score">
+        <h2 className="profile__title">Consultez vos scores par catégories!</h2>
         <ul className="categories__ul">
-          <h3 className="profil__title">Consultez vos scores par catégories!</h3>
           {scores.map((score) => (
             <li
               key={score.category.id}
               className="categories__item"
             >
               <h3>{score.category.name} </h3>
-              <p>{score.score} / 10</p>
               <img
-                className="category__img"
+                className="category__score__img"
                 alt="category__picture"
                 src={score.category.picture}
               />
+              <div><ProgressBar animated now={score.score} label={`${score.score}%`} /> </div>
             </li>
           ))}
         </ul>

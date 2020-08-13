@@ -18,6 +18,10 @@
     display: flex;
     flex-direction: column;
   }
+  &__title {
+  }
+  &__score {
+  }
   .profile__edit__form {
     & label {
       color: orange;
@@ -100,5 +104,26 @@
   &__card {
     background-color: vars.$background-color-transparent;
   }
+}
+
+@media (min-width: 100px) {
+  .category__score__img {
+    display: none;
+  }
+  }
+
+@media (min-width: 380px) {
+.category__score__img {
+  width: 200px;
+  height: 200px;
+  display: block;
+}
+}
+
+@media screen and (min-width: 641px) {
+.category__score__img {
+  width: 400px;
+  height: 400px;
+}
 }
 

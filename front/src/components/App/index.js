@@ -1,7 +1,9 @@
 // == Import npm
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import {
+  Route, Switch, useHistory, Redirect,
+} from 'react-router-dom';
 
 // == Import
 import Video from 'src/components/Video';
@@ -26,6 +28,7 @@ const App = ({
   categoriesLoading,
   updateLocation,
   clearErrors,
+  isLogged,
 }) => {
   useEffect(checkIsLogged, []);
 
@@ -72,9 +75,13 @@ const App = ({
             exact
             path="/register"
           >
-            <Page>
-              <Register />
-            </Page>
+            {!isLogged ? (
+              <Page>
+                <Register />
+              </Page>
+            ) : (
+              <Redirect to={{ pathname: '/' }} />
+            )}
           </Route>
           <Route
             exact
@@ -103,7 +110,7 @@ const App = ({
           </Route>
           <Route
             exact
-            path="/Faq"
+            path="/faq"
           >
             <Page>
               <Faq />
@@ -127,6 +134,7 @@ App.propTypes = {
   updateLocation: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 // == Export
