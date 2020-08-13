@@ -17,7 +17,7 @@ const Header = ({ roles, isLogged, loginAdmin, location }) => {
     loginAdmin();
   };
 
-  const headerHeight = location === '/' ? 'header__frontpage' : '';
+  const headerHeight = location === '/' ? 'header__frontPage' : '';
 
   return (
     <div className={`header ${headerHeight}`}>

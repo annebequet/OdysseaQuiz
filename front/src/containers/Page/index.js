@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Video from 'src/components/Video';
+import Page from 'src/components/Page';
 
 const mapStateToProps = (state) => ({
   location: state.app.location,
@@ -8,4 +8,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Video);
+export default connect(mapStateToProps, mapDispatchToProps)(Page);
