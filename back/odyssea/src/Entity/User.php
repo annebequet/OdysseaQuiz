@@ -78,14 +78,16 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", unique=true, length=16)
      * @Groups({"users_get", "users_get_one"})
-     * @Assert\NotBlank
-     * @Assert\Length(
-     *      min = 6,
-     *      max = 12,
-     *      minMessage = "Le pseudo doit contenir plus de {{ limit }} caractères.",
-     *      maxMessage = "Le pseudo ne peut contenir plus de {{ limit }} caractères.",
-     *      allowEmptyString = false
-     * )
+     * @Assert\Sequentially({
+     *      @Assert\NotBlank(message="Veuillez remplir ce champs"),
+     *      @Assert\Length(
+     *           min = 6,
+     *           max = 12,
+     *           minMessage = "Le pseudo doit contenir plus de {{ limit }} caractères.",
+     *           maxMessage = "Le pseudo ne peut contenir plus de {{ limit }} caractères.",
+     *           allowEmptyString = false
+     *      )
+     * })
      */
     private $pseudo;
 
@@ -101,11 +103,13 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Groups("users_get_one")
-     * @Assert\NotBlank
-     * @Assert\Regex(
-     *     pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,200}$/",
-     *     message="Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre."
-     * )
+     * @Assert\Sequentially({
+     *      @Assert\NotBlank(message="Veuillez remplir ce champs"),
+     *      @Assert\Regex(
+     *          pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,200}$/",
+     *          message="Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre."
+     *      )
+     * })
      */
     private $password;
 
