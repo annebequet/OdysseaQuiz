@@ -1,20 +1,24 @@
-.error404 {
-    display: flex;
-    flex-direction: column;
-    padding-top: 0;
+body {
+      background-image: url('https://www.publicdomainpictures.net/pictures/20000/velka/jellyfish-background-871299518276q0p.jpg');
+      background-repeat: no-repeat;
+      color:white;
+      font-weight: bold;
 }
-    
-.error404__title {
-      line-height: 2em;
-      font-weight: 900;
+
+.error {
+      margin: 15%;
+}
+
+.title {
       font-size: 4em;
 }
 
-.error404__img {
-      margin: auto;
-      padding: 3em;
-      max-width: 550px;
-      border-radius: 200px;
+.text {
+      font-size: 2em;
+}
+
+.link {
+      color: white;
 }
 
   

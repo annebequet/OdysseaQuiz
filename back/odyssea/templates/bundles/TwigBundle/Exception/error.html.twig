@@ -1,15 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="error404">
-        <h2 class="error404__title">Erreur...</h2>
-        <p>Erreur! Retournez dans l'eau!</p>
-        <div><a href="http://54.226.34.31/back/admin" class="text-info">Retour à l'accueil</a></div>
-        <img
-            alt="sad-shark"
-            class="error404__img"
-            src="{{ asset('assets/images/shark404.jpg') }}"
-        />
+    <div class="error">
+        <h2 class="title">Erreur...</h2>
+        <p class="text">Il semble qu'il y ait un problème!</p>
+        <div><a href="http://54.226.34.31/back/admin" class="link">Retour à l'accueil</a></div>
     </div>
-
 {% endblock %}
