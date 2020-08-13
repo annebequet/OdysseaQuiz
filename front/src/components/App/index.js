@@ -1,19 +1,20 @@
 // == Import npm
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, useHistory } from 'react-router-dom';
 
 // == Import
-import Title from 'src/containers/Title';
-import Video from 'src/containers/Video';
+import Video from 'src/components/Video';
 import Header from 'src/containers/Header';
 import Footer from 'src/components/Footer';
-import Page from 'src/components/Page';
+import Page from 'src/containers/Page';
 import Register from 'src/containers/Register';
 import Home from 'src/containers/Home';
 import Categories from 'src/containers/Categories';
 import Category from 'src/containers/Category';
 import Profile from 'src/containers/Profile';
+import Contact from 'src/components/Contact';
+import Faq from 'src/components/Faq';
 import Error404 from 'src/components/Error404';
 import './styles.scss';
 
@@ -39,7 +40,6 @@ const App = ({
 
   return (
     <div className="app">
-      <Title />
       <Video />
       <div className="mainPage">
         <Header />
@@ -91,6 +91,22 @@ const App = ({
               </Page>
             )}
           />
+          <Route
+            exact
+            path="/contact"
+          >
+            <Page>
+              <Contact />
+            </Page>
+          </Route>
+          <Route
+            exact
+            path="/Faq"
+          >
+            <Page>
+              <Faq />
+            </Page>
+          </Route>
           <Route path="*">
             <Page>
               <Error404 />

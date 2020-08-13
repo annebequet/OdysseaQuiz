@@ -1,10 +1,15 @@
 .page {
   padding-bottom: 3em;
+  background-color: white;
 }
 .page__content {
   padding-top: 4em;
   display: inline-block;
   width: 100vw;
+}
+
+.page__otherPages {
+  background: none;
 }
 
 /* small screen size */

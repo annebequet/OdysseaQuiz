@@ -13,7 +13,7 @@ const Categories = ({
 }) => (
   <div className="page__categories">
     <ul className="categories__ul">
-      {categories.map(({ name }) => (
+      {categories.map(({ name, picture }) => (
         <Link
           to={`/categories/${getSlugFromTitle(name)}`}
           className="category_link"
@@ -21,13 +21,13 @@ const Categories = ({
           >
           <li
             className="categories__item"
-            >
+          >
             <h3>{name} </h3>
             <img
               className="category__img"
               alt="turtle"
-              src={TurtleImage}
-              />
+              src={picture}
+            />
           </li>
         </Link>
       ))}
@@ -39,6 +39,7 @@ Categories.propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
+      picture: PropTypes.string,
     }),
   ).isRequired,
 };
