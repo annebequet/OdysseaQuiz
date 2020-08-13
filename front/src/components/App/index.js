@@ -48,7 +48,9 @@ const App = ({
       <div className="mainPage">
         <Header />
         <FrontPageInformations />
-        <div className="frontPageImage" />
+        <div className="frontPageImage">
+          <h1 className="playText">A vous de jouer !</h1>
+        </div>
         <Switch>
           {!categoriesLoading && (
           <Route
