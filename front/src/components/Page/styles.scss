@@ -1,9 +1,11 @@
 .page {
-  padding-bottom: 3em;
-  background-color: white;
+  background-image: url('https://cdn.pixabay.com/photo/2012/03/03/23/52/animal-21649_1280.jpg');
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .page__content {
-  padding-top: 4em;
+  padding-top: 7em;
   display: inline-block;
   width: 100vw;
 }
