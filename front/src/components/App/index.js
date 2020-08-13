@@ -16,6 +16,7 @@ import Profile from 'src/containers/Profile';
 import Contact from 'src/components/Contact';
 import Faq from 'src/components/Faq';
 import Error404 from 'src/components/Error404';
+import FrontPageInformations from 'src/components/FrontPageInformations';
 import './styles.scss';
 
 // == Composant
@@ -43,6 +44,7 @@ const App = ({
       <Video />
       <div className="mainPage">
         <Header />
+        <FrontPageInformations />
         <Switch>
           {!categoriesLoading && (
           <Route
