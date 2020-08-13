@@ -26,7 +26,8 @@ security:
             anonymous: ~
         main:
             pattern: ^/
-            anonymous: lazy
+            anonymous: true
+            lazy: true
             provider: app_user_provider
             guard:
                 authenticators:
