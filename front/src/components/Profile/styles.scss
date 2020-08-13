@@ -14,11 +14,16 @@
     margin-bottom: 1em;
     padding: 0.5em;
   }
+  @media (max-width: 820px) {
   &__edit {
     display: flex;
     flex-direction: column;
   }
+}
   &__title {
+    color: orange;
+    font-size: 2em;
+    font-weight: bolder;
   }
   &__score {
   }
@@ -96,6 +101,17 @@
   margin: 1em;
   width: 150px;
 }
+@media (min-width: 820px) {
+  .profile__edit {
+    padding: 2em;
+    display: flex;
+    justify-content: space-around;
+    .profile__pseudo {
+      margin-top: 2em;
+    }
+  }
+}
+
 
 .accordion {
   margin: 0 auto;

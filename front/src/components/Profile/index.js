@@ -241,7 +241,7 @@ const Profile = ({
         </div>
       </div>
       <div className="profile__score">
-        <h2 className="profile__title">Consultez vos scores par catégories!</h2>
+        <h2 className="profile__title">Consultez vos scores par catégories ci-dessous!</h2>
         <ul className="categories__ul">
           {scores.map((score) => (
             <li

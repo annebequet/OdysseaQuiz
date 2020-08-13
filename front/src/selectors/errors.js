@@ -40,10 +40,10 @@ export const Normalizer = (errors) => {
 
   for (key in errors) {
     txt = errors[key];
-    list.push(<li key={key}>
-      {key}
+    list.push(<li className="errorList" key={key}>
+      {key} :
       <ul>
-        {txt.map((errorMessage) => <li key={errorMessage}>{errorMessage}</li>)}
+        {txt.map((errorMessage) => <li className="errorList" key={errorMessage}>{errorMessage}</li>)}
       </ul>
     </li>);
   }
