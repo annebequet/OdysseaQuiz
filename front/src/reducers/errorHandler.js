@@ -1,6 +1,7 @@
 import {
   SET_ERROR,
   SET_REQUEST_ERROR,
+  CLEAR_ERRORS,
 } from '../actions/errorHandler';
 
 const initialState = {
@@ -21,6 +22,11 @@ const categories = (state = initialState, action = {}) => {
       return {
         ...state,
         requestErrors: action.errors,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        requestErrors: {},
       };
     default:
       return state;

@@ -23,20 +23,22 @@ const App = ({
   getCategories,
   categoriesLoading,
   updateLocation,
+  clearErrors,
 }) => {
   useEffect(checkIsLogged, []);
 
   useEffect(() => {
     getCategories();
   }, []);
-  const history = useHistory();
 
+  const history = useHistory();
   useEffect(() => history.listen((location) => {
     updateLocation(location.pathname);
+    clearErrors();
   }), [history]);
 
   return (
-    <div className="app">     
+    <div className="app">
       <Title />
       <Video />
       <div className="mainPage">
@@ -105,6 +107,7 @@ App.propTypes = {
   checkIsLogged: PropTypes.func.isRequired,
   getCategories: PropTypes.func.isRequired,
   updateLocation: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
 };
 

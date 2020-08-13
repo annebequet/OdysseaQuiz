@@ -21,10 +21,10 @@ const register = (store) => (next) => (action) => {
       })
         .then((response) => {
           store.dispatch(validateRegistration());
-          setTimeout(() => {
+          /* setTimeout(() => {
             window.location.replace('/');
-          }, 10000);
-        })
+          }, 10000);*/
+        }) 
         .catch((error) => {
           console.log(error);
           if (error.response.status === 500) {
