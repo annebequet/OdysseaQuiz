@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { bubble as Menu } from 'react-burger-menu';
 
-import WhaleLogo from 'src/assets/images/whale-logo.png';
+import Logo from 'src/assets/images/logo.png';
 
 import Title from 'src/containers/Title';
 import Login from 'src/containers/Login';
@@ -31,7 +31,7 @@ const Header = ({
             activeClassName="menu__link--active"
             exact
           >
-            <img className="menu--desktop__logo" alt="whale-logo" src={WhaleLogo} />
+            <img className="menu--desktop__logo" alt="logo" src={Logo} />
           </NavLink>
 
           <NavLink
@@ -119,7 +119,7 @@ const Header = ({
             >
               FAQ
             </NavLink>
-            <img className="logo" alt="whale-logo" src={WhaleLogo} />
+            <img className="logo" alt="logo" src={Logo} />
             <div className="burger-menu__footer">&copy; Odyssea Quiz Corporation All Rights Reserved</div>
           </Menu>
         </nav>
