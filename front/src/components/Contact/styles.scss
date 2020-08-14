@@ -1,14 +1,24 @@
 @use 'src/styles/vars';
 
 .contact {
-  margin: 3em auto;
+  margin: 8em;
+  padding: 2em;
+  text-align: center;
+  background-color: vars.$background-color-transparent;
+  font-family: vars.$font-family;
+  font-weight: 100;
   &__title {
     color: vars.$title-color;
-    font-weight: bold;
   }
 }
 
 .contact > p {
   color: white;
   font-size: 1.3em;
+}
+
+@media (max-width: 920px) {
+  .contact {
+    margin: 2em;
+  }
 }
