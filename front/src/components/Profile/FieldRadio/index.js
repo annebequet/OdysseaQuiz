@@ -24,7 +24,7 @@ const FieldRadio = ({
       </label>
       <label className="field--radio__details">Quiz Enfant</label>
       <input
-        value="1"
+        value="2"
         onChange={handleChange}
         id="radio1"
         type="radio"
@@ -34,7 +34,7 @@ const FieldRadio = ({
       />
       <label className="field--radio__details">Quiz Adulte</label>
       <input
-        value="2"
+        value="1"
         onChange={handleChange}
         id="radio2"
         type="radio"
