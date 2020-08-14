@@ -29,7 +29,7 @@ const App = ({
   updateLocation,
   clearErrors,
   isLogged,
-  location,
+  myLocation,
 }) => {
   useEffect(checkIsLogged, []);
 
@@ -48,10 +48,10 @@ const App = ({
       <Video />
       <div className="mainPage">
         <Header />
-        {location === '/' && (
+        {myLocation === '/' && (
         <FrontPageInformations />
         )}
-        {location === '/' && (
+        {myLocation === '/' && (
         <div className="frontPageImage">
           <h1 className="playText">A vous de jouer !</h1>
         </div>
@@ -146,7 +146,7 @@ App.propTypes = {
   clearErrors: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  location: PropTypes.string.isRequired,
+  myLocation: PropTypes.string.isRequired,
 };
 
 // == Export
