@@ -9,15 +9,12 @@
   font-weight: 100;
   &__title {
     color: vars.$title-color;
+    font-size: 2rem;
   }
 }
 
 .contact > p {
   color: white;
-  font-size: 1.3em;
-}
-
-.contact h2 {
   font-size: 1.3em;
 }
 
