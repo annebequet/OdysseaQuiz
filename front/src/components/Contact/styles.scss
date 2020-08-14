@@ -1,0 +1,14 @@
+@use 'src/styles/vars';
+
+.contact {
+  margin: 3em auto;
+  &__title {
+    color: vars.$title-color;
+    font-weight: bold;
+  }
+}
+
+.contact > p {
+  color: white;
+  font-size: 1.3em;
+}

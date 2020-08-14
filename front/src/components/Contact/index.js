@@ -6,15 +6,16 @@ import './styles.scss';
 const Contact = () => (
   <div className="contact">
 
-    <h1 className="contact__title">Nous contacter</h1>
+    <h2 className="contact__title">Nous contacter</h2>
+    <br />
     <p className="contact__content">
-      <strong>Par courrier : </strong>
+      <h2 className="contact__title">Par courrier : </h2>
       <br />Appt 20K ,
       <br />3 square Pierre et Marie Corail
       <br />Atlantis,
       <br />Sous les mers
 
-      <strong> Par email : </strong>  tortue@plouf.io
+      <h2 className="contact__title"> Par email : </h2>  tortue@plouf.io
     </p>
 
   </div>

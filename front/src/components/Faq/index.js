@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './styles.scss';
 
@@ -18,7 +19,7 @@ const Faq = () => (
 
     <h2 className="faq__title"> Je veux proposer une question !</h2>
 
-    <p> Il suffit pour cela de <a href="#">nous contacter</a> pour nous les envoyer. </p>
+    <p> Il suffit pour cela de <Link exact to="/contact">nous contacter</Link> pour nous les envoyer. </p>
 
     <h2 className="faq__title"> Je souhaite acheter un hippocampe/un poisson etc.</h2>
 
@@ -30,12 +31,18 @@ const Faq = () => (
 
     <h2 className="faq__title"> Je veux supprimer mon compte. </h2>
 
-    <p> Nous sommes désolés de vous voir partir ! Si vous souhaitez proposer des améliorations il est possible de <a href="#">nous contacter</a> par mail. Si vous êtes sûr de vouloir prendre cette décision radicale et décevante, rendez vous sur <a href="#">votre profil</a>. Votre adresse email ne sera pas conservée, ni vos scores, vous devrez recommencer à zéro. </p>
+    <p> Nous sommes désolés de vous voir partir ! Si vous souhaitez proposer des améliorations il est possible de <Link exact to="/contact">nous contacter</Link> par mail. Si vous êtes sûr de vouloir prendre cette décision radicale et décevante, rendez vous sur votre profil. Votre adresse email ne sera pas conservée, ni vos scores, vous devrez recommencer à zéro. </p>
 
     <h2 className="faq__title"> Je veux un autre avatar que ceux proposés. </h2>
 
     <p> Mince alors !
       Rien ne vous empêche de nous proposer un nouvel avatar si celui ci respecte la charte graphique du site, ceci dit rien n’est garanti. Si vous voulez mettre une photo de votre plus belle paire de chaussures, désolé, ça ne sera pas possible.
+    </p>
+
+    <h2 className="faq__title"> D'où viennent nos icones de profil ?</h2>
+
+    <p>
+      Icônes par <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> de <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
     </p>
 
     <h2 className="faq__title"> La recette de la mouclade s’il vous plaît ? </h2>

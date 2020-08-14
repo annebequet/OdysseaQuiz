@@ -194,7 +194,7 @@ const Profile = ({
             <Card className="accordion__card">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="4">
-                  <label>Changez votre difficulté de jeu!</label>
+                  <label>Changez votre difficulté de jeu !</label>
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey="4">

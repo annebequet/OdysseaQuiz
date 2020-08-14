@@ -1,13 +1,15 @@
 @use 'src/styles/vars';
 
 .faq {
-  margin: 0 auto;
+  margin: 2em auto;
   padding: 2em;
   text-align: center;
 }
 .faq > h2{
-    color: vars.$background-color;
+    color: vars.$title-color;
+    font-weight: bold;
   }
 .faq > p, li {
-  color: black;
+  color: white;
+  font-size: 1.3em;
 }
