@@ -39,7 +39,7 @@ const Faq = () => (
       Rien ne vous empêche de nous proposer un nouvel avatar si celui ci respecte la charte graphique du site, ceci dit rien n’est garanti. Si vous voulez mettre une photo de votre plus belle paire de chaussures, désolé, ça ne sera pas possible.
     </p>
 
-    <h2 className="faq__title"> D'où viennent nos icones de profil ?</h2>
+    <h2 className="faq__title"> D'où viennent nos icônes de profil ?</h2>
 
     <p>
       Icônes par <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> de <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
