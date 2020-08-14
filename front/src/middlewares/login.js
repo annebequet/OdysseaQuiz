@@ -27,8 +27,8 @@ const login = (store) => (next) => (action) => {
           store.dispatch(saveUser(pseudo, roles, avatar, id));
         })
         .catch((error) => {
-          console.log(error.response);
-          store.dispatch(setRequestError({ 'Erreur de connexion': ['Demande à Bob Morgane'] }));
+          console.log('login', error.response);
+          store.dispatch(setRequestError({ 'Erreur de connexion': ['Mot de passe ou identifiant Incorrect'] }));
         });
 
       next(action);

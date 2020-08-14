@@ -224,23 +224,25 @@ svg:nth-child(1) {
     background-color: transparent;
     transform: rotate(0);
     border: none;
-    color: orange;
+    color: black;
     margin-right: 4em;
     font-weight: bold;
     font-size: medium;
   }
   &__submit {
     background-color: vars.$background-color;
-    color: orange;
+    color: white;
     border: none;
     border-radius: 10px;
     padding: vars.$gutter / 2;
     font-weight: bold;
   }
 }
-.login__errorMessage {
-    padding-top: -2em;
-  }
+/* In case of errors on Login */
+body > div.fade.modal.show > div > div > div.modal-footer > div {
+  text-align: justify;
+  margin-top: 0;
+}
 /* Link style */
 
 .menu__item {
