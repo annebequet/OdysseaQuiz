@@ -26,8 +26,9 @@
 .sv_header{
   background-color: #3C74C8;
   opacity: 0.6;
-  height: 100px;
-  padding: 0;
+  height: 120px;
+  //padding: 0;
+  //margin-bottom: 20px;
 }
 
 .sv_header span {
@@ -35,10 +36,16 @@
   font-size: 30px;
   font-family: 'GT America Extended';
   font-weight: 100;
+  padding-bottom: 20px;
 }
 
 .sv_header h3 {
   padding-top: 0;
+  padding-bottom: 20px;
+}
+
+.sc_header__text h3 span {
+  padding-bottom: 20px;
 }
 
 .sv_body {
@@ -73,6 +80,7 @@
   display: inline-block;
   padding: 0;
   color: vars.$background-color;
+  margin-bottom: 20px;
 }
 
 .sv_q_radiogroup_label{

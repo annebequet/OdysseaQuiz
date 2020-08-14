@@ -14,11 +14,6 @@ const Quiz = ({
   endQuiz,
   grade,
 }) => {
-  // eslint-disable-next-line max-len
-  // Allows to restart the quiz when the user comes back on the component, by changing the value of isCompleted
-  useEffect(() => {
-    endQuiz();
-  }, []);
 
   // Write survey results into database and state
   const handleOnComplete = (survey) => {
