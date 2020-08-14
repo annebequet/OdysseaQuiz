@@ -32,7 +32,7 @@ const Login = ({
   return (
     <div>
       <Button variant="btn" onClick={handleShow}>
-        Se Connecter
+        Connexion
       </Button>
 
       <Modal show={show} onHide={handleClose} centered>
@@ -65,7 +65,7 @@ const Login = ({
         </Modal.Body>
         <Modal.Footer>
           {Object.keys(requestErrors).length > 0 && (
-          <ErrorMessage className="errorMessage errorList" errors={requestErrors} />
+          <ErrorMessage className="login__errorMessage" errors={requestErrors} />
           )}
           <Button variant="secondary" onClick={handleClose}>
             Close

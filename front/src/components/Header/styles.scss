@@ -238,7 +238,9 @@ svg:nth-child(1) {
     font-weight: bold;
   }
 }
-
+.login__errorMessage {
+    padding-top: -2em;
+  }
 /* Link style */
 
 .menu__item {
@@ -273,6 +275,3 @@ svg:nth-child(1) {
   text-decoration: none;
 }
 
-.errorMessage > p {
-  color: #197285;
-}

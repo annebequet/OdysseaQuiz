@@ -1,16 +1,23 @@
-.errorsList {
-  color: red;
-  font-size: 20px;
-}
-
 .errorMessage {
+  margin-top: 3em;
   color: red;
-  font-size: 20px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.errorMessageP {
+  color: red;
+  font-size: 1.3em;
 }
 
 .errorList {
   text-transform: capitalize;
   list-style: none;
   color: red;
-  font-size: 20px;
+  font-size: 1.3em;
+}
+.errorListLi {
+  text-transform: lowercase;
+  list-style: none;
+  color: red;
+  font-size: 1.3em;
 }
