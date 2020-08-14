@@ -1,9 +1,16 @@
 .errorsList {
-  color: white;
+  color: red;
   font-size: 20px;
 }
 
-p, ul, li{
-  color: white;
+.errorMessage {
+  color: red;
+  font-size: 20px;
+}
+
+.errorList {
+  text-transform: capitalize;
+  list-style: none;
+  color: red;
   font-size: 20px;
 }

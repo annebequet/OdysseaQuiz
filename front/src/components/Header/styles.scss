@@ -41,7 +41,7 @@
 /* Responsive conditions : what sould not be displayed depending on the screen size */
 
 /* Burger Menu small screen size */
-@media (min-width: 768px) {
+@media (min-width: 920px) {
     .menu--burger {
       display: none;
     }
@@ -141,7 +141,7 @@ svg:nth-child(1) {
 }
 
 /* Nav menu not to be displayed when on a small screen */
-@media (max-width: 767px) {
+@media (max-width: 920px) {
   .menu--desktop {
     display: none;
   }
@@ -154,7 +154,7 @@ svg:nth-child(1) {
   align-items: center;
   justify-content: flex-end;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 
@@ -170,12 +170,17 @@ svg:nth-child(1) {
 }
 
 .header__nav__register a {
-  padding-right: 5em;
+  padding-right: 1em;
   color: white;
   text-decoration: none;
 }
 
 /* Login */
+.btn {
+  background-color: none;
+  color: white;
+  font-size: 1.5rem;
+}
 .login {
   position: fixed;
   right: 3em;
@@ -249,7 +254,6 @@ svg:nth-child(1) {
   text-decoration: none;
 }
 
-.cocorico, p,  ul, li {
-  color: red;
-  font-size: 20px;
+.errorMessage > p {
+  color: #197285;
 }

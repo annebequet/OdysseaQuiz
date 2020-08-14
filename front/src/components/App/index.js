@@ -8,7 +8,6 @@ import {
 // == Import
 import Video from 'src/components/Video';
 import Header from 'src/containers/Header';
-import Footer from 'src/components/Footer';
 import Page from 'src/containers/Page';
 import Register from 'src/containers/Register';
 import Home from 'src/containers/Home';
@@ -17,6 +16,7 @@ import Category from 'src/containers/Category';
 import Profile from 'src/containers/Profile';
 import Contact from 'src/components/Contact';
 import Faq from 'src/components/Faq';
+import Footer from 'src/components/Footer';
 import Error404 from 'src/components/Error404';
 import FrontPageInformations from 'src/components/FrontPageInformations';
 import './styles.scss';

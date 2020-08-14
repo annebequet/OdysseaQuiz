@@ -39,13 +39,37 @@ const Header = ({ roles, isLogged, loginAdmin, location }) => {
           >
             Catégories
           </NavLink>
+          <NavLink
+            to="/contact"
+            className="menu__item"
+            activeClassName="menu__link--active"
+            exact
+          >
+            Contact
+          </NavLink>
+          <NavLink
+            to="/faq"
+            className="menu__item"
+            activeClassName="menu__link--active"
+            exact
+          >
+            F.A.Q
+          </NavLink>
+          <NavLink
+            to="/aboutus"
+            className="menu__item"
+            activeClassName="menu__link--active"
+            exact
+          >
+            À propos
+          </NavLink>
           {(roles.indexOf('ROLE_ADMIN') !== -1) && (
           <a
             href="http://localhost/Apotheose/Odyssea/back/odyssea/public/admin/login"
             className="menu__item"
             onClick={handleAdmin}
           >
-            admin
+            Admin
           </a>
           )}
         </nav>
