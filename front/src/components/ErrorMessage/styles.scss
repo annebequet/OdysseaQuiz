@@ -1,23 +1,39 @@
+@use 'src/styles/vars';
+
 .errorMessage {
   margin-top: 3em;
   color: red;
   font-size: 1.3em;
-  font-weight: bold;
+  font-family: vars.$font-family;
+  background-color:rgb(255,255,255, 0.8);
+  display: inline-block;
+  padding: 2rem;
 }
 .errorMessageP {
   color: red;
-  font-size: 1.3em;
+  font-size: 1.1em;
+  text-align: center
 }
 
 .errorList {
   text-transform: capitalize;
   list-style: none;
   color: red;
-  font-size: 1.3em;
+  font-size: 1em;
 }
+
+.errorList:before {
+  content: '- ';
+}
+
 .errorListLi {
   text-transform: lowercase;
   list-style: none;
   color: red;
-  font-size: 1em;
+  font-size: 0.8em;
+  padding-left: 1.5rem;
+}
+
+.errorListLi:before {
+  content: '- ';
 }
