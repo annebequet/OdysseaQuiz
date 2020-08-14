@@ -246,20 +246,24 @@ const Profile = ({
       <div className="profile__score">
         <h2 className="profile__title">Consultez votre pourcentage de réussite par catégories ci-dessous!</h2>
         <ul className="categories__ul">
-          {scores.map((score) => (
-            <li
-              key={score.category.id}
-              className="categories__item"
-            >
-              <h3>{score.category.name} </h3>
-              <img
-                className="category__score__img"
-                alt="category__picture"
-                src={score.category.picture}
-              />
-              <div className="profile__progress"><ProgressBar variant="barcustom" animated now={score.score} label={`${score.score}%`} /> </div>
-            </li>
-          ))}
+          {scores.map((score) => {
+            if (score.environment.name === environment) {
+              return (
+                <li
+                  key={score.category.id}
+                  className="categories__item"
+                >
+                  <h3>{score.category.name} </h3>
+                  <img
+                    className="category__score__img"
+                    alt="category__picture"
+                    src={score.category.picture}
+                  />
+                  <div className="profile__progress"><ProgressBar variant="barcustom" animated now={score.score} label={`${score.score}%`} /> </div>
+                </li>
+              );
+            }
+          })}
         </ul>
       </div>
     </div>
