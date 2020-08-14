@@ -156,24 +156,26 @@ svg:nth-child(1) {
 }
 
 /* Nav menu not to be displayed when on a small screen */
-@media (max-width: 1079px) {
+@media (max-width: 1080px) {
   .menu--desktop {
     display: none;
   }
 }
 /* Desktop nav styles*/
-.menu--desktop {
+@media (min-width: 1080px) {
+  .menu--desktop {
   display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: end;
     -ms-flex-pack: end;
+    display: flex;
     justify-content: flex-end;
     color: #fff;
     font-size: 1.5rem;
+  }
 }
 /* Nav Log */
 .header__nav__form {
@@ -223,7 +225,6 @@ svg:nth-child(1) {
     right: 30%;
     width: 350px;
     .login__toggler {
-      /* add display none and use blur */
       background-color: transparent;
       color: transparent;
     }
