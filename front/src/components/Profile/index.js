@@ -75,6 +75,9 @@ const Profile = ({
 
   return (
     <div className="profile">
+      {Object.keys(requestErrors).length > 0 && (
+        <ErrorMessage errors={requestErrors} />
+      )}
       <div className="profile__edit">
         <div className="profile__wrap__left">
           <img
