@@ -15,11 +15,11 @@ const Faq = () => (
 
     <h2 className="faq__title"> Comment sont calculées les notes ? </h2>
 
-    <p> Elles reflètent simplement la moyenne de toutes les notes que vous avez obtenus jusqu’à présent dans un thème donné. Pour l’améliorer, n’hésitez pas à faire et refaire les quiz ! C’est quizant qu’on devient quizeron. </p>
+    <p> Elles reflètent simplement la moyenne de toutes les notes que vous avez obtenues jusqu’à présent dans un thème donné. Pour l’améliorer, n’hésitez pas à faire et refaire les quiz ! C’est quizant qu’on devient quizeron. </p>
 
     <h2 className="faq__title"> Je veux proposer une question !</h2>
 
-    <p> Il suffit pour cela de <Link exact to="/contact">nous contacter</Link> pour nous les envoyer. </p>
+    <p> Il suffit pour cela de <Link exact="true" to="/contact">nous contacter</Link> pour nous les envoyer. </p>
 
     <h2 className="faq__title"> Je souhaite acheter un hippocampe/un poisson etc.</h2>
 
@@ -27,11 +27,11 @@ const Faq = () => (
 
     <h2 className="faq__title"> Puis-je changer mes informations ?</h2>
 
-    <p> Bien sûr ! Vous pouvez éditer votre email, votre mot de passe et même votre pseudo ! Il suffit de se connecter et d'aller sur votre profil.  </p>
+    <p> Bien sûr ! Vous pouvez éditer votre email, votre mot de passe et même votre pseudo ! Il suffit de vous connecter et d'aller sur votre profil.  </p>
 
     <h2 className="faq__title"> Je veux supprimer mon compte. </h2>
 
-    <p> Nous sommes désolés de vous voir partir ! Si vous souhaitez proposer des améliorations il est possible de <Link exact to="/contact">nous contacter</Link> par mail. Si vous êtes sûr de vouloir prendre cette décision radicale et décevante, rendez vous sur votre profil. Votre adresse email ne sera pas conservée, ni vos scores, vous devrez recommencer à zéro. </p>
+    <p> Nous sommes désolés de vous voir partir ! Si vous souhaitez proposer des améliorations il est possible de <Link exact="true" to="/contact">nous contacter</Link> par mail. Si vous êtes sûr de vouloir prendre cette décision radicale et décevante, rendez vous sur votre profil. Votre adresse email ne sera pas conservée, ni vos scores, vous devrez recommencer à zéro. </p>
 
     <h2 className="faq__title"> Je veux un autre avatar que ceux proposés. </h2>
 
