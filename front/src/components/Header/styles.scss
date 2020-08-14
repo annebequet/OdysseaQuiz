@@ -37,13 +37,19 @@
     top: 3em;
   }
 }
-
+.menu--desktop__logo {
+    width:75px;
+  }
+.menu__item > div > p {
+  width:75px;
+}
 @media (max-width: 1400px) and (min-width: 920px) {  
   .fullMenu{
     align-items: flex-start;
     padding-top: 1em;
     height: 8em;
   }
+  
 }
 
 
@@ -170,7 +176,6 @@ svg:nth-child(1) {
   font-size: 1.5rem;
 }
 
-
 /* Header Register link */
 .header__nav__register a:hover {
   color: #197285;
@@ -239,10 +244,7 @@ svg:nth-child(1) {
 }
 
 /* Link style */
-.menu--desktop__logo {
-  width:100px;
-  top:0;
-}
+
 .menu__item {
   color: white;
   font-size: medium;
