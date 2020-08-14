@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 4em;
+  height: 5em;
   margin: 0;
   padding: 1em;
   background-color: vars.$background-color-transparent;
@@ -162,7 +162,19 @@ svg:nth-child(1) {
   }
 }
 /* Desktop nav styles*/
-
+.menu--desktop {
+  display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    color: #fff;
+    font-size: 1.5rem;
+}
 /* Nav Log */
 .header__nav__form {
   display: flex;
