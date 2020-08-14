@@ -87,7 +87,7 @@ const Register = ({
         )}
 
         <div>
-          <label>Choisissez votre difficulté de jeu!</label>
+          <label className="register-field-label">Choisissez votre difficulté de jeu!</label>
         </div>
         <FieldRadioRegister
           name="environment"
@@ -106,7 +106,7 @@ const Register = ({
       )}
       {isRegistered && (
         // eslint-disable-next-line max-len
-        <p className="errorMessage">Bravo pour votre inscription, vous pouvez maintenant vous connecter et commencer à jouer dans le grand bain !</p>
+        <p className="errorMessage"><span className="register--validate">Bravo pour votre inscription, vous pouvez maintenant vous connecter et commencer à jouer dans le grand bain !</span></p>
       )}
 
       {Object.keys(requestErrors).length > 0 && !isRegistered && (

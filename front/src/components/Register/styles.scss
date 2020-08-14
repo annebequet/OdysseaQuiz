@@ -2,16 +2,20 @@
 
 .register__form {
   margin: 4em;
-  top: 2em;
   display: flex;
   flex-direction: column;
   display: inline-block;
 }
+.register__form > span {
+  color: red;
+  font-size: 1.2em;
+  font-weight: bold;
+}
 .register-field {
   &-label {
-    font-size: .8em;
-    color: vars.$background-color;
-    font-weight: bold;
+    color: white;
+    font-size: 2em;
+    font-weight: bolder;
   }
   &-input {
     border-radius: 10px;
@@ -20,25 +24,30 @@
   }
 }
 .register-form-button {
-  border-radius: 10px;
-    padding: vars.$gutter / 1.5;
+  border-radius: 5px;
+    padding: 1.5em 3em 1.5em 3em;
     margin-bottom: vars.$gutter / 2;
     font-size: .8em;
-    color: orange;
+    color: white;
     font-weight: bold;
-    background-color: white;
+    background-color: vars.$background-color;
+    border: none;
     margin: 4em;
 }
-.register-field-input {
+.register-field-input > input {
+  border-radius: 5px;
   display: inline-block;
   color: orange;
+  padding: 1em 2em;
   margin-right: 4em;
   font-weight: bold;
   font-size: medium;
   display: block;
   margin: auto;
 }
-
+.register-field-input > input::placeholder {
+  text-align: center;
+}
 .field--radio {
   font-weight: bold;
   font-size: medium;
@@ -54,10 +63,11 @@
     transform: scale(1.5);
   }
 }
-
+.register-field--radio__details {
+  color: white;
+}
 //Do not use css like that, it impacts all the labels and span on the page
 .register > label {
-  // color: orange;
   font-weight: bold;
 }
 
@@ -70,4 +80,7 @@
   display: block;
   padding: 0.5em;
   font-weight: bold;
+}
+.register--validate {
+  color: vars.$background-color
 }

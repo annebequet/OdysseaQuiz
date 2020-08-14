@@ -24,7 +24,7 @@ const FieldRadioRegister = ({
       >
         {label}
       </label>
-      <label className="field--radio__details">Quiz Enfant</label>
+      <label className="register-field--radio__details">Quiz Enfant</label>
       <input
         value="2"
         onChange={handleChange}
