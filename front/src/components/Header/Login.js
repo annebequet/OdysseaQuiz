@@ -59,7 +59,7 @@ const Login = ({
               type="submit"
               variant="primary"
             >
-              Se Connecter
+              Connexion
             </Button>
           </form>
         </Modal.Body>
