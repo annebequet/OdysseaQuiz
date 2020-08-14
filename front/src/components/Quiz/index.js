@@ -15,7 +15,6 @@ const Quiz = ({
   endQuiz,
   grade,
 }) => {
-
   // Write survey results into database and state
   const handleOnComplete = (survey) => {
     console.log(survey);
