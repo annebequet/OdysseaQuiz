@@ -55,14 +55,6 @@ const Header = ({ roles, isLogged, loginAdmin, location }) => {
           >
             F.A.Q
           </NavLink>
-          <NavLink
-            to="/aboutus"
-            className="menu__item"
-            activeClassName="menu__link--active"
-            exact
-          >
-            À propos
-          </NavLink>
           {(roles.indexOf('ROLE_ADMIN') !== -1) && (
           <a
             href="http://localhost/Apotheose/Odyssea/back/odyssea/public/admin/login"
