@@ -7,9 +7,19 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @UniqueEntity(
+ *      fields="name",
+ *      message="{{ value }} est déjà utilisé."
+ * )
+ * @UniqueEntity(
+ *      fields="picture",
+ *      message="L'image {{ value }} est déjà utilisée."
+ * )
  */
 class Category
 {
@@ -24,12 +34,26 @@ class Category
     /**
      * @ORM\Column(type="string", length=50)
      * @Groups({"categories_get", "categories_get_one", "users_get_one"})
+     * @Assert\Length(
+     *      max=12,
+     *      maxMessage="Le nom de la catégorie est trop long, merci d'en choisir un autre.",
+     *      allowEmptyString=false
+     * )
+     * @Assert\NotBlank(
+     *      message="Veuillez remplir ce champs"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"categories_get", "categories_get_one"})
+     * @Groups({"categories_get", "categories_get_one", "users_get_one"})
+     * @Assert\Url(
+     *    message = "L'url '{{ value }}' n'est pas valide.",
+     * )
+     * @Assert\NotBlank(
+     *      message="Veuillez remplir ce champs"
+     * )
      */
     private $picture;
 

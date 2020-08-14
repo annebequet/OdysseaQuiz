@@ -3,16 +3,26 @@ import PropTypes from 'prop-types';
 import Field from 'src/containers/Field';
 import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ErrorMessage from 'src/components/ErrorMessage';
 
 import './styles.scss';
 
 const Login = ({
   login,
+  requestErrors,
+  clearErrors,
 }) => {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false);
+    clearErrors();
+  };
+
+  const handleShow = () => {
+    setShow(true);
+    clearErrors();
+  };
 
   const handleOnSubmit = (evt) => {
     evt.preventDefault();
@@ -20,8 +30,8 @@ const Login = ({
   };
 
   return (
-    <>
-      <Button variant="primary" onClick={handleShow}>
+    <div>
+      <Button variant="btn" onClick={handleShow}>
         Se Connecter
       </Button>
 
@@ -48,23 +58,27 @@ const Login = ({
               className="login__submit"
               type="submit"
               variant="primary"
-              onClick={handleClose}
             >
               Se Connecter
             </Button>
           </form>
         </Modal.Body>
         <Modal.Footer>
+          {Object.keys(requestErrors).length > 0 && (
+          <ErrorMessage className="errorMessage errorList" errors={requestErrors} />
+          )}
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  requestErrors: PropTypes.object.isRequired,
 };
 export default Login;

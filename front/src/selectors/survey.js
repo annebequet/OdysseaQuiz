@@ -3,14 +3,14 @@ export const changeCSSStyles = (survey, options) => {
   const span = document.createElement('span');
   const isCorrect = options.question.isAnswerCorrect();
   span.innerHTML = isCorrect
-    ? 'Correct'
-    : 'Incorrect';
+    ? '<br>Correct'
+    : '<br>Incorrect';
   span.style.color = isCorrect
-    ? 'green'
-    : 'red';
+    ? 'rgba(1, 1, 36)'
+    : 'white';
   const header = options.htmlElement.querySelector('h5');
   if (!isCorrect) {
-    header.style.backgroundColor = 'salmon';
+    header.style.backgroundColor = 'rgb(255, 165, 0, 0.5)';
     const radio = options.htmlElement.querySelector(`input[value="${options.question.correctAnswer}"]`);
     radio.parentElement.style.color = 'green';
   }
@@ -46,7 +46,7 @@ const shuffle = (array) => {
 };
 
 const get10RandomQuestions = (quiz) => {
-  return shuffle(quiz);
+  shuffle(quiz);
   // eslint-disable-next-line no-unreachable
   return quiz.slice(0, 10);
 };
@@ -57,7 +57,7 @@ const getIntroductionQuizText = (quiz) => {
     text = "Nous n'avons pas encore de questions pour cette catégorie, revenez bientôt !";
   }
   else {
-    text = "Vous êtes sur le point de commencer notre super quiz. <br/>Vous avez 10 secondes par page et 25 secondes en total pour ce quiz de 10 questions.<br/>Cliquez sur le bouton <b>'Commencer'</b> quand vous êtes prêts. Enjoy !";
+    text = "Vous êtes sur le point de commencer notre super quiz. <br/>Vous avez 1mn par question.<br/>Cliquez sur le bouton <b>'Commencer'</b> quand vous êtes prêts !";
   }
   return text;
 };
@@ -65,18 +65,21 @@ const getIntroductionQuizText = (quiz) => {
 export const transformQuestionsInSurveyObject = (allQuestions, category) => {
   const quiz = get10RandomQuestions(allQuestions);
 
-  const newQuestions = quiz.map((question) => ({
-    questions: [
-      question,
-    ],
-  }));
+  const newQuestions = quiz.map((question) => {
+    question["choices"] = Object.values(question["choices"]);
+    return {
+      questions: [
+        question,
+      ],
+    };
+  });
 
   return {
     title: category,
     showProgressBar: 'bottom',
     showTimerPanel: 'top',
-    maxTimeToFinishPage: 10,
-    maxTimeToFinish: 25,
+    //maxTimeToFinishPage: 60,
+    //maxTimeToFinish: 25,
     firstPageIsStarted: true,
     startSurveyText: 'Commencer',
     locale: 'fr',

@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Score;
 use App\Repository\UserRepository;
 use App\Repository\ScoreRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +28,7 @@ class UserController extends AbstractController
     public function getAll(UserRepository $userRepository)
     {
         $users = $userRepository->findAll();
-        dump($users);
+        //dump($users);
 
         return $this->json($users, 200, [], ['groups' => 'users_get']);
     }
@@ -41,11 +42,11 @@ class UserController extends AbstractController
     {
         // Custom request
         $userFull = $userRepository->find($user);
-        dump($userFull);
+        //dump($userFull);
 
         // Check if the User exists, if not, return 404
         if ($user === null) {
-            return $this->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+            return $this->json(['error' => 'Utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
         return $this->json($userFull, 200, [], ['groups' => 'users_get_one']);
@@ -61,7 +62,7 @@ class UserController extends AbstractController
     {
         // Verify if the user exists
         if(!$user) {
-            return $this->json(['error' => 'utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
+            return $this->json(['error' => 'Utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
         // Get the content of the request
@@ -96,11 +97,14 @@ class UserController extends AbstractController
             $updatedUser->setPassword($encodedPassword);
         }
 
+        // Set the new updatedAt datetime
+        $em = $updatedUser->setUpdatedAt(new \DateTime());
+
         // Save and flush
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
-        return $this->json(['message' => 'User updated'], Response::HTTP_OK);
+        return $this->json(['message' => 'Utilisateur modifié'], Response::HTTP_OK);
     }
 
     /**
@@ -112,14 +116,14 @@ class UserController extends AbstractController
     {
         // Check if the User exists, if not, return 404
         if ($user === null) {
-            return $this->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+            return $this->json(['error' => 'Utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
         // Remove the User from the database
         $em->remove($user);
         $em->flush();
 
-        return $this->json(['message' => 'User deleted'], Response::HTTP_OK);
+        return $this->json(['message' => 'Utilisateur supprimé'], Response::HTTP_OK);
     }
 
     /**
@@ -127,7 +131,7 @@ class UserController extends AbstractController
      *
      * @Route("/api/score", name="api_add_score", methods={"POST"})
     */
-    public function addScore(EntityManagerInterface $em, SerializerInterface $serializer, ScoreRepository $scoreRepository, Request $request)
+    public function addScore(EntityManagerInterface $em, SerializerInterface $serializer, ScoreRepository $scoreRepository, Request $request, ValidatorInterface $validator)
     {
         // Get the content of the request
         $content = $request->getContent();
@@ -136,6 +140,17 @@ class UserController extends AbstractController
         $score = $serializer->deserialize($content, Score::class, 'json');
 
         //dd($score);
+        // Validate the entity with the validator service
+        $errors = $validator->validate($score);
+
+        // If there are errors, return the array in JSON format
+        if(count($errors) > 0) {
+            $errorsArray = [];
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
 
         $scoreLine = $scoreRepository->findOneBy([
             'user' => $score->getUser(),
@@ -152,7 +167,7 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($score);
             $entityManager->flush();
-            return $this->json(['message' => 'Score added'], Response::HTTP_CREATED);
+            return $this->json(['message' => 'Score ajouté'], Response::HTTP_CREATED);
 
         } else {
                    
@@ -169,7 +184,7 @@ class UserController extends AbstractController
 
             $em->flush();
 
-            return $this->json(['message' => 'Score updated'], Response::HTTP_OK);
+            return $this->json(['message' => 'Score modifié'], Response::HTTP_OK);
         }
     }
 }

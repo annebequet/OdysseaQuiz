@@ -5,6 +5,7 @@
   top: 2em;
   display: flex;
   flex-direction: column;
+  display: inline-block;
 }
 .register-field {
   &-label {
@@ -13,7 +14,6 @@
     font-weight: bold;
   }
   &-input {
-    border: none;
     border-radius: 10px;
     padding: vars.$gutter / 1.5;
     margin-bottom: vars.$gutter;
@@ -30,12 +30,13 @@
     margin: 4em;
 }
 .register-field-input {
-
-  border: none;
+  display: inline-block;
   color: orange;
   margin-right: 4em;
   font-weight: bold;
   font-size: medium;
+  display: block;
+  margin: auto;
 }
 
 .field--radio {
@@ -53,7 +54,20 @@
     transform: scale(1.5);
   }
 }
-label {
-  color: orange;
+
+//Do not use css like that, it impacts all the labels and span on the page
+.register > label {
+  // color: orange;
+  font-weight: bold;
+}
+
+.register > span {
+  //color: orange;
+  font-size: 20px;
+  display: inline-block;
+  margin: auto;
+  margin-bottom: 1rem;
+  display: block;
+  padding: 0.5em;
   font-weight: bold;
 }

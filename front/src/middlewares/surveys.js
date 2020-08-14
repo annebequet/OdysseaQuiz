@@ -30,7 +30,7 @@ export default (store) => (next) => (action) => {
         const { id: category } = state.surveys.surveyCategory;
         const user = sessionStorage.getItem('id');
         const points = action.numberOfCorrectAnswers;
-        axios.post(`http://54.226.34.31/back/api/score`, {
+        axios.post('http://54.226.34.31/back/api/score', {
           environment,
           category,
           user,

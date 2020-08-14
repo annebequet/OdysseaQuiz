@@ -49,8 +49,9 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         isCompleted: false,
-        surveyAnswers: {},
-        points: 0,
+        isChildQuizCompleted: false,
+        //surveyAnswers: {},
+        //points: 0,
       };
     default:
       return state;
