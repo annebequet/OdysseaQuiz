@@ -45,7 +45,8 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Odyssea');
+            ->setTitle('Odyssea')
+            ->setFaviconPath('https://icon-icons.com/icons2/519/PNG/128/jellyfish_icon-icons.com_51220.png');
     }
 
     public function configureMenuItems(): iterable
