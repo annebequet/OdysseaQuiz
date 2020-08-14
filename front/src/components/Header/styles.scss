@@ -149,6 +149,9 @@ svg:nth-child(1) {
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+.burger-menu__footer {
+  margin-top: 6em;
+}
 
 /* Nav menu not to be displayed when on a small screen */
 @media (max-width: 920px) {
@@ -236,6 +239,10 @@ svg:nth-child(1) {
 }
 
 /* Link style */
+.menu--desktop__logo {
+  width:100px;
+  top:0;
+}
 .menu__item {
   color: white;
   font-size: medium;

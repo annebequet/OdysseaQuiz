@@ -13,7 +13,16 @@ const Title = ({ location }) => {
         <h1 className={titleClassName}>ODYSSEA QUIZ</h1>
       </div>
       <div className="introductionText">
-        <p className={`text ${textClassName}`}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p className={`text ${textClassName}`}>Bienvenue sur Odyssea Quiz !<br /> <br />
+
+          L’environnement et sa dégradation sont au cœur des débats d’aujourd’hui, 
+          tout le monde s’accorde pour dire qu’il est urgent de les protéger.  
+          Nous avons pour vocation de sensibiliser et éduquer les plus petits comme les plus grands 
+          sur les fonds marins de façon ludique et amusante : 
+          à l’aide de quiz ! 
+          Vous pouvez entrer en compétition avec vos amis mais aussi en famille, 
+          choisissez votre environnement de jeu, inscrivez-vous et c’est parti !
+        </p>
       </div>
     </div>
   );

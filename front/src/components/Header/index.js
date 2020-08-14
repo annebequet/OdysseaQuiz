@@ -12,7 +12,9 @@ import RegisterButton from './RegisterButton';
 
 import './styles.scss';
 
-const Header = ({ roles, isLogged, loginAdmin, location }) => {
+const Header = ({
+  roles, isLogged, loginAdmin, location,
+}) => {
   const handleAdmin = () => {
     loginAdmin();
   };
@@ -23,6 +25,15 @@ const Header = ({ roles, isLogged, loginAdmin, location }) => {
     <div className={`header ${headerHeight}`}>
       <div className="fullMenu">
         <nav className="menu--desktop">
+          <NavLink
+            to="/"
+            className="menu__item"
+            activeClassName="menu__link--active"
+            exact
+          >
+            <img className="menu--desktop__logo" alt="whale-logo" src={WhaleLogo} />
+          </NavLink>
+
           <NavLink
             to="/"
             className="menu__item"
@@ -109,6 +120,7 @@ const Header = ({ roles, isLogged, loginAdmin, location }) => {
               FAQ
             </NavLink>
             <img className="logo" alt="whale-logo" src={WhaleLogo} />
+            <div className="burger-menu__footer">&copy; Odyssea Quiz Corporation All Rights Reserved</div>
           </Menu>
         </nav>
         {(!isLogged) && (
