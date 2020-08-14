@@ -28,7 +28,7 @@
 }
 
 /* small screen size */
-@media (max-width: 768px) {
+@media (max-width: 920px) {
   .header {
     top: 3em;
   }
@@ -38,6 +38,15 @@
   }
 }
 
+@media (max-width: 1400px) and (min-width: 920px) {  
+  .fullMenu{
+    align-items: flex-start;
+    padding-top: 1em;
+    height: 8em;
+  }
+}
+
+
 /* Responsive conditions : what sould not be displayed depending on the screen size */
 
 /* Burger Menu small screen size */
@@ -45,6 +54,7 @@
     .menu--burger {
       display: none;
     }
+
   }
 /* Burger menu styles */
 .bm-burger-button {

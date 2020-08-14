@@ -57,7 +57,7 @@ const getIntroductionQuizText = (quiz) => {
     text = "Nous n'avons pas encore de questions pour cette catégorie, revenez bientôt !";
   }
   else {
-    text = "Vous êtes sur le point de commencer notre super quiz. <br/>Vous avez 1mn par question.<br/>Cliquez sur le bouton <b>'Commencer'</b> quand vous êtes prêts !";
+    text = "Vous êtes sur le point de commencer notre super quiz. <br/>Vous avez 1mn par question.<br/>Cliquez sur le bouton <b>'Commencer'</b> quand vous êtes prêt !";
   }
   return text;
 };
@@ -78,7 +78,7 @@ export const transformQuestionsInSurveyObject = (allQuestions, category) => {
     title: category,
     showProgressBar: 'bottom',
     showTimerPanel: 'top',
-    //maxTimeToFinishPage: 60,
+    maxTimeToFinishPage: 60,
     //maxTimeToFinish: 25,
     firstPageIsStarted: true,
     startSurveyText: 'Commencer',

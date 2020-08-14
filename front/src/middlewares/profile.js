@@ -158,6 +158,8 @@ const categories = (store) => (next) => (action) => {
     case HANDLE_EDIT_ENVIRONMENT: {
       const state = store.getState();
       const { newEnvironment: environment } = state.profile;
+      window.sessionStorage.removeItem('environment');
+      window.sessionStorage.setItem('environment', environment);
       const id = sessionStorage.getItem('id');
       axios.put(`http://54.226.34.31/back/api/users/${id}`, {
         environment,

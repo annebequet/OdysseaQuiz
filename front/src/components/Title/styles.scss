@@ -46,7 +46,7 @@
 }
 
 /* small screen size */
-@media (max-width: 768px) {
+@media (max-width: 920px) {
   .title__otherPages {
     top: 0.5em;
   }
@@ -66,5 +66,18 @@
     background-color: #197285;
     justify-content: center;
     padding: 0.5em;
+  }
+}
+
+@media (max-width: 1400px) and (min-width: 920px) {
+  .title__otherPages {
+    top: 3em;
+  }
+}
+
+@media (min-width: 1400px) {
+  .title__otherPages {
+    margin-left: 10vw;
+    top: 19px;
   }
 }

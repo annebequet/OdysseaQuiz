@@ -20,7 +20,7 @@ const LoggedNav = ({ handleLogout, pseudo }) => (
         className="menu__item menu__item--logout"
         onClick={handleLogout}
       >
-        Se déconnecter
+        Déconnexion
       </a>
     </nav>
   </div>
