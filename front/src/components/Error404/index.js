@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Shark from 'src/assets/images/shark404.jpg';
 import './styles.scss';
@@ -16,8 +17,8 @@ const Error404 = () => {
   );
   return showLoading && (
     <div className="error404">
-      <h2 className="error404__title">Error404...</h2>
-      <p>Aucune page correspondante à votre recherche! Retournez dans l'eau!</p>
+      <h2 className="error404__title">Erreur 404...</h2>
+      <p>Aucune page correspondante à votre recherche ! Retournez dans l'eau en cliquant <Link exact to="/">ici</Link> !</p>
       <img
         alt="sad-shark"
         className="error404__img"
@@ -25,5 +26,6 @@ const Error404 = () => {
       />
     </div>
   );
-}
+};
+
 export default Error404;
