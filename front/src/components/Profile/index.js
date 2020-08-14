@@ -182,6 +182,7 @@ const Profile = ({
                     placeholder="nouveau mot de passe"
                     onChange={changeInput}
                     value={newPassword}
+                    type="password"
                   />
                   <button
                     className="profile__edit--submit"
