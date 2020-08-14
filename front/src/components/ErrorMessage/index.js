@@ -6,7 +6,7 @@ import './styles.scss';
 
 const ErrorMessage = ({ errors }) => (
   <div className="errorMessage">
-    <p>Erreur, on reste calme, on rajuste ses brassières, et on réessaie. </p>
+    <p className="errorMessageP">Erreur, on reste calme, on rajuste ses brassières, et on réessaie. </p>
     { Normalizer(errors) }
   </div>
 );

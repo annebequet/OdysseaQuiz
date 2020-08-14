@@ -28,7 +28,7 @@ const login = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response);
-          store.dispatch(setRequestError({ 'Erreur de connexion': ['Demande à BobMorgane'] }));
+          store.dispatch(setRequestError({ 'Erreur de connexion': ['Demande à Bob Morgane'] }));
         });
 
       next(action);
