@@ -56,12 +56,12 @@
 }
 
 //Do not use css like that, it impacts all the labels and span on the page
-label {
-  //color: orange;
+.register > label {
+  // color: orange;
   font-weight: bold;
 }
 
-span {
+.register > span {
   //color: orange;
   font-size: 20px;
   display: inline-block;

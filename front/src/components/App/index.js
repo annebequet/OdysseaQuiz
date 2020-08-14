@@ -16,7 +16,7 @@ import Category from 'src/containers/Category';
 import Profile from 'src/containers/Profile';
 import Contact from 'src/components/Contact';
 import Faq from 'src/components/Faq';
-import AboutUs from 'src/components/AboutUs';
+import Footer from 'src/components/Footer';
 import Error404 from 'src/components/Error404';
 import FrontPageInformations from 'src/components/FrontPageInformations';
 import './styles.scss';
@@ -124,14 +124,6 @@ const App = ({
               <Faq />
             </Page>
           </Route>
-          <Route
-            exact
-            path="/aboutus"
-          >
-            <Page>
-              <AboutUs />
-            </Page>
-          </Route>
           <Route path="*">
             <Page>
               <Error404 />
@@ -141,6 +133,7 @@ const App = ({
         {/*{location === '/' && (
         <div className="frontPageImageBottom" />
         )}*/}
+        <Footer />
       </div>
     </div>
   );

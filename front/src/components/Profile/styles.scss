@@ -3,7 +3,8 @@
 .profile {
   margin: 1em;
   text-shadow: 4px 2px 4px black;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   margin-bottom: 3em;
   z-index: 1;
   .profile__odyssea__avatar {
