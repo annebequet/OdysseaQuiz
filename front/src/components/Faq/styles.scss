@@ -27,3 +27,9 @@
 .faq a {
   color: vars.$light-color;
 }
+
+@media (max-width: 920px) {
+  .faq {
+    margin: 2em;
+  }
+}
