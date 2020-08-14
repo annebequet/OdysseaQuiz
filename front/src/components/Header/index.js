@@ -39,6 +39,22 @@ const Header = ({ roles, isLogged, loginAdmin, location }) => {
           >
             Catégories
           </NavLink>
+          <NavLink
+            to="/contact"
+            className="menu__item"
+            activeClassName="menu__link--active"
+            exact
+          >
+            Contact
+          </NavLink>
+          <NavLink
+            to="/faq"
+            className="menu__item"
+            activeClassName="menu__link--active"
+            exact
+          >
+            F.A.Q
+          </NavLink>
           {(roles.indexOf('ROLE_ADMIN') !== -1) && (
           <a
             href="http://54.226.34.31/back/admin/login"

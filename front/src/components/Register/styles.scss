@@ -54,13 +54,15 @@
     transform: scale(1.5);
   }
 }
-label {
-  color: orange;
+
+//Do not use css like that, it impacts all the labels and span on the page
+.register > label {
+  // color: orange;
   font-weight: bold;
 }
 
-span {
-  color: orange;
+.register > span {
+  //color: orange;
   font-size: 20px;
   display: inline-block;
   margin: auto;

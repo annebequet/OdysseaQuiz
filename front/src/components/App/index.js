@@ -8,7 +8,6 @@ import {
 // == Import
 import Video from 'src/components/Video';
 import Header from 'src/containers/Header';
-import Footer from 'src/components/Footer';
 import Page from 'src/containers/Page';
 import Register from 'src/containers/Register';
 import Home from 'src/containers/Home';
@@ -17,6 +16,7 @@ import Category from 'src/containers/Category';
 import Profile from 'src/containers/Profile';
 import Contact from 'src/components/Contact';
 import Faq from 'src/components/Faq';
+import Footer from 'src/components/Footer';
 import Error404 from 'src/components/Error404';
 import FrontPageInformations from 'src/components/FrontPageInformations';
 import './styles.scss';
@@ -29,7 +29,7 @@ const App = ({
   updateLocation,
   clearErrors,
   isLogged,
-  location,
+  myLocation,
 }) => {
   useEffect(checkIsLogged, []);
 
@@ -48,10 +48,10 @@ const App = ({
       <Video />
       <div className="mainPage">
         <Header />
-        {location === '/' && (
+        {myLocation === '/' && (
         <FrontPageInformations />
         )}
-        {location === '/' && (
+        {myLocation === '/' && (
         <div className="frontPageImage">
           <h1 className="playText">A vous de jouer !</h1>
         </div>
@@ -130,9 +130,9 @@ const App = ({
             </Page>
           </Route>
         </Switch>
-        {location === '/' && (
+        {/*{location === '/' && (
         <div className="frontPageImageBottom" />
-        )}
+        )}*/}
         <Footer />
       </div>
     </div>
@@ -146,7 +146,7 @@ App.propTypes = {
   clearErrors: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  location: PropTypes.string.isRequired,
+  myLocation: PropTypes.string.isRequired,
 };
 
 // == Export

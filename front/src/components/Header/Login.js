@@ -31,7 +31,7 @@ const Login = ({
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="btn" onClick={handleShow}>
         Se Connecter
       </Button>
 
@@ -65,7 +65,7 @@ const Login = ({
         </Modal.Body>
         <Modal.Footer>
           {Object.keys(requestErrors).length > 0 && (
-          <ErrorMessage className="cocorico" errors={requestErrors} />
+          <ErrorMessage className="errorMessage errorList" errors={requestErrors} />
           )}
           <Button variant="secondary" onClick={handleClose}>
             Close

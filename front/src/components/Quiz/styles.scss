@@ -1,4 +1,7 @@
 @use 'src/styles/vars';
+.survey {
+  margin: 40px 0;  
+}
 
 .sv_main{
   max-width: 500px;
@@ -80,6 +83,43 @@
   margin: 0;
   padding: 0;
   font-family: 'GT America Extended';
-  color: vars.$light-color;
+  //color: vars.$light-color;
 }
 
+.sv_main span{
+  margin-top: -9px;
+}
+
+.sv_q_title span{
+  margin-top: -20px;
+  font-size: 1.2rem;
+  font-family: 'GT America Extended';
+}
+
+.sv_q_radiogroup span span {
+  margin-top: -9px;
+  font-size: 1.2rem;
+  font-family: 'GT America Extended';
+  font-weight: 100;
+}
+
+.sv_progress div span {
+  font-size: 1.2rem;
+  font-family: 'GT America Extended';
+  font-weight: 100;
+}
+
+.endQuiz {
+  background-color: rgba(1,1,36,.8);
+  font-size: 1.2rem;
+  color: white;
+  padding: 10px 50px;
+  text-transform: uppercase;
+  font-weight: 200;
+}
+
+.endQuiz:hover {
+  background-color: white;
+  color: vars.$light-color;
+  border: 1px solid vars.$light-color;
+}
