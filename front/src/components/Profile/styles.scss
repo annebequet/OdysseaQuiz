@@ -9,7 +9,9 @@
   z-index: 1;
   & h3 {
     color: white;
+    font-family: 'GT America Extended', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
+
   .profile__odyssea__avatar {
     max-width: 290px
   }
@@ -28,9 +30,11 @@
   &__title {
     color: white;
     font-size: 2em;
-    font-weight: bolder;
+    font-weight: 100;
     margin-top: 2em;
     margin-bottom: 3em;
+    font-family: vars.$font-family;
+    background-color: vars.$light-color;
   }
   .profile__edit__form {
     & label {

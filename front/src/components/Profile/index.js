@@ -76,7 +76,7 @@ const Profile = ({
   return (
     <div className="profile">
       {Object.keys(requestErrors).length > 0 && (
-        <ErrorMessage errors={requestErrors} />
+      <ErrorMessage errors={requestErrors} />
       )}
       <div className="profile__edit">
         <div className="profile__wrap__left">
@@ -241,7 +241,6 @@ const Profile = ({
               </Accordion.Collapse>
             </Card>
           </Accordion>
-
         </div>
       </div>
       <div className="profile__score">
