@@ -22,15 +22,15 @@ h3 {
 .category__img {
   border-radius: 20px;
 }
-@media (max-width: 320px) {
+@media (max-width: 760px) {
   .category__img {
-    width: 300px;
+    width: 200px;
     height: 150px;
   }
 }
-@media (min-width: 320px) {
+@media (min-width: 760px) {
   .category__img {
-    width: 500px;
+    width: 400px;
     height: 350px;
   }
 }

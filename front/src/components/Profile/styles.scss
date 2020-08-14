@@ -54,7 +54,8 @@
     padding: vars.$gutter / 1.5;
     margin-bottom: vars.$gutter;
     background-color: vars.$background-color;
-    color: vars.$title-color;
+    margin-top: 1em;
+    color: white;
     font-weight: bold;
 
   }
@@ -142,6 +143,9 @@
   font-size: 1.3em;
   font-weight: bold;
   color: orange;
+}
+.profile__progress > div {
+  height: 2em;
 }
 
 @media (max-width: 100px) {
