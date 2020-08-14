@@ -241,7 +241,7 @@ const Profile = ({
         </div>
       </div>
       <div className="profile__score">
-        <h2 className="profile__title">Consultez vos scores par catégories ci-dessous!</h2>
+        <h2 className="profile__title">Consultez votre pourcentage de réussite par catégories ci-dessous!</h2>
         <ul className="categories__ul">
           {scores.map((score) => (
             <li
@@ -254,7 +254,7 @@ const Profile = ({
                 alt="category__picture"
                 src={score.category.picture}
               />
-              <div><ProgressBar animated now={score.score} label={`${score.score}%`} /> </div>
+              <div className="profile__progress"><ProgressBar variant="barcustom" animated now={score.score} label={`${score.score}%`} /> </div>
             </li>
           ))}
         </ul>
