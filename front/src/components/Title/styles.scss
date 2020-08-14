@@ -1,3 +1,5 @@
+@use 'src/styles/vars';
+
 .introductionInformations {
   top: 20vh;
   position: absolute;
@@ -7,17 +9,20 @@
 .title {
   z-index: 1000;
 }
-.text {
-  position: absolute;    
-    color: white;
-    padding-top: 4em;
+.textTitle {
+    margin-top: 4em;
     font-size: 1.2rem;
-    width: 70%;
+    width: 55%;
+    margin-right: 8vw;
+    padding: 1em;
+    background-color: hsl(191, 68%, 31%, 70%);
 }
+
+
 
 .introductionText {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .text__otherPages{
@@ -66,6 +71,13 @@
     background-color: #197285;
     justify-content: center;
     padding: 0.5em;
+  }
+  .text__frontPage {
+    width: 90%;
+    margin: 0 3em;
+  }  
+  .introduction__frontPage {
+    justify-content: center;
   }
 }
 

@@ -6,14 +6,15 @@ import './styles.scss';
 const Title = ({ location }) => {
   const titleClassName = location === '/' ? 'title__frontPage' : 'title__otherPages';
   const textClassName = location === '/' ? 'text__frontPage' : 'text__otherPages';
+  const introductionTextClassName = location === '/' ? 'introduction__frontPage' : 'introduction__otherPages';
 
   return (
     <div className="introductionInformations">
       <div className="title">
         <h1 className={titleClassName}>ODYSSEA QUIZ</h1>
       </div>
-      <div className="introductionText">
-        <p className={`text ${textClassName}`}>Bienvenue sur Odyssea Quiz !<br /> <br />
+      <div className={`introductionText ${introductionTextClassName}`}>
+        <p className={`textTitle ${textClassName}`}>Bienvenue sur Odyssea Quiz !<br /> <br />
 
           L’environnement et sa dégradation sont au cœur des débats d’aujourd’hui, 
           tout le monde s’accorde pour dire qu’il est urgent de les protéger.  
