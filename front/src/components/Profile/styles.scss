@@ -20,6 +20,7 @@
     font-size: 2em;
     margin-bottom: 1em;
     padding: 0.5em;
+    font-weight: bold;
   }
   @media (max-width: 820px) {
   &__edit {
@@ -35,6 +36,7 @@
     margin-right: 2em;
     margin-bottom: 3em;
     font-family: vars.$font-family;
+    font-weight: bold;
   }
   .profile__edit__form {
     & label {
