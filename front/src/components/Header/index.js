@@ -120,7 +120,7 @@ const Header = ({
               FAQ
             </NavLink>
             <img className="logo" alt="logo" src={Logo} />
-            <div className="burger-menu__footer">&copy; Odyssea Quiz Corporation All Rights Reserved</div>
+            <p className="burger-menu__footer">&copy; Odyssea Quiz Corporation All Rights Reserved</p>
           </Menu>
         </nav>
         {(!isLogged) && (

@@ -48,7 +48,7 @@
 /* Responsive conditions : what sould not be displayed depending on the screen size */
 
 /* Burger Menu small screen size */
-@media (min-width: 920px) {
+@media (min-width: 1080px) {
     .menu--burger {
       display: none;
     }
@@ -78,7 +78,7 @@
 .bm-cross-button {
   height: 50px;
   width: 200px;
-  margin-right: 23%;
+  margin-right: 10%;
   padding-left: 60px;
   padding-bottom: 60px;
 }
@@ -136,6 +136,8 @@ svg:nth-child(1) {
 .bm-item-list {
   color: #b8b7ad;
   padding: 0.8em;
+  overflow-x: scroll;
+
 }
 
 /* Individual item */
@@ -146,13 +148,15 @@ svg:nth-child(1) {
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+  z-index: 900;
 }
 .burger-menu__footer {
   margin-top: 6em;
+  padding-bottom: 3em;
 }
 
 /* Nav menu not to be displayed when on a small screen */
-@media (max-width: 920px) {
+@media (max-width: 1079px) {
   .menu--desktop {
     display: none;
   }
