@@ -10,6 +10,7 @@ const initialState = {
   surveyCategory: '',
   surveyTitle: '',
   surveys: {},
+  completedSurveyData: {},
   surveyLoading: true,
   isCompleted: false,
   isChildQuizCompleted: false,
@@ -33,6 +34,7 @@ export default (state = initialState, action = {}) => {
         isChildQuizCompleted: action.isChildQuiz,
         surveyAnswers: action.answers,
         points: action.numberOfCorrectAnswers,
+        completedSurveyData: action.surveyData,
       };
     case GET_SURVEYS:
       return {

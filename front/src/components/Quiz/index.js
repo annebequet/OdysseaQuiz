@@ -8,6 +8,7 @@ import './styles.scss';
 
 const Quiz = ({
   surveyData,
+  completedSurveyData,
   isCompleted,
   surveyAnswers,
   sendResults,
@@ -17,9 +18,10 @@ const Quiz = ({
 
   // Write survey results into database and state
   const handleOnComplete = (survey) => {
+    console.log(survey);
     const answers = survey.data;
     const numberOfCorrectAnswers = survey.getCorrectedAnswerCount();
-    sendResults(answers, numberOfCorrectAnswers);
+    sendResults(answers, numberOfCorrectAnswers, surveyData);
   };
 
   // Adapt the css style of the correct and wrong answers
@@ -49,7 +51,7 @@ const Quiz = ({
         <div className="results">
           <Survey.Survey
             title={getResultTitle(grade)}
-            json={surveyData}
+            json={completedSurveyData}
             data={surveyAnswers}
             showCompletedPage={false}
             mode="display"
@@ -74,6 +76,7 @@ const Quiz = ({
 
 Quiz.propTypes = {
   surveyData: PropTypes.object.isRequired,
+  completedSurveyData: PropTypes.object.isRequired,
   isCompleted: PropTypes.bool.isRequired,
   sendResults: PropTypes.func.isRequired,
   endQuiz: PropTypes.func.isRequired,

@@ -147,6 +147,7 @@ const categories = (store) => (next) => (action) => {
           store.dispatch(saveEmail(response.data.email));
           store.dispatch(saveScores(response.data.scores));
           store.dispatch(saveEnvironment(response.data.environment.name));
+          //window.sessionStorage.setItem('environment', response.data.environment.id);
         })
         .catch((error) => {
           console.log(error.response);
@@ -158,8 +159,8 @@ const categories = (store) => (next) => (action) => {
     case HANDLE_EDIT_ENVIRONMENT: {
       const state = store.getState();
       const { newEnvironment: environment } = state.profile;
-      window.sessionStorage.removeItem('environment');
-      window.sessionStorage.setItem('environment', environment);
+      //window.sessionStorage.removeItem('environment');
+      //window.sessionStorage.setItem('environment', environment);
       const id = sessionStorage.getItem('id');
       axios.put(`http://54.226.34.31/back/api/users/${id}`, {
         environment,
