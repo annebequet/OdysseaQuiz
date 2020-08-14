@@ -259,7 +259,8 @@ svg:nth-child(1) {
 }
 /* if user is logged */
 .menu__item--logout:hover {
-  color: #197285,
+  color: #197285;
+  cursor: pointer;
 }
 
 .menu__item:hover {
