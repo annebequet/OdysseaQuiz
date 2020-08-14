@@ -52,7 +52,7 @@ class Score
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="scores", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull
      */
