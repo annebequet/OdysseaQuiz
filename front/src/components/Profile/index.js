@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { Accordion, Button, Card, ProgressBar } from 'react-bootstrap';
+import {
+  Accordion, Button, Card, ProgressBar,
+} from 'react-bootstrap';
 import './styles.scss';
 
 import TurtleImage from 'src/assets/images/turtle.jpg';
@@ -33,6 +35,7 @@ const Profile = ({
   handleEditAvatar,
   getAvatars,
   avatars,
+  environment,
   scores,
   requestErrors,
   // selectedOption,
@@ -82,7 +85,7 @@ const Profile = ({
             alt="odyssea__avatar"
             src={avatar.imageUrl}
           />
-          <h3 className="profile__pseudo">Pseudo : {pseudo}</h3>
+          <h3 className="profile__pseudo">Pseudo : {pseudo}<br /><br /> Difficulté : {environment} </h3>
         </div>
         <div className="profile__wrap__right">
           <Accordion className="accordion">
@@ -293,6 +296,7 @@ Profile.propTypes = {
       name: PropTypes.string,
     }),
   ).isRequired,
+  environment: PropTypes.string.isRequired,
   scores: PropTypes.array.isRequired,
   requestErrors: PropTypes.object.isRequired,
 };

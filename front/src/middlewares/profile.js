@@ -13,6 +13,7 @@ import {
   saveAvatars,
   saveEmail,
   saveScores,
+  saveEnvironment,
 } from 'src/actions/profile';
 
 const categories = (store) => (next) => (action) => {
@@ -145,6 +146,7 @@ const categories = (store) => (next) => (action) => {
           console.log(response.data);
           store.dispatch(saveEmail(response.data.email));
           store.dispatch(saveScores(response.data.scores));
+          store.dispatch(saveEnvironment(response.data.environment.name));
         })
         .catch((error) => {
           console.log(error.response);
