@@ -27,12 +27,15 @@
   border-radius: 5px;
     padding: 1.5em 3em 1.5em 3em;
     margin-bottom: vars.$gutter / 2;
-    font-size: .8em;
+    font-size: 1em;
     color: white;
-    font-weight: bold;
+    font-weight: bolder;
     background-color: vars.$background-color;
     border: none;
     margin: 4em;
+    &:hover {
+      color: #197285;
+    }
 }
 .register-field-input > input {
   border-radius: 5px;

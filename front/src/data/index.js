@@ -1,31 +1,31 @@
 export default [
   {
     type: 'radiogroup',
-    name: 'civilwar',
-    title: 'When was the Civil War?',
+    name: 'ocean',
+    title: 'Quel est l\'océan le plus vaste ?',
     choices: [
-      '1750-1800', '1800-1850', '1850-1900', '1900-1950', 'after 1950',
+      'L\'océan Atlantique', 'L\'océan Indien', 'L\'océan Pacifique',
     ],
-    correctAnswer: '1850-1900',
+    correctAnswer: 'L\'océan Pacifique',
   },
   {
     type: 'radiogroup',
-    name: 'libertyordeath',
-    title: "Who said 'Give me liberty or give me death?",
+    name: 'waterpercent',
+    title: 'Quel pourcentage approximatif de la surface du globe représente l\'ensemble des océans ?',
     choicesOrder: 'random',
     choices: [
-      'John Hancock', 'James Madison', 'Patrick Henry', 'Samuel Adams',
+      '25%', '70%', '50%', '85%',
     ],
-    correctAnswer: 'Patrick Henry',
+    correctAnswer: '70%',
   },
   {
     type: 'radiogroup',
-    name: 'magnacarta',
-    title: 'What is the Magna Carta?',
+    name: 'oceandepth',
+    title: 'Dans lequel de ces océans se trouve le point le plus profond (11 020 mètres) du globe ?',
     choicesOrder: 'random',
     choices: [
-      'The foundation of the British parliamentary system', 'The Great Seal of the monarchs of England', 'The French Declaration of the Rights of Man', 'The charter signed by the Pilgrims on the Mayflower',
+      'L\'océan Arctique', 'L\'ocean Indien', 'L\'océan Pacifique', 'L\'océan Atlantique',
     ],
-    correctAnswer: 'The foundation of the British parliamentary system',
+    correctAnswer: 'L\'océan Pacifique',
   },
 ];

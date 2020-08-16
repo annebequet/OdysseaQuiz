@@ -1,4 +1,11 @@
+@use 'src/styles/vars';
+
 .errorMessage {
   color: white;
   font-size: 20px;
+}
+
+.category__error__log {
+  margin-top: 5em;
+  color: vars.$background-color;
 }

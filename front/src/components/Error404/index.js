@@ -18,7 +18,7 @@ const Error404 = () => {
   return showLoading && (
     <div className="error404">
       <h2 className="error404__title">Erreur 404...</h2>
-      <p>Aucune page correspondante à votre recherche ! Retournez dans l'eau en cliquant <Link exact to="/">ici</Link> !</p>
+      <p>Aucune page correspondante à votre recherche ! Retournez dans l'eau en cliquant <Link exact to="/"><span className="here--link">ici</span></Link> !</p>
       <img
         alt="sad-shark"
         className="error404__img"
