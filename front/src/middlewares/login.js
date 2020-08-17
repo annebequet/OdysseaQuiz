@@ -53,7 +53,7 @@ const login = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.log(error);
+          //console.log(error);
           window.sessionStorage.removeItem('token');
           window.sessionStorage.removeItem('id');
           window.sessionStorage.removeItem('environment');

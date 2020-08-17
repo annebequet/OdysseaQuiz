@@ -13,7 +13,7 @@ import RegisterButton from './RegisterButton';
 import './styles.scss';
 
 const Header = ({
-  roles, isLogged, loginAdmin, location,
+  roles, isLogged, loginAdmin, location, handleLogout,
 }) => {
   const handleAdmin = () => {
     loginAdmin();
@@ -41,14 +41,6 @@ const Header = ({
             exact
           >
             Accueil
-          </NavLink>
-          <NavLink
-            to="/categories"
-            className="menu__item"
-            activeClassName="menu__link--active"
-            exact
-          >
-            Catégories
           </NavLink>
           <NavLink
             to="/contact"
@@ -119,6 +111,14 @@ const Header = ({
             >
               FAQ
             </NavLink>
+            {(isLogged) && (
+            <a
+              className="menu__item menu__item--logout"
+              onClick={handleLogout}
+            >
+              Déconnexion
+            </a>
+            )}
             <img className="logo" alt="logo" src={Logo} />
             <p className="burger-menu__footer">&copy; Odyssea Quiz Corporation All Rights Reserved</p>
           </Menu>
@@ -143,6 +143,7 @@ Header.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   loginAdmin: PropTypes.func.isRequired,
   location: PropTypes.string,
+  handleLogout: PropTypes.func.isRequired,
 };
 
 Header.defaultProps = {

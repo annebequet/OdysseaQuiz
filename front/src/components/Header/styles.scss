@@ -161,6 +161,17 @@ svg:nth-child(1) {
     display: none;
   }
 }
+/* Change nav log on screen sizes */
+@media (max-width: 1080px) {
+  .menu--logged {
+    display: none;
+  }
+}
+@media (min-width: 1080px) {
+  .menu--logged--mobile {
+    display: none;
+  }
+}
 /* Desktop nav styles*/
 @media (min-width: 1080px) {
   .menu--desktop {
@@ -198,7 +209,6 @@ svg:nth-child(1) {
 }
 
 .header__nav__register a {
-  padding-right: 1em;
   color: white;
   text-decoration: none;
 }

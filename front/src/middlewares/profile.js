@@ -26,7 +26,7 @@ const categories = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           store.dispatch(saveAvatars(response.data));
         })
         .catch((error) => {
@@ -122,7 +122,7 @@ const categories = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           // As there is no redirection, we want to reset the error State
           store.dispatch(setRequestError({}));
         })
@@ -143,7 +143,7 @@ const categories = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           store.dispatch(saveEmail(response.data.email));
           store.dispatch(saveScores(response.data.scores));
           store.dispatch(saveEnvironment(response.data.environment.name));
