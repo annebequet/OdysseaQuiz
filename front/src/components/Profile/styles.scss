@@ -10,7 +10,7 @@
   z-index: 1;
   & h3 {
     color: white;
-    font-family: 'GT America Extended', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: vars.$font-family, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 
   .profile__odyssea__avatar {
