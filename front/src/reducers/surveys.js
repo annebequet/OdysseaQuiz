@@ -1,11 +1,11 @@
 import { SAVE_SURVEYS, SEND_RESULTS, END_QUIZ, GET_SURVEYS, SET_ERROR } from 'src/actions/surveys';
 
-import adultExempleSurveyData from 'src/data';
+import { quizAdultExemple, quizChildrenExemple } from 'src/data';
 
 const initialState = {
   exempleSurveys: {
-    adultExempleSurvey: adultExempleSurveyData,
-    childrenExempleSurvey: adultExempleSurveyData,
+    adultExempleSurvey: quizAdultExemple,
+    childrenExempleSurvey: quizChildrenExemple,
   },
   surveyCategory: '',
   surveyTitle: '',
