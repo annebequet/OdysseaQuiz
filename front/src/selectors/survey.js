@@ -3,8 +3,8 @@ export const changeCSSStyles = (survey, options) => {
   const span = document.createElement('span');
   const isCorrect = options.question.isAnswerCorrect();
   span.innerHTML = isCorrect
-    ? '<br>Correct'
-    : '<br>Incorrect';
+    ? '<p>Correct</p>'
+    : '<p>Incorrect</p>';
   span.style.color = isCorrect
     ? 'rgba(1, 1, 36)'
     : 'white';
