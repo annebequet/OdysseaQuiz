@@ -23,7 +23,7 @@ const Title = ({ location }) => {
           à l’aide de quiz ! 
           Vous pouvez entrer en compétition avec vos amis mais aussi en famille, 
           choisissez votre environnement de jeu, inscrivez-vous et c’est parti !
-          <br />Et avant de sauter dans le grand bain,
+          <br />Avant de sauter dans le grand bain,
           testez-vous avec nos quiz d'exemple accessibles ci-dessous!
         </p>
       </div>
