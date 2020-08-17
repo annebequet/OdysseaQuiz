@@ -1,14 +1,14 @@
 @use 'src/styles/vars';
 
 .errorMessage {
-  color: red;
+  color: vars.$title-color;
   font-size: 1.3em;
   font-family: vars.$font-family;
   background-color:rgb(255,255,255, 0.8);
   padding: 2rem;
 }
 .errorMessageP {
-  color: red;
+  color: vars.$title-color;
   font-size: 1.1em;
   text-align: center
 }
@@ -16,7 +16,7 @@
 .errorList {
   text-transform: capitalize;
   list-style: none;
-  color: red;
+  color: vars.$title-color;
   font-size: 1em;
 }
 
@@ -27,7 +27,7 @@
 .errorListLi {
   text-transform: lowercase;
   list-style: none;
-  color: red;
+  color: vars.$title-color;
   font-size: 0.8em;
   padding-left: 1.5rem;
 }
