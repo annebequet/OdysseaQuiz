@@ -15,7 +15,7 @@ const Faq = () => (
 
     <h2 className="faq__title"> Comment sont calculées les notes ? </h2>
 
-    <p> Elles reflètent simplement la moyenne de toutes les notes que vous avez obtenues jusqu’à présent dans un thème donné. Pour l’améliorer, n’hésitez pas à faire et refaire les quiz ! C’est quizant qu’on devient quizeron. </p>
+    <p> Elles reflètent simplement la moyenne de toutes les notes que vous avez obtenues jusqu’à présent dans un thème donné. Pour l’améliorer, n’hésitez pas à faire et refaire les quiz ! C’est en quizant qu’on devient quizeron. </p>
 
     <h2 className="faq__title"> Je veux proposer une question !</h2>
 

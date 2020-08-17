@@ -10,13 +10,13 @@ const Home = ({ adultExempleSurvey, childrenExempleSurvey }) => (
     <div className="exempleSurveys">
       <Quiz
         survey={adultExempleSurvey}
-        category="Exemple adulte"
+        category="Quiz adulte"
         isExempleQuiz
         isChildQuiz={false}
       />
       <Quiz
         survey={childrenExempleSurvey}
-        category="Exemple enfant"
+        category="Quiz enfant"
         isExempleQuiz
         isChildQuiz
       />
