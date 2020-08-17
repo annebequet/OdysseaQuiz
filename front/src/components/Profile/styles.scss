@@ -1,6 +1,7 @@
 @use 'src/styles/vars';
 
 .profile {
+  padding-top: 3em;
   margin: 1em;
   text-shadow: 4px 2px 4px black;
   height: 100%;
@@ -33,7 +34,6 @@
     font-size: 2em;
     font-weight: 100;
     margin-top: 2em;
-    margin-right: 2em;
     margin-bottom: 3em;
     font-family: vars.$font-family;
     font-weight: bold;
