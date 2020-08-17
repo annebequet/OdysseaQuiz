@@ -12,6 +12,12 @@
   display: inline-block;
   width: 100vw;
 }
+/* small screen size */
+@media (min-width: 921px) {
+  .page__content{
+   margin-top: -10em;
+  }
+}
 
 .page__otherPages {
   background: none;
@@ -21,5 +27,16 @@
 @media (max-width: 768px) {
   .page__content{
     padding-top: 8em;
+  }
+}
+@media (min-width: 770px), (max-width: 920px) {
+  .page__content{
+    padding-top: 8em;
+  }
+}
+
+@media (min-width: 921px) {
+  .page__content{
+    padding-top: 3em;
   }
 }
