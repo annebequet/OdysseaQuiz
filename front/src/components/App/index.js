@@ -19,6 +19,7 @@ import Faq from 'src/components/Faq';
 import Footer from 'src/components/Footer';
 import Error404 from 'src/components/Error404';
 import FrontPageInformations from 'src/components/FrontPageInformations';
+import Arrow from 'src/components/Arrow';
 import './styles.scss';
 
 // == Composant
