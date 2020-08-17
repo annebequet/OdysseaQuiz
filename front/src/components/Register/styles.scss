@@ -1,4 +1,11 @@
 @use 'src/styles/vars';
+.register__form {
+  margin: 4em;
+  display: flex;
+  flex-direction: column;
+  display: inline-block;
+}
+
 .register__form > span {
   color: red;
   font-size: 1.2em;
@@ -30,14 +37,20 @@
       color: #197285;
     }
 }
-.register-field-input > input {
+
+.register-field-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-field-input > input {  
   border-radius: 5px;
   color: orange;
   padding: 1em 2em;
   margin-right: 4em;
   font-weight: bold;
   font-size: medium;
-  display: block;
+  display: inline-block;
   margin: auto;
 }
 .register-field-input > input::placeholder {
