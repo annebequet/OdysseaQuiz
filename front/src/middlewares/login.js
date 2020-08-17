@@ -17,7 +17,7 @@ const login = (store) => (next) => (action) => {
         password,
       })
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           const {
             token, pseudo, roles, avatar, id, environmentId: environment,
           } = response.data;
@@ -42,7 +42,7 @@ const login = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          console.log('CHECK_IS_LOGGED', response);
+          //console.log('CHECK_IS_LOGGED', response);
           if (response.data.logged === false) {
             console.log('pas logé recommence');
           }

@@ -43,6 +43,14 @@ const Header = ({
             Accueil
           </NavLink>
           <NavLink
+            to="/categories"
+            className="menu__item"
+            activeClassName="menu__link--active"
+            exact
+          >
+            Catégories
+          </NavLink>
+          <NavLink
             to="/contact"
             className="menu__item"
             activeClassName="menu__link--active"
@@ -78,6 +86,7 @@ const Header = ({
             >
               Accueil
             </NavLink>
+            {(!isLogged) && (
             <NavLink
               to="/categories"
               className="menu__item"
@@ -86,6 +95,7 @@ const Header = ({
             >
               Catégories
             </NavLink>
+            )}
             {(roles.indexOf('ROLE_ADMIN') !== -1) && (
             <a
               href="http://54.226.34.31/back/admin/login"
