@@ -1,118 +1,90 @@
 @use 'src/styles/vars';
-.survey {
-  margin-bottom: 40px;  
-  margin-top: 8em;
-
-}
-
-.sv_main{
-  max-width: 500px;
-  font-family: vars.$font-family;
-  font-size: 20px;
-}
-
-@media (min-width: 768px) {
-  .exempleSurveys{
-  display: flex;
-  justify-content: space-around;
+.sv {
+  &_main{
+    max-width: 500px;
+    font-family: vars.$font-family;
+    font-size: 20px;
+    margin-bottom: 10rem;
+    & input[type=button] {
+      background-color: rgba(1,1,36,.8);
+      border: 1px solid #fff;
+      font-size: 1.2rem;
+      font-family: vars.$font-family;
+      font-weight: 100;
+      &:hover {
+        background-color: white;
+        color: vars.$light-color;
+        border: 1px solid vars.$light-color;
+        font-size: 1.2rem;
+        font-family: vars.$font-family;
+        font-weight: 100;
+      }
+    }
+    span{
+      margin-top: -9px;
+    }
   }
-}
-
-.survey{
-  display: flex;
-  justify-content: center;
-  display: inline-block;
-  margin-bottom: 2em;
-}
-
-.sv_header{
-  background-color: #3C74C8;
-  opacity: 0.6;
-  height: 120px;
-  //padding: 0;
-  //margin-bottom: 20px;
-}
-
-.sv_header span {
-  color: white;
-  font-size: 30px;
-  font-family: vars.$font-family;
-  font-weight: 100;
-  padding-bottom: 20px;
-}
-
-.sv_header h3 {
-  padding-top: 0;
-  padding-bottom: 20px;
-}
-
-.sc_header__text h3 span {
-  padding-bottom: 20px;
-}
-
-.sv_body {
-  border-top: 2px solid  blue;
-}
-
-.sv_main input[type=button] {
-  background-color: rgba(1,1,36,.8);
-  border: 1px solid #fff;
-  font-size: 1.2rem;
-  font-family: vars.$font-family;
-  font-weight: 100;
-}
-
-.sv_main input[type=button]:hover {
-  background-color: white;
-  color: vars.$light-color;
-  border: 1px solid vars.$light-color;
-  font-size: 1.2rem;
-  font-family: vars.$font-family;
-  font-weight: 100;
-}
-
-.sv_q_title h5 {
-  display: inline-block;
-  padding: 0;
-  color: vars.$background-color;
-  font-family: vars.$font-family;
-}
-
-.sv_q_title span {
-  display: inline-block;
-  padding: 0;
-  color: vars.$background-color;
-  margin-bottom: 20px;
-}
-
-.sv_q_radiogroup_label span {
-  margin: 0;
-  padding: 0;
-  font-family: vars.$font-family;
-  //color: vars.$light-color;
-}
-
-.sv_main span{
-  margin-top: -9px;
-}
-
-.sv_q_title span{
-  margin-top: -20px;
-  font-size: 1.2rem;
-  font-family: vars.$font-family;
-}
-
-.sv_q_radiogroup span span {
-  margin-top: -9px;
-  font-size: 1.2rem;
-  font-family: vars.$font-family;
-  font-weight: 100;
-}
-
-.sv_progress div span {
-  font-size: 1.2rem;
-  font-family: vars.$font-family;
-  font-weight: 100;
+  &_header{
+    background-color: vars.$contrast-color;
+    opacity: 0.4;
+    height: 120px;
+    text-align: center;    
+    & span {
+      color: white;
+      font-size: 30px;
+      font-family: vars.$font-title;
+      font-weight: 100;
+      padding-bottom: 20px;
+    }
+    & h3 {
+      padding-top: 0;
+      padding-bottom: 20px;
+    }
+    &__text h3 span {
+      padding-bottom: 20px;
+    }
+  } 
+  &_body {
+    border-top: 2px solid  vars.$contrast-color;
+  }  
+  &_q {
+    &_title {
+      & h5{
+        display: inline-block;
+        padding: 0;
+        color: vars.$background-color;
+        font-family: vars.$font-family;
+      }
+      & span {
+        //display: inline-block;
+        padding: 0;
+        color: vars.$background-color;
+        margin-bottom: 20px;
+        margin-top: -20px;
+        font-size: 1.2rem;
+        font-family: vars.$font-family;
+      }
+    }
+    &_radiogroup {
+      &_label span {
+        margin: 0;
+        padding: 0;
+        font-family: vars.$font-family;
+        //color: vars.$light-color;
+      }
+      & span span {
+        margin-top: -9px;
+        font-size: 1.2rem;
+        font-family: vars.$font-family;
+        font-weight: 100;
+      }      
+    }
+  }
+  &_progress div span {
+    font-size: 1.2rem;
+    font-family: vars.$font-family;
+    font-weight: 100;
+  }  
 }
 
 .endQuiz {
@@ -122,10 +94,20 @@
   padding: 10px 50px;
   text-transform: uppercase;
   font-weight: 200;
+  &:hover {
+    background-color: white;
+    color: vars.$light-color;
+    border: 1px solid vars.$light-color;
+  }  
 }
 
-.endQuiz:hover {
-  background-color: white;
-  color: vars.$light-color;
-  border: 1px solid vars.$light-color;
+@media (min-width: 768px) {
+  .survey {
+    margin: 2em 0;
+  }
+  .exempleSurveys{
+  display: flex;
+  justify-content: space-around;
+  }
 }
+

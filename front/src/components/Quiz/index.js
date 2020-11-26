@@ -16,9 +16,9 @@ const Quiz = ({
   grade,
 }) => {
   // Write survey results into database and state
-  const handleOnComplete = (survey) => {
-    console.log(survey);
+  const handleOnComplete = (survey, options) => {
     const answers = survey.data;
+    console.log(options.questions);
     const numberOfCorrectAnswers = survey.getCorrectedAnswerCount();
     sendResults(answers, numberOfCorrectAnswers, surveyData);
   };
@@ -36,6 +36,26 @@ const Quiz = ({
   };
 
   // eslint-disable-next-line max-len
+  // Will stock the id of the question and a boolean indicating whether or not it was correctly answered
+  const handleQuestionsResults = (survey, options) => {
+    console.log(options.question.name);
+    console.log(options.question.isAnswerCorrect());
+  };
+
+  // Create showdown mardown converter
+  const converter = new showdown.Converter();
+
+  const displayImagesInSurvey = (survey, options) => {
+    // convert the mardown text to html
+    let str = converter.makeHtml(options.text);
+    // remove root paragraphs <p></p>
+    str = str.substring(3);
+    str = str.substring(0, str.length - 4);
+    // set html
+    options.html = str;
+  };
+
+  // eslint-disable-next-line max-len
   /* We have two surveys : one to use as a quiz, the second one to display the results. The completion of the quiz passes the const isCompleted to true, so as to display the second survey with the results. */
   return (
     <div className="survey">
@@ -44,6 +64,8 @@ const Quiz = ({
           json={surveyData}
           showCompletedPage={false}
           onComplete={handleOnComplete}
+          onValidateQuestion={handleQuestionsResults}
+          onTextMarkdown={displayImagesInSurvey}
         />
       )}
       {isCompleted && (
@@ -60,6 +82,7 @@ const Quiz = ({
             maxTimeToFinishPage={0}
             maxTimeToFinish={0}
             onAfterRenderQuestion={displayResults}
+            onTextMarkdown={displayImagesInSurvey}
           />
           <input
             className="endQuiz"

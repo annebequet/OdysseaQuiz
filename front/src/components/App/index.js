@@ -6,11 +6,10 @@ import {
 } from 'react-router-dom';
 
 // == Import
-import Video from 'src/components/Video';
 import Header from 'src/containers/Header';
-import Page from 'src/containers/Page';
+import Page from 'src/components/Page';
 import Register from 'src/containers/Register';
-import Home from 'src/containers/Home';
+import Home from 'src/components/Home';
 import Categories from 'src/containers/Categories';
 import Category from 'src/containers/Category';
 import Profile from 'src/containers/Profile';
@@ -19,7 +18,6 @@ import Faq from 'src/components/Faq';
 import Footer from 'src/components/Footer';
 import Error404 from 'src/components/Error404';
 import FrontPageInformations from 'src/components/FrontPageInformations';
-import Arrow from 'src/components/Arrow';
 import './styles.scss';
 
 // == Composant
@@ -46,19 +44,26 @@ const App = ({
 
   return (
     <div className="app">
-      <Video />
-      <div className="mainPage">
-        <Header />
-        {myLocation === '/' && (
+      <Header />
+      {/*  {myLocation === '/' && (
         <FrontPageInformations />
         )}
         {myLocation === '/' && (
         <div className="frontPageImage">
           <h1 className="playText">A vous de jouer !</h1>
         </div>
-        )}
-        <Switch>
-          {!categoriesLoading && (
+        )} */}
+      <Switch>
+        <Route
+          exact
+          path="/"
+        >
+          <Page>
+            <Home />
+          </Page>
+        </Route>
+
+        {!categoriesLoading && (
           <Route
             exact
             path="/categories"
@@ -67,9 +72,9 @@ const App = ({
               <Categories />
             </Page>
           </Route>
-          )}
+        )}
 
-          {!categoriesLoading && (
+        {!categoriesLoading && (
           <Route
             exact
             path="/categories/:slug"
@@ -79,63 +84,56 @@ const App = ({
               </Page>
             )}
           />
+        )}
+
+        <Route
+          exact
+          path="/register"
+        >
+          {!isLogged ? (
+            <Page>
+              <Register />
+            </Page>
+          ) : (
+            <Redirect to={{ pathname: '/' }} />
           )}
-          <Route
-            exact
-            path="/register"
-          >
-            {!isLogged ? (
-              <Page>
-                <Register />
-              </Page>
-            ) : (
-              <Redirect to={{ pathname: '/' }} />
-            )}
-          </Route>
-          <Route
-            exact
-            path="/"
-          >
+        </Route>
+
+        <Route
+          exact
+          path="/profile/:slug"
+          component={({ match }) => (
             <Page>
-              <Home />
+              <Profile slug={match.params.slug} />
             </Page>
-          </Route>
-          <Route
-            exact
-            path="/profile/:slug"
-            component={({ match }) => (
-              <Page>
-                <Profile slug={match.params.slug} />
-              </Page>
-            )}
-          />
-          <Route
-            exact
-            path="/contact"
-          >
-            <Page>
-              <Contact />
-            </Page>
-          </Route>
-          <Route
-            exact
-            path="/faq"
-          >
-            <Page>
-              <Faq />
-            </Page>
-          </Route>
-          <Route path="*">
-            <Page>
-              <Error404 />
-            </Page>
-          </Route>
-        </Switch>
-        {/*{location === '/' && (
-        <div className="frontPageImageBottom" />
-        )}*/}
-        <Footer />
-      </div>
+          )}
+        />
+
+        <Route
+          exact
+          path="/contact"
+        >
+          <Page>
+            <Contact />
+          </Page>
+        </Route>
+
+        <Route
+          exact
+          path="/faq"
+        >
+          <Page>
+            <Faq />
+          </Page>
+        </Route>
+
+        <Route path="*">
+          <Page>
+            <Error404 />
+          </Page>
+        </Route>
+      </Switch>
+      <Footer />
     </div>
   );
 };

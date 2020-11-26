@@ -1,16 +1,12 @@
 @use 'src/styles/vars';
 
-@media (max-width: 767px) {
-  .footer {
-    display: none;
-  }
-}
 .footer {
-  text-align: center;
   width: 100%;
   height: 3em;
   margin: 0;
-  padding: 1em;
   background-color: vars.$background-color;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

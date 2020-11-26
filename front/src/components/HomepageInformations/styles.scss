@@ -1,0 +1,169 @@
+@use 'src/styles/vars';
+.presentation {
+  margin: 10vh 0;
+  position: relative;
+  &__medusa--picture{
+    height: 600px;
+    box-shadow: -1px 1px black;
+  }
+  &__box {
+    height: 80vh;
+    width: 80vw;
+    &--front {
+      position: absolute;
+      height: 600px;
+      left: 100px;
+    }
+    &--back {
+      width: 400px;
+      height: 600px;
+      position: absolute;
+      z-index: -1;
+      box-shadow: -2px 2px black;
+    }
+  }  
+  &__text {
+    position: absolute;
+    width: 50%;
+    top: 0;
+    right: 0;
+    padding-left: 5px;
+  }
+  &__title{
+    font-family: vars.$font-title;
+    font-size: 5rem;
+    border-bottom: 5px solid black;
+    padding-bottom: 30px;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  &__subtitle {
+    font-family: vars.$font-title;
+    margin-top: 40px;
+
+  }
+  &__description__1 {
+    box-shadow: -10px 0px rgba(0, 0, 255, .2);
+    padding-left: 10px;
+  }
+  &__description__2{
+    box-shadow: 10px 0px rgba(0, 0, 255, .2);
+    padding-right: 10px;
+  }
+}
+
+.box {
+  &__1{
+    top: 100px;
+  }
+  &__2{
+    top: 30px;
+    left: 30px
+  }
+  &__3{
+    top: 60px;
+    left: 60px;
+  }
+}
+
+.bulletPoints {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  & h3{
+    font-family: vars.$font-title;
+    font-size: 1.5em;
+  }
+}
+
+.bulletPoint {
+  padding: 2rem 5rem;
+  display: flex;
+  flex-direction: row;
+  &:first-child{
+    padding: 4rem 20rem;
+    grid-column: 1 / 3;
+    & img {
+      width: 4rem;
+    }
+  }
+  &__icon {
+    width: 3rem;
+    margin-right: 2rem;
+  }
+}
+
+.round_circle_1 {
+  opacity: .2;
+  position: absolute;
+  background-color: vars.$contrast-color;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 43%;
+  top: -100px;
+}
+
+.round_circle_2 {
+  opacity: .2;
+  position: absolute;
+  background-color: vars.$contrast-color;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 43%;
+  top: -500px;
+  right: 0px;
+}
+
+.round_circle_3 {
+  opacity: .2;
+  position: absolute;
+  background-color: vars.$contrast-color;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 53%;
+  top: 100vh;
+  left: 60%;
+}
+
+.round_circle_4 {
+  opacity: .2;
+  position: absolute;
+  background-color: vars.$contrast-color;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 53%;
+  top: 120vh;
+  left: 20%;
+}
+
+.round_circle_5 {
+  opacity: .2;
+  position: absolute;
+  background-color: vars.$contrast-color;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 53%;
+  top: 180vh;
+  left: 50%;
+}
+
+.round_circle_6 {
+  opacity: .2;
+  position: absolute;
+  background-color: vars.$contrast-color;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 53%;
+  top: 99vh;
+  left: 10%;
+}
+
+.round_circle_7 {
+  opacity: .2;
+  position: absolute;
+  background-color: vars.$contrast-color;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 53%;
+  top: 150vh;
+  left: 90%;
+}

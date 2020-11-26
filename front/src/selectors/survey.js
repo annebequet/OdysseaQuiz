@@ -1,4 +1,4 @@
-//Function that changes the css styles of the qui to display the results
+//Function that changes the css styles of the quiz to display the results
 export const changeCSSStyles = (survey, options) => {
   const span = document.createElement('span');
   const isCorrect = options.question.isAnswerCorrect();
@@ -57,7 +57,7 @@ const getIntroductionQuizText = (quiz) => {
     text = "Nous n'avons pas encore de questions pour cette catégorie, revenez bientôt !";
   }
   else {
-    text = "Vous êtes sur le point de commencer notre super quiz. <br/>Vous avez 1mn par question.<br/>Cliquez sur le bouton <b>'Commencer'</b> quand vous êtes prêt !";
+    text = "Vous êtes sur le point de commencer un quiz. Vous avez 1mn par question. Cliquez sur le bouton 'Commencer' quand vous êtes prêt !";
   }
   return text;
 };
@@ -67,6 +67,9 @@ export const transformQuestionsInSurveyObject = (allQuestions, category) => {
 
   const newQuestions = quiz.map((question) => {
     question["choices"] = Object.values(question["choices"]);
+    // eslint-disable-next-line max-len
+    //The surveyJS library looses the id associated to the question in the database. That's why we save it under the "name", and have to save it as a string because that's the expected output.
+    question["name"] = question["id"].toString();
     return {
       questions: [
         question,

@@ -19,7 +19,7 @@ import {
 const categories = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_AVATARS: {
-      axios.get('http://54.226.34.31/back/api/avatars',
+      axios.get('http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/avatars',
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -40,7 +40,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newAvatar: avatar } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
+      axios.put(`http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/users/${id}`, {
         avatar,
       },
       {
@@ -64,7 +64,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newEmail: email } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
+      axios.put(`http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/users/${id}`, {
         email,
       },
       {
@@ -88,7 +88,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newPseudo: pseudo } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
+      axios.put(`http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/users/${id}`, {
 
         pseudo,
       },
@@ -113,7 +113,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newPassword: password } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
+      axios.put(`http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/users/${id}`, {
         password,
       },
       {
@@ -136,7 +136,7 @@ const categories = (store) => (next) => (action) => {
     }
     case GET_USER: {
       const id = sessionStorage.getItem('id');
-      axios.get(`http://54.226.34.31/back/api/users/${id}`,
+      axios.get(`http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/users/${id}`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -163,7 +163,7 @@ const categories = (store) => (next) => (action) => {
       window.sessionStorage.removeItem('environment');
       window.sessionStorage.setItem('environment', environment);
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
+      axios.put(`http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/users/${id}`, {
         environment,
       },
       {
@@ -185,7 +185,7 @@ const categories = (store) => (next) => (action) => {
     }
     case HANDLE_DELETE: {
       const id = sessionStorage.getItem('id');
-      axios.delete(`http://54.226.34.31/back/api/users/${id}`,
+      axios.delete(`http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/users/${id}`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Home from 'src/components/Home';
+import ExempleSurveys from 'src/components/ExempleSurveys';
 
 const mapStateToProps = (state) => ({
   adultExempleSurvey: state.surveys.exempleSurveys.adultExempleSurvey,
@@ -9,4 +9,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(ExempleSurveys);

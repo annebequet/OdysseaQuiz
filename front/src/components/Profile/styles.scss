@@ -81,17 +81,17 @@
   }
 }
 .field--radio {
-    display: flex;
-    justify-content: center;
-    align-content: space-around;
-    vertical-align: middle;border: none;
-    &__details {
-      vertical-align: middle;
-    }
-    input[type='radio']{
-      transform: scale(1.5);
-    }
-      
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
+  vertical-align: middle;border: none;
+  &__details {
+    vertical-align: middle;
+  }
+  input[type='radio']{
+    transform: scale(1.5);
+  }
+    
 }
 .profile-field-input--radio {
       margin-left: 1em;

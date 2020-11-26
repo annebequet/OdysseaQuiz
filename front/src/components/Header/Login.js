@@ -30,7 +30,7 @@ const Login = ({
   };
 
   return (
-    <div>
+    <div className="login__btn">
       <Button variant="btn" onClick={handleShow}>
         Connexion
       </Button>

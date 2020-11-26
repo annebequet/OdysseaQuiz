@@ -4,8 +4,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;  
-  color: white;
   z-index: 1000;
+  height: 5em;
 }
 
 .fullMenu {
@@ -15,214 +15,137 @@
   height: 5em;
   margin: 0;
   padding: 1em;
-  background-color: vars.$background-color-transparent;
+  background-color: white;
   text-align: left;
   position: fixed;
   top: 0;
-  z-index: 4;
+  z-index: 1000;
   width: 100%
 }
 
-.header__frontPage{
-  min-height: 100vh;
-  height: 100%;
-}
 
-/* small screen size */
-@media (max-width: 920px) {
-  .header {
-    top: 3em;
-  }
-  .fullMenu{
-    position: fixed;
-    top: 3em;
-  }
-}
-.menu--desktop__logo {
-    width:75px;
-  }
-.menu__item > div > p {
-  width:75px;
-}
-
-
-/* Responsive conditions : what sould not be displayed depending on the screen size */
-
-/* Burger Menu small screen size */
-@media (min-width: 1080px) {
-    .menu--burger {
-      display: none;
-    }
-
-  }
 /* Burger menu styles */
-.bm-burger-button {
-  position: relative;
-  width: 36px;
-  height: 30px;
-  left: 0;
-  top: 0;
+.bm {
+  &-burger-button {
+    position: relative;
+    width: 36px;
+    height: 30px;
+    left: 0;
+    top: 0;
+  }
+  /* Color/shape of burger icon bars */
+  &-burger-bars {
+    background: vars.$light-color;
+    &-hover {
+      /* Color/shape of burger icon bars on hover*/
+        background: vars.$light-color;
+    }  
+  }
+  /* Color/shape of close button cross */
+  &-cross {
+    background: #bdc3c7;
+    &-button {
+    /* Position and sizing of clickable cross button */
+      height: 50px;
+      width: 200px;
+      margin-right: 10%;
+      padding-left: 60px;
+      padding-bottom: 60px;
+    }
+  }/* General sidebar styles */
+  &-menu {
+    background: rgba(1, 1, 36);
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
+    &-wrap {
+      /*
+      Sidebar wrapper styles
+      Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+      */
+      position: absolute;
+      height: 50%;
+      margin-left: -18px;
+      margin-top: -10px;
+    }
+  }
+    /* Morph shape necessary with bubble or elastic */
+  &-morph-shape {
+    fill: rgba(1, 1, 36);
+  }
+  /* Individual item */
+  &-item {
+    display: inline-block;
+    &-list {
+      /* Wrapper for item list */
+      padding: 0.8em;
+      overflow-x: scroll;
+    }
+  }
+  /* Styling of overlay */
+  &-overlay {
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 900;
+  }
 }
 
-/* Color/shape of burger icon bars */
-.bm-burger-bars {
-  background: #197285;
-  
+.burger-menu__footer {
+  margin-top: 6em;
+  padding-bottom: 3em;
 }
 
-/* Color/shape of burger icon bars on hover*/
-.bm-burger-bars-hover {
-  background: #197285;
+/* Nav Log */
+.header__nav {
+  &__form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    &--active {
+      color: vars.$light-color;
+      text-decoration: none;
+    }
+  }
+  &__register a {
+/* Header Register link */
+    color: black;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 1em;
+    &:hover {
+      color: vars.$light-color;
+      text-decoration: none;
+    }
+  }
 }
 
-/* Position and sizing of clickable cross button */
-.bm-cross-button {
-  height: 50px;
-  width: 200px;
-  margin-right: 10%;
-  padding-left: 60px;
-  padding-bottom: 60px;
-}
-/* Color/shape of close button cross */
-.bm-cross {
-  background: #bdc3c7;
-}
-
-.btn-primary {
-  background-color: vars.$background-color-transparent;
-  border: 1px solid white;
-  font-size: 1.2rem
-}
-
-.btn-primary:hover {
-  background-color: vars.$background-color-transparent;
-  border-color: #197285;
-  color: #197285;
-}
-
-.btn-primary--active {
-  background-color: vars.$background-color-transparent;
-  border-color: #197285;
-  color: #197285;
-}
-
-/*
-Sidebar wrapper styles
-Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
-*/
-.bm-menu-wrap {
-  position: absolute;
-  height: 50%;
-  margin-left: -18px;
-  margin-top: -10px;
+.login__btn > .btn {
+  background-color: none;
+  color: black;
+  font-size: 1rem;
+  border: 1px solid vars.$light-color;
+  &:hover {
+    color: vars.$light-color;
+  }
+  &-primary {
+    background-color: vars.$background-color-transparent;
+    border: 1px solid white;
+    font-size: 1.2rem;
+    &:hover {
+      background-color: vars.$background-color-transparent;
+      border-color: vars.$light-color;
+      color: vars.$light-color;
+    }
+    &--active {
+      background-color: vars.$background-color-transparent;
+      border-color: vars.$light-color;
+      color: vars.$light-color;
+    }
+  }
 }
 
 svg:nth-child(1) {
   width: 70%;
 }
 
-/* General sidebar styles */
-.bm-menu {
-  background: rgba(1, 1, 36);
-  padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
-}
-
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-  fill: rgba(1, 1, 36);
-}
-
-/* Wrapper for item list */
-.bm-item-list {
-  color: #b8b7ad;
-  padding: 0.8em;
-  overflow-x: scroll;
-
-}
-
-/* Individual item */
-.bm-item {
-  display: inline-block;
-}
-
-/* Styling of overlay */
-.bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 900;
-}
-.burger-menu__footer {
-  margin-top: 6em;
-  padding-bottom: 3em;
-}
-
-/* Nav menu not to be displayed when on a small screen */
-@media (max-width: 1080px) {
-  .menu--desktop {
-    display: none;
-  }
-}
-/* Change nav log on screen sizes */
-@media (max-width: 1080px) {
-  .menu--logged {
-    display: none;
-  }
-}
-@media (min-width: 1080px) {
-  .menu--logged--mobile {
-    display: none;
-  }
-}
-/* Desktop nav styles*/
-@media (min-width: 1080px) {
-  .menu--desktop {
-  display: -webkit-box;
-    display: -ms-flexbox;
-    
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: end;
-    display: flex;
-    justify-content: flex-end;
-    color: #fff;
-    font-size: 1.5rem;
-  }
-}
-/* Nav Log */
-.header__nav__form {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  color: white;
-  font-size: 1.5rem;
-}
-
-/* Header Register link */
-.header__nav__register a:hover {
-  color: #197285;
-  text-decoration: none;
-}
-
-.header__nav__form--active {
-  color: #197285;
-  text-decoration: none;
-}
-
-.header__nav__register a {
-  color: white;
-  text-decoration: none;
-}
-
-/* Login */
-.btn {
-  background-color: none;
-  color: white;
-  font-size: 1.5rem;
-}
-.btn:hover {
-  color: #197285;
-}
 .login {
   position: fixed;
   right: 3em;
@@ -269,35 +192,90 @@ body > div.fade.modal.show > div > div > div.modal-footer > div {
 }
 /* Link style */
 
-.menu__item {
-  color: white;
-  font-size: medium;
-  padding: 1em;
-  border: none;
-  font-size: 1.5rem;
-}
-
-.menu__link--active:hover {
-  color: #197285;
-  text-decoration: none;
-}
-
-.menu__link--active {
-  color: #197285;
+.menu {
+  &__item {    
+    color: black;
+    padding: 1em;
+    border: none;
+    font-size: 1rem;
+    &:hover {
+      color: vars.$light-color;
+      text-decoration: none;
+    }
+    &--logout:hover {
+      /* if user is logged */
+      color: vars.$light-color;
+      cursor: pointer;
+    }
+    &__item > div > p {
+      width:75px;
+    }
+  }
+  &__link--active {
+    color: vars.$light-color;
+    &:hover {
+      color: vars.$light-color;
+      text-decoration: none;
+    }
+  }
+  &--desktop__logo > img{
+    width:75px;
+  }  
+  &--mobile__logo{
+    display: inline-block;
+    width: 50px;
+  }
 }
 
 .logo {
   padding-top: 100px;
   width: 200px;
 }
-/* if user is logged */
-.menu__item--logout:hover {
-  color: #197285;
-  cursor: pointer;
+
+/* Nav menu not to be displayed when on a small screen */
+@media (max-width: 1080px) {
+  .menu {
+    &--desktop__logo {
+      display: none;
+    }
+    &--desktop {
+      display: none;
+    }
+    /* Change nav log on screen sizes */
+    &-logged {
+      display: none;
+    }
+    &__item {
+      color: white;
+    }
+  }
 }
 
-.menu__item:hover {
-  color: #197285;
-  text-decoration: none;
+@media (min-width: 1080px) {
+  .menu {
+    &--logged--mobile {
+      display: none;
+    }
+    /* Desktop nav styles*/
+    &--desktop {
+      display: -webkit-box;
+      display: -ms-flexbox;        
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -ms-flex-pack: end;
+      display: flex;
+      justify-content: flex-end;
+      color: #fff;
+      font-size: 1rem;
+    }
+    /* Burger Menu small screen size */
+    &--burger {
+      display: none;
+    }
+  }
 }
+
+
+
 
