@@ -9,8 +9,8 @@ const FieldRegister = ({
   name,
   label,
   onChange,
-  error,
-  handleBlur,
+  pattern,
+  title,
 }) => {
   const handleChange = (evt) => {
     onChange(evt.target.value, name);
@@ -19,24 +19,19 @@ const FieldRegister = ({
   const inputId = `register-field-${name}`;
 
   return (
-    <div className={`register-field-input ${error === 'undefined' ? 'valid' : 'unvalid'} ${value.length > 0 ? 'field field--has-content' : 'field'}`}>
-      <label
-        htmlFor={inputId}
-        className="register-field-label"
-      >
-        {label}
-      </label>
-      <input
+    <div className="register-field-input">
+      <input 
+        className="register__input"
         value={value}
         onChange={handleChange}
         id={inputId}
         type={type}
         placeholder={label}
         name={name}
-        onFocus={handleBlur}
-        onBlur={handleBlur}
+        required
+        pattern={pattern}
+        title={title}
       />
-
     </div>
   );
 };
@@ -47,14 +42,13 @@ FieldRegister.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  error: PropTypes.string,
-  handleBlur: PropTypes.func.isRequired,
+  pattern: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 FieldRegister.defaultProps = {
   value: '',
   type: 'text',
-  error: 'undefined',
 };
 
 export default FieldRegister;

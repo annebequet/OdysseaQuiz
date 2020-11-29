@@ -17,14 +17,14 @@ const FieldRadioRegister = ({
   const inputId = `register-field-${name}`;
 
   return (
-    <div className={value.length > 0 ? 'field field--radio field--has-content' : 'field field--radio'}>
+    <div className={value.length > 0 ? 'field register-field--radio field--has-content' : 'field register-field--radio'}>
       <label
         htmlFor={inputId}
         className="register-field-label"
       >
         {label}
       </label>
-      <label className="register-field--radio__details">Quiz Enfant</label>
+      <label className="register-field--radio__details">Enfant</label>
       <input
         value="2"
         onChange={handleChange}
@@ -33,8 +33,9 @@ const FieldRadioRegister = ({
         className="register-field-input"
         placeholder={label}
         name={name}
+        required
       />
-      <label className="register-field--radio__details">Quiz Adulte</label>
+      <label className="register-field--radio__details">Adulte</label>
       <input
         value="1"
         onChange={handleChange}
@@ -43,6 +44,7 @@ const FieldRadioRegister = ({
         className="register-field-input"
         placeholder={label}
         name={name}
+        required
       />
 
     </div>

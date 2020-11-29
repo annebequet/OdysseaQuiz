@@ -11,6 +11,7 @@
       font-size: 1.2rem;
       font-family: vars.$font-family;
       font-weight: 100;
+      transition: background-color 300ms ease-in-out;
       &:hover {
         background-color: white;
         color: vars.$light-color;
@@ -94,6 +95,7 @@
   padding: 10px 50px;
   text-transform: uppercase;
   font-weight: 200;
+  transition: background-color 300ms ease-in-out;
   &:hover {
     background-color: white;
     color: vars.$light-color;

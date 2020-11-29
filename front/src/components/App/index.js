@@ -17,7 +17,6 @@ import Contact from 'src/components/Contact';
 import Faq from 'src/components/Faq';
 import Footer from 'src/components/Footer';
 import Error404 from 'src/components/Error404';
-import FrontPageInformations from 'src/components/FrontPageInformations';
 import './styles.scss';
 
 // == Composant

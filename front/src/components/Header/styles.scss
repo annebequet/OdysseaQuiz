@@ -119,11 +119,14 @@
 
 .login__btn > .btn {
   background-color: none;
+  margin-left: 2rem;
   color: black;
   font-size: 1rem;
   border: 1px solid vars.$light-color;
+  transition: all .2s ease-in-out;
   &:hover {
     color: vars.$light-color;
+    transform: scale(1.2);
   }
   &-primary {
     background-color: vars.$background-color-transparent;

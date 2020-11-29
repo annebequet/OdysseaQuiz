@@ -1,3 +1,38 @@
-.unvalid > input {
-  border: 1px solid red;
+@use 'src/styles/vars';
+
+.register-field-input {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.register {
+  &__input {
+    color: #bbb;
+    font-size: 1.5em;
+    outline: none; // Chrome outline
+    box-shadow: none; // Firefox outline
+    -webkit-appearance: none; // mobile Safari
+    border-radius: 0; // mobile Safari
+    border-top: none;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-bottom: solid 1px;
+    border-color: #bbb;
+    background: transparent;
+    display: block;
+    height: 2em;
+    width: 12em;
+    margin-bottom: 5%;
+    padding: 0 3%;
+    position: relative;
+    z-index: 0;
+      &:focus {
+        color: black;
+        border-color: black;
+      }
+    }
+  &__unvalid{
+    border-color: #E35F5F;
+  }
 }

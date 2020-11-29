@@ -1,25 +1,60 @@
 @use 'src/styles/vars';
 
 .contact {
-  margin: 8em;
-  padding: 2em;
-  text-align: center;
-  background-color: vars.$background-color-transparent;
-  font-family: vars.$font-family;
-  font-weight: 100;
+  &__page {
+    box-shadow: 0 0 8px rgba(0,0,0,.125);
+    background-color: white;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;  
+    margin: 100px auto; 
+  }
   &__title {
-    color: vars.$contrast-color;
-    font-size: 2em;
+    background: vars.$violet-color;
+    border-radius: 7px;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+  }
+  &__container {
+    display: flex;
+    flex-direction: row;
+  }
+  &__informations {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & > h3 {
+      font-size: 1.5em;
+      margin: 1rem 0 0.5rem 0;
+    }
+    & > p {
+      text-align: center;
+    }
+  }
+  &__icon {
+    width: 40%;
+    margin: 2rem;
+    border-right: solid;
+    padding-right: 2rem;
   }
 }
 
-.contact > p {
-  color: white;
-  font-size: 1.3em;
-}
 
-@media (max-width: 920px) {
-  .contact {
-    margin: 2em;
+@media (max-width: 650px) {
+  .contact__container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact__icon {
+    margin: 0;
+    border-right: none;
+    width: 100%;
+    padding: 0 5rem;
+    border-bottom: solid;
+  }
+  .contact__informations {
+    margin: 1rem 0;
   }
 }

@@ -1,0 +1,12 @@
+.exempleSurveys {
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+@media (min-width: 1400px) { 
+  .exempleSurveys{
+  flex-direction: row;
+  justify-content: space-around;
+  }
+}
