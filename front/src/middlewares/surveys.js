@@ -28,13 +28,12 @@ export default (store) => (next) => (action) => {
       // If the user used the exempleSurvey, then we do not send the results.
       if (!action.isExempleQuiz) {
         const state = store.getState();
-        const environment = sessionStorage.getItem('environment');
+        const environmentSlug = sessionStorage.getItem('environment');
         const { id: category } = state.surveys.surveyCategory;
         const answers = action.requestAnswers;
         const user = sessionStorage.getItem('id');
         const points = action.numberOfCorrectAnswers;
-        axios.post('http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/score', {
-          environment,
+        axios.post(`http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/score/${environmentSlug}`, {
           category,
           user,
           points,

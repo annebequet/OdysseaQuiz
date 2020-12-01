@@ -111,9 +111,9 @@ export const turnAnswersIntoBooleans = (answers, surveyData) => {
     const { correctAnswer } = surveyQuestions[questionItem].questions[0];
     const userAnswer = userAnswers[questionId];
     if (userAnswer && userAnswer === correctAnswer) {
-      return { questionId: true };
+      return { questionId, answer: true };
     }
-    return { questionId: false };
+    return { questionId, answer: false };
   });
 
   return booleansAnswers;
