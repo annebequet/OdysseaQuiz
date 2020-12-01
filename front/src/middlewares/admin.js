@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { LOGIN_ADMIN } from 'src/actions/admin';
 
+import baseUrl from './baseUri';
+
 const register = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN_ADMIN: {
-      axios.get('http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/login', {
+      axios.get(`${baseUrl}/islogin`, {
         headers: {
           'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },

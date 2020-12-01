@@ -33,7 +33,7 @@ const App = ({
 
   useEffect(() => {
     getCategories();
-  }, []);
+  });
 
   const history = useHistory();
   useEffect(() => history.listen((location) => {
