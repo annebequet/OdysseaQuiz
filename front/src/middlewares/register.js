@@ -2,6 +2,8 @@ import axios from 'axios';
 import { REGISTER, validateRegistration } from 'src/actions/register';
 import { setRequestError } from 'src/actions/errorHandler';
 
+import baseUrl from './baseUri';
+
 const register = (store) => (next) => (action) => {
   switch (action.type) {
     case REGISTER: {
@@ -13,7 +15,7 @@ const register = (store) => (next) => (action) => {
         environment,
       } = state.register;
 
-      axios.post('http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/register', {
+      axios.post(`${baseUrl}/register`, {
         email,
         password,
         pseudo,
@@ -21,10 +23,7 @@ const register = (store) => (next) => (action) => {
       })
         .then((response) => {
           store.dispatch(validateRegistration());
-          /* setTimeout(() => {
-            window.location.replace('/');
-          }, 10000);*/
-        }) 
+        })
         .catch((error) => {
           console.log(error);
           if (error.response.status === 500) {

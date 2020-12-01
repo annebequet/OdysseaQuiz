@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 5rem 0;
+  margin: 15rem 0;
   display: column;
   }
   &__title--container {
@@ -100,13 +100,13 @@
   }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 700px) {
   .category__container {
     margin-top: 70%;
   }
 }
 
-@media (min-width:580px) and (max-width: 1160px) {
+@media (min-width:700px) and (max-width: 1160px) {
   .category__container {
     margin-top: 30%;
   }

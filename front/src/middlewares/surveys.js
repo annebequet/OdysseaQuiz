@@ -3,12 +3,14 @@ import {
   GET_SURVEYS, saveSurveys, SEND_RESULTS, setError,
 } from 'src/actions/surveys';
 
+import baseUrl from './baseUri';
+
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case GET_SURVEYS: {
       const categorySlug = action.category.id;
       const environmentSlug = sessionStorage.getItem('environment');
-      axios.get(`http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/questions/${environmentSlug}/${categorySlug}`, {
+      axios.get(`${baseUrl}/questions/${environmentSlug}/${categorySlug}`, {
         headers: {
           'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },
@@ -31,9 +33,11 @@ export default (store) => (next) => (action) => {
         const environmentSlug = sessionStorage.getItem('environment');
         const { id: category } = state.surveys.surveyCategory;
         const answers = action.requestAnswers;
+        console.log('les réponses envoyées par le front, version stringifiée :', JSON.stringify(answers));
+        console.log('les réponses envoyées par le front :', answers);
         const user = sessionStorage.getItem('id');
         const points = action.numberOfCorrectAnswers;
-        axios.post(`http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/score/${environmentSlug}`, {
+        axios.post(`${baseUrl}/score/${environmentSlug}`, {
           category,
           user,
           points,

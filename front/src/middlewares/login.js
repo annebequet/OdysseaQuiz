@@ -2,7 +2,12 @@ import axios from 'axios';
 import {
   LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser,
 } from 'src/actions';
+import {
+  getCategories,
+} from 'src/actions/categories';
 import { setRequestError } from 'src/actions/errorHandler';
+
+import baseUrl from './baseUri';
 
 // http://54.226.34.31/*
 // http://localhost/Apotheose/Odyssea/back/odyssea/public/*
@@ -12,12 +17,11 @@ const login = (store) => (next) => (action) => {
     case LOGIN: {
       const { username, password } = store.getState().headerLogin;
 
-      axios.post('http://localhost/Apotheose/Odyssea/back/odyssea/public/api/login', {
+      axios.post(`${baseUrl}/login`, {
         username,
         password,
       })
         .then((response) => {
-          //console.log(response);
           const {
             token, pseudo, roles, avatar, id, environmentId: environment,
           } = response.data;
@@ -25,6 +29,7 @@ const login = (store) => (next) => (action) => {
           window.sessionStorage.setItem('id', id);
           window.sessionStorage.setItem('environment', environment);
           store.dispatch(saveUser(pseudo, roles, avatar, id));
+          store.dispatch(getCategories());
         })
         .catch((error) => {
           console.log('login', error.response);
@@ -35,14 +40,13 @@ const login = (store) => (next) => (action) => {
       break;
     }
     case CHECK_IS_LOGGED:
-      axios.get('http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/islogged',
+      axios.get(`${baseUrl}/islogged`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
           },
         })
         .then((response) => {
-          //console.log('CHECK_IS_LOGGED', response);
           if (response.data.logged === false) {
             console.log('pas logé recommence');
           }
@@ -61,7 +65,7 @@ const login = (store) => (next) => (action) => {
       next(action);
       break;
     case LOGOUT:
-      axios.get('http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/logout',
+      axios.get(`${baseUrl}/logout`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
