@@ -18,7 +18,6 @@ const categories = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          // console.log(response.data);
           store.dispatch(saveCategories(response.data));
         })
         .catch((error) => {

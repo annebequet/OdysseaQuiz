@@ -2,7 +2,7 @@
 import slugify from 'slugify';
 
 export const getSlugFromTitle = (title = '') => {
-  //we use a regex to transform the title into something that fits the slug norms
+  // we use a regex to transform the title into something that fits the slug norms
   const modifiedTitle = title.replace(/[&]/g, '').replace(/[_]/g, '-');
 
   const slug = slugify(modifiedTitle, {
@@ -13,6 +13,11 @@ export const getSlugFromTitle = (title = '') => {
   return slug;
 };
 
-export const getCategoryBySlug = (categoryList, slug) => categoryList.find(
-  (category) => getSlugFromTitle(category.name) === slug,
-);
+export const getCategoryBySlug = (categoryList, slug) => Object.keys(categoryList).map((category) => {
+  const sluggedCategoryName = getSlugFromTitle(categoryList[category].category);
+  console.log(sluggedCategoryName);
+  //if (sluggedCategoryName === slug) {
+    //return categoryList[category];
+  //}
+  return'a';
+});

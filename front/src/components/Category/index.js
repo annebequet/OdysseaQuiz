@@ -22,6 +22,8 @@ const Category = ({
     getSurveys(category);
   }, []);
 
+  console.log(category);
+
   return (
     <div className="category__survey">
       {!surveyLoading && isLogged && (
@@ -38,8 +40,8 @@ const Category = ({
 
 Category.propTypes = {
   category: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    name: PropTypes.string,
   }),
   getSurveys: PropTypes.func.isRequired,
   surveyLoading: PropTypes.bool.isRequired,
