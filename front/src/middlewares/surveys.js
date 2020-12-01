@@ -30,9 +30,9 @@ export default (store) => (next) => (action) => {
         const state = store.getState();
         const environment = sessionStorage.getItem('environment');
         const { id: category } = state.surveys.surveyCategory;
+        const answers = action.requestAnswers;
         const user = sessionStorage.getItem('id');
         const points = action.numberOfCorrectAnswers;
-        const { answers } = action;
         axios.post('http://localhost/Anne/OdysseaQuiz/back/odyssea/public/api/score', {
           environment,
           category,

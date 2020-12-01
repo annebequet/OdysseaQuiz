@@ -1,4 +1,5 @@
-//Function that changes the css styles of the quiz to display the results
+/* eslint-disable max-len */
+// Function that changes the css styles of the quiz to display the results
 export const changeCSSStyles = (survey, options) => {
   const span = document.createElement('span');
   const isCorrect = options.question.isAnswerCorrect();
@@ -7,12 +8,11 @@ export const changeCSSStyles = (survey, options) => {
     : '<p>Incorrect</p>';
   span.style.color = isCorrect
     ? 'rgba(1, 1, 36)'
-    : 'white';
+    : 'red';
   const header = options.htmlElement.querySelector('h5');
   if (!isCorrect) {
-    header.style.backgroundColor = 'rgb(255, 165, 0, 0.5)';
-    const radio = options.htmlElement.querySelector(`input[value="${options.question.correctAnswer}"]`);
-    radio.parentElement.style.color = 'green';
+    const correctInput = options.htmlElement.querySelector(`input[value="${options.question.correctAnswer}"]`);
+    correctInput.parentElement.style.background = 'hsl(191, 68%, 31%, 0.2)';
   }
   header.appendChild(span);
 };
@@ -57,7 +57,7 @@ const getIntroductionQuizText = (quiz) => {
     text = "Nous n'avons pas encore de questions pour cette catégorie, revenez bientôt !";
   }
   else {
-    text = "Vous êtes sur le point de commencer un quiz. Vous avez 1mn par question. Cliquez sur le bouton 'Commencer' quand vous êtes prêt !";
+    text = 'Vous avez 1mn par question.';
   }
   return text;
 };
@@ -66,10 +66,9 @@ export const transformQuestionsInSurveyObject = (allQuestions, category) => {
   const quiz = get10RandomQuestions(allQuestions);
 
   const newQuestions = quiz.map((question) => {
-    question["choices"] = Object.values(question["choices"]);
-    // eslint-disable-next-line max-len
-    //The surveyJS library looses the id associated to the question in the database. That's why we save it under the "name", and have to save it as a string because that's the expected output.
-    question["name"] = question["id"].toString();
+    question.choices = Object.values(question.choices);
+    // The surveyJS library looses the id associated to the question in the database. That's why we save it under the "name", and have to save it as a string because that's the expected output.
+    question.name = question.id.toString();
     return {
       questions: [
         question,
@@ -82,7 +81,7 @@ export const transformQuestionsInSurveyObject = (allQuestions, category) => {
     showProgressBar: 'bottom',
     showTimerPanel: 'top',
     maxTimeToFinishPage: 60,
-    //maxTimeToFinish: 25,
+    // maxTimeToFinish: 25,
     firstPageIsStarted: true,
     startSurveyText: 'Commencer',
     locale: 'fr',
@@ -98,4 +97,24 @@ export const transformQuestionsInSurveyObject = (allQuestions, category) => {
     ],
     completedHtml: '<h4>You have answered correctly <b>{correctedAnswers}</b> questions from <b>{questionCount}</b>.</h4>',
   };
+};
+
+// This function will turn the answers of the user into booleans : {questionId : true}. In order to do that, we need to compare the answer given to the correctAnswer stored in surveyData, and then determine the value of the booleann
+export const turnAnswersIntoBooleans = (answers, surveyData) => {
+  // Get the answers of the user
+  const userAnswers = answers;
+  // Get an array with all the questions and answers. We slice the first one because it is not a question, it is actually the title of the quiz.
+  const surveyQuestions = surveyData.pages.slice(1, 5);
+
+  const booleansAnswers = Object.keys(surveyQuestions).map((questionItem) => {
+    const questionId = surveyQuestions[questionItem].questions[0].id;
+    const { correctAnswer } = surveyQuestions[questionItem].questions[0];
+    const userAnswer = userAnswers[questionId];
+    if (userAnswer && userAnswer === correctAnswer) {
+      return { questionId: true };
+    }
+    return { questionId: false };
+  });
+
+  return booleansAnswers;
 };

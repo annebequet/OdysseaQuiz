@@ -1,4 +1,6 @@
-import { SAVE_SURVEYS, SEND_RESULTS, END_QUIZ, GET_SURVEYS, SET_ERROR } from 'src/actions/surveys';
+import {
+  SAVE_SURVEYS, SEND_RESULTS, END_QUIZ, GET_SURVEYS, SET_ERROR,
+} from 'src/actions/surveys';
 
 import { quizAdultExemple, quizChildrenExemple } from 'src/data';
 
@@ -32,7 +34,7 @@ export default (state = initialState, action = {}) => {
         ...state,
         isCompleted: !action.isChildQuiz,
         isChildQuizCompleted: action.isChildQuiz,
-        surveyAnswers: action.answers,
+        surveyAnswers: action.displayAnswers,
         points: action.numberOfCorrectAnswers,
         completedSurveyData: action.surveyData,
       };
@@ -52,11 +54,9 @@ export default (state = initialState, action = {}) => {
         ...state,
         isCompleted: false,
         isChildQuizCompleted: false,
-        //surveys: {},
         surveyAnswers: {},
         points: 0,
-        //surveyCategory: '',
-        //surveyTitle: '',
+        questionsSuccess: [],
       };
     default:
       return state;

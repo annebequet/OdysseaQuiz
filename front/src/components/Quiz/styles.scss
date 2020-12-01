@@ -1,10 +1,13 @@
 @use 'src/styles/vars';
+.results {
+  position: relative;
+}
+
 .sv {
   &_main{
     max-width: 500px;
     font-family: vars.$font-family;
     font-size: 20px;
-    margin-bottom: 10rem;
     & input[type=button] {
       background-color: rgba(1,1,36,.8);
       border: 1px solid #fff;
@@ -41,25 +44,25 @@
       padding-top: 0;
       padding-bottom: 20px;
     }
-    &__text h3 span {
+    &__text > h3 > span {
       padding-bottom: 20px;
     }
   } 
   &_body {
-    border-top: 2px solid  vars.$contrast-color;
+    border-top: 2px solid  vars.$violet-color !important;
   }  
   &_q {
     &_title {
       & h5{
         display: inline-block;
         padding: 0;
-        color: vars.$background-color;
+        color: vars.$light-color;
         font-family: vars.$font-family;
       }
       & span {
         //display: inline-block;
         padding: 0;
-        color: vars.$background-color;
+        color: vars.$light-color;
         margin-bottom: 20px;
         margin-top: -20px;
         font-size: 1.2rem;
@@ -67,25 +70,36 @@
       }
     }
     &_radiogroup {
-      &_label span {
+      &_label > span {
         margin: 0;
         padding: 0;
         font-family: vars.$font-family;
         //color: vars.$light-color;
       }
-      & span span {
+      & > span > span {
         margin-top: -9px;
         font-size: 1.2rem;
         font-family: vars.$font-family;
         font-weight: 100;
       }      
-    }
+    }       
   }
-  &_progress div span {
+  &_progress {
+    &_bar {
+      background-color: vars.$light-color !important;
+    }
+    & > div > span {
     font-size: 1.2rem;
     font-family: vars.$font-family;
     font-weight: 100;
-  }  
+    }   
+  }    
+  &_imgsel > .checked >label {    
+    border: 2px solid vars.$light-color;
+    & > div{
+      background-color: white !important;
+    }
+  }
 }
 
 .endQuiz {
@@ -96,6 +110,9 @@
   text-transform: uppercase;
   font-weight: 200;
   transition: background-color 300ms ease-in-out;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
   &:hover {
     background-color: white;
     color: vars.$light-color;

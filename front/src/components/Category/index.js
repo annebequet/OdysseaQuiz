@@ -23,7 +23,7 @@ const Category = ({
   }, []);
 
   return (
-    <div className="category">
+    <div className="category__survey">
       {!surveyLoading && isLogged && (
       <Quiz
         isChildQuiz={false}

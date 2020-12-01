@@ -44,14 +44,6 @@ const App = ({
   return (
     <div className="app">
       <Header />
-      {/*  {myLocation === '/' && (
-        <FrontPageInformations />
-        )}
-        {myLocation === '/' && (
-        <div className="frontPageImage">
-          <h1 className="playText">A vous de jouer !</h1>
-        </div>
-        )} */}
       <Switch>
         <Route
           exact

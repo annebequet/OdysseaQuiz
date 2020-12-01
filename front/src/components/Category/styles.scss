@@ -1,5 +1,11 @@
 @use 'src/styles/vars';
 
+.category__survey {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .errorMessage {
   color: white;
   font-size: 20px;

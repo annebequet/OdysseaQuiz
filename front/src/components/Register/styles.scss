@@ -26,5 +26,11 @@
     }
     &--validate {
       color: black;
+      box-shadow: 0 0 8px rgba(0,0,0,.125);
+      text-align: center;
+      padding: 4rem 2rem;
+      background-color: white;
+      border: 1px solid rgba(0,0,0,.125);
+      border-radius: .25rem;    
     }
 }

@@ -5,11 +5,11 @@ export const quizAdultExemple = [
     id: 0,
     title: 'Comment s\'appelle la course à la voile, autour du monde, en solitaire qui part de France tous les 4 ans ? ',
     choices: [
-      'Vroum: ![A parrot](https://image.shutterstock.com/image-photo/young-potato-isolated-on-white-260nw-1029398878.jpg =140x140)', 'Parrot: ![A parrot](https://image.shutterstock.com/image-photo/young-potato-isolated-on-white-260nw-1029398878.jpg =140x140)', 'Bla: ![A parrot](https://image.shutterstock.com/image-photo/young-potato-isolated-on-white-260nw-1029398878.jpg =140x140)', 'Le Vendée Globe: ![A parrot](https://image.shutterstock.com/image-photo/young-potato-isolated-on-white-260nw-1029398878.jpg =140x140)',
+      'Le tour de France', 'Le Vendée Globe', 'La fête de la sardine', 'Le tour du monde en solitaire',
     ],
-    correctAnswer: 'Vroum: ![A parrot](https://image.shutterstock.com/image-photo/young-potato-isolated-on-white-260nw-1029398878.jpg =140x140)',
+    correctAnswer: 'Le Vendée Globe',
   },
- {
+  {
     type: 'radiogroup',
     name: 'adult-nice-creature',
     id: 1,
@@ -105,115 +105,43 @@ export const quizAdultExemple = [
       'Le bactérioplancton', 'Le picoplancton', 'L\'holoplancton', 'Le lépidoplancton',
     ],
     correctAnswer: 'Le lépidoplancton',
-  },  
+  },
 ];
 
 export const quizChildrenExemple = [
   {
-    type: 'radiogroup',
-    name: 'child-nenuphar',
-    id: 0,
-    title: `Qu'est ce qu'un nénuphar ?`,
-    choices: [
-      'une plante à fleur', 'une herbe sous-marine', 'une algue', 'un genre de corail',
-    ],
-    correctAnswer: 'une plante à fleur',
-  },
-  {
-    type: 'radiogroup',
-    name: 'child-little-mermaid',
+    type: 'imagepicker',
     id: 1,
-    title: `Comment s'appelle le poisson d'Ariel dans la petite sirène ?`,
-    choicesOrder: 'random',
+    name: 'choosepicture',
+    title: 'What animal would you like to see first ?',
     choices: [
-      'Traversin', 'Polochon', 'Coussin', 'Oreiller',
+      {
+        value: 'lion',
+        imageLink: 'https://surveyjs.io/Content/Images/examples/image-picker/lion.jpg',
+      }, {
+        value: 'giraffe',
+        imageLink: 'https://surveyjs.io/Content/Images/examples/image-picker/giraffe.jpg',
+      }, {
+        value: 'panda',
+        imageLink: 'https://surveyjs.io/Content/Images/examples/image-picker/panda.jpg',
+      }, {
+        value: 'camel',
+        imageLink: 'https://surveyjs.io/Content/Images/examples/image-picker/camel.jpg',
+      },
     ],
-    correctAnswer: 'Polochon',
+    correctAnswer: 'lion',
   },
-  {
-    type: 'radiogroup',
-    name: 'child-shark',
-    id: 2,
-    title: `Quel requin n'existe pas ?`,
-    choicesOrder: 'random',
-    choices: [
-      'Le requin-lutin', 'Le requin-lézard', 'Le requin-tigre', 'Le requin-bélier',
-    ],
-    correctAnswer: 'Le requin-bélier',
-  },
-  {
-    type: 'radiogroup',
-    name: 'child-pirate',
-    id: 3,
-    title: 'De qui a peur le capitaine Crochet dans Peter Pan ?',
-    choices: [
-      'un calamar géant', 'une baleine', 'un requin', 'un crocodile',
-    ],
-    correctAnswer: 'un crocodile',
-  },
-  {
-    type: 'radiogroup',
-    name: 'child-turtle',
-    id: 4,
-    title: 'Où pondent les tortues marines ?',
-    choicesOrder: 'random',
-    choices: [
-      `Dans le sable au fond de l'océan`, 'Dans les grottes sous-marines', 'Sur une plage', 'Dans les récifs coraliens',
-    ],
-    correctAnswer: 'Sur une plage',
-  },
-  {
-    type: 'radiogroup',
-    name: 'child-oyster',
-    id: 5,
-    title: 'Grâce à quel mollusque à coquille cultive t-on les perles ?',
-    choicesOrder: 'random',
-    choices: [
-      'Les moules', 'Les huîtres', 'Les palourdes', 'Les coquilles Saint-Jacques',
-    ],
-    correctAnswer: 'Les huîtres',
-  },
-  {
-    type: 'radiogroup',
-    name: 'child-dolphin',
-    id: 6,
-    title: `Comment s'appelle la partie bombée sur la tête du dauphin, qui lui permet de faire des sons ?`,
-    choices: [
-      'Le melon', 'La pastèque', 'Le potiron', 'La courge',
-    ],
-    correctAnswer: 'Le melon',
-  },
-  {
-    type: 'radiogroup',
-    name: 'child-whale',
-    id: 7,
-    title: `Grâce à quoi peut-on connaître l'âge d'une baleine ?`,
-    choicesOrder: 'random',
-    choices: [
-      'La taille de sa nageoire dorsale', 'Ses dents', 'La cire de ses oreilles', 'Les sillons de son ventre',
-    ],
-    correctAnswer: 'La cire de ses oreilles',
-  },
-  {
-    type: 'radiogroup',
-    name: 'child-which-fish-exists',
-    id: 8,
-    title: `Lequel de ces poissons n'existe pas ?`,
-    choicesOrder: 'random',
-    choices: [
-      'Le poisson chat', 'Le poisson lapin', 'Le poisson chien', 'Le poisson canard',
-    ],
-    correctAnswer: 'Le poisson canard',
-  },
-  {
-    type: 'radiogroup',
-    name: 'child-seahorse',
-    id: 9,
-    title: 'Chez les hippocampes, qui porte les petits ?',
-    choicesOrder: 'random',
-    choices: [
-      'Le mâle', 'La femelle', 'Les deux peuvent le faire', 'Aucun des 2',
-    ],
-    correctAnswer: 'Le mâle',
-  }
 ];
+
+{ /* Exemple of how to insert images in the quiz, thanks to markdown:
+  {
+    type: 'radiogroup',
+    name: 'adult-races',
+    id: 0,
+    title: 'Comment s\'appelle la course à la voile, autour du monde, en solitaire qui part de France tous les 4 ans ? ',
+    choices: [
+      'Vroum: ![A parrot](https://image.shutterstock.com/image-photo/young-potato-isolated-on-white-260nw-1029398878.jpg =140x140)', 'Parrot: ![A parrot](https://image.shutterstock.com/image-photo/young-potato-isolated-on-white-260nw-1029398878.jpg =140x140)', 'Bla: ![A parrot](https://image.shutterstock.com/image-photo/young-potato-isolated-on-white-260nw-1029398878.jpg =140x140)', 'Le Vendée Globe: ![A parrot](https://image.shutterstock.com/image-photo/young-potato-isolated-on-white-260nw-1029398878.jpg =140x140)',
+    ],
+    correctAnswer: 'Vroum: ![A parrot](https://image.shutterstock.com/image-photo/young-potato-isolated-on-white-260nw-1029398878.jpg =140x140)',
+  },
+ */ }

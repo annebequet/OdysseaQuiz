@@ -6,12 +6,10 @@ import {
 } from 'react-bootstrap';
 import './styles.scss';
 
-import TurtleImage from 'src/assets/images/turtle.jpg';
 import ErrorMessage from 'src/components/ErrorMessage';
 import Field from './Field';
 import FieldRadio from './FieldRadio';
 import FieldRadioAvatars from './FieldRadioAvatars';
-import { getScores } from '../../actions/profile';
 
 /* Commentaries are for the switch environment item */
 
@@ -20,7 +18,6 @@ const Profile = ({
   email,
   avatar,
   getUser,
-  categories,
   handleEditPseudo,
   handleEditEmail,
   handleEditPassword,
@@ -85,7 +82,10 @@ const Profile = ({
             alt="odyssea__avatar"
             src={avatar.imageUrl}
           />
-          <h3 className="profile__pseudo">Pseudo : {pseudo}<br /><br /> Difficulté : {environment} </h3>
+          <div className="personal--informations">
+            <h3 className="profile__pseudo">{pseudo}</h3>
+            <p className="profile__level">Mode {environment}</p>
+          </div>
         </div>
         <div className="profile__wrap__right">
           <Accordion className="accordion">
@@ -131,6 +131,8 @@ const Profile = ({
                       placeholder={pseudo}
                       onChange={changeInput}
                       value={newPseudo}
+                      pattern="^(?=^.{6,12}$).*$"
+                      title="Votre mot de passe doit contenir entre 6 et 12 caractères"
                     />
                     <button
                       className="profile__edit--submit"
@@ -153,10 +155,12 @@ const Profile = ({
                 <Card.Body>
                   <form className="profile__edit__form --email" onSubmit={handleEditEmailSubmit}>
                     <Field
+                      type="email"
                       name="newEmail"
                       placeholder={email}
                       onChange={changeInput}
                       value={newEmail}
+                      title="Entrez un email valide"
                     />
                     <button
                       className="profile__edit--submit"
@@ -183,6 +187,8 @@ const Profile = ({
                     onChange={changeInput}
                     value={newPassword}
                     type="password"
+                    pattern="(?=^.{6,32}$)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$"
+                    title="Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre."
                   />
                   <button
                     className="profile__edit--submit"
@@ -198,7 +204,7 @@ const Profile = ({
             <Card className="accordion__card">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="4">
-                  <label>Changez votre difficulté de jeu !</label>
+                  <label>Changez votre difficulté de jeu</label>
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey="4">

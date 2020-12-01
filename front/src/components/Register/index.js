@@ -87,7 +87,7 @@ const Register = ({
       )}
       {isRegistered && (
         // eslint-disable-next-line max-len
-        <p className="register--validate">Bravo pour votre inscription, vous pouvez maintenant vous connecter et commencer à jouer dans le grand bain !></p>
+        <p className="register--validate">Bravo pour votre inscription, vous pouvez maintenant vous connecter et commencer à jouer dans le grand bain !</p>
       )}
 
       {Object.keys(requestErrors).length > 0 && !isRegistered && (
