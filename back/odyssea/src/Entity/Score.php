@@ -32,7 +32,7 @@ class Score
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"users_get_one"})
+     * @Groups({"users_get_one", "categories_get", "api_scores_get_one"})
      * @Assert\Range(
      *      min = "0",
      *      max = "100",
@@ -54,6 +54,7 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"categories_get", "api_scores_get_one"})
      * @Assert\NotNull
      */
     private $user;
@@ -61,7 +62,7 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"users_get_one"})
+     * @Groups({"users_get_one", "categories_get_one_podium"})
      * @Assert\NotNull
      */
     private $category;
@@ -69,7 +70,7 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"users_get_one"})
+     * @Groups({"users_get_one", "categories_get_one_podium"})
      * @Assert\NotNull
      */
     private $environment;

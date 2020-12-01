@@ -33,7 +33,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Groups({"categories_get", "categories_get_one", "users_get_one"})
+     * @Groups({"categories_get", "categories_get_one", "users_get_one", "categories_get_one_podium", "api_scores_get_one", "questions_image_get_one", "get_questImage_by_cat"})
      * @Assert\Length(
      *      max=12,
      *      maxMessage="Le nom de la catégorie est trop long, merci d'en choisir un autre.",
@@ -47,7 +47,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"categories_get", "categories_get_one", "users_get_one"})
+     * @Groups({"categories_get", "categories_get_one", "users_get_one", "api_scores_get_one"})
      * @Assert\Url(
      *    message = "L'url '{{ value }}' n'est pas valide.",
      * )
@@ -75,14 +75,21 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Score::class, mappedBy="category")
+     * @Groups("categories_get")
      */
     private $scores;
+
+    /**
+     * @ORM\OneToMany(targetEntity=QuestionImage::class, mappedBy="category")
+     */
+    private $questionImages;
 
     public function __construct()
     {
         $this->questions = new ArrayCollection();
         $this->scores = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->questionImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -203,5 +210,36 @@ class Category
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection|QuestionImage[]
+     */
+    public function getQuestionImages(): Collection
+    {
+        return $this->questionImages;
+    }
+
+    public function addQuestionImage(QuestionImage $questionImage): self
+    {
+        if (!$this->questionImages->contains($questionImage)) {
+            $this->questionImages[] = $questionImage;
+            $questionImage->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionImage(QuestionImage $questionImage): self
+    {
+        if ($this->questionImages->contains($questionImage)) {
+            $this->questionImages->removeElement($questionImage);
+            // set the owning side to null (unless already changed)
+            if ($questionImage->getCategory() === $this) {
+                $questionImage->setCategory(null);
+            }
+        }
+
+        return $this;
     }
 }

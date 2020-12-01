@@ -19,6 +19,92 @@ class ScoreRepository extends ServiceEntityRepository
         parent::__construct($registry, Score::class);
     }
 
+    public function findLeaderboard($category, $environment)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT score, category, environment, user
+                FROM App\Entity\Score AS score
+                    LEFT JOIN score.category AS category
+                    LEFT JOIN score.environment AS environment
+                    LEFT JOIN score.user AS user
+                WHERE category = :category AND environment = :environment
+                ORDER BY score.score DESC, score.quizNb DESC'
+        );
+        $query
+        ->setParameters(array(
+            'category' => $category,
+            'environment' => $environment
+        ));
+
+        // returns an array of Score objects
+        return $query->getResult();
+    }
+
+    public function findPodium($category, $environment)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT score, category, environment, user
+                FROM App\Entity\Score AS score
+                    LEFT JOIN score.category AS category
+                    LEFT JOIN score.environment AS environment
+                    LEFT JOIN score.user AS user
+                WHERE category = :category AND environment = :environment
+                ORDER BY score.score DESC, score.quizNb DESC'
+        );
+        $query
+        ->setMaxResults(3)
+        ->setParameters(array(
+            'category' => $category,
+            'environment' => $environment
+        ));
+
+        // returns an array of Score objects
+        return $query->getResult();
+    }
+
+    public function findRank($category, $environment, $user)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT score, category, environment, user
+                FROM App\Entity\Score AS score
+                    LEFT JOIN score.category AS category
+                    LEFT JOIN score.environment AS environment
+                    LEFT JOIN score.user AS user
+                WHERE category = :category AND environment = :environment AND user = :user'
+        );
+        $query
+        ->setParameters(array(
+            'category' => $category,
+            'environment' => $environment,
+            'user' => $user
+        ));
+
+        // returns an object Score
+        return $query->getOneOrNullResult();
+    }
+
+    public function findRanking($environment)
+    {
+        return $this->createQueryBuilder('score')
+                    ->from('App\Entity\Score', 'Score')
+                    ->addSelect('user')
+                    ->join('score.user', 'user')
+                    ->join('score.environment', 'environment')
+                    ->where('environment = :environment')
+                    ->setParameter('environment', $environment)
+                    ->orderBy('score.score', 'DESC')
+                    ->getQuery()
+                    ->getResult();
+    }
+
+
+
     // /**
     //  * @return Score[] Returns an array of Score objects
     //  */

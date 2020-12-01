@@ -29,7 +29,7 @@ class Environment
 
     /**
      * @ORM\Column(type="string", length=20)
-     * @Groups({"users_get", "users_get_one", "categories_get_one"})
+     * @Groups({"users_get", "users_get_one", "categories_get_one", "categories_get_one_podium", "api_scores_get_one", "questions_image_get_one", "get_questImage_by_cat"})
      * @Assert\Length(
      *      max=12,
      *      maxMessage="Le nom est trop long, merci d'en choisir un autre.",
@@ -63,12 +63,18 @@ class Environment
      */
     private $scores;
 
+    /**
+     * @ORM\OneToMany(targetEntity=QuestionImage::class, mappedBy="environment")
+     */
+    private $questionImages;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->questions = new ArrayCollection();
         $this->scores = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->questionImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -208,5 +214,36 @@ class Environment
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection|QuestionImage[]
+     */
+    public function getQuestionImages(): Collection
+    {
+        return $this->questionImages;
+    }
+
+    public function addQuestionImage(QuestionImage $questionImage): self
+    {
+        if (!$this->questionImages->contains($questionImage)) {
+            $this->questionImages[] = $questionImage;
+            $questionImage->setEnvironment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionImage(QuestionImage $questionImage): self
+    {
+        if ($this->questionImages->contains($questionImage)) {
+            $this->questionImages->removeElement($questionImage);
+            // set the owning side to null (unless already changed)
+            if ($questionImage->getEnvironment() === $this) {
+                $questionImage->setEnvironment(null);
+            }
+        }
+
+        return $this;
     }
 }

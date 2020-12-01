@@ -77,7 +77,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", unique=true, length=16)
-     * @Groups({"users_get", "users_get_one"})
+     * @Groups({"users_get", "users_get_one", "categories_get", "api_scores_get_one"})
      * @Assert\Sequentially({
      *      @Assert\NotBlank(message="Veuillez remplir ce champs"),
      *      @Assert\Length(
@@ -154,6 +154,16 @@ class User implements UserInterface
      * @Groups({"users_get", "users_get_one"})
      */
     private $avatar;
+
+    /**
+     * @ORM\OneToMany(targetEntity=GradeAdult::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $gradeAdults;
+
+    /**
+     * @ORM\OneToMany(targetEntity=GradeKid::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $gradeKids;
     
     public function __construct()
     {
@@ -162,6 +172,8 @@ class User implements UserInterface
         $this->createdAt = new \DateTime();
         // $this->avatar = 1;
         $this->roles = ["ROLE_USER"];
+        $this->gradeAdults = new ArrayCollection();
+        $this->gradeKids = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -440,5 +452,67 @@ class User implements UserInterface
     public function getImageUrl()
     {
         return $this->avatar->getImageUrl();
+    }
+
+    /**
+     * @return Collection|GradeAdult[]
+     */
+    public function getGradeAdults(): Collection
+    {
+        return $this->gradeAdults;
+    }
+
+    public function addGradeAdult(GradeAdult $gradeAdult): self
+    {
+        if (!$this->gradeAdults->contains($gradeAdult)) {
+            $this->gradeAdults[] = $gradeAdult;
+            $gradeAdult->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGradeAdult(GradeAdult $gradeAdult): self
+    {
+        if ($this->gradeAdults->contains($gradeAdult)) {
+            $this->gradeAdults->removeElement($gradeAdult);
+            // set the owning side to null (unless already changed)
+            if ($gradeAdult->getUser() === $this) {
+                $gradeAdult->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|GradeKid[]
+     */
+    public function getGradeKids(): Collection
+    {
+        return $this->gradeKids;
+    }
+
+    public function addGradeKid(GradeKid $gradeKid): self
+    {
+        if (!$this->gradeKids->contains($gradeKid)) {
+            $this->gradeKids[] = $gradeKid;
+            $gradeKid->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGradeKid(GradeKid $gradeKid): self
+    {
+        if ($this->gradeKids->contains($gradeKid)) {
+            $this->gradeKids->removeElement($gradeKid);
+            // set the owning side to null (unless already changed)
+            if ($gradeKid->getUser() === $this) {
+                $gradeKid->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -9,6 +9,7 @@ use App\Entity\Category;
 use App\Entity\Question;
 use App\Entity\Environment;
 use App\Controller\Admin\UserCrudController;
+use App\Entity\QuestionImage;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -56,6 +57,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Mots de passe', 'fas fa-key', User::class)
             ->setController(PasswordCrudController::class),
         yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class),
+        yield MenuItem::linkToCrud('Questions Image', 'fa fa-question-circle', QuestionImage::class),
+        yield MenuItem::linkToCrud('Réponses Image', 'fa fa-question-circle', AnswerImage::class)
+            ->setController(AnswerImageCrudController::class),
         yield MenuItem::linkToCrud('Catégories', 'fas fa-fish', Category::class),
         yield MenuItem::linkToCrud('Avatars', 'fa fa-picture-o', Gallery::class),
         yield MenuItem::linkToCrud('Environnement', 'fab fa-pagelines', Environment::class),

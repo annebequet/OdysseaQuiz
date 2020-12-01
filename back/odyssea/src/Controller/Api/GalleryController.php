@@ -31,7 +31,7 @@ class GalleryController extends AbstractController
     public function getOne($id, GalleryRepository $galleryRepository, Gallery $avatar)
     {
         $avatar = $galleryRepository->find($avatar);
-
+        
         // Check if the Avatar exists, if not, return 404
         if ($avatar === null) {
             return $this->json(['error' => 'Avatar not found'], Response::HTTP_NOT_FOUND);

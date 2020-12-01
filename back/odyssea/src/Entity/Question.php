@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\QuestionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -25,13 +27,13 @@ class Question
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"categories_get_one", "get_quest_by_cat"})
+     * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Groups({"categories_get_one", "get_quest_by_cat"})
+     * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
      * @Assert\NotBlank(
      *      message = "Vous devez sélectionner le type de la question."
      * )
@@ -42,7 +44,7 @@ class Question
     //! sa march pas
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"categories_get_one", "get_quest_by_cat"})
+     * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
      * @Assert\NotBlank(
      *      message = "Vous devez rentrer un slug pour identifier la question."
      * )
@@ -56,7 +58,7 @@ class Question
     //! si on joue au timer, ne pas mettre des questions de plus de 200 caractères
     /**
      * @ORM\Column(type="text")
-     * @Groups({"categories_get_one", "get_quest_by_cat"})
+     * @Groups({"categories_get_one", "get_quest_by_cat", "grades_get_one", "questions_get_grades"})
      * @Assert\NotBlank(
      *      message = "Vous devez poser une question."
      * )
@@ -65,7 +67,7 @@ class Question
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"categories_get_one", "get_quest_by_cat"})
+     * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
      * @Assert\NotBlank(
      *      message = "Vous devez entrer plusieurs choix."
      * )
@@ -74,7 +76,7 @@ class Question
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"categories_get_one", "get_quest_by_cat"})
+     * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
      * @Assert\NotBlank(
      *      message = "Vous devez copier la bonne réponse dans ce champs."
      * )
@@ -102,9 +104,15 @@ class Question
      */
     private $environment;
 
+    /**
+     * @ORM\OneToMany(targetEntity=GradeAdult::class, mappedBy="question", orphanRemoval=true)
+     */
+    private $gradeAdults;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->gradeAdults = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -216,6 +224,37 @@ class Question
     public function setEnvironment(?Environment $environment): self
     {
         $this->environment = $environment;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|GradeAdult[]
+     */
+    public function getGradeAdults(): Collection
+    {
+        return $this->gradeAdults;
+    }
+
+    public function addGradeAdult(GradeAdult $gradeAdult): self
+    {
+        if (!$this->gradeAdults->contains($gradeAdult)) {
+            $this->gradeAdults[] = $gradeAdult;
+            $gradeAdult->setQuestion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGradeAdult(GradeAdult $gradeAdult): self
+    {
+        if ($this->gradeAdults->contains($gradeAdult)) {
+            $this->gradeAdults->removeElement($gradeAdult);
+            // set the owning side to null (unless already changed)
+            if ($gradeAdult->getQuestion() === $this) {
+                $gradeAdult->setQuestion(null);
+            }
+        }
 
         return $this;
     }
