@@ -75,7 +75,7 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Score::class, mappedBy="category")
-     * @Groups("categories_get")
+     * @Groups("categories_get_one")
      */
     private $scores;
 

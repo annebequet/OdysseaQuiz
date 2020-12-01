@@ -10,6 +10,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategoryController extends AbstractController
 {
     /**
+     * Get all categories
+     * @Route("/api/categories", name="api_categories_get_all", methods={"GET"})
+     */
+    public function getAll(CategoryRepository $categoryRepository)
+    {
+        $categories = $categoryRepository->findAll();
+
+        return $this->json($categories, 200, [], ['groups' => 'categories_get']);
+    }
+
+    /**
      * Get all the categories with leaderboards by environment for the curent user
      * @Route("/api/categories/{environmentId<\d+>}", name="api_categories_get", methods={"GET"})
      */
