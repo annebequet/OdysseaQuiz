@@ -6,6 +6,7 @@ use App\Entity\GradeAdult;
 use App\Entity\Question;
 use App\Repository\GradeAdultRepository;
 use App\Repository\QuestionRepository;
+use App\Repository\ScoreRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,26 +56,44 @@ class QuestionController extends AbstractController
      * Get questions by grades
      * @Route("/api/questions/{userId<\d+>}/{environmentId<\d+>}/{categoryId<\d+>}", name="api_questions_send", methods={"GET"})
      */
-    public function getQuestions($userId, $categoryId, $environmentId, QuestionRepository $questionRepository, UserRepository $userRepository)
+    public function getQuestions($userId, $categoryId, $environmentId, QuestionRepository $questionRepository, UserRepository $userRepository, ScoreRepository $scoreRepository)
     {
         //$user = $this->getUser();
         $user = $userRepository->find($userId);
         
-        // Get mix of questions
-        for ($i=0; $i <= 5 ; $i++) {
-            $grade[$i] = $questionRepository->findRandom($userId, $environmentId, $categoryId, $i);
+        $score = $scoreRepository->findOneBy([
+            "user" => $user,
+            "environment" => $environmentId,
+            "category" => $categoryId
+        ]);
+        $quizNb = $score->getQuizNb();
 
-            // If the user doesn't have a question with the specified grade
-            for ($x=1; $x < 5 ; $x++) {
-                if ($grade[$i] == null) {
-                    // Get a question in the previous grade
-                    $question = $questionRepository->findRandom($userId, $environmentId, $categoryId, $i-$x);
-                    if(array_search($question, $grade) === false) {
-                        $grade[$i] = $questionRepository->findRandom($userId, $environmentId, $categoryId, $i-$x);
+        // If Quiz Number < 10, select questions from all grades randomnly
+        if ($quizNb == null or $quizNb < 10)
+        {
+            $questions = $questionRepository->findTenRandom($environmentId, $categoryId);
+
+            return $this->json($questions, 200, [], ['groups' => 'get_quest_by_cat']);
+        }
+
+        // Else get mix of questions
+        else 
+        {
+            for ($i=0; $i <= 5 ; $i++) {
+                $grade[$i] = $questionRepository->findOneRandom($userId, $environmentId, $categoryId, $i);
+
+                // If the user doesn't have a question with the specified grade
+                for ($x=1; $x < 5 ; $x++) {
+                    if ($grade[$i] == null) {
+                        // Get a question in the previous grade
+                        $question = $questionRepository->findOneRandom($userId, $environmentId, $categoryId, $i-$x);
+                        if (array_search($question, $grade) === false) {
+                            $grade[$i] = $questionRepository->findOneRandom($userId, $environmentId, $categoryId, $i-$x);
+                        }
                     }
                 }
             }
+            return $this->json($grade, 200, [], ['groups' => 'questions_get_grades']);
         }
-        return $this->json($grade, 200, [], ['groups' => 'questions_get_grades']);
     }
 }

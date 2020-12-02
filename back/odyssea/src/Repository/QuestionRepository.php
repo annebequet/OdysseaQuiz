@@ -19,7 +19,23 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
-    public function findRandom($user, $environment, $category, $grade)
+    public function findTenRandom($environment, $category)
+    {   
+        $qb = $this->createQueryBuilder('question');
+        $qb->andWhere('question.category = :category');
+        $qb->andWhere('question.environment = :environment');
+        $qb->orderBy('RAND()');
+        $qb->setMaxResults(10);
+        $qb->setParameters(array(
+            'category' => $category,
+            'environment' => $environment
+        ));
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    public function findOneRandom($user, $environment, $category, $grade)
     {   
         $qb = $this->createQueryBuilder('question');
         $qb->leftJoin('question.gradeAdults', 'grades');
