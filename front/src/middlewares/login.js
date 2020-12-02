@@ -2,10 +2,8 @@ import axios from 'axios';
 import {
   LOGIN, LOGOUT, CHECK_IS_LOGGED, saveUser,
 } from 'src/actions';
-import {
-  getCategories,
-} from 'src/actions/categories';
 import { setRequestError } from 'src/actions/errorHandler';
+import { getCategories } from 'src/actions/categories';
 
 import baseUrl from './baseUri';
 
@@ -29,11 +27,14 @@ const login = (store) => (next) => (action) => {
           window.sessionStorage.setItem('id', id);
           window.sessionStorage.setItem('environment', environment);
           store.dispatch(saveUser(pseudo, roles, avatar, id));
-          store.dispatch(getCategories());
+          // eslint-disable-next-line max-len
+          // The informations displayed with the list of categories depend on whether the user is logged in or not. That's why the LOGIN and CHECKED_IS_LOGGED cases will trigger the function getCategories with a boolean indicating the login status.
+          store.dispatch(getCategories(true));
         })
         .catch((error) => {
           console.log('login', error.response);
           store.dispatch(setRequestError({ 'Erreur de connexion': ['Mot de passe ou identifiant Incorrect'] }));
+          store.dispatch(getCategories(false));
         });
 
       next(action);
@@ -54,13 +55,14 @@ const login = (store) => (next) => (action) => {
             const id = sessionStorage.getItem('id');
             const { pseudo, roles, avatar } = response.data[0];
             store.dispatch(saveUser(pseudo, roles, avatar, id));
+            store.dispatch(getCategories(true));
           }
         })
         .catch((error) => {
-          //console.log(error);
           window.sessionStorage.removeItem('token');
           window.sessionStorage.removeItem('id');
           window.sessionStorage.removeItem('environment');
+          store.dispatch(getCategories(false));
         });
       next(action);
       break;

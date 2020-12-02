@@ -9,7 +9,6 @@ import App from 'src/components/App';
 const mapStateToProps = (state) => ({
   categoriesLoading: state.categories.categoriesLoading,
   isLogged: state.headerLogin.isLogged,
-  myLocation: state.app.location,
 });
 
 const mapDispatchToProps = (dispatch) => ({

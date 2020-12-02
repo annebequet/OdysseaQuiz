@@ -1,5 +1,5 @@
 import {
-  SAVE_CATEGORIES,
+  SAVE_CATEGORIES, LOGIN_CHECKED
 } from '../actions/categories';
 
 const initialState = {

@@ -27,13 +27,12 @@ const App = ({
   updateLocation,
   clearErrors,
   isLogged,
-  myLocation,
 }) => {
   useEffect(checkIsLogged, []);
 
-  useEffect(() => {
+  { /* useEffect(() => {
     getCategories();
-  });
+  }); */ }
 
   const history = useHistory();
   useEffect(() => history.listen((location) => {
@@ -136,7 +135,6 @@ App.propTypes = {
   clearErrors: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  myLocation: PropTypes.string.isRequired,
 };
 
 // == Export

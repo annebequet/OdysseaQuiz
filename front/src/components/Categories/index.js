@@ -49,7 +49,7 @@ const Categories = ({
 );
 
 Categories.propTypes = {
-  categories: PropTypes.objectOf(
+  categories: PropTypes.arrayOf(
     PropTypes.shape({
       category: PropTypes.objectOf(
         PropTypes.shape({
