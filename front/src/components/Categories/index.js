@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { getSlugFromTitle } from 'src/selectors/categories';
+import { getSlugFromTitle, getScoreInformations } from 'src/selectors/categories';
 
 import './styles.scss';
 
@@ -18,7 +18,10 @@ const Categories = ({
 
     <div className="category__container">
       {Object.keys(categories).map((categoryId) => {
+        // We have access to the name of the category and the picture url
         const { name, picture } = categories[categoryId].category;
+        // If the category also has scores of different players
+        const scoreInformations = getScoreInformations(categories[categoryId]);
 
         return (
           <Link
@@ -40,6 +43,10 @@ const Categories = ({
                   src={picture}
                 />
               </div>
+              {/* if there are scores 
+              {!score === undefined && (
+                <p>{scoreInformations.score}</p>
+              )} */}
             </div>
           </Link>
         );

@@ -14,7 +14,8 @@ const mapStateToProps = (state, ownProps) => {
   // Gets the title of the surveys (either passed in the props when it's a quiz exemple, or the title of the survey)
   const category = ownProps.category ? ownProps.category : state.surveys.surveyTitle;
 
-  const isCompleted = ownProps.isChildQuiz ? state.surveys.isChildQuizCompleted : state.surveys.isCompleted;
+  // Here we have to differentiate whether it's a child quiz or not for the exemple quiz. If we only play on one exempleQuiz, we only want this one to be validated.
+  const isCompleted = ownProps.isChildExempleQuiz ? state.surveys.isChildQuizCompleted : state.surveys.isCompleted;
 
   // Function to turn the object received by the request into an object that would fit the library SurveyJS expectations for the Quiz
   const surveyData = transformQuestionsInSurveyObject(survey, category);

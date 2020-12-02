@@ -26,7 +26,7 @@ const Category = ({
     <div className="category__survey">
       {!surveyLoading && isLogged && (
       <Quiz
-        isChildQuiz={false}
+        isChildExempleQuiz={false}
       />
       )}
       {error && !isLogged && (

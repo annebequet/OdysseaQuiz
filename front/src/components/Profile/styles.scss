@@ -1,11 +1,30 @@
 @use 'src/styles/vars';
 
 .profile {
-  &__wrap__left {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  &__edit {
+    display: flex;
+  }
+  &__wrap__left__top {
     & > .personal--informations {
       display: flex;
       justify-content: space-between;
       margin: 0 1rem;
+    }
+  }
+  &__wrap__right {
+    & > .categories__ul{
+      & > .categories__item{
+        & > .category__score__img{
+          width: 100px;        
+        }
+        & > .profile__progress {
+          width: 100px;
+        }
+      }
     }
   }
   &__odyssea__avatar {

@@ -57,6 +57,8 @@ export default (state = initialState, action = {}) => {
         surveyAnswers: {},
         points: 0,
         questionsSuccess: [],
+        completedSurveyData: {},
+        surveyCategory: '',
       };
     default:
       return state;

@@ -77,179 +77,182 @@ const Profile = ({
       )}
       <div className="profile__edit">
         <div className="profile__wrap__left">
-          <img
-            className="profile__odyssea__avatar"
-            alt="odyssea__avatar"
-            src={avatar.imageUrl}
-          />
-          <div className="personal--informations">
-            <h3 className="profile__pseudo">{pseudo}</h3>
-            <p className="profile__level">Mode {environment}</p>
+          <div className="profile__wrap__left__top">
+            <img
+              className="profile__odyssea__avatar"
+              alt="odyssea__avatar"
+              src={avatar.imageUrl}
+            />
+            <div className="personal--informations">
+              <h3 className="profile__pseudo">{pseudo}</h3>
+              <p className="profile__level">Mode {environment}</p>
+            </div>
+          </div>
+          <div className="profile__wrap__right">
+            <Accordion className="accordion">
+              {/* FORM FOR AVATAR EDIT */}
+              <Card className="accordion__card">
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    <label>Changez votre avatar!</label>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+                    <form className="profile__edit__form --avatars" onSubmit={handleEditAvatarSubmit}>
+                      <FieldRadioAvatars
+                        name="newAvatar"
+                        id="newAvatar"
+                        onChange={changeInput}
+                        value={newAvatar}
+                        avatars={avatars}
+                      />
+                      <button
+                        className="profile__edit--submit"
+                        type="submit"
+                      >
+                        Envoyez vos modifications
+                      </button>
+                    </form>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              {/* FORM FOR PSEUDO EDIT */}
+              <Card className="accordion__card">
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                    <label>Changez votre pseudo</label>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="1">
+                  <Card.Body>
+                    <form className="profile__edit__form --pseudo" onSubmit={handleEditPseudoSubmit}>
+                      <Field
+                        name="newPseudo"
+                        placeholder={pseudo}
+                        onChange={changeInput}
+                        value={newPseudo}
+                        pattern="^(?=^.{6,12}$).*$"
+                        title="Votre mot de passe doit contenir entre 6 et 12 caractères"
+                      />
+                      <button
+                        className="profile__edit--submit"
+                        type="submit"
+                      >
+                        Envoyez vos modifications
+                      </button>
+                    </form>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              {/* FORM FOR EMAIL EDIT */}
+              <Card className="accordion__card">
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="2">
+                    <label>Changez votre adresse e-mail</label>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="2">
+                  <Card.Body>
+                    <form className="profile__edit__form --email" onSubmit={handleEditEmailSubmit}>
+                      <Field
+                        type="email"
+                        name="newEmail"
+                        placeholder={email}
+                        onChange={changeInput}
+                        value={newEmail}
+                        title="Entrez un email valide"
+                      />
+                      <button
+                        className="profile__edit--submit"
+                        type="submit"
+                      >
+                        Envoyez vos modifications
+                      </button>
+                    </form>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              {/* FORM FOR PASSWORD EDIT */}
+              <Card className="accordion__card">
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="3">
+                    <label>Changez votre Mot de passe</label>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="3">
+                  <Card.Body><form className="profile__edit__form --password" onSubmit={handleEditPasswordSubmit}>
+                    <Field
+                      name="newPassword"
+                      placeholder="nouveau mot de passe"
+                      onChange={changeInput}
+                      value={newPassword}
+                      type="password"
+                      pattern="(?=^.{6,32}$)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$"
+                      title="Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre."
+                    />
+                    <button
+                      className="profile__edit--submit"
+                      type="submit"
+                    >
+                      Envoyez vos modifications
+                    </button>
+                  </form>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              {/* FORM FOR ENVIRONMENT EDIT */}
+              <Card className="accordion__card">
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="4">
+                    <label>Changez votre difficulté de jeu</label>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="4">
+                  <Card.Body>
+                    <form className="profile__edit__form --environment" onSubmit={handleEditEnvironmentSubmit}>
+                      <FieldRadio
+                        name="newEnvironment"
+                        id="environment"
+                        onChange={changeInput}
+                        value={newEnvironment}
+                      />
+                      <button
+                        className="profile__edit--submit"
+                        type="submit"
+                      >
+                        Envoyez vos modifications
+                      </button>
+                    </form>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card className="accordion__card">
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="5">
+                    <label style={{ color: 'red' }}>Supprimer mon compte</label>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="5">
+                  <Card.Body>
+                    <div className="profile--delete">
+                      <button
+                        className="profile__button--delete"
+                        type="button"
+                        onClick={handleDeleteSubmit}
+                      >
+                        Supprimer mon compte
+                      </button>
+                    </div>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
           </div>
         </div>
-        <div className="profile__wrap__right">
-          <Accordion className="accordion">
-            {/* FORM FOR AVATAR EDIT */}
-            <Card className="accordion__card">
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  <label>Changez votre avatar!</label>
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>
-                  <form className="profile__edit__form --avatars" onSubmit={handleEditAvatarSubmit}>
-                    <FieldRadioAvatars
-                      name="newAvatar"
-                      id="newAvatar"
-                      onChange={changeInput}
-                      value={newAvatar}
-                      avatars={avatars}
-                    />
-                    <button
-                      className="profile__edit--submit"
-                      type="submit"
-                    >
-                      Envoyez vos modifications
-                    </button>
-                  </form>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            {/* FORM FOR PSEUDO EDIT */}
-            <Card className="accordion__card">
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                  <label>Changez votre pseudo</label>
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="1">
-                <Card.Body>
-                  <form className="profile__edit__form --pseudo" onSubmit={handleEditPseudoSubmit}>
-                    <Field
-                      name="newPseudo"
-                      placeholder={pseudo}
-                      onChange={changeInput}
-                      value={newPseudo}
-                      pattern="^(?=^.{6,12}$).*$"
-                      title="Votre mot de passe doit contenir entre 6 et 12 caractères"
-                    />
-                    <button
-                      className="profile__edit--submit"
-                      type="submit"
-                    >
-                      Envoyez vos modifications
-                    </button>
-                  </form>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            {/* FORM FOR EMAIL EDIT */}
-            <Card className="accordion__card">
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                  <label>Changez votre adresse e-mail</label>
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="2">
-                <Card.Body>
-                  <form className="profile__edit__form --email" onSubmit={handleEditEmailSubmit}>
-                    <Field
-                      type="email"
-                      name="newEmail"
-                      placeholder={email}
-                      onChange={changeInput}
-                      value={newEmail}
-                      title="Entrez un email valide"
-                    />
-                    <button
-                      className="profile__edit--submit"
-                      type="submit"
-                    >
-                      Envoyez vos modifications
-                    </button>
-                  </form>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            {/* FORM FOR PASSWORD EDIT */}
-            <Card className="accordion__card">
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                  <label>Changez votre Mot de passe</label>
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="3">
-                <Card.Body><form className="profile__edit__form --password" onSubmit={handleEditPasswordSubmit}>
-                  <Field
-                    name="newPassword"
-                    placeholder="nouveau mot de passe"
-                    onChange={changeInput}
-                    value={newPassword}
-                    type="password"
-                    pattern="(?=^.{6,32}$)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$"
-                    title="Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre."
-                  />
-                  <button
-                    className="profile__edit--submit"
-                    type="submit"
-                  >
-                    Envoyez vos modifications
-                  </button>
-                </form>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            {/* FORM FOR ENVIRONMENT EDIT */}
-            <Card className="accordion__card">
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="4">
-                  <label>Changez votre difficulté de jeu</label>
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="4">
-                <Card.Body>
-                  <form className="profile__edit__form --environment" onSubmit={handleEditEnvironmentSubmit}>
-                    <FieldRadio
-                      name="newEnvironment"
-                      id="environment"
-                      onChange={changeInput}
-                      value={newEnvironment}
-                    />
-                    <button
-                      className="profile__edit--submit"
-                      type="submit"
-                    >
-                      Envoyez vos modifications
-                    </button>
-                  </form>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            <Card className="accordion__card">
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="5">
-                  <label style={{ color: 'red' }}>Supprimer mon compte</label>
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="5">
-                <Card.Body>
-                  <div className="profile--delete">
-                    <button
-                      className="profile__button--delete"
-                      type="button"
-                      onClick={handleDeleteSubmit}
-                    >
-                      Supprimer mon compte
-                    </button>
-                  </div>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-          </Accordion>
-        </div>
       </div>
-      <div className="profile__score">
+
+      <div className="profile__wrap__right">
         <h2 className="profile__title">Consultez votre pourcentage de réussite par catégories ci-dessous!</h2>
         <ul className="categories__ul">
           {scores.map((score) => {

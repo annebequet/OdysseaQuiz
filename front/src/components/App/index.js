@@ -125,7 +125,6 @@ const App = ({
 
 App.propTypes = {
   checkIsLogged: PropTypes.func.isRequired,
-  getCategories: PropTypes.func.isRequired,
   updateLocation: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
