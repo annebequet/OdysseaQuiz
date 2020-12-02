@@ -42,7 +42,7 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         surveyCategory: action.category,
-        surveyTitle: action.category.name,
+        surveyTitle: action.category.category.name,
       };
     case SET_ERROR:
       return {

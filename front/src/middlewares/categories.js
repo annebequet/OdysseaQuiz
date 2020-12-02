@@ -8,9 +8,9 @@ const categories = (store) => (next) => (action) => {
     case GET_CATEGORIES: {
       const environmentSlug = sessionStorage.getItem('environment');
       const { isLogged } = action;
+
       // If the user is connected, the page category will also display the podiums and its own rank.
       // Otherwise it will just display the categories.
-      console.log(isLogged);
       const slug = isLogged ? `/${environmentSlug}` : '/0';
       const token = sessionStorage.getItem('token');
       const header = isLogged ? { 'X-AUTH-TOKEN': token } : '';
@@ -20,11 +20,10 @@ const categories = (store) => (next) => (action) => {
           headers: header,
         })
         .then((response) => {
-          console.log('ma réponse', response);
           store.dispatch(saveCategories(response.data));
         })
         .catch((error) => {
-          console.log('mon erreur', error);
+          console.log(error);
         });
 
       next(action);

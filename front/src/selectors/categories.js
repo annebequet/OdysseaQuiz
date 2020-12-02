@@ -9,15 +9,20 @@ export const getSlugFromTitle = (title = '') => {
     lower: true,
     remove: /[*+~.()'"!:@&]/g,
   });
-
   return slug;
 };
 
-export const getCategoryBySlug = (categoryList, slug) => Object.keys(categoryList).map((category) => {
-  const sluggedCategoryName = getSlugFromTitle(categoryList[category].category);
-  console.log(sluggedCategoryName);
-  //if (sluggedCategoryName === slug) {
-    //return categoryList[category];
-  //}
-  return'a';
+// find the id of the category that matches the url slug
+const getCategoryIdBySlug = (categoryList, slug) => Object.keys(categoryList).find((categoryId) => {
+  const sluggedCategoryName = getSlugFromTitle(categoryList[categoryId].category.name);
+  return sluggedCategoryName === slug;
 });
+
+// return an object of the category that matches the slug
+export const getCategoryBySlug = (categoryList, slug) => {
+  const categoryId = getCategoryIdBySlug(categoryList, slug);
+  const categorySelected = categoryList[categoryId];
+  // insert the id of the category into the object category.
+  categorySelected.id = categoryId;
+  return categorySelected;
+};

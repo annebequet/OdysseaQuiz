@@ -12,7 +12,7 @@ const Category = ({
   endQuiz,
   error,
 }) => {
-   // eslint-disable-next-line max-len
+  // eslint-disable-next-line max-len
   // Allows to restart the quiz when the user comes back on the component, by changing the value of isCompleted
   useEffect(() => {
     endQuiz();
@@ -21,8 +21,6 @@ const Category = ({
   useEffect(() => {
     getSurveys(category);
   }, []);
-
-  console.log(category);
 
   return (
     <div className="category__survey">
@@ -40,7 +38,7 @@ const Category = ({
 
 Category.propTypes = {
   category: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     name: PropTypes.string,
   }),
   getSurveys: PropTypes.func.isRequired,

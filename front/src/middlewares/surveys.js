@@ -16,7 +16,6 @@ export default (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log('response', response);
           store.dispatch(saveSurveys(response.data));
         })
         .catch((error) => {
@@ -31,14 +30,13 @@ export default (store) => (next) => (action) => {
       if (!action.isExempleQuiz) {
         const state = store.getState();
         const environmentSlug = sessionStorage.getItem('environment');
-        const { id: category } = state.surveys.surveyCategory;
+        const categoryId = state.surveys.surveyCategory.id;
+        console.log(categoryId);
         const answers = action.requestAnswers;
-        console.log('les réponses envoyées par le front, version stringifiée :', JSON.stringify(answers));
-        console.log('les réponses envoyées par le front :', answers);
         const user = sessionStorage.getItem('id');
         const points = action.numberOfCorrectAnswers;
         axios.post(`${baseUrl}/score/${environmentSlug}`, {
-          category,
+          categoryId,
           user,
           points,
           answers,

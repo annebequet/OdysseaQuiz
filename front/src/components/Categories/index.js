@@ -51,13 +51,10 @@ const Categories = ({
 Categories.propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.shape({
-      category: PropTypes.objectOf(
-        PropTypes.shape({
-          name: PropTypes.string,
-          picture: PropTypes.string,
-        }),
-      ),
+      name: PropTypes.string,
+      picture: PropTypes.string,
     }),
+
   ).isRequired,
 };
 

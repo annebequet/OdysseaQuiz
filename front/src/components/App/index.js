@@ -22,17 +22,12 @@ import './styles.scss';
 // == Composant
 const App = ({
   checkIsLogged,
-  getCategories,
   categoriesLoading,
   updateLocation,
   clearErrors,
   isLogged,
 }) => {
   useEffect(checkIsLogged, []);
-
-  { /* useEffect(() => {
-    getCategories();
-  }); */ }
 
   const history = useHistory();
   useEffect(() => history.listen((location) => {
