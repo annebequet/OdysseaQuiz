@@ -19,6 +19,44 @@ class QuestionImageRepository extends ServiceEntityRepository
         parent::__construct($registry, QuestionImage::class);
     }
 
+    public function findTenRandom($environment, $category)
+    {   
+        $qb = $this->createQueryBuilder('question');
+        $qb->andWhere('question.category = :category');
+        $qb->andWhere('question.environment = :environment');
+        $qb->orderBy('RAND()');
+        $qb->setMaxResults(10);
+        $qb->setParameters(array(
+            'category' => $category,
+            'environment' => $environment
+        ));
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    public function findOneRandom($user, $environment, $category, $grade)
+    {   
+        $qb = $this->createQueryBuilder('question');
+        $qb->leftJoin('question.gradeKids', 'grades');
+        //$qb->addSelect('grades.grade'); // To delete to get good json format
+        $qb->where('grades.user = :user');
+        $qb->andWhere('question.category = :category');
+        $qb->andWhere('question.environment = :environment');
+        $qb->andWhere('grades.grade = :grade');
+        $qb->orderBy('RAND()');
+        $qb->setMaxResults(1);
+        $qb->setParameters(array(
+            'grade' => $grade, 
+            'category' => $category,
+            'environment' => $environment,
+            'user' => $user,
+        ));
+
+        $query = $qb->getQuery();
+        return $query->getOneOrNullResult();
+    }
+
     // /**
     //  * @return QuestionImage[] Returns an array of QuestionImage objects
     //  */

@@ -22,13 +22,13 @@ class AnswerImage
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"questions_image_get_one", "get_questImage_by_cat"})
+     * @Groups({"get_questImage_by_cat"})
      */
     private $value;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"questions_image_get_one", "get_questImage_by_cat"})
+     * @Groups({"get_questImage_by_cat"})
      */
     private $imageLink;
 

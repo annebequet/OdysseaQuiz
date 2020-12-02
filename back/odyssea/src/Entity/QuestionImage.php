@@ -41,7 +41,7 @@ class QuestionImage
 
     /**
      * @ORM\OneToMany(targetEntity=AnswerImage::class, mappedBy="questionImage")
-     * @Groups({"questions_image_get_one", "get_questImage_by_cat"})
+     * @Groups({"get_questImage_by_cat"})
      */
     private $choices;
 
@@ -64,13 +64,11 @@ class QuestionImage
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="questionImages")
-     * @Groups({"questions_image_get_one", "get_questImage_by_cat"})
      */
     private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="questionImages")
-     * @Groups({"questions_image_get_one", "get_questImage_by_cat"})
      */
     private $environment;
 

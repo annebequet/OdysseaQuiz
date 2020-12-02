@@ -25,4 +25,26 @@ class DispatchController extends AbstractController
             ], 307);
         }
     }
+
+    /**
+     * Dispatch
+     * @Route("/api/questions/{environmentId<\d+>}/{categoryId<\d+>}", name="api_dispatch_get_questions", methods={"GET"})
+     */
+    public function dispatchGetQuestions(Request $request, $environmentId, $categoryId)
+    {
+        if ($environmentId == 1) {
+            return $this->redirectToRoute('api_get_questions_adult', [
+                'request' => $request,
+                'environmentId' => $environmentId,
+                'categoryId' => $categoryId
+            ], 307);
+        }
+        if ($environmentId == 2) {
+            return $this->redirectToRoute('api_get_questions_kid', [
+                'request' => $request,
+                'environmentId' => $environmentId,
+                'categoryId' => $categoryId
+            ], 307);
+        }
+    }
 }

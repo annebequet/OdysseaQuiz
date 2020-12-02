@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Entity\QuestionImage;
+use App\Repository\ScoreRepository;
 use App\Repository\QuestionImageRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,33 +12,49 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class QuestionImageController extends AbstractController
 {
     /**
-     * Get all Questions by Environment and Category
-     * @Route("/api/questions/image/{environmentId<\d+>}/{categoryId<\d+>}", name="api_questions_image_getByEnvAndCat", methods={"GET"})
+     * Get questions by grades
+     * @Route("/api/questions/kid/{environmentId<\d+>}/{categoryId<\d+>}", name="api_get_questions_kid", methods={"GET"})
      */
-    public function getAllByEnvironmentAndCategory($categoryId, $environmentId, QuestionImageRepository $questionImageRepository)
+    public function getQuestions($categoryId, $environmentId = 2, QuestionImageRepository $questionImageRepository, ScoreRepository $scoreRepository)
     {
-        $questions = $questionImageRepository->findBy([
-            'environment' => $environmentId,
-            'category' => $categoryId
-            ]);
+        $user = $this->getUser();
         
-        return $this->json($questions, 200, [], ['groups' => 'get_questImage_by_cat']);
-    }
+        $score = $scoreRepository->findOneBy([
+            "user" => $user,
+            "environment" => $environmentId,
+            "category" => $categoryId
+        ]);
 
-    /**
-     * Get one question image
-     * 
-     * @Route("/api/question/image/{id<\d+>}", name="api_questions_image_get_one", methods={"GET"})
-     */
-    public function getOne(QuestionImageRepository $questionImageRepository, QuestionImage $questionImage)
-    {
-        $questionImage = $questionImageRepository->find($questionImage);
-
-        // Check if the Question exists, if not, return 404
-        if ($questionImage === null) {
-            return $this->json(['error' => 'Question image not found'], Response::HTTP_NOT_FOUND);
+        if($score) {
+            $quizNb = $score->getQuizNb();
         }
 
-        return $this->json($questionImage, 200, [], ['groups' => 'questions_image_get_one']);
+        // If the player never played or less than 10 quiz for this env/cat, select questions from all grades randomnly
+        if ($score == null or $quizNb < 10)
+        {
+            $questions = $questionImageRepository->findTenRandom($environmentId, $categoryId);
+
+            return $this->json($questions, 200, [], ['groups' => 'get_questImage_by_cat']);
+        }
+
+        // Else get a mix of questions from different grades
+        else 
+        {
+            for ($i=0; $i <= 5 ; $i++) {
+                $grade[$i] = $questionImageRepository->findOneRandom($userId, $environmentId, $categoryId, $i);
+
+                // If the user doesn't have a question with the specified grade
+                for ($x=1; $x < 5 ; $x++) {
+                    if ($grade[$i] == null) {
+                        // Get a question in the previous grade
+                        $question = $questionImageRepository->findOneRandom($userId, $environmentId, $categoryId, $i-$x);
+                        if (array_search($question, $grade) === false) {
+                            $grade[$i] = $questionImageRepository->findOneRandom($userId, $environmentId, $categoryId, $i-$x);
+                        }
+                    }
+                }
+            }
+            return $this->json($grade, 200, [], ['groups' => 'questions_get_grades']);
+        }
     }
 }

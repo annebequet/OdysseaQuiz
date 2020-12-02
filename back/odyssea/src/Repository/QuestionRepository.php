@@ -39,7 +39,7 @@ class QuestionRepository extends ServiceEntityRepository
     {   
         $qb = $this->createQueryBuilder('question');
         $qb->leftJoin('question.gradeAdults', 'grades');
-        $qb->addSelect('grades.grade');
+        //$qb->addSelect('grades.grade'); // To delete to get good json format
         $qb->where('grades.user = :user');
         $qb->andWhere('question.category = :category');
         $qb->andWhere('question.environment = :environment');
@@ -52,7 +52,6 @@ class QuestionRepository extends ServiceEntityRepository
             'environment' => $environment,
             'user' => $user,
         ));
-
 
         $query = $qb->getQuery();
         return $query->getOneOrNullResult();

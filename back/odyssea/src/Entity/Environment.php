@@ -29,7 +29,7 @@ class Environment
 
     /**
      * @ORM\Column(type="string", length=20)
-     * @Groups({"users_get", "users_get_one", "categories_get_one", "categories_get_one_podium", "api_scores_get_one", "questions_image_get_one", "get_questImage_by_cat"})
+     * @Groups({"users_get", "users_get_one", "categories_get_one", "categories_get_one_podium", "api_scores_get_one"})
      * @Assert\Length(
      *      max=12,
      *      maxMessage="Le nom est trop long, merci d'en choisir un autre.",

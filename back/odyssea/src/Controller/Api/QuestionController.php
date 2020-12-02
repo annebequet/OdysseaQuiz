@@ -18,65 +18,32 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class QuestionController extends AbstractController
 {
     /**
-     * Get all Questions by Environment and Category
-     * @Route("/api/questions/{environmentId<\d+>}/{categoryId<\d+>}", name="api_questions_getByEnvAndCat", methods={"GET"})
-     */
-    public function getAllByEnvironmentAndCategory($categoryId, $environmentId, QuestionRepository $questionRepository)
-    {
-        $questions = $questionRepository->findBy([
-            'environment' => $environmentId,
-            'category' => $categoryId
-            ]);
-        // dump($questions);
-        
-        // Return an error if the category is empty
-        // if(!$questions){
-        //     return $this->json([
-        //         'error' => 'Il n\'y a pas de question pour cette catégorie'
-        //     ]);
-        // }
-        
-        return $this->json($questions, 200, [], ['groups' => 'get_quest_by_cat']);
-    }
-
-    /**
-     * Get all Questions already answered by Environment and Category
-     * @Route("/api/questions/grades/{userId<\d+>}/{environmentId<\d+>}/{categoryId<\d+>}", name="api_questions_grades_getByEnvAndCat", methods={"GET"})
-     */
-    public function getAllGradesByEnvironmentAndCategory($userId, $categoryId, $environmentId, GradeAdultRepository $gradeAdultRepository)
-    {
-        $questions = $gradeAdultRepository->findBy([
-            'user' => $userId,
-            ]);
-    
-        return $this->json($questions, 200, [], ['groups' => 'grades_get_one']);
-    }
-
-    /**
      * Get questions by grades
-     * @Route("/api/questions/{userId<\d+>}/{environmentId<\d+>}/{categoryId<\d+>}", name="api_questions_send", methods={"GET"})
+     * @Route("/api/questions/adult/{environmentId<\d+>}/{categoryId<\d+>}", name="api_get_questions_adult", methods={"GET"})
      */
-    public function getQuestions($userId, $categoryId, $environmentId, QuestionRepository $questionRepository, UserRepository $userRepository, ScoreRepository $scoreRepository)
+    public function getQuestions($categoryId, $environmentId, QuestionRepository $questionRepository, ScoreRepository $scoreRepository)
     {
-        //$user = $this->getUser();
-        $user = $userRepository->find($userId);
+        $user = $this->getUser();
         
         $score = $scoreRepository->findOneBy([
             "user" => $user,
             "environment" => $environmentId,
             "category" => $categoryId
         ]);
-        $quizNb = $score->getQuizNb();
 
-        // If Quiz Number < 10, select questions from all grades randomnly
-        if ($quizNb == null or $quizNb < 10)
+        if($score) {
+            $quizNb = $score->getQuizNb();
+        }
+
+        // If the player never played or less than 10 quiz for this env/cat, select questions from all grades randomnly
+        if ($score == null or $quizNb < 10)
         {
             $questions = $questionRepository->findTenRandom($environmentId, $categoryId);
 
             return $this->json($questions, 200, [], ['groups' => 'get_quest_by_cat']);
         }
 
-        // Else get mix of questions
+        // Else get a mix of questions from different grades
         else 
         {
             for ($i=0; $i <= 5 ; $i++) {

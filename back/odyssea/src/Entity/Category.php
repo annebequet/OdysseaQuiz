@@ -33,7 +33,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Groups({"categories_get", "categories_get_one", "users_get_one", "categories_get_one_podium", "api_scores_get_one", "questions_image_get_one", "get_questImage_by_cat"})
+     * @Groups({"categories_get", "categories_get_one", "users_get_one", "categories_get_one_podium", "api_scores_get_one"})
      * @Assert\Length(
      *      max=12,
      *      maxMessage="Le nom de la catégorie est trop long, merci d'en choisir un autre.",
