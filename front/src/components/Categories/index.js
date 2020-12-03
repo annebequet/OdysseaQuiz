@@ -43,6 +43,13 @@ const Categories = ({
                   src={picture}
                 />
               </div>
+              <div className="category__rank">
+                <h3>Podium</h3>
+                <p>1. Audrey</p>
+                <p>2. Patricia</p>
+                <p>3. Evelyn</p>
+                <p>7. Moi</p>
+              </div>
               {/* if there are scores 
               {!score === undefined && (
                 <p>{scoreInformations.score}</p>
