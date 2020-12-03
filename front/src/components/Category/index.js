@@ -9,15 +9,8 @@ const Category = ({
   category,
   getSurveys,
   isLogged,
-  endQuiz,
   error,
 }) => {
-  // eslint-disable-next-line max-len
-  // Allows to restart the quiz when the user comes back on the component, by changing the value of isCompleted
-  useEffect(() => {
-    endQuiz();
-  }, []);
-
   useEffect(() => {
     getSurveys(category);
   }, []);
@@ -45,7 +38,6 @@ Category.propTypes = {
   surveyLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
   error: PropTypes.bool.isRequired,
-  endQuiz: PropTypes.func.isRequired,
 };
 
 Category.defaultProps = {

@@ -88,61 +88,6 @@
   right: 0px;
 }
 
-.round_circle_3 {
-  opacity: .2;
-  position: absolute;
-  background-color: vars.$contrast-color;
-  width: 10%;
-  height: 15%;
-  border-radius: 53%;
-  top: 100vh;
-  left: 60%;
-}
-
-.round_circle_4 {
-  opacity: .2;
-  position: absolute;
-  background-color: vars.$contrast-color;
-  border-radius: 53%;
-  width: 7%;
-  height: 10%;
-  top: 170vh;
-  left: 20%;
-}
-
-.round_circle_5 {
-  opacity: .2;
-  position: absolute;
-  background-color: vars.$contrast-color;
-  width: 4%;
-  height: 7%;
-  border-radius: 53%;
-  top: 190vh;
-  left: 50%;
-}
-
-.round_circle_6 {
-  opacity: .2;
-  position: absolute;
-  background-color: vars.$contrast-color;
-  width: 10%;
-  height: 15%;
-  border-radius: 53%;
-  top: 120vh;
-  left: 10%;
-}
-
-.round_circle_7 {
-  opacity: .2;
-  position: absolute;
-  background-color: vars.$contrast-color;
-  width: 7%;
-  height: 10%;
-  border-radius: 53%;
-  top: 150vh;
-  left: 90%;
-}
-
 @media (max-width: 1400px) {
   .bulletPoint {
     padding: 1rem;

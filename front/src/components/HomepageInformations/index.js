@@ -15,11 +15,6 @@ const HomepageInformations = () => (
   <div className="presentation">
     <div className="round_circle_1" />
     <div className="round_circle_2" />
-    <div className="round_circle_3" />
-    <div className="round_circle_4" />
-    <div className="round_circle_5" />
-    <div className="round_circle_6" />
-    <div className="round_circle_7" />
 
     <div className="presentation__box">
       <div className="presentation__box--front">
