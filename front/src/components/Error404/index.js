@@ -25,7 +25,7 @@ const Error404 = () => {
         <h3>PERDU EN <span>HAUTE MER</span> route ? Hmm, Il semble que cette page n'existe pas.</h3>
         <img className="sailor__icon" src={sailor} alt="logo marin" />
         <img className="boat__icon" src={boat} alt="logo bâteau" />
-        <Link className="denied__link" exact to="/"><span>Page d'accueil</span></Link>
+        <Link className="denied__link" to="/"><span>Page d'accueil</span></Link>
       </div>
     </div>
   );
