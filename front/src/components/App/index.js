@@ -113,9 +113,7 @@ const App = ({
         </Route>
 
         <Route path="*">
-          <Page>
-            <Error404 />
-          </Page>
+          <Error404 />
         </Route>
       </Switch>
       <Footer />
