@@ -51,6 +51,7 @@ class GradeAdultController extends AbstractController
             $grade1 = $serializer->serialize($answers[$i], 'json');
             $grade = $serializer->deserialize($grade1, GradeAdult::class, 'json');
             $grade->setUser($user);
+            dd($grade);
 
             // Validate the entity with the validator service
             $errors = $validator->validate($grade);
