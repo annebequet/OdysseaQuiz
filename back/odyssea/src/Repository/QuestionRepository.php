@@ -35,7 +35,7 @@ class QuestionRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findOneRandom($user, $environment, $category, $grade)
+    public function findRandom($user, $environment, $category, $grade, $limit)
     {   
         $qb = $this->createQueryBuilder('question');
         $qb->leftJoin('question.gradeAdults', 'grades');
@@ -45,16 +45,16 @@ class QuestionRepository extends ServiceEntityRepository
         $qb->andWhere('question.environment = :environment');
         $qb->andWhere('grades.grade = :grade');
         $qb->orderBy('RAND()');
-        $qb->setMaxResults(1);
+        $qb->setMaxResults($limit);
         $qb->setParameters(array(
             'grade' => $grade, 
             'category' => $category,
             'environment' => $environment,
-            'user' => $user,
+            'user' => $user
         ));
 
         $query = $qb->getQuery();
-        return $query->getOneOrNullResult();
+        return $query->getResult();
     }
 
     // /**
