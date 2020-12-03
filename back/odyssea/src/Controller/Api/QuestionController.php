@@ -47,15 +47,15 @@ class QuestionController extends AbstractController
         else 
         {
             for ($i=0; $i <= 5 ; $i++) {
-                $grade[$i] = $questionRepository->findOneRandom($userId, $environmentId, $categoryId, $i);
+                $grade[$i] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, $i);
 
                 // If the user doesn't have a question with the specified grade
                 for ($x=1; $x < 5 ; $x++) {
                     if ($grade[$i] == null) {
                         // Get a question in the previous grade
-                        $question = $questionRepository->findOneRandom($userId, $environmentId, $categoryId, $i-$x);
+                        $question = $questionRepository->findOneRandom($user, $environmentId, $categoryId, $i-$x);
                         if (array_search($question, $grade) === false) {
-                            $grade[$i] = $questionRepository->findOneRandom($userId, $environmentId, $categoryId, $i-$x);
+                            $grade[$i] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, $i-$x);
                         }
                     }
                 }
