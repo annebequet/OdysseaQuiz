@@ -10,7 +10,7 @@ const LoggedNav = ({ handleLogout, pseudo }) => (
     <nav className="menu--logged">
       <NavLink
         to={`/profile/${getSlugFromPseudo(pseudo)}`}
-        className="menu__item"
+        className="menu__item menu__item--profil"
         activeClassName="menu__link--active"
         exact
       >
@@ -22,24 +22,6 @@ const LoggedNav = ({ handleLogout, pseudo }) => (
       >
         Déconnexion
       </a>
-    </nav>
-    <nav className="menu--logged--mobile">
-      <NavLink
-        to={`/profile/${getSlugFromPseudo(pseudo)}`}
-        className="menu__item"
-        activeClassName="menu__link--active"
-        exact
-      >
-        Profil
-      </NavLink>
-      <NavLink
-        to="/categories"
-        className="menu__item"
-        activeClassName="menu__link--active"
-        exact
-      >
-        Catégories
-      </NavLink>
     </nav>
   </div>
 );

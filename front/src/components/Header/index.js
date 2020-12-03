@@ -90,7 +90,6 @@ const Header = ({
             >
               Accueil
             </NavLink>
-            {(!isLogged) && (
             <NavLink
               to="/categories"
               className="menu__item"
@@ -99,7 +98,6 @@ const Header = ({
             >
               Catégories
             </NavLink>
-            )}
             {(roles.indexOf('ROLE_ADMIN') !== -1) && (
             <a
               href="http://54.226.34.31/back/admin/login"
@@ -125,14 +123,6 @@ const Header = ({
             >
               FAQ
             </NavLink>
-            {(isLogged) && (
-            <a
-              className="menu__item menu__item--logout"
-              onClick={handleLogout}
-            >
-              Déconnexion
-            </a>
-            )}
             <p className="burger-menu__footer">&copy; Odyssea Quiz Corporation All Rights Reserved</p>
           </Menu>
         </nav>
@@ -143,7 +133,7 @@ const Header = ({
         </div>
         )}
         {(isLogged) && (
-        <LoggedNav />
+          <LoggedNav />
         )}
       </div>
     </div>
