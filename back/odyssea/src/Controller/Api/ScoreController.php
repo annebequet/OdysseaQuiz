@@ -17,17 +17,25 @@ class ScoreController extends AbstractController
     /**
      * Add or Edit Score
      *
-     * @Route("/api/score", name="api_add_score", methods={"POST"})
+     * @Route("/api/score/{environmentId<\d+>}", name="api_add_score", methods={"POST"})
     */
-    public function addScore(EntityManagerInterface $em, SerializerInterface $serializer, ScoreRepository $scoreRepository, Request $request, ValidatorInterface $validator)
+    public function addScore(EntityManagerInterface $em, SerializerInterface $serializer, ScoreRepository $scoreRepository, Request $request, ValidatorInterface $validator, $environmentId)
     {
-        // Get the content of the request
-        $content = $request->getContent();
+        // Get the content of the request we need (Score)
+        if ($content = $request->getContent()) {
+            $parametersAsArray = json_decode($content, true);
+        }
 
-        // Deserialiaze the json content into a Score entity
-        $score = $serializer->deserialize($content, Score::class, 'json');
+        $scoreArray['user'] = $parametersAsArray['user'];
+        $scoreArray['environment'] = $environmentId;
+        $scoreArray['points'] = $parametersAsArray['points'];
+        $scoreArray['category'] = $parametersAsArray['categoryId'];
 
-        //dd($score);
+        // Serialize the Array content into Json
+        $scoreJson = $serializer->serialize($scoreArray, 'json');
+        // Deserialiaze the Json content into a Score entity
+        $score = $serializer->deserialize($scoreJson, Score::class, 'json');
+
         // Validate the entity with the validator service
         $errors = $validator->validate($score);
 
@@ -55,7 +63,7 @@ class ScoreController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($score);
             $entityManager->flush();
-            return $this->json(['message' => 'Score ajouté'], Response::HTTP_CREATED);
+            //return $this->json(['message' => 'Score ajouté'], Response::HTTP_CREATED);
 
         } else {
                    
@@ -69,10 +77,20 @@ class ScoreController extends AbstractController
             $scoreLine->setScore($scoreTotal);
             // Set the updated_at time
             $scoreLine->setUpdatedAt(new \DateTime());
-
             $em->flush();
+            //return $this->json(['message' => 'Score modifié'], Response::HTTP_OK);
+        }
 
-            return $this->json(['message' => 'Score modifié'], Response::HTTP_OK);
+        // After processing the score, forward the request to the appropriate function to handle the update of the grades
+        if ($environmentId == 1) {
+            return $this->redirectToRoute('api_questions_update_grade', [
+                'request' => $request
+            ], 307);
+        }
+        if ($environmentId == 2) {
+            return $this->redirectToRoute('api_questions_image_update_grade', [
+                'request' => $request
+            ], 307);
         }
     }
 }
