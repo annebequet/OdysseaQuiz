@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as Survey from 'survey-react';
 import 'survey-react/survey.css';
@@ -16,11 +16,14 @@ const Quiz = ({
   endQuiz,
   grade,
 }) => {
+  // Allows to restart the quiz when the user comes back on the component, by changing the value of isCompleted
+  useEffect(() => {
+    endQuiz();
+  }, []);
+
   // Write survey results into database and state, and send the question / answers detailed informations to the state, so that it can be used for the survey that displays the answers.
   const handleOnComplete = (survey) => {
     const answers = survey.data;
-    console.log(answers);
-    console.log(surveyData);
     const booleanAnswers = turnAnswersIntoBooleans(answers, surveyData);
     const numberOfCorrectAnswers = survey.getCorrectedAnswerCount();
     sendResults(booleanAnswers, answers, numberOfCorrectAnswers, surveyData);

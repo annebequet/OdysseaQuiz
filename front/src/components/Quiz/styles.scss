@@ -1,4 +1,13 @@
 @use 'src/styles/vars';
+.survey{
+  margin: 2rem 0;
+  box-shadow: 0 0 8px rgba(0,0,0,.125);
+  padding: 2rem;
+  background-color: white;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+
 .results {
   position: relative;
 }
@@ -122,7 +131,7 @@
 
 @media (min-width: 768px) {
   .survey {
-    margin: 2em 0;
+    width: 500px;
   }
   .exempleSurveys{
   display: flex;

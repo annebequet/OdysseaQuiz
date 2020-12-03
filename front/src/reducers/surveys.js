@@ -32,8 +32,8 @@ export default (state = initialState, action = {}) => {
     case SEND_RESULTS:
       return {
         ...state,
-        isCompleted: !action.isChildQuiz,
-        isChildQuizCompleted: action.isChildQuiz,
+        isCompleted: !action.isChildExempleQuiz,
+        isChildQuizCompleted: action.isChildExempleQuiz,
         surveyAnswers: action.displayAnswers,
         points: action.numberOfCorrectAnswers,
         completedSurveyData: action.surveyData,
@@ -56,7 +56,6 @@ export default (state = initialState, action = {}) => {
         isChildQuizCompleted: false,
         surveyAnswers: {},
         points: 0,
-        questionsSuccess: [],
         completedSurveyData: {},
         surveyCategory: '',
       };

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Category from 'src/components/Category';
 import { getCategoryBySlug } from 'src/selectors/categories';
-import { getSurveys, endQuiz } from 'src/actions/surveys';
+import { getSurveys } from 'src/actions/surveys';
 
 const mapStateToProps = (state, ownProps) => {
   // Thanks to this function, we will find the category through the slug, and return it.
@@ -19,7 +19,6 @@ const mapDispatchToProps = (dispatch) => ({
   getSurveys: (categorySlug) => {
     dispatch(getSurveys(categorySlug));
   },
-  endQuiz: () => dispatch(endQuiz()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

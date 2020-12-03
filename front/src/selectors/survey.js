@@ -12,7 +12,7 @@ export const changeCSSStyles = (survey, options) => {
   const header = options.htmlElement.querySelector('h5');
   if (!isCorrect) {
     const correctInput = options.htmlElement.querySelector(`input[value="${options.question.correctAnswer}"]`);
-    correctInput.parentElement.style.background = 'hsl(191, 68%, 31%, 0.2)';
+    correctInput.parentElement.style.background = 'hsl(191, 68%, 31%, 0.5)';
   }
   header.appendChild(span);
 };

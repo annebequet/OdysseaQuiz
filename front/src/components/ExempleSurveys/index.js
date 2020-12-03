@@ -11,13 +11,13 @@ const ExempleSurveys = ({ adultExempleSurvey, childrenExempleSurvey }) => (
       survey={adultExempleSurvey}
       category="Quiz adulte"
       isExempleQuiz
-      isChildQuiz={false}
+      isChildExempleQuiz={false}
     />
     <Quiz
       survey={childrenExempleSurvey}
       category="Quiz enfant"
       isExempleQuiz
-      isChildQuiz
+      isChildExempleQuiz
     />
   </div>
 );

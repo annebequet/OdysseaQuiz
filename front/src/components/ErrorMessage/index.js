@@ -5,8 +5,8 @@ import { Normalizer } from 'src/selectors/errors';
 import './styles.scss';
 
 const ErrorMessage = ({ errors }) => (
-  <div className="errorMessage">
-    <p className="errorMessageP">Erreur, on reste calme, on rajuste ses brassières, et on réessaie. </p>
+  <div className="error--message__container">
+    <p className="error--message__text">Erreur : on rajuste ses brassières, et on réessaie. </p>
     { Normalizer(errors) }
   </div>
 );

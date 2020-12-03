@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       numberOfCorrectAnswers,
       surveyData,
       ownProps.isExempleQuiz,
-      ownProps.isChildQuiz,
+      ownProps.isChildExempleQuiz,
     ));
   },
 
