@@ -4,6 +4,7 @@ namespace App\Controller\Api;
 
 use App\Entity\GradeKid;
 use App\Repository\GradeKidRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,18 +18,19 @@ class GradeKidController extends AbstractController
      * Update grade of question image
      * @Route("/api/results/kid", name="api_questions_image_update_grade", methods={"POST"})
      */
-    public function updateGrade(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, GradeKidRepository $gradeKidRepository)
+    public function updateGrade(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, GradeKidRepository $gradeKidRepository, UserRepository $userRepository)
     {
-        $user = $this->getUser();
-        
         // Get the content of the request
         $parametersAsArray = [];
+        
         if ($content = $request->getContent()) {
             $parametersAsArray = json_decode($content, true);
+            $answers = $parametersAsArray['answers'];
+            $user = $userRepository->find($parametersAsArray['user']);
         }
 
-        for ($i=0; $i < count($parametersAsArray); $i++) {
-            $grade1 = $serializer->serialize($parametersAsArray[$i], 'json');
+        for ($i=0; $i < count($answers); $i++) {
+            $grade1 = $serializer->serialize($answers[$i], 'json');
             $grade = $serializer->deserialize($grade1, GradeKid::class, 'json');
             $grade->setUser($user);
 
@@ -49,7 +51,7 @@ class GradeKidController extends AbstractController
                 'question' => $grade->getQuestion()
             ]);
             
-            $answer = $parametersAsArray[$i]['answer'];
+            $answer = $answers[$i]['answer'];
 
             $grade = $gradeLine->getGrade();
 
