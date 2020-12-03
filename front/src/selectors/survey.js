@@ -104,16 +104,16 @@ export const turnAnswersIntoBooleans = (answers, surveyData) => {
   // Get the answers of the user
   const userAnswers = answers;
   // Get an array with all the questions and answers. We slice the first one because it is not a question, it is actually the title of the quiz.
-  const surveyQuestions = surveyData.pages.slice(1, 5);
+  const surveyQuestions = surveyData.pages.slice(1);
 
   const booleansAnswers = Object.keys(surveyQuestions).map((questionItem) => {
-    const questionId = surveyQuestions[questionItem].questions[0].id;
+    const question = surveyQuestions[questionItem].questions[0].id;
     const { correctAnswer } = surveyQuestions[questionItem].questions[0];
-    const userAnswer = userAnswers[questionId];
+    const userAnswer = userAnswers[question];
     if (userAnswer && userAnswer === correctAnswer) {
-      return { questionId, answer: true };
+      return { question, answer: true };
     }
-    return { questionId, answer: false };
+    return { question, answer: false };
   });
 
   return booleansAnswers;

@@ -38,7 +38,7 @@ const Category = ({
 
 Category.propTypes = {
   category: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     name: PropTypes.string,
   }),
   getSurveys: PropTypes.func.isRequired,

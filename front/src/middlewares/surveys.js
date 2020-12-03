@@ -10,7 +10,7 @@ export default (store) => (next) => (action) => {
     case GET_SURVEYS: {
       const categorySlug = action.category.id;
       const environmentSlug = sessionStorage.getItem('environment');
-      axios.get(`${baseUrl}/questions/${categorySlug}/${environmentSlug}`, {
+      axios.get(`${baseUrl}/questions/${environmentSlug}/${categorySlug}`, {
         headers: {
           'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },

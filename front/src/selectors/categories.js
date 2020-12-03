@@ -23,7 +23,7 @@ export const getCategoryBySlug = (categoryList, slug) => {
   const categoryId = getCategoryIdBySlug(categoryList, slug);
   const categorySelected = categoryList[categoryId];
   // insert the id of the category into the object category.
-  categorySelected.id = categoryId;
+  categorySelected.id = (parseInt(categoryId) + 1);
   return categorySelected;
 };
 

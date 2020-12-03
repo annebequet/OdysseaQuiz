@@ -19,6 +19,8 @@ const Quiz = ({
   // Write survey results into database and state, and send the question / answers detailed informations to the state, so that it can be used for the survey that displays the answers.
   const handleOnComplete = (survey) => {
     const answers = survey.data;
+    console.log(answers);
+    console.log(surveyData);
     const booleanAnswers = turnAnswersIntoBooleans(answers, surveyData);
     const numberOfCorrectAnswers = survey.getCorrectedAnswerCount();
     sendResults(booleanAnswers, answers, numberOfCorrectAnswers, surveyData);
