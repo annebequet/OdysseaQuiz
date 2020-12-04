@@ -31,6 +31,7 @@ export default (store) => (next) => (action) => {
         const state = store.getState();
         const environmentSlug = sessionStorage.getItem('environment');
         const categoryId = state.surveys.surveyCategory.id;
+        console.log(categoryId);
         const answers = action.requestAnswers;
         const user = sessionStorage.getItem('id');
         const points = action.numberOfCorrectAnswers;

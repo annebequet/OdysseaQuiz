@@ -55,9 +55,6 @@ export default (state = initialState, action = {}) => {
         isCompleted: false,
         isChildQuizCompleted: false,
         surveyAnswers: {},
-        points: 0,
-        completedSurveyData: {},
-        surveyCategory: '',
       };
     default:
       return state;
