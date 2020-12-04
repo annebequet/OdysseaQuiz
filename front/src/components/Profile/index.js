@@ -97,7 +97,7 @@ const Profile = ({
               <p className="profile__level">Mode {environment}</p>
             </div>
           </div>
-          <div className="profile__wrap__right">
+          <div className="profile__wrap__left__bottom">
             <Accordion className="accordion">
               {/* FORM FOR AVATAR EDIT */}
               <Card className="accordion__card">
@@ -271,6 +271,7 @@ const Profile = ({
         <div className= "profile__title__informations">
           <h2 className="profile__title">Scores</h2>
           <p className="second__title">Mes pourcentages de réussite par catégorie</p>
+          <p>Vous pouvez ici suivre vos progrès. Peu importe votre point de départ, une pratique régulière est la clef pour évoluer.</p>
         </div>
         <ul className="categories__ul">
           {scores.map((score) => {
@@ -280,12 +281,12 @@ const Profile = ({
                   key={score.category.id}
                   className="categories__item"
                 >
-                  <h3>{score.category.name} </h3>
                   <img
                     className="category__score__img"
                     alt="category__picture"
                     src={score.category.picture}
                   />
+                  <h3>{score.category.name} </h3>
                   <div className="profile__progress"><ProgressBar variant="barcustom" animated now={score.score} label={`${score.score}%`} /> </div>
                 </li>
               );
