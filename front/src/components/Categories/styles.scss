@@ -32,12 +32,15 @@
   &__card {
     margin: 2rem 0 0 0;
     display: flex;
-    height: 410px;
-    width: 250px;
+    height: 270px;
+    width: 200px;
     transition: 0.4s ease-out;
     position: relative;
     left: 0px;
     margin: 1rem;
+    &__rank {
+      height: 410px;
+    }
   }  
   &__card:not(:first-child) {
       margin-left: -50px;
@@ -98,7 +101,13 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 580px) {
+  .category__container {
+    margin-top: 105%;
+  }
+}
+
+@media (min-width: 580px) and (max-width: 700px) {
   .category__container {
     margin-top: 70%;
   }
@@ -110,17 +119,3 @@
   }
 }
 
-.category__rank {
-  position: absolute;
-  top: 250px;
-  color: black;
-  width: 200px;
-  background-color: white;
-  padding: 1rem;
-  box-shadow: 0 0 8px rgba(0,0,0,.125); 
-  border: 1px solid rgba(0,0,0,.125);
-  border-radius: .25rem;   
-  & > p {
-    margin-bottom: 0px;
-  } 
-}

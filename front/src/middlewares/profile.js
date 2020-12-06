@@ -145,7 +145,6 @@ const categories = (store) => (next) => (action) => {
           },
         })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(saveEmail(response.data.email));
           store.dispatch(saveScores(response.data.scores));
           store.dispatch(saveEnvironment(response.data.environment.name));

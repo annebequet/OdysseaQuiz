@@ -20,7 +20,6 @@ const categories = (store) => (next) => (action) => {
           headers: header,
         })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(saveCategories(response.data));
         })
         .catch((error) => {

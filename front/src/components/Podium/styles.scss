@@ -1,0 +1,14 @@
+.category__rank {
+  position: absolute;
+  top: 250px;
+  color: black;
+  width: 200px;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 0 8px rgba(0,0,0,.125); 
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;   
+  & > p {
+    margin-bottom: 0px;
+  } 
+}
