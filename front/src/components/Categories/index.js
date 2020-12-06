@@ -1,14 +1,18 @@
+/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { getSlugFromTitle, getScoreInformations } from 'src/selectors/categories';
+import { getSlugFromTitle } from 'src/selectors/categories';
+
+import Podium from 'src/components/Podium';
 
 import './styles.scss';
 
 { /* inspiration : https://codepen.io/william-goldsworthy/pen/JzVajj */ }
 const Categories = ({
   categories,
+  isLogged,
 }) => (
   <>
     <div className="category__title--container">
@@ -20,8 +24,8 @@ const Categories = ({
       {Object.keys(categories).map((categoryId) => {
         // We have access to the name of the category and the picture url
         const { name, picture } = categories[categoryId].category;
-        // If the category also has scores of different players
-        const scoreInformations = getScoreInformations(categories[categoryId]);
+        // We access the scores associated to each category to display a podium.
+        const { scores } = categories[categoryId];
 
         return (
           <Link
@@ -29,7 +33,8 @@ const Categories = ({
             className="category_link"
             key={name}
           >
-            <div className="category__card">
+            {/* If the podium is displayed, the card needs to be bigger */}
+            <div className={scores !== undefined ? 'category__card category__card__rank' : 'category__card'}>
               <h3 className="category__name">{name}</h3>
               <div className="category__bar">
                 <div className="category__emptybar" />
@@ -43,10 +48,13 @@ const Categories = ({
                   src={picture}
                 />
               </div>
-              {/* if there are scores 
-              {!score === undefined && (
-                <p>{scoreInformations.score}</p>
-              )} */}
+
+              {/* The scores will only be displayed if the user is logged in.
+                And there might not be scores associated to each category so we should check if the scores are not undefined */}
+              {isLogged && scores !== undefined && (
+              <Podium scores={scores} />
+              )}
+
             </div>
           </Link>
         );
@@ -63,6 +71,7 @@ Categories.propTypes = {
     }),
 
   ).isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 export default Categories;

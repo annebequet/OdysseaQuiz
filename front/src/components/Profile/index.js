@@ -6,10 +6,19 @@ import {
 } from 'react-bootstrap';
 import './styles.scss';
 
+import emailImg from 'src/assets/images/email.svg';
+import pseudoImg from 'src/assets/images/pseudo.svg';
+import passwordImg from 'src/assets/images/password.svg';
+import levelImg from 'src/assets/images/level.svg';
+import avatarImg from 'src/assets/images/user.svg';
+import deleteImg from 'src/assets/images/delete.svg';
+
 import ErrorMessage from 'src/components/ErrorMessage';
+import Categories from 'src/containers/Categories';
 import Field from './Field';
 import FieldRadio from './FieldRadio';
 import FieldRadioAvatars from './FieldRadioAvatars';
+
 
 /* Commentaries are for the switch environment item */
 
@@ -88,13 +97,14 @@ const Profile = ({
               <p className="profile__level">Mode {environment}</p>
             </div>
           </div>
-          <div className="profile__wrap__right">
+          <div className="profile__wrap__left__bottom">
             <Accordion className="accordion">
               {/* FORM FOR AVATAR EDIT */}
               <Card className="accordion__card">
                 <Card.Header>
                   <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                    <label>Changez votre avatar!</label>
+                     <img className="profile__icon" src={avatarImg} alt="logo avatar" />
+                    <label>Changer l'avatar</label>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
@@ -111,7 +121,7 @@ const Profile = ({
                         className="profile__edit--submit"
                         type="submit"
                       >
-                        Envoyez vos modifications
+                        Valider
                       </button>
                     </form>
                   </Card.Body>
@@ -121,7 +131,8 @@ const Profile = ({
               <Card className="accordion__card">
                 <Card.Header>
                   <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                    <label>Changez votre pseudo</label>
+                    <img className="profile__icon" src={pseudoImg} alt="logo pseudo" />
+                    <label>Changer le pseudo</label>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
@@ -139,7 +150,7 @@ const Profile = ({
                         className="profile__edit--submit"
                         type="submit"
                       >
-                        Envoyez vos modifications
+                        Valider
                       </button>
                     </form>
                   </Card.Body>
@@ -149,7 +160,8 @@ const Profile = ({
               <Card className="accordion__card">
                 <Card.Header>
                   <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                    <label>Changez votre adresse e-mail</label>
+                    <img className="profile__icon" src={emailImg} alt="logo email" />
+                    <label>Changer l'adresse e-mail</label>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="2">
@@ -167,7 +179,7 @@ const Profile = ({
                         className="profile__edit--submit"
                         type="submit"
                       >
-                        Envoyez vos modifications
+                        Valider
                       </button>
                     </form>
                   </Card.Body>
@@ -177,7 +189,8 @@ const Profile = ({
               <Card className="accordion__card">
                 <Card.Header>
                   <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                    <label>Changez votre Mot de passe</label>
+                    <img className="profile__icon" src={passwordImg} alt="logo password" />
+                    <label>Changer le Mot de passe</label>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="3">
@@ -195,7 +208,7 @@ const Profile = ({
                       className="profile__edit--submit"
                       type="submit"
                     >
-                      Envoyez vos modifications
+                      Valider
                     </button>
                   </form>
                   </Card.Body>
@@ -205,7 +218,8 @@ const Profile = ({
               <Card className="accordion__card">
                 <Card.Header>
                   <Accordion.Toggle as={Button} variant="link" eventKey="4">
-                    <label>Changez votre difficulté de jeu</label>
+                    <img className="profile__icon" src={levelImg} alt="logo level" /> 
+                    <label>Changer la difficulté de jeu</label>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="4">
@@ -221,7 +235,7 @@ const Profile = ({
                         className="profile__edit--submit"
                         type="submit"
                       >
-                        Envoyez vos modifications
+                        Valider
                       </button>
                     </form>
                   </Card.Body>
@@ -230,7 +244,8 @@ const Profile = ({
               <Card className="accordion__card">
                 <Card.Header>
                   <Accordion.Toggle as={Button} variant="link" eventKey="5">
-                    <label style={{ color: 'red' }}>Supprimer mon compte</label>
+                    <img className="profile__icon" src={deleteImg} alt="logo delete" />
+                    <label>Supprimer le compte</label>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="5">
@@ -241,7 +256,7 @@ const Profile = ({
                         type="button"
                         onClick={handleDeleteSubmit}
                       >
-                        Supprimer mon compte
+                        Supprimer
                       </button>
                     </div>
                   </Card.Body>
@@ -253,7 +268,11 @@ const Profile = ({
       </div>
 
       <div className="profile__wrap__right">
-        <h2 className="profile__title">Consultez votre pourcentage de réussite par catégories ci-dessous!</h2>
+        <div className= "profile__title__informations">
+          <h2 className="profile__title">Scores</h2>
+          <p className="second__title">Mes pourcentages de réussite par catégorie</p>
+          <p>Vous pouvez ici suivre vos progrès. Peu importe votre point de départ, une pratique régulière est la clef pour évoluer.</p>
+        </div>
         <ul className="categories__ul">
           {scores.map((score) => {
             if (score.environment.name === environment) {
@@ -262,13 +281,13 @@ const Profile = ({
                   key={score.category.id}
                   className="categories__item"
                 >
-                  <h3>{score.category.name} </h3>
                   <img
                     className="category__score__img"
                     alt="category__picture"
                     src={score.category.picture}
                   />
-                  <div className="profile__progress"><ProgressBar variant="barcustom" animated now={score.score} label={`${score.score}%`} /> </div>
+                  <h3>{score.category.name} </h3>
+                  <div className="profile__progress"><ProgressBar variant="barcustom" animated now={score.score} /> {score.score}%</div>
                 </li>
               );
             }

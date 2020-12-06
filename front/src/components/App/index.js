@@ -23,17 +23,12 @@ import './styles.scss';
 const App = ({
   checkIsLogged,
   categoriesLoading,
-  updateLocation,
   clearErrors,
   isLogged,
 }) => {
   useEffect(checkIsLogged, []);
 
-  const history = useHistory();
-  useEffect(() => history.listen((location) => {
-    updateLocation(location.pathname);
-    clearErrors();
-  }), [history]);
+  useEffect(clearErrors, []);
 
   return (
     <div className="app">
@@ -112,9 +107,11 @@ const App = ({
           </Page>
         </Route>
 
-        <Route path="*">
-          <Error404 />
-        </Route>
+        {!categoriesLoading && (
+          <Route path="*">
+            <Error404 />
+          </Route>
+        )}
       </Switch>
       <Footer />
     </div>
@@ -123,7 +120,6 @@ const App = ({
 
 App.propTypes = {
   checkIsLogged: PropTypes.func.isRequired,
-  updateLocation: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,

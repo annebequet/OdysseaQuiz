@@ -3,11 +3,15 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as Survey from 'survey-react';
 import 'survey-react/survey.css';
+import { Link } from 'react-router-dom';
+
 import { changeCSSStyles, handleSingularOrPlural, turnAnswersIntoBooleans } from 'src/selectors/survey';
+import { getSlugFromTitle } from 'src/selectors/categories';
 
 import './styles.scss';
 
 const Quiz = ({
+  category,
   surveyData,
   completedSurveyData,
   isCompleted,
@@ -40,7 +44,8 @@ const Quiz = ({
     return title;
   };
 
-  // Create showdown mardown converter : necessary if we introduce markdown in the surveys to display images. There is and event in the survey : onTextMarkdown that activates it.
+  { /* Feature not used : not supported byy the Database
+    Create showdown mardown converter : necessary if we introduce markdown in the surveys to display images. There is and event in the survey : onTextMarkdown that activates it.
   const converter = new showdown.Converter();
 
   // same : markdown converter
@@ -52,7 +57,7 @@ const Quiz = ({
     str = str.substring(0, str.length - 4);
     // set html
     options.html = str;
-  };
+  }; */ }
 
   /* We have two surveys : one to use as a quiz, the second one to display the results. The completion of the quiz passes the const isCompleted to true, so as to display the second survey with the results. */
   return (
@@ -63,7 +68,7 @@ const Quiz = ({
           json={surveyData}
           showCompletedPage={false}
           onComplete={handleOnComplete}
-          onTextMarkdown={displayImagesInSurvey}
+          // onTextMarkdown={displayImagesInSurvey}
         />
       )}
       {isCompleted && (
@@ -80,14 +85,20 @@ const Quiz = ({
             maxTimeToFinishPage={0}
             maxTimeToFinish={0}
             onAfterRenderQuestion={displayResults}
-            onTextMarkdown={displayImagesInSurvey}
+            // onTextMarkdown={displayImagesInSurvey}
           />
-          <input
-            className="endQuiz"
-            type="button"
-            value="fin"
-            onClick={endQuiz}
-          />
+          <Link
+            to={`/categories/${getSlugFromTitle(category)}`}
+            className="category_link"
+            key={category}
+          >
+            <input
+              className="endQuiz"
+              type="button"
+              value="fin"
+              onClick={endQuiz}
+            />
+          </Link>
         </div>
       )}
     </div>
@@ -102,6 +113,7 @@ Quiz.propTypes = {
   endQuiz: PropTypes.func.isRequired,
   surveyAnswers: PropTypes.object.isRequired,
   grade: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 export default Quiz;
