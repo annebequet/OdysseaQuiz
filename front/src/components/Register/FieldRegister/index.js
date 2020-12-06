@@ -42,13 +42,14 @@ FieldRegister.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  pattern: PropTypes.string.isRequired,
+  pattern: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 
 FieldRegister.defaultProps = {
   value: '',
   type: 'text',
+  pattern: '',
 };
 
 export default FieldRegister;

@@ -105,10 +105,6 @@ Register.propTypes = {
   handleRegister: PropTypes.func.isRequired,
   environment: PropTypes.string.isRequired,
   isRegistered: PropTypes.bool.isRequired,
-  setError: PropTypes.func.isRequired,
-  errorEmail: PropTypes.string.isRequired,
-  errorPassword: PropTypes.string.isRequired,
-  errorPseudo: PropTypes.string.isRequired,
   requestErrors: PropTypes.object.isRequired,
 };
 
