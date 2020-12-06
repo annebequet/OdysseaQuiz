@@ -29,19 +29,3 @@ export const getCategoryBySlug = (categoryList, slug) => {
 
 // Find which children objects in a parent object posess a specific key.
 export const ObjectFilteredByKey = (object, predicate) => Object.fromEntries(Object.entries(object).filter(([key, value]) => object[key].scores));
-
-export const getScoreInformations = (categories) => {
-  // If there is a key score in the category
-  const categoryWithScore = ObjectFilteredByKey(categories, 'scores');
-  console.log(categoryWithScore);
-  if ('scores' in categories) {
-    // Then we get access to the score and the pseudo of the players
-    const scoreInformations = Object.keys(categories.scores).map((scoreId) => {
-      const { score, user } = categories.scores[scoreId];
-      const { pseudo } = user;
-      return { score, pseudo };
-    });
-    return scoreInformations;
-  }
-  return 'a';
-};

@@ -41,6 +41,7 @@ const Register = ({
               type="email"
               onChange={changeField}
               value={email}
+              pattern="^[^@]+@[^@]+\.[^@]+$"
               title="Entrez un email valide"
             />
 
@@ -62,7 +63,7 @@ const Register = ({
               id="pseudo"
               onChange={changeField}
               value={pseudo}
-              pattern="^(?=^.{6,12}$).*$"
+              pattern="(?=^.{6,12}$).*$"
               title="Votre mot de passe doit contenir entre 6 et 12 caractères"
             />
 

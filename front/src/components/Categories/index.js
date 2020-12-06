@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { getSlugFromTitle, getScoreInformations } from 'src/selectors/categories';
+import { getSlugFromTitle } from 'src/selectors/categories';
 
 import Podium from 'src/components/Podium';
 

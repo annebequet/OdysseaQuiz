@@ -11,7 +11,6 @@ const Scores = (
     {Object.keys(scores.scores).map((scoreId) => {
       const { score } = scores.scores[scoreId];
       const { pseudo } = scores.scores[scoreId].user;
-      console.log(scores.scores[scoreId]);
       return (
         <p
           key={scoreId}

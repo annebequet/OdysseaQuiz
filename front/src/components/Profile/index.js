@@ -287,7 +287,7 @@ const Profile = ({
                     src={score.category.picture}
                   />
                   <h3>{score.category.name} </h3>
-                  <div className="profile__progress"><ProgressBar variant="barcustom" animated now={score.score} label={`${score.score}%`} /> </div>
+                  <div className="profile__progress"><ProgressBar variant="barcustom" animated now={score.score} /> {score.score}%</div>
                 </li>
               );
             }
