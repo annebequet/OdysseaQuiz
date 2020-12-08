@@ -42,7 +42,7 @@ class QuestionImageSubscriber implements EventSubscriberInterface
                 $gradeKid = new GradeKid;
                 $gradeKid->setQuestion($entity);
                 $gradeKid->setUser($user);
-                $gradeKid->setGrade(0);
+                $gradeKid->setGrade(1);
                 $this->entityManager->persist($gradeKid);
                 $this->entityManager->flush();
             }
