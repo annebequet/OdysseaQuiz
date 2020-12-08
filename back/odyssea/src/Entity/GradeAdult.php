@@ -51,6 +51,7 @@ class GradeAdult
 
     /**
      * @ORM\Column(type="json", nullable=true)
+     * @Groups({"grades_get_one", "questions_get_grades"})
      */
     private $deck = [];
 
