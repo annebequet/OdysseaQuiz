@@ -23,8 +23,9 @@ class QuestionController extends AbstractController
      */
     public function getQuestions($categoryId, $environmentId, QuestionRepository $questionRepository, ScoreRepository $scoreRepository)
     {
-        $user = $this->getUser();
-        
+        //$user = $this->getUser();
+        $user = 65;
+
         $score = $scoreRepository->findOneBy([
             "user" => $user,
             "environment" => $environmentId,
@@ -48,19 +49,20 @@ class QuestionController extends AbstractController
         else 
         { 
             $questions = $questionRepository->findMultiplesRandom($user, $environmentId, $categoryId, $session);
-
+            
             // If we don't have 10 questions in the session
             if (count($questions) < 10) {
                 // Define the number of question missing to have a quiz of 10 questions
                 $rest = 10 - count($questions);
                 // Complete the quiz
                 $moreQuestions = $questionRepository->findRandom($user, $environmentId, $categoryId, 1, $rest);
+                //dd($questions, $rest, $moreQuestions);
                 // Insert them into the questions
                 foreach ($moreQuestions as $question) {
                     $questions[] = $question;
                 }
             }
-        }               
+        }          
         return $this->json($questions, 200, [], ['groups' => 'questions_get_grades']);
         
     }
