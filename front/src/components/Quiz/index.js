@@ -10,6 +10,7 @@ import { changeCSSStyles, handleSingularOrPlural, turnAnswersIntoBooleans } from
 import './styles.scss';
 
 const Quiz = ({
+  isExempleQuiz,
   surveyData,
   completedSurveyData,
   isCompleted,
@@ -71,7 +72,7 @@ const Quiz = ({
             // onTextMarkdown={displayImagesInSurvey}
           />
           <Link
-            to="/categories"
+            to={isExempleQuiz ? '/' : '/categories'}
             className="category_link"
             key="1"
           >
@@ -92,6 +93,7 @@ Quiz.propTypes = {
   surveyData: PropTypes.object.isRequired,
   completedSurveyData: PropTypes.object.isRequired,
   isCompleted: PropTypes.bool.isRequired,
+  isExempleQuiz: PropTypes.bool.isRequired,
   sendResults: PropTypes.func.isRequired,
   endQuiz: PropTypes.func.isRequired,
   surveyAnswers: PropTypes.object.isRequired,
