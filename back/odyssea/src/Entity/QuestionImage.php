@@ -60,7 +60,7 @@ class QuestionImage
      * @Groups({"questions_image_get_one", "get_questImage_by_cat"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $correct_answer;
+    private $correctAnswer;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="questionImages")
@@ -211,12 +211,12 @@ class QuestionImage
 
     public function getCorrectAnswer(): ?AnswerImage
     {
-        return $this->correct_answer;
+        return $this->correctAnswer;
     }
 
-    public function setCorrectAnswer(?AnswerImage $correct_answer): self
+    public function setCorrectAnswer(?AnswerImage $correctAnswer): self
     {
-        $this->correct_answer = $correct_answer;
+        $this->correctAnswer = $correctAnswer;
 
         return $this;
     }
