@@ -23,7 +23,7 @@ const Category = ({
       />
       )}
       {error && !isLogged && (
-        <div className="errorMessage category__error__log">Il faut être connecté pour jouer ! Sautez dans l'eau !</div>
+        <div className="errorMessage category__error__log">Il faut être connecté pour jouer. Sautez dans l'eau !</div>
       )}
     </div>
   );

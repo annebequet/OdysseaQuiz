@@ -21,7 +21,6 @@ const mapStateToProps = (state, ownProps) => {
   const surveyData = transformQuestionsInSurveyObject(survey, category);
 
   return {
-    category,
     surveyData,
     isCompleted,
     completedSurveyData: state.surveys.completedSurveyData,

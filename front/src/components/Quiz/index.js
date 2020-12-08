@@ -6,12 +6,10 @@ import 'survey-react/survey.css';
 import { Link } from 'react-router-dom';
 
 import { changeCSSStyles, handleSingularOrPlural, turnAnswersIntoBooleans } from 'src/selectors/survey';
-import { getSlugFromTitle } from 'src/selectors/categories';
 
 import './styles.scss';
 
 const Quiz = ({
-  category,
   surveyData,
   completedSurveyData,
   isCompleted,
@@ -44,21 +42,6 @@ const Quiz = ({
     return title;
   };
 
-  { /* Feature not used : not supported byy the Database
-    Create showdown mardown converter : necessary if we introduce markdown in the surveys to display images. There is and event in the survey : onTextMarkdown that activates it.
-  const converter = new showdown.Converter();
-
-  // same : markdown converter
-  const displayImagesInSurvey = (survey, options) => {
-    // convert the mardown text to html
-    let str = converter.makeHtml(options.text);
-    // remove root paragraphs <p></p>
-    str = str.substring(3);
-    str = str.substring(0, str.length - 4);
-    // set html
-    options.html = str;
-  }; */ }
-
   /* We have two surveys : one to use as a quiz, the second one to display the results. The completion of the quiz passes the const isCompleted to true, so as to display the second survey with the results. */
   return (
     <div className="survey">
@@ -88,9 +71,9 @@ const Quiz = ({
             // onTextMarkdown={displayImagesInSurvey}
           />
           <Link
-            to={`/categories/${getSlugFromTitle(category)}`}
+            to="/categories"
             className="category_link"
-            key={category}
+            key="1"
           >
             <input
               className="endQuiz"
@@ -113,7 +96,6 @@ Quiz.propTypes = {
   endQuiz: PropTypes.func.isRequired,
   surveyAnswers: PropTypes.object.isRequired,
   grade: PropTypes.number.isRequired,
-  category: PropTypes.string.isRequired,
 };
 
 export default Quiz;
