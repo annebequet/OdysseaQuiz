@@ -18,7 +18,7 @@ class QuestionImageController extends AbstractController
     public function getQuestions($categoryId, $environmentId = 2, QuestionImageRepository $questionImageRepository, ScoreRepository $scoreRepository)
     {
         $user = $this->getUser();
-        
+
         $score = $scoreRepository->findOneBy([
             "user" => $user,
             "environment" => $environmentId,
@@ -27,6 +27,7 @@ class QuestionImageController extends AbstractController
 
         if($score) {
             $quizNb = $score->getQuizNb();
+            $session = $score->getSession();
         }
 
         // If the player never played or less than 10 quiz for this env/cat, select questions from all grades randomnly
@@ -34,27 +35,27 @@ class QuestionImageController extends AbstractController
         {
             $questions = $questionImageRepository->findTenRandom($environmentId, $categoryId);
 
-            return $this->json($questions, 200, [], ['groups' => 'get_questImage_by_cat']);
+            return $this->json($questions, 200, [], ['groups' => 'get_quest_by_cat']);
         }
 
         // Else get a mix of questions from different grades
         else 
-        {
-            for ($i=0; $i <= 5 ; $i++) {
-                $grade[$i] = $questionImageRepository->findOneRandom($user, $environmentId, $categoryId, $i);
-
-                // If the user doesn't have a question with the specified grade
-                for ($x=1; $x < 5 ; $x++) {
-                    if ($grade[$i] == null) {
-                        // Get a question in the previous grade
-                        $question = $questionImageRepository->findOneRandom($user, $environmentId, $categoryId, $i-$x);
-                        if (array_search($question, $grade) === false) {
-                            $grade[$i] = $questionImageRepository->findOneRandom($user, $environmentId, $categoryId, $i-$x);
-                        }
-                    }
+        { 
+            $questions = $questionImageRepository->findMultiplesRandom($user, $environmentId, $categoryId, $session);
+            
+            // If we don't have 10 questions in the session
+            if (count($questions) < 10) {
+                // Define the number of question missing to have a quiz of 10 questions
+                $rest = 10 - count($questions);
+                // Complete the quiz
+                $moreQuestions = $questionImageRepository->findRandom($user, $environmentId, $categoryId, 1, $rest);
+                //dd($questions, $rest, $moreQuestions);
+                // Insert them into the questions
+                foreach ($moreQuestions as $question) {
+                    $questions[] = $question;
                 }
             }
-            return $this->json($grade, 200, [], ['groups' => 'questions_get_grades']);
-        }
+        }          
+        return $this->json($questions, 200, [], ['groups' => 'questions_get_grades']);
     }
 }

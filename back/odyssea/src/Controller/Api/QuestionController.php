@@ -23,8 +23,7 @@ class QuestionController extends AbstractController
      */
     public function getQuestions($categoryId, $environmentId, QuestionRepository $questionRepository, ScoreRepository $scoreRepository)
     {
-        //$user = $this->getUser();
-        $user = 65;
+        $user = $this->getUser();
 
         $score = $scoreRepository->findOneBy([
             "user" => $user,
@@ -64,6 +63,5 @@ class QuestionController extends AbstractController
             }
         }          
         return $this->json($questions, 200, [], ['groups' => 'questions_get_grades']);
-        
     }
 }
