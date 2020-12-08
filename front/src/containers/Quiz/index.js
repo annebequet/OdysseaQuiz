@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
   // Gets the survey questions, depending on whether we're on an exemple survey (passed in props) or in an exercise survey (in state)
   const survey = ownProps.survey ? ownProps.survey : state.surveys.surveys;
 
-  const isExempleQuiz = ownProps.isChildExempleQuiz;
+  const { isExempleQuiz } = ownProps;
 
   // Gets the title of the surveys (either passed in the props when it's a quiz exemple, or the title of the survey)
   const category = ownProps.category ? ownProps.category : state.surveys.surveyTitle;
