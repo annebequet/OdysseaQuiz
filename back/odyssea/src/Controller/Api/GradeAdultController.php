@@ -76,7 +76,6 @@ class GradeAdultController extends AbstractController
             'category' => $score->getCategory(),
             'environment' => $score->getEnvironment()
         ]);
-        $session = $scoreLine->getSession();
 
         for ($i=0; $i < count($answers); $i++) {
             $grade1 = $serializer->serialize($answers[$i], 'json');
@@ -101,23 +100,63 @@ class GradeAdultController extends AbstractController
             ]);
             
             $answer = $answers[$i]['answer'];
-
             $grade = $gradeLine->getGrade();
+            $session = $scoreLine->getSession();
 
             // Change the grade of the question according to the answer
             // If the question come from the current pool (level 1)
-            if ($grade = 1 && $answer == true) {
-                $gradeLine->setGrade($grade + 1);
-                $gradeLine->setDeck([$session, $session +2, $session + 3, $session + 4]);
+            if ($grade == 1 && $answer == true) {
+                if ($session == 0) {
+                    $gradeLine->setDeck([0, 2, 5, 9]);
+                }
+                if ($session == 1) {
+                    $gradeLine->setDeck([1, 3, 6, 0]);
+                }
+                if ($session == 2) {
+                    $gradeLine->setDeck([2, 4, 7, 1]);
+                }
+                if ($session == 3) {
+                    $gradeLine->setDeck([3, 5, 8, 2]);
+                }
+                if ($session == 4) {
+                    $gradeLine->setDeck([4, 6, 9 , 3]);
+                }
+                if ($session == 5) {
+                    $gradeLine->setDeck([5, 7, 0, 4]);
+                }
+                if ($session == 6) {
+                    $gradeLine->setDeck([6, 8, 1, 5]);
+                }
+                if ($session == 7) {
+                    $gradeLine->setDeck([7, 9, 2, 6]);
+                }
+                if ($session == 8) {
+                    $gradeLine->setDeck([8, 0, 3, 7]);
+                }
+                if ($session == 9) {
+                    $gradeLine->setDeck([9, 1, 4, 8]);
+                }
+                $gradeLine->setGrade(2);
             }
-            if ($grade = 2 or $grade = 3 && $answer == true) {
-                $gradeLine->setGrade($grade + 1);
+            if ($grade == 2 && $answer == true) {
+                $gradeLine->setGrade(3);
             }
-            if ($grade = 2 or $grade = 3 or $grade = 4&& $answer == false) {
+            if ($grade == 3 && $answer == true) {
+                $gradeLine->setGrade(4);
+            }
+            if ($grade == 2 && $answer == false) {
                 $gradeLine->setGrade(1);
                 $gradeLine->setDeck(null);
             }
-            if ($grade = 4 && $answer == true) {
+            if ($grade == 3 && $answer == false) {
+                $gradeLine->setGrade(1);
+                $gradeLine->setDeck(null);
+            }
+            if ($grade == 4 && $answer == false) {
+                $gradeLine->setGrade(1);
+                $gradeLine->setDeck(null);
+            }
+            if ($grade == 4 && $answer == true) {
                 $gradeLine->setGrade($grade + 1);
                 $gradeLine->setDeck(null);
             }

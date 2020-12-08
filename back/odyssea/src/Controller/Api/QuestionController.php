@@ -41,13 +41,6 @@ class QuestionController extends AbstractController
         {
             $questions = $questionRepository->findTenRandom($environmentId, $categoryId);
 
-            if ($session == null) {
-                $score->setSession(0);
-            }
-            if ($session < 10) {
-                $score->setSession($session + 1);
-            }
-
             return $this->json($questions, 200, [], ['groups' => 'get_quest_by_cat']);
         }
 
@@ -67,7 +60,6 @@ class QuestionController extends AbstractController
                     $questions[] = $question;
                 }
             }
-            dd($session, $questions, $rest);
         }               
         return $this->json($questions, 200, [], ['groups' => 'questions_get_grades']);
         
