@@ -2,10 +2,11 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\Score;
 use App\Entity\GradeKid;
-use App\Repository\GradeKidRepository;
-use App\Repository\ScoreRepository;
 use App\Repository\UserRepository;
+use App\Repository\ScoreRepository;
+use App\Repository\GradeKidRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,7 +40,7 @@ class GradeKidController extends AbstractController
         $scoreJson = $serializer->serialize($scoreArray, 'json');
         // Deserialiaze the Json content into a Score entity
         $score = $serializer->deserialize($scoreJson, Score::class, 'json');
-        
+
         // Validate the entity with the validator service
         $errors = $validator->validate($score);
 
@@ -60,7 +61,7 @@ class GradeKidController extends AbstractController
 
         for ($i=0; $i < count($answers); $i++) {
             $grade1 = $serializer->serialize($answers[$i], 'json');
-            $grade = $serializer->deserialize($grade1, GradeAdult::class, 'json');
+            $grade = $serializer->deserialize($grade1, GradeKid::class, 'json');
             $grade->setUser($user);
 
             // Validate the entity with the validator service
@@ -79,7 +80,7 @@ class GradeKidController extends AbstractController
                 'user' => $user,
                 'question' => $grade->getQuestion()
             ]);
-            
+
             $answer = $answers[$i]['answer'];
             $grade = $gradeLine->getGrade();
             $session = $scoreLine->getSession();

@@ -35,7 +35,7 @@ class QuestionImageController extends AbstractController
         {
             $questions = $questionImageRepository->findTenRandom($environmentId, $categoryId);
 
-            return $this->json($questions, 200, [], ['groups' => 'get_quest_by_cat']);
+            return $this->json($questions, 200, [], ['groups' => 'get_questImage_by_cat']);
         }
 
         // Else get a mix of questions from different grades
@@ -56,6 +56,6 @@ class QuestionImageController extends AbstractController
                 }
             }
         }          
-        return $this->json($questions, 200, [], ['groups' => 'questions_get_grades']);
+        return $this->json($questions, 200, [], ['groups' => 'get_questImage_by_cat']);
     }
 }

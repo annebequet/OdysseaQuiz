@@ -38,7 +38,7 @@ class QuestionImageRepository extends ServiceEntityRepository
     public function findMultiplesRandom($user, $environment, $category, $session)
     {   
         $qb = $this->createQueryBuilder('question');
-        $qb->leftJoin('question.gradeAdults', 'grades');
+        $qb->leftJoin('question.gradeKids', 'grades');
         //$qb->addSelect('grades.grade');
         //$qb->addSelect('grades.deck'); // To delete to get good json format
         $qb->where('grades.user = :user');
@@ -52,6 +52,28 @@ class QuestionImageRepository extends ServiceEntityRepository
             'environment' => $environment,
             'user' => $user,
             'session' => '%'.$session.'%'
+        ));
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    public function findRandom($user, $environment, $category, $grade, $limit)
+    {   
+        $qb = $this->createQueryBuilder('question');
+        $qb->leftJoin('question.gradeKids', 'grades');
+        //$qb->addSelect('grades.grade'); // To delete to get good json format
+        $qb->where('grades.user = :user');
+        $qb->andWhere('question.category = :category');
+        $qb->andWhere('question.environment = :environment');
+        $qb->andWhere('grades.grade = :grade');
+        $qb->orderBy('RAND()');
+        $qb->setMaxResults($limit);
+        $qb->setParameters(array(
+            'grade' => $grade, 
+            'category' => $category,
+            'environment' => $environment,
+            'user' => $user
         ));
 
         $query = $qb->getQuery();
