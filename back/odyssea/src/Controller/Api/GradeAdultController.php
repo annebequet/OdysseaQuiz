@@ -2,9 +2,11 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\Score;
 use App\Entity\GradeAdult;
-use App\Repository\GradeAdultRepository;
 use App\Repository\UserRepository;
+use App\Repository\GradeAdultRepository;
+use App\Repository\ScoreRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +38,7 @@ class GradeAdultController extends AbstractController
      * Update grade of question
      * @Route("/api/results/adult", name="api_questions_update_grade", methods={"POST"})
      */
-    public function updateGrade(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, GradeAdultRepository $gradeAdultRepository, UserRepository $userRepository)
+    public function updateGrade(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, GradeAdultRepository $gradeAdultRepository, UserRepository $userRepository, ScoreRepository $scoreRepository)
     {
         // Get the content of the request
         $parametersAsArray = [];
@@ -46,6 +48,35 @@ class GradeAdultController extends AbstractController
             $answers = $parametersAsArray['answers'];
             $user = $userRepository->find($parametersAsArray['user']);
         }
+
+        $scoreArray['user'] = $parametersAsArray['user'];
+        $scoreArray['environment'] = $parametersAsArray['environmentId'];
+        $scoreArray['points'] = $parametersAsArray['points'];
+        $scoreArray['category'] = $parametersAsArray['categoryId'];
+
+        // Serialize the Array content into Json
+        $scoreJson = $serializer->serialize($scoreArray, 'json');
+        // Deserialiaze the Json content into a Score entity
+        $score = $serializer->deserialize($scoreJson, Score::class, 'json');
+        
+        // Validate the entity with the validator service
+        $errors = $validator->validate($score);
+
+        // If there are errors, return the array in JSON format
+        if(count($errors) > 0) {
+            $errorsArray = [];
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $scoreLine = $scoreRepository->findOneBy([
+            'user' => $score->getUser(),
+            'category' => $score->getCategory(),
+            'environment' => $score->getEnvironment()
+        ]);
+        $session = $scoreLine->getSession();
 
         for ($i=0; $i < count($answers); $i++) {
             $grade1 = $serializer->serialize($answers[$i], 'json');
@@ -74,17 +105,21 @@ class GradeAdultController extends AbstractController
             $grade = $gradeLine->getGrade();
 
             // Change the grade of the question according to the answer
-            if ($grade == 0 && $answer == false) {
-                $gradeLine->setGrade(0);
+            // If the question come from the current pool (level 1)
+            if ($grade = 1 && $answer == true) {
+                $gradeLine->setGrade($grade + 1);
+                $gradeLine->setDeck([$session, $session +2, $session + 3, $session + 4]);
             }
-            if ($grade > 0 && $answer == false) {
-                $gradeLine->setGrade($grade -1);
+            if ($grade = 2 or $grade = 3 && $answer == true) {
+                $gradeLine->setGrade($grade + 1);
             }
-            if ($grade < 5 && $answer == true) {
-                $gradeLine->setGrade($grade +1);
+            if ($grade = 2 or $grade = 3 or $grade = 4&& $answer == false) {
+                $gradeLine->setGrade(1);
+                $gradeLine->setDeck(null);
             }
-            if ($grade == 5 && $answer == true) {
-                $gradeLine->setGrade(5);
+            if ($grade = 4 && $answer == true) {
+                $gradeLine->setGrade($grade + 1);
+                $gradeLine->setDeck(null);
             }
 
             // Set the new updatedAt datetime

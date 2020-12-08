@@ -35,7 +35,7 @@ class ScoreController extends AbstractController
         $scoreJson = $serializer->serialize($scoreArray, 'json');
         // Deserialiaze the Json content into a Score entity
         $score = $serializer->deserialize($scoreJson, Score::class, 'json');
-
+        
         // Validate the entity with the validator service
         $errors = $validator->validate($score);
 
@@ -59,6 +59,7 @@ class ScoreController extends AbstractController
             // The user played for the first time
             $score->setQuizNb(1);
             $score->setScore(($score->getPoints())*10);
+            $score->setSession(0);
             // Add the new score to the database
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($score);
@@ -71,10 +72,18 @@ class ScoreController extends AbstractController
             $points = ($scoreLine->getPoints()) + ($score->getPoints());
             $quizNb = ($scoreLine->getQuizNb()) + 1;
             $scoreTotal = ($points/$quizNb)*10;
+            if ($scoreLine->getSession() === 9) {
+                $session = 0;
+            }
+            else {
+                $session = $scoreLine->getSession() + 1;
+            }
             // and set them
             $scoreLine->setPoints($points);
             $scoreLine->setQuizNb($quizNb);
             $scoreLine->setScore($scoreTotal);
+            $scoreLine->setSession($session);
+
             // Set the updated_at time
             $scoreLine->setUpdatedAt(new \DateTime());
             $em->flush();

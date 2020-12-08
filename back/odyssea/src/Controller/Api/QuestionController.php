@@ -56,12 +56,12 @@ class QuestionController extends AbstractController
         { 
             $questions = $questionRepository->findMultiplesRandom($user, $environmentId, $categoryId, $session);
 
-            // Check if we selected 10 questions
+            // If we don't have 10 questions in the session
             if (count($questions) < 10) {
                 // Define the number of question missing to have a quiz of 10 questions
                 $rest = 10 - count($questions);
                 // Complete the quiz
-                $moreQuestions = $questionRepository->findRandom($user, $environmentId, $categoryId, 0, $rest);
+                $moreQuestions = $questionRepository->findRandom($user, $environmentId, $categoryId, 1, $rest);
                 // Insert them into the questions
                 foreach ($moreQuestions as $question) {
                     $questions[] = $question;
