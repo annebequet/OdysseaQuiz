@@ -46,21 +46,75 @@ class QuestionController extends AbstractController
         // Else get a mix of questions from different grades
         else 
         {
-            for ($i=0; $i <= 5 ; $i++) {
-                $grade[$i] = $questionRepository->findRandom($user, $environmentId, $categoryId, $i, 1);
+            $questions = $questionRepository->findMultiplesRandom($user, $environmentId, $categoryId);
+            dd($questions);
+            //foreach ($questions as $question) {
+                //if (count(array_keys($questions, $question)) > 1) 
+                //{
+                    //$double[] = $question;
+                    // $this->cardIds = array_unique($this->cardIds);
+                //}
+            //}
+            
+            // Get 3 Questions of grade 0
+            $questions[] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 0);
+            $questions[] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 0);
+            $questions[] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 0);
 
-                // If the user doesn't have a question with the specified grade
-                for ($x=1; $x < 5 ; $x++) {
-                    if ($grade[$i] == null) {
-                        // Get a question in the previous grade
-                        $question = $questionRepository->findOneRandom($user, $environmentId, $categoryId, $i-$x, 1);
-                        if (array_search($question, $grade) === false) {
-                            $grade[$i] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, $i-$x, 1);
-                        }
+            // Get 2 Questions of grade 1
+            $questions[] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 1);
+            if (array_search($questionRepository->findOneRandom($user, $environmentId, $categoryId, 1), $questions) == false) {
+                $questions[] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 1);
+            }
+            else {
+                $question = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 2);
+                if ($question == null) {
+                    $question = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 3);
+                    if ($question == null) {
+                        $question = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 4);
+                    }
+                    if ($question == null) {
+                        $question = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 5);
                     }
                 }
+                $questions[] = $question;
             }
-            return $this->json($grade, 200, [], ['groups' => 'questions_get_grades']);
-        }
+            
+            // Get 2 Questions of grade 2
+            $question = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 2);
+            if (array_search($question, $questions) == false && $question !== null) {
+                $questions[] = $question;
+            }
+            else {
+                $question = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 3);
+                if ($question == null) {
+                    $question = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 4);
+                    if ($question == null) {
+                        $question = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 5);
+                    }
+                }
+                $questions[] = $question;
+            }
+            dd($questions);
+
+            // Get 1 Question of grade 3
+            $questions[] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 3);
+
+            // Get 1 Question of grade 4
+            $questions[] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 4);
+
+            // Get 1 Question of grade 5
+            $questions[] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, 5);
+
+            foreach ($questions as $question) {
+                if (count(array_keys($questions, $question)) > 1) 
+                {
+                    $double[] = $question;
+                }
+            }
+            dd($questions, $double);
+        }               
+        return $this->json($allQuestions, 200, [], ['groups' => 'questions_get_grades']);
+        
     }
 }
