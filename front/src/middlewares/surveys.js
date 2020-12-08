@@ -19,7 +19,6 @@ export default (store) => (next) => (action) => {
           store.dispatch(saveSurveys(response.data));
         })
         .catch((error) => {
-          console.log(error);
           store.dispatch(setError());
         });
       next(action);

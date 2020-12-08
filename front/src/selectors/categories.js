@@ -22,7 +22,7 @@ const getCategoryIdBySlug = (categoryList, slug) => Object.keys(categoryList).fi
 export const getCategoryBySlug = (categoryList, slug) => {
   const categoryId = getCategoryIdBySlug(categoryList, slug);
   const categorySelected = categoryList[categoryId];
-  // insert the id of the category into the object category.
+  // insert the id of the category into the object category. Add 1 to fit with the Database
   categorySelected.id = (parseInt(categoryId) + 1);
   return categorySelected;
 };

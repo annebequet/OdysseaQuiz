@@ -103,8 +103,10 @@ export const transformQuestionsInSurveyObject = (allQuestions, category) => {
 export const turnAnswersIntoBooleans = (answers, surveyData) => {
   // Get the answers of the user
   const userAnswers = answers;
+  console.log(userAnswers);
   // Get an array with all the questions and answers. We slice the first one because it is not a question, it is actually the title of the quiz.
   const surveyQuestions = surveyData.pages.slice(1);
+  console.log(surveyQuestions);
 
   const booleansAnswers = Object.keys(surveyQuestions).map((questionItem) => {
     const question = surveyQuestions[questionItem].questions[0].id;
@@ -115,6 +117,5 @@ export const turnAnswersIntoBooleans = (answers, surveyData) => {
     }
     return { question, answer: false };
   });
-
   return booleansAnswers;
 };
