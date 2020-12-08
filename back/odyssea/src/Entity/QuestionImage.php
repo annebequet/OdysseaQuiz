@@ -209,10 +209,11 @@ class QuestionImage
         return (string) $this->title;
     }
 
-    public function getCorrectAnswer(): ?AnswerImage
+    public function getCorrectAnswer()
     {
-        return $this->correctAnswer;
+        return $this->correctAnswer->getValue();
     }
+
 
     public function setCorrectAnswer(?AnswerImage $correctAnswer): self
     {
