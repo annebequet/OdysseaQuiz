@@ -56,7 +56,7 @@ class AnswerImage
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=QuestionImage::class, mappedBy="Choices")
+     * @ORM\ManyToMany(targetEntity=QuestionImage::class, mappedBy="choices")
      */
     private $questionImages;
 

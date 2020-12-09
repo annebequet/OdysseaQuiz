@@ -92,6 +92,13 @@ class QuestionImage
     private $gradeKids;
 
     /**
+     * @ORM\ManyToMany(targetEntity=AnswerImage::class, inversedBy="questionImages")
+     * @Groups("get_questImage_by_cat")
+     * Assert\Count(min = 4, max = 4)
+     */
+    private $choices;
+
+    /**
      * @ORM\ManyToOne(targetEntity=AnswerImage::class)
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank(
@@ -106,25 +113,12 @@ class QuestionImage
      */
     private $correctAnswer;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=AnswerImage::class)
-     * @Groups({"get_questImage_by_cat"})
-     * Assert\Count(min = 4, max = 4)
-     */
-    private $choices;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=AnswerImage::class, inversedBy="questionImages")
-     */
-    private $Choices;
-
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->choices = new ArrayCollection();
         $this->gradeKids = new ArrayCollection();
         $this->type = "imagepicker";
-        $this->Choices = new ArrayCollection();
     }
 
     public function getId(): ?int
