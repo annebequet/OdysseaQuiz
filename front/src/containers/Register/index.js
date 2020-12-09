@@ -8,7 +8,6 @@ const mapStateToProps = (state) => ({
   pseudo: state.register.pseudo,
   environment: state.register.environment,
   isRegistered: state.register.isRegistered,
-  requestErrors: state.errorHandler.requestErrors,
 });
 
 const mapDispatchToProps = (dispatch) => ({

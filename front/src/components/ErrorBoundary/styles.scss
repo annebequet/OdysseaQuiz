@@ -1,0 +1,43 @@
+@use 'src/styles/vars';
+
+.error--message__container {
+  position: fixed;
+  top: 25%;
+  z-index: 2000;
+  width: 100%;
+  & > .error--informations {
+    margin: auto;
+    width: 20%;
+    background-color: black;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .5rem;  
+    padding: 2rem;
+    color: white;
+    & > .error--button {
+    background-color: rgba(1,1,36,.8);
+    color: white;
+    padding: 10px 50px;
+    text-transform: uppercase;
+    transition: background-color 300ms ease-in-out;
+    display: block;
+    margin: auto;
+    margin-top: 2rem;
+    &:hover {
+      background-color: #007bff;
+    }  
+    }
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1300px) {
+  .error--informations {
+    width: 30% !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .error--informations {
+    width: 60% !important;
+  }
+}
+

@@ -8,6 +8,8 @@ const Field = ({
   id,
   value,
   setValue,
+  pattern,
+  title,
 }) => {
   const handleOnChange = (evt) => {
     setValue(evt.target.value);
@@ -27,6 +29,8 @@ const Field = ({
         placeholder={label}
         value={value}
         onChange={handleOnChange}
+        pattern={pattern}
+        title={title}
       />
     </div>
   );
@@ -36,6 +40,8 @@ Field.propTypes = {
   label: PropTypes.string.isRequired,
   type: PropTypes.string,
   id: PropTypes.string.isRequired,
+  pattern: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
 };
