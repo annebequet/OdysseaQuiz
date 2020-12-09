@@ -2,11 +2,10 @@
 
 namespace App\Entity;
 
-use Webmozart\Assert\Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\QuestionImageRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -25,40 +24,24 @@ class QuestionImage
     /**
      * @ORM\Column(type="string", length=50)
      * @Groups("get_questImage_by_cat")
-     * @Assert\NotBlank(
-     *      message = "Vous devez sélectionner le type de la question."
-     * )
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("get_questImage_by_cat")
-     * @Assert\NotBlank(
-     *      message = "Vous devez rentrer un slug pour identifier la question."
-     * )
-     * @Assert\Regex(
-     *     pattern="/^[a-z]+(?:-[a-z]+)*$/",
-     *     message="N'utilisez que des lettres minuscules et des tirets (ex : baleine-en-chocolat)."
-     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"questions_image_get_one", "get_questImage_by_cat"})
-     * @Assert\NotBlank(
-     *      message = "Vous devez poser une question."
-     * )
      */
     private $title;
 
     /**
      * @ORM\OneToMany(targetEntity=AnswerImage::class, mappedBy="questionImage")
      * @Groups({"get_questImage_by_cat"})
-     * @Assert\NotBlank(
-     *      message = "Vous devez entrer plusieurs choix."
-     * )
      */
     private $choices;
 
@@ -76,11 +59,8 @@ class QuestionImage
      * @ORM\ManyToOne(targetEntity=AnswerImage::class, inversedBy="isTheCorrectAnswerOf")
      * @Groups({"questions_image_get_one", "get_questImage_by_cat"})
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank(
-     *      message = "Vous devez sélectionner la bonne réponse."
-     * )
      */
-    private $correctAnswer;
+    private $correct_answer;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="questionImages")
@@ -229,15 +209,14 @@ class QuestionImage
         return (string) $this->title;
     }
 
-    public function getCorrectAnswer()
+    public function getCorrectAnswer(): ?AnswerImage
     {
-        return $this->correctAnswer->getValue();
+        return $this->correct_answer;
     }
 
-
-    public function setCorrectAnswer(?AnswerImage $correctAnswer): self
+    public function setCorrectAnswer(?AnswerImage $correct_answer): self
     {
-        $this->correctAnswer = $correctAnswer;
+        $this->correct_answer = $correct_answer;
 
         return $this;
     }
