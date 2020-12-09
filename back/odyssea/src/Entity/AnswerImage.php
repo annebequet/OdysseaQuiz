@@ -28,7 +28,7 @@ class AnswerImage
      * @ORM\Column(type="string", length=255)
      * @Groups("get_questImage_by_cat")
      * @Assert\NotBlank(
-     *      message = "Veuillez entrer une description courte de l'image"
+     *      message = "Veuillez saisir une description courte de l'image"
      * )
      */
     private $value;
@@ -37,7 +37,7 @@ class AnswerImage
      * @ORM\Column(type="string", length=8000)
      * @Groups("get_questImage_by_cat")
      * @Assert\NotBlank(
-     *      message = "Veuillez entrer l'url de l'image"
+     *      message = "Veuillez saisir l'URL de l'image"
      * )
      * @Assert\Url(
      *      message = "L'url '{{ value }}' n'est pas valide",
@@ -56,14 +56,14 @@ class AnswerImage
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=QuestionImage::class, inversedBy="choices")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToMany(targetEntity=QuestionImage::class, mappedBy="Choices")
      */
-    private $questionImage;
+    private $questionImages;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->questionImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,20 +119,36 @@ class AnswerImage
         return $this;
     }
 
-    public function getQuestionImage(): ?QuestionImage
+    public function __toString()
     {
-        return $this->questionImage;
+        return (string) $this->value;
     }
 
-    public function setQuestionImage(?QuestionImage $questionImage): self
+    /**
+     * @return \Doctrine\Common\Collections\Collection|QuestionImage[]
+     */
+    public function getQuestionImages(): \Doctrine\Common\Collections\Collection
     {
-        $this->questionImage = $questionImage;
+        return $this->questionImages;
+    }
+
+    public function addQuestionImage(QuestionImage $questionImage): self
+    {
+        if (!$this->questionImages->contains($questionImage)) {
+            $this->questionImages[] = $questionImage;
+            $questionImage->addChoice($this);
+        }
 
         return $this;
     }
 
-    public function __toString()
+    public function removeQuestionImage(QuestionImage $questionImage): self
     {
-        return (string) $this->value;
+        if ($this->questionImages->contains($questionImage)) {
+            $this->questionImages->removeElement($questionImage);
+            $questionImage->removeChoice($this);
+        }
+
+        return $this;
     }
 }

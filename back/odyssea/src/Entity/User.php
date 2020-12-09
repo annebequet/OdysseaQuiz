@@ -13,19 +13,22 @@ use Symfony\Component\OptionsResolver\Options;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\Sequentially;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(
  *      fields="email",
- *      message="{{ value }} est déjà utilisé."
+ *      message="{{ value }} est déjà utilisé"
  * )
  * @UniqueEntity(
  *      fields="pseudo",
- *      message="{{ value }} est déjà utilisé."
+ *      message="{{ value }} est déjà utilisé"
  * )
  */
 class User implements UserInterface
@@ -41,10 +44,10 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups({"users_get", "users_get_one"})
      * @Assert\Email(
-     *     message = "Entrez un email valide."
+     *     message = "Entrez un email valide"
      * )
      * @Assert\NotBlank(
-     *      message= "Veuillez remplir ce champs"
+     *      message= "Veuillez saisir un email"
      * )
      */
     private $email;
@@ -79,7 +82,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", unique=true, length=16)
      * @Groups({"users_get", "users_get_one", "categories_get", "api_scores_get_one"})
      * @Assert\Sequentially({
-     *      @Assert\NotBlank(message="Veuillez remplir ce champs"),
+     *      @Assert\NotBlank(message="Veuillez saisir un pseudo"),
      *      @Assert\Length(
      *           min = 6,
      *           max = 12,
@@ -103,13 +106,11 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Groups("users_get_one")
-     * @Assert\Sequentially({
-     *      @Assert\NotBlank(message="Veuillez remplir ce champs"),
-     *      @Assert\Regex(
+     * @Assert\NotBlank(message = "Veuillez remplir ce champs")
+     * @Assert\Regex(
      *          pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,200}$/",
-     *          message="Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre."
+     *          message="Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre"
      *      )
-     * })
      */
     private $password;
 
@@ -133,7 +134,7 @@ class User implements UserInterface
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"users_get", "users_get_one"})
      * @Assert\NotNull(
-     *      message = "Choisissez un environnement de jeu."
+     *      message = "Veuillez choisir un environnement de jeu."
      * )
      */
     private $environment;
@@ -152,6 +153,7 @@ class User implements UserInterface
     /**
      * @ORM\ManyToOne(targetEntity=Gallery::class)
      * @Groups({"users_get", "users_get_one"})
+     * @Assert\NotNull(message = "Veuillez sélectionner un avatar")
      */
     private $avatar;
 

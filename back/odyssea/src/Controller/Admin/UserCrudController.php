@@ -4,7 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
@@ -28,6 +30,7 @@ class UserCrudController extends AbstractCrudController
 
         $mdpCreate = TextField::new('password', 'Mot de passe')
             ->setFormType(PasswordType::class)
+            ->setFormTypeOption('empty_data', '')
             ->onlyWhenCreating();
 
         $mdpUpdate = TextField::new('password', 'Mot de passe')
@@ -77,9 +80,17 @@ class UserCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle('index', 'Utilisateurs')
-            ->setPageTitle('new', 'Utilisateur')
-            ->setPageTitle('edit', 'Utilisateur')
+            ->setPageTitle('new', 'Ajouter un utilisateur')
+            ->setPageTitle('edit', 'Éditer un utilisateur')
             ->setPageTitle('detail', 'Utilisateur')
         ;
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
+            return $action->setLabel('Créer un utilisateur');
+        });
     }
 }

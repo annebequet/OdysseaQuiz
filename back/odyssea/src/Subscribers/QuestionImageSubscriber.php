@@ -74,7 +74,7 @@ class QuestionImageSubscriber implements EventSubscriberInterface
             // Associate the AnswerImages to this Question
             $answers = $entity->getChoices();
             foreach ($answers as $answer) {
-                $answer->setQuestionImage($entity);
+                $answer->addQuestionImage($entity);
             }
         }
     }
@@ -91,7 +91,7 @@ class QuestionImageSubscriber implements EventSubscriberInterface
 
             $answers = $entity->getChoices();
             foreach ($answers as $answer) {
-                $answer->setQuestionImage($entity);
+                $answer->addQuestionImage($entity);
             }
         }
     }

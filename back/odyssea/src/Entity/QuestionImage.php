@@ -64,13 +64,6 @@ class QuestionImage
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity=AnswerImage::class, mappedBy="questionImage")
-     * @Groups("get_questImage_by_cat")
-     * @Assert\Count(min=4, max=4)
-     */
-    private $choices;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -113,12 +106,25 @@ class QuestionImage
      */
     private $correctAnswer;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=AnswerImage::class)
+     * @Groups({"get_questImage_by_cat"})
+     * Assert\Count(min = 4, max = 4)
+     */
+    private $choices;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=AnswerImage::class, inversedBy="questionImages")
+     */
+    private $Choices;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->choices = new ArrayCollection();
         $this->gradeKids = new ArrayCollection();
         $this->type = "imagepicker";
+        $this->Choices = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -210,37 +216,6 @@ class QuestionImage
         return $this;
     }
 
-    /**
-     * @return Collection|AnswerImage[]
-     */
-    public function getChoices(): Collection
-    {
-        return $this->choices;
-    }
-
-    public function addChoice(AnswerImage $choice): self
-    {
-        if (!$this->choices->contains($choice)) {
-            $this->choices[] = $choice;
-            $choice->setQuestionImage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeChoice(AnswerImage $choice): self
-    {
-        if ($this->choices->contains($choice)) {
-            $this->choices->removeElement($choice);
-            // set the owning side to null (unless already changed)
-            if ($choice->getQuestionImage() === $this) {
-                $choice->setQuestionImage(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function __toString()
     {
         return (string) $this->title;
@@ -297,6 +272,32 @@ class QuestionImage
     public function setCorrectAnswer(string $correctAnswer): self
     {
         $this->correctAnswer = $correctAnswer;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AnswerImage[]
+     */
+    public function getChoices(): Collection
+    {
+        return $this->choices;
+    }
+
+    public function addChoice(AnswerImage $choice): self
+    {
+        if (!$this->choices->contains($choice)) {
+            $this->choices[] = $choice;
+        }
+
+        return $this;
+    }
+
+    public function removeChoice(AnswerImage $choice): self
+    {
+        if ($this->choices->contains($choice)) {
+            $this->choices->removeElement($choice);
+        }
 
         return $this;
     }

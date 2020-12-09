@@ -4,7 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\QuestionImage;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -27,6 +29,7 @@ class QuestionImageCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->onlyOnIndex(),
+            AssociationField::new('category', 'Catégorie'),
             TextField::new('name', 'Slug')
                 ->hideOnIndex()                
                 ->setHelp('Utilisez seulement des minuscules et des tirets.'),
@@ -34,7 +37,6 @@ class QuestionImageCrudController extends AbstractCrudController
             AssociationField::new('choices', 'Réponses proposées')
                 ->setHelp('Entrez 4 réponses seulement'),
             AssociationField::new('correctAnswerObject', 'Bonne réponse'),
-            AssociationField::new('category', 'Catégorie'),
         ];
     }
    
@@ -53,5 +55,13 @@ class QuestionImageCrudController extends AbstractCrudController
         return $filters
             ->add('category')
         ;
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
+            return $action->setLabel('Créer une question(enfant)');
+        });
     }
 }

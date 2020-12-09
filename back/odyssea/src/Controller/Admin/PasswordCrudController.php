@@ -69,7 +69,7 @@ class PasswordCrudController extends AbstractCrudController
         return $crud
             ->setPageTitle('index', 'Mots de passe')
             // ->setPageTitle('new', 'Mot de passe')
-            ->setPageTitle('edit', 'Mot de passe')
+            ->setPageTitle('edit', 'Éditer un mot de passe')
             // ->setPageTitle('detail', 'Mot de passe')
         ;
     }
