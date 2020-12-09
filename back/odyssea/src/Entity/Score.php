@@ -75,6 +75,11 @@ class Score
      */
     private $environment;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $session;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -184,5 +189,17 @@ class Score
     public function getPseudo()
     {
         return $this->user->getPseudo();
+    }
+
+    public function getSession(): ?int
+    {
+        return $this->session;
+    }
+
+    public function setSession(?int $session): self
+    {
+        $this->session = $session;
+
+        return $this;
     }
 }

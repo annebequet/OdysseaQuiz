@@ -49,7 +49,7 @@ class AnswerImage
     private $questionImage;
 
     /**
-     * @ORM\OneToMany(targetEntity=QuestionImage::class, mappedBy="correctAnswer")
+     * @ORM\OneToMany(targetEntity=QuestionImage::class, mappedBy="correct_answer")
      */
     private $isTheCorrectAnswerOf;
 

@@ -24,7 +24,7 @@ class QuestionController extends AbstractController
     public function getQuestions($categoryId, $environmentId, QuestionRepository $questionRepository, ScoreRepository $scoreRepository)
     {
         $user = $this->getUser();
-        
+
         $score = $scoreRepository->findOneBy([
             "user" => $user,
             "environment" => $environmentId,
@@ -33,6 +33,7 @@ class QuestionController extends AbstractController
 
         if($score) {
             $quizNb = $score->getQuizNb();
+            $session = $score->getSession();
         }
 
         // If the player never played or less than 10 quiz for this env/cat, select questions from all grades randomnly
@@ -45,22 +46,22 @@ class QuestionController extends AbstractController
 
         // Else get a mix of questions from different grades
         else 
-        {
-            for ($i=0; $i <= 5 ; $i++) {
-                $grade[$i] = $questionRepository->findRandom($user, $environmentId, $categoryId, $i, 1);
-
-                // If the user doesn't have a question with the specified grade
-                for ($x=1; $x < 5 ; $x++) {
-                    if ($grade[$i] == null) {
-                        // Get a question in the previous grade
-                        $question = $questionRepository->findOneRandom($user, $environmentId, $categoryId, $i-$x, 1);
-                        if (array_search($question, $grade) === false) {
-                            $grade[$i] = $questionRepository->findOneRandom($user, $environmentId, $categoryId, $i-$x, 1);
-                        }
-                    }
+        { 
+            $questions = $questionRepository->findMultiplesRandom($user, $environmentId, $categoryId, $session);
+            
+            // If we don't have 10 questions in the session
+            if (count($questions) < 10) {
+                // Define the number of question missing to have a quiz of 10 questions
+                $rest = 10 - count($questions);
+                // Complete the quiz
+                $moreQuestions = $questionRepository->findRandom($user, $environmentId, $categoryId, 1, $rest);
+                //dd($questions, $rest, $moreQuestions);
+                // Insert them into the questions
+                foreach ($moreQuestions as $question) {
+                    $questions[] = $question;
                 }
             }
-            return $this->json($grade, 200, [], ['groups' => 'questions_get_grades']);
-        }
+        }          
+        return $this->json($questions, 200, [], ['groups' => 'questions_get_grades']);
     }
 }

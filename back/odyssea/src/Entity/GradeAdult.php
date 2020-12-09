@@ -49,6 +49,12 @@ class GradeAdult
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     * @Groups({"grades_get_one", "questions_get_grades"})
+     */
+    private $deck = [];
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -115,6 +121,18 @@ class GradeAdult
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getDeck(): ?array
+    {
+        return $this->deck;
+    }
+
+    public function setDeck(?array $deck): self
+    {
+        $this->deck = $deck;
 
         return $this;
     }
