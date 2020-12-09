@@ -4,7 +4,6 @@ namespace App\Subscribers;
 
 use App\Entity\GradeKid;
 use App\Entity\QuestionImage;
-use App\Repository\AnswerImageRepository;
 use App\Repository\EnvironmentRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
