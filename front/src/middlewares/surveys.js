@@ -29,11 +29,13 @@ export default (store) => (next) => (action) => {
       if (!action.isExempleQuiz) {
         const state = store.getState();
         const environmentSlug = sessionStorage.getItem('environment');
+        const environmentId = sessionStorage.getItem('environment');
         const categoryId = state.surveys.surveyCategory.id;
         const answers = action.requestAnswers;
         const user = sessionStorage.getItem('id');
         const points = action.numberOfCorrectAnswers;
         axios.post(`${baseUrl}/score/${environmentSlug}`, {
+          environmentId,
           categoryId,
           user,
           points,
