@@ -38,7 +38,7 @@ class QuestionImageCrudController extends AbstractCrudController
             TextareaField::new('title', 'Question'),
             AssociationField::new('choices', 'Réponses proposées')
                 ->setHelp('Entrez 4 réponses seulement'),
-            TextField::new('correct_answer', 'Bonne réponse'),
+            AssociationField::new('correct_answer', 'Bonne réponse'),
             AssociationField::new('category', 'Catégorie'),
             AssociationField::new('environment', 'Environnement')
         ];

@@ -91,7 +91,7 @@ class UserSubscriber implements EventSubscriberInterface
                 $gradeKid = new GradeKid;
                 $gradeKid->setQuestion($question);
                 $gradeKid->setUser($entity);
-                $gradeKid->setGrade(0);
+                $gradeKid->setGrade(1);
                 $this->entityManager->persist($gradeKid);
                 $this->entityManager->flush();
             }
