@@ -27,7 +27,7 @@ class AnswerImage
     private $value;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=8000)
      * @Groups({"get_questImage_by_cat"})
      */
     private $imageLink;

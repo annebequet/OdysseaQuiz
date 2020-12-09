@@ -4,6 +4,7 @@ namespace App\Subscribers;
 
 use App\Entity\GradeKid;
 use App\Entity\QuestionImage;
+use App\Repository\AnswerImageRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityPersistedEvent;
@@ -25,8 +26,8 @@ class QuestionImageSubscriber implements EventSubscriberInterface
     {
         return [
             AfterEntityPersistedEvent::class => ['setGrades'],
-            BeforeEntityPersistedEvent::class => ['setCorrectAnswerValue'],
-            BeforeEntityUpdatedEvent::class => ['SetUpdatedCorrectAnswerValue']
+            BeforeEntityPersistedEvent::class => ['setData'],
+            BeforeEntityUpdatedEvent::class => ['updateData'],
         ];
     }
 
@@ -53,7 +54,7 @@ class QuestionImageSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function setCorrectAnswerValue(BeforeEntityPersistedEvent $event)
+    public function setData(BeforeEntityPersistedEvent $event)
     {
         // Get the data sent through the form
         $entity = $event->getEntityInstance();
@@ -62,10 +63,15 @@ class QuestionImageSubscriber implements EventSubscriberInterface
         if ($entity instanceof QuestionImage) {
             $value = $entity->getCorrectAnswerObject()->getValue();
             $entity->setCorrectAnswer($value);
+
+            $answers = $entity->getChoices();
+            foreach ($answers as $answer) {
+                $answer->setQuestionImage($entity);
+            }
         }
     }
 
-    public function setUpdatedCorrectAnswerValue(BeforeEntityUpdatedEvent $event)
+    public function updateData(BeforeEntityUpdatedEvent $event)
     {
         // Get the data sent through the form
         $entity = $event->getEntityInstance();
@@ -74,6 +80,11 @@ class QuestionImageSubscriber implements EventSubscriberInterface
         if ($entity instanceof QuestionImage) {
             $value = $entity->getCorrectAnswerObject()->getValue();
             $entity->setCorrectAnswer($value);
+
+            $answers = $entity->getChoices();
+            foreach ($answers as $answer) {
+                $answer->setQuestionImage($entity);
+            }
         }
     }
 }
