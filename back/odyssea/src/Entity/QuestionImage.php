@@ -56,13 +56,6 @@ class QuestionImage
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=AnswerImage::class, inversedBy="isTheCorrectAnswerOf")
-     * @Groups({"questions_image_get_one", "get_questImage_by_cat"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $correct_answer;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="questionImages")
      */
     private $category;
@@ -76,6 +69,18 @@ class QuestionImage
      * @ORM\OneToMany(targetEntity=GradeKid::class, mappedBy="question", orphanRemoval=true)
      */
     private $gradeKids;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=AnswerImage::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $correctAnswerObject;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"get_questImage_by_cat"})
+     */
+    private $correctAnswer;
 
     public function __construct()
     {
@@ -209,18 +214,6 @@ class QuestionImage
         return (string) $this->title;
     }
 
-    public function getCorrectAnswer(): ?AnswerImage
-    {
-        return $this->correct_answer;
-    }
-
-    public function setCorrectAnswer(?AnswerImage $correct_answer): self
-    {
-        $this->correct_answer = $correct_answer;
-
-        return $this;
-    }
-
     /**
      * @return Collection|GradeKid[]
      */
@@ -248,6 +241,30 @@ class QuestionImage
                 $gradeKid->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCorrectAnswerObject(): ?AnswerImage
+    {
+        return $this->correctAnswerObject;
+    }
+
+    public function setCorrectAnswerObject(?AnswerImage $correctAnswerObject): self
+    {
+        $this->correctAnswerObject = $correctAnswerObject;
+
+        return $this;
+    }
+
+    public function getCorrectAnswer(): ?string
+    {
+        return $this->correctAnswer;
+    }
+
+    public function setCorrectAnswer(string $correctAnswer): self
+    {
+        $this->correctAnswer = $correctAnswer;
 
         return $this;
     }

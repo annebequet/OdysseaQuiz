@@ -7,6 +7,8 @@ use App\Entity\QuestionImage;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityPersistedEvent;
+use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
+use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class QuestionImageSubscriber implements EventSubscriberInterface
@@ -23,6 +25,8 @@ class QuestionImageSubscriber implements EventSubscriberInterface
     {
         return [
             AfterEntityPersistedEvent::class => ['setGrades'],
+            BeforeEntityPersistedEvent::class => ['setCorrectAnswerValue'],
+            BeforeEntityUpdatedEvent::class => ['SetUpdatedCorrectAnswerValue']
         ];
     }
 
@@ -46,6 +50,30 @@ class QuestionImageSubscriber implements EventSubscriberInterface
                 $this->entityManager->persist($gradeKid);
                 $this->entityManager->flush();
             }
+        }
+    }
+
+    public function setCorrectAnswerValue(BeforeEntityPersistedEvent $event)
+    {
+        // Get the data sent through the form
+        $entity = $event->getEntityInstance();
+
+        // Verify if the entity is a Question Image
+        if ($entity instanceof QuestionImage) {
+            $value = $entity->getCorrectAnswerObject()->getValue();
+            $entity->setCorrectAnswer($value);
+        }
+    }
+
+    public function setUpdatedCorrectAnswerValue(BeforeEntityUpdatedEvent $event)
+    {
+        // Get the data sent through the form
+        $entity = $event->getEntityInstance();
+
+        // Verify if the entity is a Question Image
+        if ($entity instanceof QuestionImage) {
+            $value = $entity->getCorrectAnswerObject()->getValue();
+            $entity->setCorrectAnswer($value);
         }
     }
 }

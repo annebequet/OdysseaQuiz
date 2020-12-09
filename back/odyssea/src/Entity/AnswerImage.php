@@ -48,15 +48,9 @@ class AnswerImage
      */
     private $questionImage;
 
-    /**
-     * @ORM\OneToMany(targetEntity=QuestionImage::class, mappedBy="correct_answer")
-     */
-    private $isTheCorrectAnswerOf;
-
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-        $this->isTheCorrectAnswerOf = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,36 +121,5 @@ class AnswerImage
     public function __toString()
     {
         return (string) $this->value;
-    }
-
-    /**
-     * @return \Doctrine\Common\Collections\Collection|QuestionImage[]
-     */
-    public function getIsTheCorrectAnswerOf(): \Doctrine\Common\Collections\Collection
-    {
-        return $this->isTheCorrectAnswerOf;
-    }
-
-    public function addIsTheCorrectAnswerOf(QuestionImage $isTheCorrectAnswerOf): self
-    {
-        if (!$this->isTheCorrectAnswerOf->contains($isTheCorrectAnswerOf)) {
-            $this->isTheCorrectAnswerOf[] = $isTheCorrectAnswerOf;
-            $isTheCorrectAnswerOf->setCorrectAnswer($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIsTheCorrectAnswerOf(QuestionImage $isTheCorrectAnswerOf): self
-    {
-        if ($this->isTheCorrectAnswerOf->contains($isTheCorrectAnswerOf)) {
-            $this->isTheCorrectAnswerOf->removeElement($isTheCorrectAnswerOf);
-            // set the owning side to null (unless already changed)
-            if ($isTheCorrectAnswerOf->getCorrectAnswer() === $this) {
-                $isTheCorrectAnswerOf->setCorrectAnswer(null);
-            }
-        }
-
-        return $this;
     }
 }
