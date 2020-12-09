@@ -14,11 +14,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
  * @UniqueEntity(
  *      fields="name",
- *      message="{{ value }} est déjà utilisé."
+ *      message="{{ value }} est déjà utilisé"
  * )
  * @UniqueEntity(
  *      fields="title",
- *      message="Cette question est déjà posée."
+ *      message="Cette question est déjà posée"
  * )
  */
 class Question
@@ -27,26 +27,21 @@ class Question
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
+     * @Groups("get_quest_by_cat")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
      * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
-     * @Assert\NotBlank(
-     *      message = "Vous devez sélectionner le type de la question."
-     * )
      */
     private $type;
 
-    //! dans blank normalizer = 'trim',
-    //! sa march pas
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
      * @Assert\NotBlank(
-     *      message = "Vous devez rentrer un slug pour identifier la question."
+     *      message = "Veuillez définir un slug pour identifier la question"
      * )
      * @Assert\Regex(
      *     pattern="/^[a-z]+(?:-[a-z]+)*$/",
@@ -55,12 +50,11 @@ class Question
      */
     private $name;
 
-    //! si on joue au timer, ne pas mettre des questions de plus de 200 caractères
     /**
      * @ORM\Column(type="text")
      * @Groups({"categories_get_one", "get_quest_by_cat", "grades_get_one", "questions_get_grades"})
      * @Assert\NotBlank(
-     *      message = "Vous devez poser une question."
+     *      message = "Veuillez poser une question"
      * )
      */
     private $title;
@@ -68,9 +62,7 @@ class Question
     /**
      * @ORM\Column(type="json")
      * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
-     * @Assert\NotBlank(
-     *      message = "Vous devez entrer plusieurs choix."
-     * )
+     * @Assert\Count(min=4, max=4)
      */
     private $choices = [];
 
@@ -78,7 +70,7 @@ class Question
      * @ORM\Column(type="string", length=255)
      * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
      * @Assert\NotBlank(
-     *      message = "Vous devez copier la bonne réponse dans ce champs."
+     *      message = "Veuillez recopier la bonne réponse"
      * )
      */
     private $correctAnswer;
@@ -95,6 +87,7 @@ class Question
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="questions")
+     * @Assert\NotBlank(message="Veuillez selectionner une catégorie")
      */
     private $category;
 
@@ -113,6 +106,7 @@ class Question
     {
         $this->createdAt = new \DateTime();
         $this->gradeAdults = new ArrayCollection();
+        $this->type = "radiogroup";
     }
 
     public function getId(): ?int

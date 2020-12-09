@@ -27,11 +27,6 @@ class QuestionImageCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->onlyOnIndex(),
-            ChoiceField::new('type')
-                ->hideOnIndex()
-                ->setChoices([
-                        '1 bonne réponse image sur 4' => 'imagepicker'
-                        ]),
             TextField::new('name', 'Slug')
                 ->hideOnIndex()                
                 ->setHelp('Utilisez seulement des minuscules et des tirets.'),
@@ -40,17 +35,16 @@ class QuestionImageCrudController extends AbstractCrudController
                 ->setHelp('Entrez 4 réponses seulement'),
             AssociationField::new('correctAnswerObject', 'Bonne réponse'),
             AssociationField::new('category', 'Catégorie'),
-            AssociationField::new('environment', 'Environnement')
         ];
     }
    
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setPageTitle('index', 'Questions')
-            ->setPageTitle('new', 'Question')
-            ->setPageTitle('edit', 'Question')
-            ->setPageTitle('detail', 'Question')
+            ->setPageTitle('index', 'Questions(enfant)')
+            ->setPageTitle('new', 'Ajouter une question(enfant)')
+            ->setPageTitle('edit', 'Éditer une question(enfant)')
+            ->setPageTitle('detail', 'Détails')
         ;
     }
 
@@ -58,7 +52,6 @@ class QuestionImageCrudController extends AbstractCrudController
     {
         return $filters
             ->add('category')
-            ->add('environment')
         ;
     }
 }

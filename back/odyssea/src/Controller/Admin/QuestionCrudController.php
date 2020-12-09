@@ -27,19 +27,11 @@ class QuestionCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->onlyOnIndex(),
-            ChoiceField::new('type')
-                ->hideOnIndex()
-                ->setChoices([
-                        '1 bonne réponse sur 4' => 'radiogroup',
-                        'Images' => 'image'
-                        ]),
             AssociationField::new('category', 'Catégorie'),
-            AssociationField::new('environment', 'Environnement'),
             TextField::new('name', 'Slug')
                 ->hideOnIndex()                
                 ->setHelp('Utilisez seulement des minuscules et des tirets.'),
             TextareaField::new('title', 'Question'),
-            FormField::addPanel('Réponses'),
             ArrayField::new('choices', 'Réponses proposées')
                 ->setHelp('Entrez 4 réponses seulement'),
             TextField::new('correctAnswer', 'Bonne réponse')

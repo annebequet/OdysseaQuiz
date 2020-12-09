@@ -5,7 +5,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AnswerImageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Url;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Collection;
 
 /**
@@ -22,13 +26,22 @@ class AnswerImage
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"get_questImage_by_cat"})
+     * @Groups("get_questImage_by_cat")
+     * @Assert\NotBlank(
+     *      message = "Veuillez entrer une description courte de l'image"
+     * )
      */
     private $value;
 
     /**
      * @ORM\Column(type="string", length=8000)
-     * @Groups({"get_questImage_by_cat"})
+     * @Groups("get_questImage_by_cat")
+     * @Assert\NotBlank(
+     *      message = "Veuillez entrer l'url de l'image"
+     * )
+     * @Assert\Url(
+     *      message = "L'url '{{ value }}' n'est pas valide",
+     * )
      */
     private $imageLink;
 

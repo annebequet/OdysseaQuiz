@@ -5,6 +5,7 @@ namespace App\Subscribers;
 use App\Entity\GradeKid;
 use App\Entity\QuestionImage;
 use App\Repository\AnswerImageRepository;
+use App\Repository\EnvironmentRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityPersistedEvent;
@@ -16,11 +17,13 @@ class QuestionImageSubscriber implements EventSubscriberInterface
 {
     private $userRepository;
     private $entityManager;
+    private $environmentRepository;
 
-    public function __construct(UserRepository $userRepository, EntityManagerInterface $entityManager)
+    public function __construct(UserRepository $userRepository, EntityManagerInterface $entityManager, EnvironmentRepository $environmentRepository)
     {
         $this->userRepository = $userRepository;
         $this->entityManager = $entityManager;
+        $this->environmentRepository = $environmentRepository;
     }
     public static function getSubscribedEvents()
     {
@@ -61,9 +64,15 @@ class QuestionImageSubscriber implements EventSubscriberInterface
 
         // Verify if the entity is a Question Image
         if ($entity instanceof QuestionImage) {
+            // Set the value of the Question selected to correctAnswer
             $value = $entity->getCorrectAnswerObject()->getValue();
             $entity->setCorrectAnswer($value);
 
+            // Set automatically the environment Kid to the Question
+            $environment = $this->environmentRepository->find(2);
+            $entity->setEnvironment($environment);
+
+            // Associate the AnswerImages to this Question
             $answers = $entity->getChoices();
             foreach ($answers as $answer) {
                 $answer->setQuestionImage($entity);
