@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\EnvironmentRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EnvironmentRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -35,6 +36,7 @@ class Environment
      *      maxMessage="Le nom est trop long, merci d'en choisir un autre.",
      *      allowEmptyString = false
      * )
+     * @Assert\NotBlank(message = "Veuillez saisir un nom d'environnement")
      */
     private $name;
 

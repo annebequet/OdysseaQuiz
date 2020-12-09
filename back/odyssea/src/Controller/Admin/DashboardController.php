@@ -53,17 +53,17 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
-        yield MenuItem::linktoDashboard('Utilisateurs', 'fas fa-dharmachakra'),
+        yield MenuItem::linktoDashboard('Utilisateurs', 'fas fa-users'),
         yield MenuItem::linkToCrud('Mots de passe', 'fas fa-key', User::class)
             ->setController(PasswordCrudController::class),
+        yield MenuItem::linkToCrud('Avatars', 'fa fa-picture-o', Gallery::class),
         yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class),
         yield MenuItem::linkToCrud('Questions Image', 'fa fa-question-circle', QuestionImage::class),
-        yield MenuItem::linkToCrud('Réponses Image', 'fa fa-question-circle', AnswerImage::class)
+        yield MenuItem::linkToCrud('Réponses Image', 'fa fa-images', AnswerImage::class)
             ->setController(AnswerImageCrudController::class),
-        yield MenuItem::linkToCrud('Catégories', 'fas fa-fish', Category::class),
-        yield MenuItem::linkToCrud('Avatars', 'fa fa-picture-o', Gallery::class),
-        yield MenuItem::linkToCrud('Environnement', 'fab fa-pagelines', Environment::class),
-        yield MenuItem::linkToCrud('Scores', 'fas fa-anchor', Score::class),
+        yield MenuItem::linkToCrud('Scores', 'fas fa-star-half-alt', Score::class),
+        yield MenuItem::linkToCrud('Environnement', 'fab fa-etsy', Environment::class),
+        yield MenuItem::linkToCrud('Catégories', 'fab fa-cuttlefish', Category::class),
         yield MenuItem::linkToUrl('Home', 'fa fa-home','http://54.226.34.31/')
         // MenuItem::linkToLogout('Logout', 'fa fa-exit'),
         ];

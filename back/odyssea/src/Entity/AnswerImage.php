@@ -5,7 +5,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AnswerImageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Url;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Collection;
 
 /**
@@ -22,13 +26,22 @@ class AnswerImage
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"get_questImage_by_cat"})
+     * @Groups("get_questImage_by_cat")
+     * @Assert\NotBlank(
+     *      message = "Veuillez saisir une description courte de l'image"
+     * )
      */
     private $value;
 
     /**
      * @ORM\Column(type="string", length=8000)
-     * @Groups({"get_questImage_by_cat"})
+     * @Groups("get_questImage_by_cat")
+     * @Assert\NotBlank(
+     *      message = "Veuillez saisir l'URL de l'image"
+     * )
+     * @Assert\Url(
+     *      message = "L'url '{{ value }}' n'est pas valide",
+     * )
      */
     private $imageLink;
 
@@ -43,14 +56,14 @@ class AnswerImage
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=QuestionImage::class, inversedBy="choices")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToMany(targetEntity=QuestionImage::class, mappedBy="choices")
      */
-    private $questionImage;
+    private $questionImages;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->questionImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -106,20 +119,36 @@ class AnswerImage
         return $this;
     }
 
-    public function getQuestionImage(): ?QuestionImage
+    public function __toString()
     {
-        return $this->questionImage;
+        return (string) $this->value;
     }
 
-    public function setQuestionImage(?QuestionImage $questionImage): self
+    /**
+     * @return \Doctrine\Common\Collections\Collection|QuestionImage[]
+     */
+    public function getQuestionImages(): \Doctrine\Common\Collections\Collection
     {
-        $this->questionImage = $questionImage;
+        return $this->questionImages;
+    }
+
+    public function addQuestionImage(QuestionImage $questionImage): self
+    {
+        if (!$this->questionImages->contains($questionImage)) {
+            $this->questionImages[] = $questionImage;
+            $questionImage->addChoice($this);
+        }
 
         return $this;
     }
 
-    public function __toString()
+    public function removeQuestionImage(QuestionImage $questionImage): self
     {
-        return (string) $this->value;
+        if ($this->questionImages->contains($questionImage)) {
+            $this->questionImages->removeElement($questionImage);
+            $questionImage->removeChoice($this);
+        }
+
+        return $this;
     }
 }

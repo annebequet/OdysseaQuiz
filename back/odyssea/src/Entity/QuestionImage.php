@@ -2,14 +2,28 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\QuestionImageRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Count;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=QuestionImageRepository::class)
+ * @UniqueEntity(
+ *      fields="name",
+ *      message="{{ value }} est déjà utilisé"
+ * )
+ * @UniqueEntity(
+ *      fields="title",
+ *      message="Cette question est déjà posée"
+ * )
  */
 class QuestionImage
 {
@@ -30,20 +44,24 @@ class QuestionImage
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("get_questImage_by_cat")
+     * @Assert\NotBlank(
+     *      message = "Veuillez définir un slug pour identifier la question"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[a-z]+(?:-[a-z]+)*$/",
+     *     message="N'utilisez que des lettres minuscules et des tirets (ex : baleine-en-chocolat)"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"questions_image_get_one", "get_questImage_by_cat"})
+     * @Groups("get_questImage_by_cat")
+     * @Assert\NotBlank(
+     *      message = "Veuillez poser une question"
+     * )
      */
     private $title;
-
-    /**
-     * @ORM\OneToMany(targetEntity=AnswerImage::class, mappedBy="questionImage")
-     * @Groups({"get_questImage_by_cat"})
-     */
-    private $choices;
 
     /**
      * @ORM\Column(type="datetime")
@@ -57,6 +75,9 @@ class QuestionImage
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="questionImages")
+     * @Assert\NotBlank(
+     *      message = "Veuillez sélectionner une catégorie"
+     * )
      */
     private $category;
 
@@ -71,8 +92,18 @@ class QuestionImage
     private $gradeKids;
 
     /**
+     * @ORM\ManyToMany(targetEntity=AnswerImage::class, inversedBy="questionImages")
+     * @Groups("get_questImage_by_cat")
+     * Assert\Count(min = 4, max = 4)
+     */
+    private $choices;
+
+    /**
      * @ORM\ManyToOne(targetEntity=AnswerImage::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(
+     *      message = "Veuillez sélectionner la bonne réponse"
+     * )
      */
     private $correctAnswerObject;
 
@@ -87,6 +118,7 @@ class QuestionImage
         $this->createdAt = new \DateTime();
         $this->choices = new ArrayCollection();
         $this->gradeKids = new ArrayCollection();
+        $this->type = "imagepicker";
     }
 
     public function getId(): ?int
@@ -178,37 +210,6 @@ class QuestionImage
         return $this;
     }
 
-    /**
-     * @return Collection|AnswerImage[]
-     */
-    public function getChoices(): Collection
-    {
-        return $this->choices;
-    }
-
-    public function addChoice(AnswerImage $choice): self
-    {
-        if (!$this->choices->contains($choice)) {
-            $this->choices[] = $choice;
-            $choice->setQuestionImage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeChoice(AnswerImage $choice): self
-    {
-        if ($this->choices->contains($choice)) {
-            $this->choices->removeElement($choice);
-            // set the owning side to null (unless already changed)
-            if ($choice->getQuestionImage() === $this) {
-                $choice->setQuestionImage(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function __toString()
     {
         return (string) $this->title;
@@ -265,6 +266,32 @@ class QuestionImage
     public function setCorrectAnswer(string $correctAnswer): self
     {
         $this->correctAnswer = $correctAnswer;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AnswerImage[]
+     */
+    public function getChoices(): Collection
+    {
+        return $this->choices;
+    }
+
+    public function addChoice(AnswerImage $choice): self
+    {
+        if (!$this->choices->contains($choice)) {
+            $this->choices[] = $choice;
+        }
+
+        return $this;
+    }
+
+    public function removeChoice(AnswerImage $choice): self
+    {
+        if ($this->choices->contains($choice)) {
+            $this->choices->removeElement($choice);
+        }
 
         return $this;
     }

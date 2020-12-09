@@ -22,7 +22,8 @@ class EnvironmentCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->onlyOnIndex(),
-            TextField::new('name', 'Nom'),
+            TextField::new('name', 'Nom')
+                ->setFormTypeOption('empty_data', ''),
         ];
     }
 
@@ -38,7 +39,7 @@ class EnvironmentCrudController extends AbstractCrudController
         return $crud
             ->setPageTitle('index', 'Environnements')
             // ->setPageTitle('new', 'Environnement')
-            ->setPageTitle('edit', 'Environnement')
+            ->setPageTitle('edit', 'Éditer un environnement')
             ->setPageTitle('detail', 'Environnement')
         ;
     }

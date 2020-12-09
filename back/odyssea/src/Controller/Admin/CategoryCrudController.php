@@ -4,7 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -28,16 +30,20 @@ class CategoryCrudController extends AbstractCrudController
         ];
     }
 
-    //! debug : trouver le moyen de paramétrer %entity_label_plural% (et "singular?") permettrai d'enlever cette fonction et probablement modifier automatiquement le bouton create ?
-    // the visible title at the top of the page and the content of the <title> element
-    // it can include these placeholders: %entity_id%, %entity_label_singular%, %entity_label_plural%
-    //->setPageTitle('index', '%entity_label_plural% listing')
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
+            return $action->setLabel('Créer une catégorie');
+        });
+    }
+    
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
             ->setPageTitle('index', 'Catégories')
-            ->setPageTitle('new', 'Catégorie')
-            ->setPageTitle('edit', 'Catégorie')
+            ->setPageTitle('new', 'Ajouter une catégorie')
+            ->setPageTitle('edit', 'Éditer une catégorie')
             ->setPageTitle('detail', 'Catégorie')
         ;
     }

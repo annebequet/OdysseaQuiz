@@ -4,7 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\QuestionImage;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -27,11 +29,7 @@ class QuestionImageCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->onlyOnIndex(),
-            ChoiceField::new('type')
-                ->hideOnIndex()
-                ->setChoices([
-                        '1 bonne réponse image sur 4' => 'imagepicker'
-                        ]),
+            AssociationField::new('category', 'Catégorie'),
             TextField::new('name', 'Slug')
                 ->hideOnIndex()                
                 ->setHelp('Utilisez seulement des minuscules et des tirets.'),
@@ -39,18 +37,16 @@ class QuestionImageCrudController extends AbstractCrudController
             AssociationField::new('choices', 'Réponses proposées')
                 ->setHelp('Entrez 4 réponses seulement'),
             AssociationField::new('correctAnswerObject', 'Bonne réponse'),
-            AssociationField::new('category', 'Catégorie'),
-            AssociationField::new('environment', 'Environnement')
         ];
     }
    
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setPageTitle('index', 'Questions')
-            ->setPageTitle('new', 'Question')
-            ->setPageTitle('edit', 'Question')
-            ->setPageTitle('detail', 'Question')
+            ->setPageTitle('index', 'Questions(enfant)')
+            ->setPageTitle('new', 'Ajouter une question(enfant)')
+            ->setPageTitle('edit', 'Éditer une question(enfant)')
+            ->setPageTitle('detail', 'Détails')
         ;
     }
 
@@ -58,7 +54,14 @@ class QuestionImageCrudController extends AbstractCrudController
     {
         return $filters
             ->add('category')
-            ->add('environment')
         ;
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
+            return $action->setLabel('Créer une question(enfant)');
+        });
     }
 }

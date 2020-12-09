@@ -40,7 +40,7 @@ class Category
      *      allowEmptyString=false
      * )
      * @Assert\NotBlank(
-     *      message="Veuillez remplir ce champs"
+     *      message="Veuillez saisir un nom"
      * )
      */
     private $name;
@@ -52,7 +52,7 @@ class Category
      *    message = "L'url '{{ value }}' n'est pas valide.",
      * )
      * @Assert\NotBlank(
-     *      message="Veuillez remplir ce champs"
+     *      message="Veuillez saisir l'URL de l'image"
      * )
      */
     private $picture;
