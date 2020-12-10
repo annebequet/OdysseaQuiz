@@ -64,7 +64,7 @@ const Header = ({
           </NavLink>
           {(roles.indexOf('ROLE_ADMIN') !== -1) && (
           <a
-            href="http://54.237.18.247//back/admin/login"
+            href="http://54.237.18.247/back/admin/login"
             className="menu__item"
             onClick={handleAdmin}
           >
@@ -100,7 +100,7 @@ const Header = ({
             </NavLink>
             {(roles.indexOf('ROLE_ADMIN') !== -1) && (
             <a
-              href="http://54.237.18.247//back/admin/login"
+              href="http://54.237.18.247/back/admin/login"
               className="menu__item"
               onClick={handleAdmin}
             >
