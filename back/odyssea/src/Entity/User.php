@@ -140,11 +140,6 @@ class User implements UserInterface
     private $environment;
 
     /**
-     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="user")
-     */
-    private $contacts;
-
-    /**
      * @ORM\OneToMany(targetEntity=Score::class, mappedBy="user", orphanRemoval=true)
      * @Groups({"users_get_one"})
      */
@@ -169,7 +164,6 @@ class User implements UserInterface
     
     public function __construct()
     {
-        $this->contacts = new ArrayCollection();
         $this->scores = new ArrayCollection();
         $this->createdAt = new \DateTime();
         // $this->avatar = 1;
@@ -328,37 +322,6 @@ class User implements UserInterface
     public function setEnvironment(?Environment $environment): self
     {
         $this->environment = $environment;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Contact[]
-     */
-    public function getContacts(): Collection
-    {
-        return $this->contacts;
-    }
-
-    public function addContact(Contact $contact): self
-    {
-        if (!$this->contacts->contains($contact)) {
-            $this->contacts[] = $contact;
-            $contact->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContact(Contact $contact): self
-    {
-        if ($this->contacts->contains($contact)) {
-            $this->contacts->removeElement($contact);
-            // set the owning side to null (unless already changed)
-            if ($contact->getUser() === $this) {
-                $contact->setUser(null);
-            }
-        }
 
         return $this;
     }
