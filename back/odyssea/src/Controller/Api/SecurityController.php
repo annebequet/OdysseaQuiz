@@ -61,11 +61,12 @@ class SecurityController extends AbstractController
                 'logged' => false
             ]);
         }
+        else {
+            // Find the User by its token
+            $user = $userRepository->findBy(['apiToken' => $apiToken]);
 
-        // Find the User by its token
-        $user = $userRepository->findBy(['apiToken' => $apiToken]);
-
-        return $this->json($user, 200, [], ['groups' => 'api_users_get_one']);
+            return $this->json($user, 200, [], ['groups' => 'api_users_get_one']);
+        }
     }
 
 
