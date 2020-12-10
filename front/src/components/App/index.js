@@ -2,15 +2,14 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Route, Switch, useHistory, Redirect,
+  Route, Switch, Redirect,
 } from 'react-router-dom';
 
 // == Import
-import Video from 'src/components/Video';
 import Header from 'src/containers/Header';
-import Page from 'src/containers/Page';
+import Page from 'src/components/Page';
 import Register from 'src/containers/Register';
-import Home from 'src/containers/Home';
+import Home from 'src/components/Home';
 import Categories from 'src/containers/Categories';
 import Category from 'src/containers/Category';
 import Profile from 'src/containers/Profile';
@@ -18,46 +17,32 @@ import Contact from 'src/components/Contact';
 import Faq from 'src/components/Faq';
 import Footer from 'src/components/Footer';
 import Error404 from 'src/components/Error404';
-import FrontPageInformations from 'src/components/FrontPageInformations';
+import ErrorBoundary from 'src/containers/ErrorBoundary';
 import './styles.scss';
 
 // == Composant
 const App = ({
   checkIsLogged,
-  getCategories,
   categoriesLoading,
-  updateLocation,
-  clearErrors,
   isLogged,
-  myLocation,
+  showError,
 }) => {
   useEffect(checkIsLogged, []);
 
-  useEffect(() => {
-    getCategories();
-  }, []);
-
-  const history = useHistory();
-  useEffect(() => history.listen((location) => {
-    updateLocation(location.pathname);
-    clearErrors();
-  }), [history]);
-
   return (
     <div className="app">
-      <Video />
-      <div className="mainPage">
-        <Header />
-        {myLocation === '/' && (
-        <FrontPageInformations />
-        )}
-        {myLocation === '/' && (
-        <div className="frontPageImage">
-          <h1 className="playText">A vous de jouer !</h1>
-        </div>
-        )}
-        <Switch>
-          {!categoriesLoading && (
+      <Header />
+      <Switch>
+        <Route
+          exact
+          path="/"
+        >
+          <Page>
+            <Home />
+          </Page>
+        </Route>
+
+        {!categoriesLoading && (
           <Route
             exact
             path="/categories"
@@ -66,9 +51,9 @@ const App = ({
               <Categories />
             </Page>
           </Route>
-          )}
+        )}
 
-          {!categoriesLoading && (
+        {!categoriesLoading && (
           <Route
             exact
             path="/categories/:slug"
@@ -78,75 +63,68 @@ const App = ({
               </Page>
             )}
           />
+        )}
+
+        <Route
+          exact
+          path="/register"
+        >
+          {!isLogged ? (
+            <Page>
+              <Register />
+            </Page>
+          ) : (
+            <Redirect to={{ pathname: '/' }} />
           )}
-          <Route
-            exact
-            path="/register"
-          >
-            {!isLogged ? (
-              <Page>
-                <Register />
-              </Page>
-            ) : (
-              <Redirect to={{ pathname: '/' }} />
-            )}
-          </Route>
-          <Route
-            exact
-            path="/"
-          >
+        </Route>
+
+        <Route
+          exact
+          path="/profile/:slug"
+          component={({ match }) => (
             <Page>
-              <Home />
+              <Profile slug={match.params.slug} />
             </Page>
-          </Route>
-          <Route
-            exact
-            path="/profile/:slug"
-            component={({ match }) => (
-              <Page>
-                <Profile slug={match.params.slug} />
-              </Page>
-            )}
-          />
-          <Route
-            exact
-            path="/contact"
-          >
-            <Page>
-              <Contact />
-            </Page>
-          </Route>
-          <Route
-            exact
-            path="/faq"
-          >
-            <Page>
-              <Faq />
-            </Page>
-          </Route>
+          )}
+        />
+
+        <Route
+          exact
+          path="/contact"
+        >
+          <Page>
+            <Contact />
+          </Page>
+        </Route>
+
+        <Route
+          exact
+          path="/faq"
+        >
+          <Page>
+            <Faq />
+          </Page>
+        </Route>
+
+        {!categoriesLoading && (
           <Route path="*">
-            <Page>
-              <Error404 />
-            </Page>
+            <Error404 />
           </Route>
-        </Switch>
-        {/*{location === '/' && (
-        <div className="frontPageImageBottom" />
-        )}*/}
-        <Footer />
-      </div>
+        )}
+      </Switch>
+      <Footer />
+      {showError && (
+        <ErrorBoundary />
+      )}
     </div>
   );
 };
 
 App.propTypes = {
   checkIsLogged: PropTypes.func.isRequired,
-  getCategories: PropTypes.func.isRequired,
-  updateLocation: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  myLocation: PropTypes.string.isRequired,
+  showError: PropTypes.bool.isRequired,
 };
 
 // == Export

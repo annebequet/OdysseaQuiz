@@ -3,25 +3,32 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { bubble as Menu } from 'react-burger-menu';
 
-import WhaleLogo from 'src/assets/images/whale-logo.png';
+import Logo from 'src/assets/images/logo.png';
 
-import Title from 'src/containers/Title';
 import Login from 'src/containers/Login';
 import LoggedNav from 'src/containers/LoggedNav';
 import RegisterButton from './RegisterButton';
 
 import './styles.scss';
 
-const Header = ({ roles, isLogged, loginAdmin, location }) => {
+const Header = ({
+  roles, isLogged, loginAdmin, handleLogout,
+}) => {
   const handleAdmin = () => {
     loginAdmin();
   };
 
-  const headerHeight = location === '/' ? 'header__frontPage' : '';
-
   return (
-    <div className={`header ${headerHeight}`}>
+    <div className="header">
       <div className="fullMenu">
+        <NavLink
+          to="/"
+          className="menu__item menu--desktop__logo"
+          exact
+        >
+          <img alt="logo" src={Logo} />
+          dyssea Quiz
+        </NavLink>
         <nav className="menu--desktop">
           <NavLink
             to="/"
@@ -70,6 +77,14 @@ const Header = ({ roles, isLogged, loginAdmin, location }) => {
             <NavLink
               to="/"
               className="menu__item"
+              exact
+            >
+              <img className="menu--mobile__logo" alt="logo" src={Logo} />
+              dyssea Quiz
+            </NavLink>
+            <NavLink
+              to="/"
+              className="menu__item"
               activeClassName="menu__link--active"
               exact
             >
@@ -108,7 +123,7 @@ const Header = ({ roles, isLogged, loginAdmin, location }) => {
             >
               FAQ
             </NavLink>
-            <img className="logo" alt="whale-logo" src={WhaleLogo} />
+            <p className="burger-menu__footer">&copy; Odyssea Quiz Corporation All Rights Reserved</p>
           </Menu>
         </nav>
         {(!isLogged) && (
@@ -118,10 +133,9 @@ const Header = ({ roles, isLogged, loginAdmin, location }) => {
         </div>
         )}
         {(isLogged) && (
-        <LoggedNav />
+          <LoggedNav />
         )}
       </div>
-      <Title />
     </div>
   );
 };
@@ -130,11 +144,7 @@ Header.propTypes = {
   roles: PropTypes.array.isRequired,
   isLogged: PropTypes.bool.isRequired,
   loginAdmin: PropTypes.func.isRequired,
-  location: PropTypes.string,
-};
-
-Header.defaultProps = {
-  location: undefined,
+  handleLogout: PropTypes.func.isRequired,
 };
 
 export default Header;

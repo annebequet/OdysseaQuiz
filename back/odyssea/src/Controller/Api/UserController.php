@@ -21,39 +21,25 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
-     * Get all Users
-     *
-     * @Route("/api/users", name="api_users_get", methods={"GET"})
-     */
-    public function getAll(UserRepository $userRepository)
-    {
-        $users = $userRepository->findAll();
-        //dump($users);
-
-        return $this->json($users, 200, [], ['groups' => 'users_get']);
-    }
-
-    /**
-     * Get one user
+     * Get one User - Profile
      *
      * @Route("/api/users/{id<\d+>}", name="api_users_get_one", methods={"GET"})
      */
-    public function getOne($id, UserRepository $userRepository, User $user)
+    public function getOne(UserRepository $userRepository, User $user)
     {
-        // Custom request
-        $userFull = $userRepository->find($user);
-        //dump($userFull);
+        // Get the User
+        $user = $userRepository->find($user);
 
         // Check if the User exists, if not, return 404
         if ($user === null) {
             return $this->json(['error' => 'Utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
-        return $this->json($userFull, 200, [], ['groups' => 'users_get_one']);
+        return $this->json($user, 200, [], ['groups' => 'api_users_get_one']);
     }
 
     /**
-     * Edit user (PUT)
+     * Edit User
      *
      * @Route("/api/users/{id<\d+>}", name="api_users_put", methods={"PUT"})
      * @Route("/api/users/{id<\d+>}", name="api_users_patch", methods={"PATCH"})
@@ -124,67 +110,5 @@ class UserController extends AbstractController
         $em->flush();
 
         return $this->json(['message' => 'Utilisateur supprimé'], Response::HTTP_OK);
-    }
-
-    /**
-     * Add or Edit Score
-     *
-     * @Route("/api/score", name="api_add_score", methods={"POST"})
-    */
-    public function addScore(EntityManagerInterface $em, SerializerInterface $serializer, ScoreRepository $scoreRepository, Request $request, ValidatorInterface $validator)
-    {
-        // Get the content of the request
-        $content = $request->getContent();
-
-        // Deserialiaze the json content into a Score entity
-        $score = $serializer->deserialize($content, Score::class, 'json');
-
-        //dd($score);
-        // Validate the entity with the validator service
-        $errors = $validator->validate($score);
-
-        // If there are errors, return the array in JSON format
-        if(count($errors) > 0) {
-            $errorsArray = [];
-            foreach ($errors as $error) {
-                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
-            }
-            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
-
-        $scoreLine = $scoreRepository->findOneBy([
-            'user' => $score->getUser(),
-            'category' => $score->getCategory(),
-            'environment' => $score->getEnvironment()
-        ]);
-        
-        // if there's no score for this user/category/environement yet 
-        if (empty($scoreLine)) { 
-            // The user played for the first time
-            $score->setQuizNb(1);
-            $score->setScore(($score->getPoints())*10);
-            // Add the new score to the database
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($score);
-            $entityManager->flush();
-            return $this->json(['message' => 'Score ajouté'], Response::HTTP_CREATED);
-
-        } else {
-                   
-            // if there's already a score, calculate the new totals
-            $points = ($scoreLine->getPoints()) + ($score->getPoints());
-            $quizNb = ($scoreLine->getQuizNb()) + 1;
-            $scoreTotal = ($points/$quizNb)*10;
-            // and set them
-            $scoreLine->setPoints($points);
-            $scoreLine->setQuizNb($quizNb);
-            $scoreLine->setScore($scoreTotal);
-            // Set the updated_at time
-            $scoreLine->setUpdatedAt(new \DateTime());
-
-            $em->flush();
-
-            return $this->json(['message' => 'Score modifié'], Response::HTTP_OK);
-        }
     }
 }

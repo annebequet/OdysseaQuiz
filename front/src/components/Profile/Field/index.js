@@ -7,6 +7,8 @@ const Field = ({
   name,
   placeholder,
   onChange,
+  title,
+  pattern,
 }) => {
   const handleChange = (evt) => {
     onChange(evt.target.value, name);
@@ -23,6 +25,8 @@ const Field = ({
         type={type}
         placeholder={placeholder}
         name={name}
+        pattern={pattern}
+        title={title}
       />
     </div>
   );
@@ -34,11 +38,14 @@ Field.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  pattern: PropTypes.string,
 };
 
 Field.defaultProps = {
   value: '',
   type: 'text',
+  pattern: '',
 };
 
 export default Field;

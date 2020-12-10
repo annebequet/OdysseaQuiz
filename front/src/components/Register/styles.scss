@@ -1,73 +1,36 @@
 @use 'src/styles/vars';
-
-.register__form {
-  margin: 4em;
-  top: 2em;
-  display: flex;
-  flex-direction: column;
-  display: inline-block;
-}
-.register-field {
-  &-label {
-    font-size: .8em;
-    color: orange;
-    font-weight: bold;
-  }
-  &-input {
-    border-radius: 10px;
-    padding: vars.$gutter / 1.5;
-    margin-bottom: vars.$gutter;
-  }
-}
-.register-form-button {
-  border-radius: 10px;
-    padding: vars.$gutter / 1.5;
-    margin-bottom: vars.$gutter / 2;
-    font-size: .8em;
-    color: orange;
-    font-weight: bold;
-    background-color: white;
-    margin: 4em;
-}
-.register-field-input {
-  display: inline-block;
-  color: orange;
-  margin-right: 4em;
-  font-weight: bold;
-  font-size: medium;
-  display: block;
-  margin: auto;
-}
-
-.field--radio {
-  font-weight: bold;
-  font-size: medium;
-  color: vars.$title-color;
+.register {
   display: flex;
   justify-content: center;
-  align-content: space-around;
-  input[type='radio']{
-    margin-left: 1em;
-    margin-right: 1em;
-    width: 20px;
-    margin-top: 0.3em;
-    transform: scale(1.5);
-  }
-}
-
-//Do not use css like that, it impacts all the labels and span on the page
-.register > label {
-  // color: orange;
-  font-weight: bold;
-}
-
-.register > span {
-  //color: orange;
-  font-size: 20px;
-  display: inline-block;
-  margin: auto;
-  margin-bottom: 1rem;
-  display: block;
-  padding: 0.5em;
-  font-weight: bold;
+  position: relative;
+    &__container {
+      box-shadow: 0 0 8px rgba(0,0,0,.125);
+      text-align: center;
+      padding: 4rem 2rem;
+      background-color: white;
+      border: 1px solid rgba(0,0,0,.125);
+      border-radius: .25rem;    
+    }
+    &__title {
+      margin: 2rem 0;
+			font-size: 3em;
+    }
+    &-form-button {
+      border-radius: 999px;
+      text-align: center;
+      background-color:  #8ceabb;
+      font-size: 1.5em;
+      margin-bottom: 2rem;
+      width: 100%;
+      font-weight:600;
+    }
+    &--validate {
+      color: black;
+      box-shadow: 0 0 8px rgba(0,0,0,.125);
+      text-align: center;
+      padding: 4rem 2rem;
+      background-color: white;
+      border: 1px solid rgba(0,0,0,.125);
+      border-radius: .25rem;    
+    }
 }

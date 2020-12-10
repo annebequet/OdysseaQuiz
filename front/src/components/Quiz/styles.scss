@@ -1,113 +1,127 @@
 @use 'src/styles/vars';
-.survey {
-  margin: 40px 0;  
+.survey{
+  margin: 2rem 0;
+  box-shadow: 0 0 8px rgba(0,0,0,.125);
+  padding: 2rem;
+  background-color: white;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  width: 300px;
 }
 
-.sv_main{
-  max-width: 500px;
-  font-family: vars.$font-family;
-  font-size: 20px;
+.results {
+  position: relative;
 }
 
-@media (min-width: 768px) {
-  .exempleSurveys{
-  display: flex;
-  justify-content: space-around;
+.sv {
+  &_main{
+    max-width: 500px;
+    font-family: vars.$font-family;
+    font-size: 20px;
+    & input[type=button] {
+      background-color: rgba(1,1,36,.8);
+      border: 1px solid #fff;
+      font-size: 1.2rem;
+      font-family: vars.$font-family;
+      font-weight: 100;
+      transition: background-color 300ms ease-in-out;
+      &:hover {
+        background-color: white;
+        color: vars.$light-color;
+        border: 1px solid vars.$light-color;
+        font-size: 1.2rem;
+        font-family: vars.$font-family;
+        font-weight: 100;
+      }
+    }
+    span{
+      margin-top: -9px;
+    }
+  }
+  &_header{
+    background-color: vars.$contrast-color;
+    opacity: 0.4;
+    height: 120px;
+    text-align: center;    
+    & span {
+      color: white;
+      font-size: 30px;
+      font-family: vars.$font-title;
+      font-weight: 100;
+      padding-bottom: 20px;
+    }
+    & h3 {
+      padding-top: 0;
+      padding-bottom: 20px;
+    }
+    &__text > h3 > span {
+      padding-bottom: 20px;
+    }
+  } 
+  &_body {
+    border-top: 2px solid  vars.$violet-color !important;
+  }  
+  &_q {
+    &_title {
+      & h5{
+        display: inline-block;
+        padding: 0;
+        color: vars.$light-color;
+        font-family: vars.$font-family;
+      }
+      & span {
+        //display: inline-block;
+        padding: 0;
+        color: vars.$light-color;
+        margin-bottom: 20px;
+        margin-top: -20px;
+        font-size: 1.2rem;
+        font-family: vars.$font-family;
+      }
+    }
+    &_radiogroup {
+      &_label > span {
+        margin: 0;
+        padding: 0;
+        font-family: vars.$font-family;
+        //color: vars.$light-color;
+      }
+      & > span > span {
+        margin-top: -9px;
+        font-size: 1.2rem;
+        font-family: vars.$font-family;
+        font-weight: 100;
+      }      
+    }       
+  }
+  &_progress {
+    &_bar {
+      background-color: vars.$light-color !important;
+    }
+    & > div > span {
+    font-size: 1.2rem;
+    font-family: vars.$font-family;
+    font-weight: 100;
+    }   
+  }    
+  &_imgsel > .checked >label {    
+    border: 2px solid vars.$light-color;
+    & > div{
+      background-color: white !important;
+    }
+  }
+  &_row {
+    min-width: 200px !important;
+    & > .sv_q {
+      min-width: 200px !important;
+    }
+  }
+  &_p_container {
+    min-width: 200px !important;
   }
 }
 
-.survey{
-  display: flex;
-  justify-content: center;
-  display: inline-block;
-  margin-bottom: 2em;
-}
 
-.sv_header{
-  background-color: #3C74C8;
-  opacity: 0.6;
-  height: 100px;
-  padding: 0;
-}
-
-.sv_header span {
-  color: white;
-  font-size: 30px;
-  font-family: 'GT America Extended';
-  font-weight: 100;
-}
-
-.sv_header h3 {
-  padding-top: 0;
-}
-
-.sv_body {
-  border-top: 2px solid  blue;
-}
-
-.sv_main input[type=button] {
-  background-color: rgba(1,1,36,.8);
-  border: 1px solid #fff;
-  font-size: 1.2rem;
-  font-family: 'GT America Extended';
-  font-weight: 100;
-}
-
-.sv_main input[type=button]:hover {
-  background-color: white;
-  color: vars.$light-color;
-  border: 1px solid vars.$light-color;
-  font-size: 1.2rem;
-  font-family: 'GT America Extended';
-  font-weight: 100;
-}
-
-.sv_q_title h5 {
-  display: inline-block;
-  padding: 0;
-  color: vars.$background-color;
-  font-family: 'GT America Extended';
-}
-
-.sv_q_title span {
-  display: inline-block;
-  padding: 0;
-  color: vars.$background-color;
-}
-
-.sv_q_radiogroup_label{
-  display: flex;
-}
-
-.sv_q_radiogroup_label span {
-  margin: 0;
-  padding: 0;
-  font-family: 'GT America Extended';
-  //color: vars.$light-color;
-}
-
-.sv_main span{
-  margin-top: -9px;
-}
-
-.sv_q_title span{
-  margin-top: -20px;
-  font-size: 1.2rem;
-  font-family: 'GT America Extended';
-}
-
-.sv_q_radiogroup span span {
-  margin-top: -9px;
-  font-size: 1.2rem;
-  font-family: 'GT America Extended';
-  font-weight: 100;
-}
-
-.sv_progress div span {
-  font-size: 1.2rem;
-  font-family: 'GT America Extended';
-  font-weight: 100;
-}
 
 .endQuiz {
   background-color: rgba(1,1,36,.8);
@@ -116,10 +130,24 @@
   padding: 10px 50px;
   text-transform: uppercase;
   font-weight: 200;
+  transition: background-color 300ms ease-in-out;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  &:hover {
+    background-color: white;
+    color: vars.$light-color;
+    border: 1px solid vars.$light-color;
+  }  
 }
 
-.endQuiz:hover {
-  background-color: white;
-  color: vars.$light-color;
-  border: 1px solid vars.$light-color;
+@media (min-width: 510px) {
+  .survey {
+    width: 500px;
+  }
+  .exempleSurveys{
+  display: flex;
+  justify-content: space-around;
+  }
 }
+

@@ -10,7 +10,7 @@ const LoggedNav = ({ handleLogout, pseudo }) => (
     <nav className="menu--logged">
       <NavLink
         to={`/profile/${getSlugFromPseudo(pseudo)}`}
-        className="menu__item"
+        className="menu__item menu__item--profil"
         activeClassName="menu__link--active"
         exact
       >
@@ -20,7 +20,7 @@ const LoggedNav = ({ handleLogout, pseudo }) => (
         className="menu__item menu__item--logout"
         onClick={handleLogout}
       >
-        Se déconnecter
+        Déconnexion
       </a>
     </nav>
   </div>

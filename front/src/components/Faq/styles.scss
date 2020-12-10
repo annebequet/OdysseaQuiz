@@ -1,13 +1,56 @@
 @use 'src/styles/vars';
 
 .faq {
-  margin: 0 auto;
-  padding: 2em;
-  text-align: center;
-}
-.faq > h2{
-    color: vars.$background-color;
+  &__container {
+    box-shadow: 0 0 8px rgba(0,0,0,.125);
+    background-color: white;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;  
+    margin: 100px auto; 
   }
-.faq > p, li {
-  color: black;
+  &__title {
+    background: rgba(107,112,194,.7);
+    border-radius: 7px;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+  }
+  &__question-answers {
+    padding: 0px 20px 20px;
+  }
+  &__details {
+   background: #f6f6f6;
+    padding: 10px 40px;
+    border-radius: 7px;
+    margin-top: 20px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+  &__question{
+   outline: none;
+   font-size: 1.2em;    
+  }
+  &__answer {
+    & > a {
+      text-decoration: none;
+      color: vars.$contrast-color;
+      font-weight: bold;
+      background-image: linear-gradient(vars.$light-color 50%, vars.$light-color 50%);
+      background-size: 10000px 1px;
+      background-repeat: no-repeat;
+      background-position: 0 1em;
+      background-position: -10000px 1em;
+      &:hover {
+        background-position: 0 1em;
+        transition: background-position 2s ease-in-out;
+      }
+    }
+  }
+}
+
+@media (max-width: 920px) {
+  .faq__container {
+    margin: 2em;
+  }
 }

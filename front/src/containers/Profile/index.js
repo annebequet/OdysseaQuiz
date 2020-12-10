@@ -19,13 +19,13 @@ const mapStateToProps = (state) => ({
   email: state.profile.email,
   avatar: state.headerLogin.avatar,
   avatars: state.profile.avatars,
+  environment: state.profile.environment,
   newEmail: state.profile.newEmail,
   newPseudo: state.profile.newPseudo,
   newPassword: state.profile.newPassword,
   newEnvironment: state.profile.newEnvironment,
   newAvatar: state.profile.newAvatar,
   scores: state.profile.scores,
-  requestErrors: state.errorHandler.requestErrors,
 });
 
 const mapDispatchToProps = (dispatch) => ({

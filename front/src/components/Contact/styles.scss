@@ -1,0 +1,60 @@
+@use 'src/styles/vars';
+
+.contact {
+  &__page {
+    box-shadow: 0 0 8px rgba(0,0,0,.125);
+    background-color: white;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;  
+    margin: 100px auto; 
+  }
+  &__title {
+    background: rgba(107, 112, 194, 0.7);
+    border-radius: 7px;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+  }
+  &__container {
+    display: flex;
+    flex-direction: row;
+  }
+  &__informations {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & > h3 {
+      font-size: 1.5em;
+      margin: 1rem 0 0.5rem 0;
+    }
+    & > p {
+      text-align: center;
+    }
+  }
+  &__icon {
+    width: 30%;
+    margin: 2rem;
+    border-right: solid;
+    padding-right: 2rem;
+  }
+}
+
+
+@media (max-width: 650px) {
+  .contact__container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact__icon {
+    margin: 0;
+    border-right: none;
+    width: 100%;
+    padding: 0 5rem;
+    border-bottom: solid;
+  }
+  .contact__informations {
+    margin: 1rem 0;
+  }
+}

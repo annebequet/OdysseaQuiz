@@ -1,4 +1,21 @@
+@use 'src/styles/vars';
+
+.category__survey {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .errorMessage {
   color: white;
   font-size: 20px;
+}
+
+.category__error__log {
+  color: black;
+  text-align: center;
+  background-color: white;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;  
+  padding: 1rem;
 }

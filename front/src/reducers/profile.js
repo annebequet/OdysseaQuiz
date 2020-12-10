@@ -1,4 +1,5 @@
 import { CHANGE_INPUT, SAVE_AVATARS, SAVE_EMAIL, SAVE_SCORES} from 'src/actions/profile';
+import { SAVE_ENVIRONMENT } from '../actions/profile';
 
 export const initialState = {
   email: '',
@@ -7,6 +8,7 @@ export const initialState = {
   newPseudo: '',
   newEnvironment: '',
   newAvatar: '',
+  environment: '',
   avatars: [],
   scores: [],
 };
@@ -27,6 +29,11 @@ const register = (state = initialState, action = {}) => {
       return {
         ...state,
         scores: action.scores,
+      };
+    case SAVE_ENVIRONMENT:
+      return {
+        ...state,
+        environment: action.environment,
       };
     case SAVE_EMAIL:
       return {

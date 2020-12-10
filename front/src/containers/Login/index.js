@@ -5,11 +5,9 @@ import {
   login,
   onBlurLogin,
 } from 'src/actions';
-import { clearErrors } from 'src/actions/errorHandler';
 
 const mapStateToProps = (state) => ({
   open: state.headerLogin.open,
-  requestErrors: state.errorHandler.requestErrors,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -21,9 +19,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   login: () => {
     dispatch(login());
-  },
-  clearErrors: () => {
-    dispatch(clearErrors());
   },
 });
 

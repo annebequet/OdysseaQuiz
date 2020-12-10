@@ -1,146 +1,264 @@
 @use 'src/styles/vars';
 
 .profile {
-  margin: 1em;
-  text-shadow: 4px 2px 4px black;
-  height: 100%;
-  min-height: 100vh;
-  margin-bottom: 3em;
-  z-index: 1;
-  .profile__odyssea__avatar {
-    max-width: 290px
-  }
-  &__pseudo {
-    font-size: 2em;
-    margin-bottom: 1em;
-    padding: 0.5em;
-  }
-  @media (max-width: 820px) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2rem;
+  padding: 0 15rem;
   &__edit {
     display: flex;
+  }
+  &__wrap__left__top {
+    display: flex;
+    align-items: center;
     flex-direction: column;
+    margin-bottom: 2rem;
   }
-}
-  &__title {
-    color: orange;
-    font-size: 2em;
-    font-weight: bolder;
-  }
-  &__score {
-  }
-  .profile__edit__form {
-    & label {
-      color: orange;
-      font-weight: bold;
+  &__wrap__right {
+    & > .categories__ul{
+      & > .categories__item{
+        & > .category__score__img{
+          width: 100px;    
+          margin-bottom: 1rem;    
+        }
+        & > .profile__progress {
+          width: 100px;
+        }
+      }
     }
-    & input {
-      border: none;
-      margin-top: 0.3em;
-      border-radius: 10px;
-      padding: vars.$gutter / 1.5;
-    }
-    
   }
-  .profile__wrap__right {
-      z-index: 0;
+  &__odyssea__avatar {
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  &__pseudo {
+    font-family: vars.$font-title;
   }
   &__edit--submit {
-    border-radius: 10px;
-    border: none;
-    padding: vars.$gutter / 1.5;
-    margin-bottom: vars.$gutter;
-    background-color: vars.$background-color;
-    color: vars.$title-color;
-    font-weight: bold;
-
-  }
+    background-color: white;
+    border: 1px solid rgba(1,1,36,.8);
+    -webkit-transition: background-color .3s ease-in-out;
+    transition: background-color .3s ease-in-out;
+    color: rgba(1,1,36,.8);
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    &:hover {
+      background-color: rgba(1,1,36,.8);
+      color: white;
+    }
+  } 
+  &__edit__form {
+    & > .field {
+      & > input {
+        color: #bbb;
+        border-top: none;
+        border-left: solid 1px;
+        border-right: solid 1px;
+        border-bottom: solid 1px;
+        border-color: #bbb;
+        height: 2em;
+        width: 12em;
+        padding: 0 3%;
+        margin-top: 1rem;
+          &:focus {
+            color: black;
+            border-color: black;
+          }
+      }
+    }
+    & > .field--radio {
+      display: flex;
+      justify-content: space-around;
+      & > .radio--age--category {
+        display :flex; 
+        & > input {
+          margin-top: 0.3rem;
+          margin-left: 1rem
+        }       
+      }
+    }
+  }  
   &__button--delete {
-    font-weight: bold;
-    border: none;
-    margin-top: 2em;
-    color: red;
-    border-radius: 10px;
-    padding: vars.$gutter / 1.8;
-    background-color: vars.$background-color;
-  }
-}
-.field--radio {
-    display: flex;
-    justify-content: center;
-    align-content: space-around;
-    vertical-align: middle;border: none;
-    &__details {
-      vertical-align: middle;
+    background-color: white;
+    border: 1px solid rgba(1,1,36,.8);
+    -webkit-transition: background-color .3s ease-in-out;
+    transition: background-color .3s ease-in-out;
+    color: rgba(1,1,36,.8);
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    &:hover {
+      background-color: rgba(1,1,36,.8);
+      color: white;
     }
-    input[type='radio']{
-      transform: scale(1.5);
-    }
-      
+  }    
 }
-.profile-field-input--radio {
-      margin-left: 1em;
-      margin-right: 1em;
-      width: 20px;  
-      
-}
-.field__radio__avatars {
-  display: flex;
-  flex-wrap: wrap;
-}
-.profile-field-input--radio--avatars {
-  
-  margin: 1em;
-  transform: scale(2);
-}
-.field--radio--avatars {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-y: hidden;
-  overflow-x: scroll;
-}
-.avatars {
-  margin: 1em;
-  width: 150px;
-}
-@media (min-width: 820px) {
-  .profile__edit {
-    padding: 2em;
-    display: flex;
-    justify-content: space-around;
-    .profile__pseudo {
-      margin-top: 2em;
-    }
-  }
-}
-
 
 .accordion {
-  margin: 0 auto;
-  min-width: 200px;
-  max-width: 500px;
-  &__card {
-    background-color: vars.$background-color-transparent;
-  }
-}
-
-@media (min-width: 100px) {
-  .category__score__img {
-    display: none;
-  }
-  }
-
-@media (min-width: 380px) {
-.category__score__img {
-  width: 200px;
-  height: 200px;
-  display: block;
-}
-}
-
-@media screen and (min-width: 641px) {
-.category__score__img {
+  box-shadow: 0 0 8px rgba(0,0,0,.125);
+  text-align: center;
+  background-color: white;
+  border: 1px solid rgba(0,0,0,.125);
   width: 400px;
-  height: 400px;
-}
+  margin-bottom: 5rem;
+  &__card {
+    border: none;
+    background-color: white;
+    & > .card-header {
+      background-color: white;
+      margin-bottom: 0px !important;
+      & > .btn-link {
+        color: black;
+        display: flex;
+        align-items: center;
+        &:hover {
+          color: vars.$light-color;
+          text-decoration: none;
+        }
+        & > .profile__icon {
+          width: 3rem;
+          margin-right: 1rem;
+          border-right: 1px solid grey;
+          padding-right: 1rem;
+        }
+        & > label {
+          display: inline !important;
+        }
+      }
+    }     
+  }  
 }
 
+.field--radio--avatars {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  align-items: center;
+  & > .avatar__input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 200px;
+    & > .avatars {
+      height: 100px;
+      margin: 1rem;
+    }
+    & > .avatars__choice {
+      display: flex;
+      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
+      & > input {
+        margin-bottom: 0.6rem;
+        margin-left: 1rem;
+      }
+    }
+  }   
+}
+
+.profile__wrap__right {
+  margin-left: 4rem;
+  margin-bottom: 5rem;
+  & > .profile__title__informations {
+    height: 17.5rem;
+    background-color: rgb(23,25,54);
+    color: white;
+    padding-right: 2rem;
+    box-shadow: 0 0 8px grey;
+    & > .profile__title {
+      font-size: 2em;
+      letter-spacing: .2rem;
+      color: white;
+      margin-left: 50px;
+      padding-top: 40px;
+    }
+    & > p {
+      letter-spacing: .2rem;
+      color: white;
+      margin-left: 50px;
+    }
+  }
+  & > .categories__ul {
+    background-color: white;
+    box-shadow: 0 0 8px grey;
+    & > .categories__item {      
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border-bottom: 1px solid grey;
+      margin-top: 15px;
+      > h3 {
+        color: black;
+        font-weight: 300;
+        font-size: 1.5em;
+        margin-bottom: 0px;
+      } 
+      > .profile__progress {  
+        width: 150px;
+        margin-right: 2rem;
+        height: 1.5rem;
+        & > .progress {
+          font-size: 1em !important;
+          margin-top: 0.3rem;
+          & > div {
+            font-size: 1em;
+            background-color: vars.$light-color !important;
+            background-image: none !important;
+          }
+        }        
+      }    
+      & > .category__score__img{
+        width: 120px;
+        height: 100px;
+        border-right: 1px solid grey;
+        margin-bottom: 0px;
+      }  
+    }
+  }
+}
+
+@media (max-width: 1700px) {
+  .profile {
+    padding: 0 5rem;
+  }
+}
+
+@media (max-width: 1300px) {
+  .profile {
+    padding: 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__wrap__right {
+      margin-left: 0px;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .profile__wrap__left__bottom {
+    & > .accordion{ 
+      width: 320px;
+    }
+  }  
+  .profile__wrap__right {
+    width: 320px;
+    & > .profile__title__informations {
+      height: 20rem;
+    }   
+  }  
+}
+
+@media (max-width: 650px) {
+  .profile__wrap__right {
+    & > .categories__ul {
+      & > .categories__item {
+        & > .profile__progress {
+          width: 120px;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}

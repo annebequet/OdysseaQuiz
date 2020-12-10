@@ -1,19 +1,108 @@
-.error404 {
-  display: flex;
-  flex-direction: column;
-  padding-top: 0;
-  
-  &__title {
-    line-height: 2em;
-    font-weight: 900;
-    font-size: 4em;
+@use 'src/styles/vars';
+
+.permission_denied {
+  background: #24344c;
+  flex-grow: 2;
+}
+
+.permission_denied a {
+  text-decoration: none;
+}
+
+.denied__wrapper {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 8vh;
+}
+
+.permission_denied h1 {
+  text-align: center;
+  color: #fff;
+  font-family: vars.$font-title;
+  font-size: 100px;
+  margin-bottom: 3rem;
+  font-weight: 800;
+}
+
+.permission_denied h3 {
+  text-align: center;
+  color: #fff;
+  max-width: 330px;
+  margin: 0px auto 30px auto;
+  font-weight: 400;
+}
+
+.permission_denied h3 span {
+  position: relative;
+  width: 150px;
+  display: inline-block;
+}
+
+.permission_denied h3 span:after {
+  content: "";
+  border-bottom: 3px solid #ffbb39;
+  position: absolute;
+  left: 0;
+  top: 43%;
+  width: 100%;
+}
+
+.denied__link {
+  background: none;
+  color: #fff;
+  padding: 12px 0px 10px 0px;
+  border: 1px solid #fff;
+  outline: none;
+  border-radius: 7px;
+  width: 150px;
+  font-size: 15px;
+  text-align: center;
+  margin: 0 auto;
+  vertical-align: middle;
+  display: block;
+  margin-bottom: 40px;
+  margin-top: 25px;
+  font-family: "Dosis", sans-serif;
+  font-weight: 400;
+}
+
+.denied__link:hover {
+  color: #ffbb39;
+  border-color: #ffbb39;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.sailor__icon {
+  width: 80px;
+  margin-left: 40%;
+  margin-bottom: 2rem;
+  animation: spin 4.5s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateZ(0deg);
   }
-  &__img {
-    margin: auto;
-    padding: 3em;
-    max-width: 550px;
-    border-radius: 200px;
+  100% {
+    transform: rotateZ(360deg);
   }
 }
 
+.boat__icon {
+  animation: hover 2s infinite ease-in-out alternate;
+  width: 10rem;
+  display: block;
+  margin: auto;
+  margin-bottom: 5rem;
+}
 
+@keyframes hover {
+  0% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}

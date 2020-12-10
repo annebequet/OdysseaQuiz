@@ -12,20 +12,27 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\OptionsResolver\Options;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Count;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\Sequentially;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(
- *      fields="email",
- *      message="{{ value }} est déjà utilisé."
+ *      fields = "email",
+ *      message = "{{ value }} est déjà utilisé"
  * )
  * @UniqueEntity(
- *      fields="pseudo",
- *      message="{{ value }} est déjà utilisé."
+ *      fields = "pseudo",
+ *      message = "{{ value }} est déjà utilisé"
  * )
  */
 class User implements UserInterface
@@ -39,19 +46,19 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"users_get", "users_get_one"})
+     * @Groups("api_users_get_one")
      * @Assert\Email(
-     *     message = "Entrez un email valide."
+     *     message = "Entrez un email valide"
      * )
      * @Assert\NotBlank(
-     *      message= "Veuillez remplir ce champs"
+     *      message= "Veuillez saisir un email"
      * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
-     * @Groups({"users_get", "users_get_one"})
+     * @Groups("api_users_get_one")
      * @Assert\Length(
      *      min = 2,
      *      max = 18,
@@ -64,7 +71,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
-     * @Groups({"users_get", "users_get_one"})
+     * @Groups("api_users_get_one")
      * @Assert\Length(
      *      min = 2,
      *      max = 18,
@@ -77,9 +84,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", unique=true, length=16)
-     * @Groups({"users_get", "users_get_one"})
+     * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Sequentially({
-     *      @Assert\NotBlank(message="Veuillez remplir ce champs"),
+     *      @Assert\NotBlank(
+     *          message = "Veuillez saisir un pseudo"
+     *      ),
      *      @Assert\Length(
      *           min = 6,
      *           max = 12,
@@ -93,23 +102,26 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
-     * @Groups("users_get_one")
+     * @Groups("api_users_get_one")
      * @Assert\NotBlank
-     * @Assert\Count(min=1)
+     * @Assert\Count(
+     *      min = 1,
+     *      minMessage = "Veuillez sélectionner au moins un rôle"
+     * )
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Groups("users_get_one")
-     * @Assert\Sequentially({
-     *      @Assert\NotBlank(message="Veuillez remplir ce champs"),
-     *      @Assert\Regex(
-     *          pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,200}$/",
-     *          message="Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre."
-     *      )
-     * })
+     * @Groups("api_users_get_one")
+     * @Assert\NotBlank(
+     *      message = "Veuillez saisir un mot de passe"
+     * )
+     * @Assert\Regex(
+     *          pattern = "/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,200}$/",
+     *          message = "Votre mot de passe doit contenir au moins 6 caractères, dont 1 minuscule, 1 majuscule et 1 chiffre"
+     *)
      */
     private $password;
 
@@ -131,37 +143,46 @@ class User implements UserInterface
     /**
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"users_get", "users_get_one"})
+     * @Groups("api_users_get_one")
      * @Assert\NotNull(
-     *      message = "Choisissez un environnement de jeu."
+     *      message = "Veuillez choisir un environnement de jeu"
      * )
      */
     private $environment;
 
     /**
-     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="user")
-     */
-    private $contacts;
-
-    /**
      * @ORM\OneToMany(targetEntity=Score::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"users_get_one"})
+     * @Groups("api_users_get_one")
      */
     private $scores;
 
     /**
      * @ORM\ManyToOne(targetEntity=Gallery::class)
-     * @Groups({"users_get", "users_get_one"})
+     * @Groups("api_users_get_one")
+     * @Assert\NotNull(
+     *      message = "Veuillez sélectionner un avatar"
+     * )
      */
     private $avatar;
+
+    /**
+     * @ORM\OneToMany(targetEntity=GradeAdult::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $gradeAdults;
+
+    /**
+     * @ORM\OneToMany(targetEntity=GradeKid::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $gradeKids;
     
     public function __construct()
     {
-        $this->contacts = new ArrayCollection();
         $this->scores = new ArrayCollection();
         $this->createdAt = new \DateTime();
         // $this->avatar = 1;
         $this->roles = ["ROLE_USER"];
+        $this->gradeAdults = new ArrayCollection();
+        $this->gradeKids = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -319,37 +340,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Contact[]
-     */
-    public function getContacts(): Collection
-    {
-        return $this->contacts;
-    }
-
-    public function addContact(Contact $contact): self
-    {
-        if (!$this->contacts->contains($contact)) {
-            $this->contacts[] = $contact;
-            $contact->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContact(Contact $contact): self
-    {
-        if ($this->contacts->contains($contact)) {
-            $this->contacts->removeElement($contact);
-            // set the owning side to null (unless already changed)
-            if ($contact->getUser() === $this) {
-                $contact->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Score[]
      */
     public function getScores(): Collection
@@ -440,5 +430,67 @@ class User implements UserInterface
     public function getImageUrl()
     {
         return $this->avatar->getImageUrl();
+    }
+
+    /**
+     * @return Collection|GradeAdult[]
+     */
+    public function getGradeAdults(): Collection
+    {
+        return $this->gradeAdults;
+    }
+
+    public function addGradeAdult(GradeAdult $gradeAdult): self
+    {
+        if (!$this->gradeAdults->contains($gradeAdult)) {
+            $this->gradeAdults[] = $gradeAdult;
+            $gradeAdult->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGradeAdult(GradeAdult $gradeAdult): self
+    {
+        if ($this->gradeAdults->contains($gradeAdult)) {
+            $this->gradeAdults->removeElement($gradeAdult);
+            // set the owning side to null (unless already changed)
+            if ($gradeAdult->getUser() === $this) {
+                $gradeAdult->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|GradeKid[]
+     */
+    public function getGradeKids(): Collection
+    {
+        return $this->gradeKids;
+    }
+
+    public function addGradeKid(GradeKid $gradeKid): self
+    {
+        if (!$this->gradeKids->contains($gradeKid)) {
+            $this->gradeKids[] = $gradeKid;
+            $gradeKid->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGradeKid(GradeKid $gradeKid): self
+    {
+        if ($this->gradeKids->contains($gradeKid)) {
+            $this->gradeKids->removeElement($gradeKid);
+            // set the owning side to null (unless already changed)
+            if ($gradeKid->getUser() === $this) {
+                $gradeKid->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

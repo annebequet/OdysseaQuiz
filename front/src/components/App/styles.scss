@@ -2,40 +2,14 @@
 
 .app {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   margin: 0;
   margin-top: 0;
   padding: 0;
-  text-align: center;
-  font-family: "GT America Extended";
-}
-
-.mainPage {
-  width: 100%;
+  font-family: vars.$font-family;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
+  flex-direction: column;
+  background-color: rgb(245,248,250);
 }
-
-.frontPageImage {
-  background-image: linear-gradient(rgb(0,1,26, 0), rgb(0,1,26));  
-  height: 40vh;
-  width: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.playText {
-  color: white;
-  padding-top: 8rem;
-}
-
-.frontPageImageBottom {
-  background-image: linear-gradient(rgb(0,1,26), (rgb(0,1,26, 0)));  
-  height: 40vh;
-  width: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 

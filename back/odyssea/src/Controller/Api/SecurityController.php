@@ -22,13 +22,15 @@ class SecurityController extends AbstractController
      */
     public function login(EntityManagerInterface $entityManager)
     {
+        // Get the current User
         $user = $this->getUser();
 
+        // If the User doesn't exist, throw an exception
         if (!$user) {
             throw $this->createAccessDeniedException();
         }
 
-        // Create a new token at each connection and set it in the database
+        // Create a new token at each connection and set it
         $apitoken = md5(uniqid(rand(), true)); 
         $user->setApiToken($apitoken);
         $entityManager->flush();
@@ -50,17 +52,20 @@ class SecurityController extends AbstractController
      */
     public function isLogged(Request $request, UserRepository $userRepository)
     {
+        // get the token in the headers
         $apiToken = $request->headers->get('X-AUTH-TOKEN');      
 
+        // If the token is null, no one is connected
         if($apiToken === null){
             return $this->json([
                 'logged' => false
             ]);
         }
 
+        // Find the User by its token
         $user = $userRepository->findBy(['apiToken' => $apiToken]);
 
-        return $this->json($user, 200, [], ['groups' => 'users_get_one']);
+        return $this->json($user, 200, [], ['groups' => 'api_users_get_one']);
     }
 
 
@@ -69,6 +74,7 @@ class SecurityController extends AbstractController
      */
     public function logout(EntityManagerInterface $entityManager)
     {
+        // get the current User
         $user = $this->getUser();
 
         //if there is not, throw an exception
@@ -76,8 +82,8 @@ class SecurityController extends AbstractController
             throw $this->createAccessDeniedException();
         }
 
+        // Erase the token form the database
         $user->setApiToken(null);
-
         $entityManager->persist($user);
         $entityManager->flush();
 
@@ -87,7 +93,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * Add User
+     * Add User - Register
      * 
      * @Route("/api/register", methods={"POST"})
      */
@@ -96,7 +102,7 @@ class SecurityController extends AbstractController
         // Get the content of the request
         $content = $request->getContent();
 
-        // Deserialiaze the json content into a User entity
+        // Deserialiaze the json content into an User entity
         $user = $serializer->deserialize($content, User::class, 'json');
 
         // Validate the entity with the validator service
@@ -110,20 +116,18 @@ class SecurityController extends AbstractController
             }
 
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
-            // We can also return the full array of JSON object
-            //return $this->json($errors, 400);
         }
 
         // Encode the password and set it to the entity
         $passwordHashed = $passwordEncoder->encodePassword($user, $user->getPassword());
         $user->setPassword($passwordHashed);
 
-        // if the User didnt select an avatar, set it by default to the 1rst avatar in the database (sea lion)
+        // if the User didn't select an Avatar, set it by default to the 1rst Avatar in the database (sea lion)
         if($user->getAvatar() === null) {
             $user->setAvatar($galleryRepository->find(1));
         };
         
-        // Add the new user to the database
+        // Persist the new user to the database
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();

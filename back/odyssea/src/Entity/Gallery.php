@@ -5,19 +5,22 @@ namespace App\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\GalleryRepository;
+use Symfony\Component\Validator\Constraints\Url;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=GalleryRepository::class)
  * @UniqueEntity(
- *      fields="imageUrl",
- *      message="L'image {{ value }} a déjà été postée."
+ *      fields = "imageUrl",
+ *      message = "L'image {{ value }} a déjà été postée."
  * )
  * @UniqueEntity(
- *      fields="name",
- *      message="{{ value }} est déjà utilisé."
+ *      fields = "name",
+ *      message = "{{ value }} est déjà utilisé."
  * )
  */
 class Gallery
@@ -26,15 +29,15 @@ class Gallery
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"avatars_get", "avatar_get_one"})
+     * @Groups({"api_avatars_get", "api_avatars_get_one"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Groups({"avatars_get", "avatar_get_one", "users_get", "users_get_one"})
+     * @Groups({"api_avatars_get", "api_avatars_get_one", "api_users_get_one"})
      * @Assert\NotBlank(
-     *      message= "Veuillez remplir ce champs"
+     *      message = "Veuillez saisir l'URL de l'image"
      * )
      * @Assert\Url(
      *    message = "L'url '{{ value }}' n'est pas valide.",
@@ -54,13 +57,15 @@ class Gallery
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"avatars_get", "avatar_get_one"})
+     * @Groups({"api_avatars_get", "api_avatars_get_one"})
      * @Assert\NotBlank(
-     *      message= "Veuillez remplir ce champs"
+     *      message = "Veuillez saisir le nom de l'avatar"
      * )
      * @Assert\Length(
-     *      min=3,
-     *      max=18
+     *      min = 3,
+     *      minMessage = "Veuillez saisir un nom de plus de 3 caractères",
+     *      max = 18,
+     *      maxMessage = "Veuillez saisir un nom de moins de 18 caractères"
      * )
      */
     private $name;

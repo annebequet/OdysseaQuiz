@@ -3,7 +3,7 @@
 .field {
   &__label {
     font-size: .8em;
-    color: orange;
+    color: vars.$background-color;
     font-weight: bold;
   }
   &__input {

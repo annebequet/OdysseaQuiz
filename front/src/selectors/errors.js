@@ -37,13 +37,14 @@ export const Normalizer = (errors) => {
   let key;
   let txt;
   const list = [];
+  console.log(errors);
 
   for (key in errors) {
     txt = errors[key];
     list.push(<li className="errorList" key={key}>
       {key} :
       <ul>
-        {txt.map((errorMessage) => <li className="errorList" key={errorMessage}>{errorMessage}</li>)}
+        {txt.map((errorMessage) => <li className="errorListLi" key={errorMessage}>{errorMessage}</li>)}
       </ul>
     </li>);
   }

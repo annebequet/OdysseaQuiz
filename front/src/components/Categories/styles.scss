@@ -1,43 +1,121 @@
 @use 'src/styles/vars';
 
-.page__categories {
-  padding-top: 2em;
-  text-align: center;
-  overflow-y: hidden scroll; /* Hide vertical scrollbar */
-  overflow-x: hidden; /* Hide horizontal scrollbar */
-}
-.categories__ul {
+.category {
+  &__container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-h3 {
-  color: orange;
-  font-weight: bold;
-  padding: 0.8em;
-}
-.categories__item {
-  margin: 1em;
-}
-.category__img {
-  border-radius: 20px;
-}
-@media (max-width: 320px) {
-  .category__img {
-    width: 300px;
-    height: 150px;
+  margin: 15rem 0;
+  display: column;
   }
-}
-@media (min-width: 320px) {
-  .category__img {
-    width: 500px;
-    height: 350px;
+  &__title--container {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 5rem;
+    height: 40%;
+    background-color: rgb(23,25,54);
+    & > p {
+      letter-spacing: .2rem;
+      color: white;
+      margin-left:80px;
+    }
+  }
+  &__title {
+    font-size: 2em;
+    letter-spacing: .2rem;
+    color: white;
+    width: 30%;
+    margin-top: 80px;
+    margin-left: 80px;
+  }
+  &__card {
+    margin: 2rem 0 0 0;
+    display: flex;
+    height: 270px;
+    width: 200px;
+    transition: 0.4s ease-out;
+    position: relative;
+    left: 0px;
+    margin: 1rem;
+    &__rank {
+      height: 410px;
+    }
+  }  
+  &__card:not(:first-child) {
+      margin-left: -50px;
+  }  
+  &__card:hover {
+    transform: translateY(-20px);
+    transition: 0.4s ease-out; 
+      &__card{
+      position: relative;
+      left: 50px;
+      transition: 0.4s ease-out;
+    }
+  } 
+  &__name {
+    color: vars.$light-color;
+    font-weight: 300;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    font-size: 1.7em;
+  }
+  &__bar {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    height: 5px;
+    width: 100px;
+  }
+  &__emptybar {
+    background-color: #2e3033;
+    width: 100%;
+    height: 100%;
+  }
+  &__filledbar {
+    position: absolute;
+    top: 0px;
+    z-index: 3;
+    width: 0px;
+    height: 100%;
+    background: blueviolet;
+    background: linear-gradient(90deg, blueviolet 0%, vars.$contrast-color 65%, vars.$light-color 100%);
+    transition: 0.6s ease-out;
+  }
+  &__card {
+    &:hover{
+      .category__filledbar {
+        width: 100px;
+        transition: 0.4s ease-out;
+      }
+    }  
+  }
+  &__img{
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    border: 1px solid black;
+    top: 90px;
   }
 }
 
-@media (min-width: 2760px) {
-  .category__img {
-    width: 1000px;
-    height: 750px;
+@media (max-width: 580px) {
+  .category__container {
+    margin-top: 105%;
   }
 }
+
+@media (min-width: 580px) and (max-width: 700px) {
+  .category__container {
+    margin-top: 70%;
+  }
+}
+
+@media (min-width:700px) and (max-width: 1160px) {
+  .category__container {
+    margin-top: 30%;
+  }
+}
+

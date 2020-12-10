@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Category;
+use App\Entity\Score;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,4 +49,27 @@ class CategoryRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findPodium()
+    {
+
+        $qb = $this->createQueryBuilder('category');
+        $qb->leftjoin('category.scores', 'score');
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function findRanking($environment)
+    {
+        return $this->createQueryBuilder('category')
+                    ->join('category.scores', 'score')
+                    ->join('score.environment', 'environment')
+                    ->where('environment = :environment')
+                    ->setParameter('environment', $environment)
+                    ->orderBy('category.id')
+                    ->getQuery()
+                    ->getResult();
+    }
 }

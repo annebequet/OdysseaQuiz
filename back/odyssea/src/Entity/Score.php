@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ScoreRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ScoreRepository;
+use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -32,7 +34,7 @@ class Score
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"users_get_one"})
+     * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Range(
      *      min = "0",
      *      max = "100",
@@ -54,6 +56,7 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("api_categories_get")
      * @Assert\NotNull
      */
     private $user;
@@ -61,7 +64,7 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"users_get_one"})
+     * @Groups("api_users_get_one")
      * @Assert\NotNull
      */
     private $category;
@@ -69,10 +72,15 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"users_get_one"})
+     * @Groups("api_users_get_one")
      * @Assert\NotNull
      */
     private $environment;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $session;
 
     public function __construct()
     {
@@ -183,5 +191,17 @@ class Score
     public function getPseudo()
     {
         return $this->user->getPseudo();
+    }
+
+    public function getSession(): ?int
+    {
+        return $this->session;
+    }
+
+    public function setSession(?int $session): self
+    {
+        $this->session = $session;
+
+        return $this;
     }
 }

@@ -1,0 +1,99 @@
+export default [
+    {
+      type: 'radiogroup',
+      name: 'child-nenuphar',
+      title: 'Qu'est ce qu'un nénuphar ?',
+      choices: [
+        'une plante à fleur', 'une herbe sous-marine', 'une algue', 'un genre de corail',
+      ],
+      correctAnswer: 'une plante à fleur',
+    },
+    {
+      type: 'radiogroup',
+      name: 'child-little-mermaid',
+      title: 'Comment s'appelle le poisson d'Ariel dans la petite sirène ?',
+      choicesOrder: 'random',
+      choices: [
+        'Traversin', 'Polochon', 'Coussin', 'Oreiller',
+      ],
+      correctAnswer: 'Polochon',
+    },
+    {
+      type: 'radiogroup',
+      name: 'child-shark',
+      title: 'Quel requin n'existe pas ?',
+      choicesOrder: 'random',
+      choices: [
+        'Le requin-lutin', 'Le requin-lézard', 'Le requin-tigre', 'Le requin-bélier',
+      ],
+      correctAnswer: 'Le requin-bélier',
+    },
+    {
+      type: 'radiogroup',
+      name: 'child-pirate',
+      title: 'De qui a peur le capitaine Crochet dans Peter Pan ?',
+      choices: [
+        'un calamar géant', 'une baleine', 'un requin', 'un crocodile',
+      ],
+      correctAnswer: 'un crocodile',
+    },
+    {
+      type: 'radiogroup',
+      name: 'child-turtle',
+      title: 'Où pondent les tortues marines ?',
+      choicesOrder: 'random',
+      choices: [
+        'Dans le sable au fond de l'océan', 'Dans les grottes sous-marines', 'Sur une plage', 'Dans les récifs coraliens',
+      ],
+      correctAnswer: 'Sur une plage',
+    },
+    {
+      type: 'radiogroup',
+      name: 'child-oyster',
+      title: 'Grâce à quel mollusque à coquille cultive t-on les perles ?',
+      choicesOrder: 'random',
+      choices: [
+        'Les moules', 'Les huîtres', 'Les palourdes', 'Les coquilles Saint-Jacques',
+      ],
+      correctAnswer: 'Les huîtres',
+    },
+    {
+      type: 'radiogroup',
+      name: 'child-dolphin',
+      title: 'Comment s'appelle la partie bombée sur la tête du dauphin, qui lui permet de faire des sons ?',
+      choices: [
+        'Le melon', 'La pastèque', 'Le potiron', 'La courge',
+      ],
+      correctAnswer: 'Le melon',
+    },
+    {
+      type: 'radiogroup',
+      name: 'child-whale',
+      title: 'Grâce à quoi peut-on connaître l'âge d'une baleine ?,
+      choicesOrder: 'random',
+      choices: [
+        'La taille de sa nageoire dorsale', 'Ses dents', 'La cire de ses oreilles', 'Les sillons de son ventre',
+      ],
+      correctAnswer: 'La cire de ses oreilles',
+    },
+    {
+      type: 'radiogroup',
+      name: 'magnacarta',
+      title: 'What is the Magna Carta?',
+      choicesOrder: 'random',
+      choices: [
+        'The foundation of the British parliamentary system', 'The Great Seal of the monarchs of England', 'The French Declaration of the Rights of Man', 'The charter signed by the Pilgrims on the Mayflower',
+      ],
+      correctAnswer: 'The foundation of the British parliamentary system',
+    },
+    {
+      type: 'radiogroup',
+      name: 'magnacarta',
+      title: 'What is the Magna Carta?',
+      choicesOrder: 'random',
+      choices: [
+        'The foundation of the British parliamentary system', 'The Great Seal of the monarchs of England', 'The French Declaration of the Rights of Man', 'The charter signed by the Pilgrims on the Mayflower',
+      ],
+      correctAnswer: 'The foundation of the British parliamentary system',
+    }
+  ];

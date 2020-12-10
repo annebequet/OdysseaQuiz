@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { LOGIN_ADMIN } from 'src/actions/admin';
 
+import baseUrl from './baseUri';
+
 const register = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN_ADMIN: {

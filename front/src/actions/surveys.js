@@ -9,12 +9,15 @@ export const getSurveys = (category) => ({
   category,
 });
 
-export const sendResults = (answers, numberOfCorrectAnswers, isExempleQuiz, isChildQuiz) => ({
+// eslint-disable-next-line max-len
+export const sendResults = (requestAnswers, displayAnswers, numberOfCorrectAnswers, surveyData, isExempleQuiz, isChildExempleQuiz) => ({
   type: SEND_RESULTS,
-  answers,
+  requestAnswers,
+  displayAnswers,
   numberOfCorrectAnswers,
+  surveyData,
   isExempleQuiz,
-  isChildQuiz,
+  isChildExempleQuiz,
 });
 
 export const saveSurveys = (surveys) => ({

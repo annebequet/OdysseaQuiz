@@ -1,32 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Quiz from 'src/containers/Quiz';
+import ExempleSurveys from 'src/containers/ExempleSurveys';
+import HomepageInformations from 'src/components/HomepageInformations';
 
 import './styles.scss';
 
-const Home = ({ adultExempleSurvey, childrenExempleSurvey }) => (
-  <div>
-    <div className="exempleSurveys">
-      <Quiz
-        survey={adultExempleSurvey}
-        category="Exemple adulte"
-        isExempleQuiz
-        isChildQuiz={false}
-      />
-      <Quiz
-        survey={childrenExempleSurvey}
-        category="Exemple enfant"
-        isExempleQuiz
-        isChildQuiz
-      />
-    </div>
+const Home = () => (
+  <div className="mainPage">
+    <HomepageInformations />
+    <ExempleSurveys />
   </div>
 );
-
-Home.propTypes = {
-  adultExempleSurvey: PropTypes.array.isRequired,
-  childrenExempleSurvey: PropTypes.array.isRequired,
-};
 
 export default Home;

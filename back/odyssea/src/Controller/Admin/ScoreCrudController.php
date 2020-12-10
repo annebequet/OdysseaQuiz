@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -25,12 +26,11 @@ class ScoreCrudController extends AbstractCrudController
         $fields = [
             IdField::new('id')
                 ->onlyOnIndex(),
-            $username = TextField:: new('pseudo', 'Joueur'),
-            AssociationField::new('category', 'Catégorie'),
+            TextField:: new('pseudo', 'Joueur'),
             AssociationField::new('environment', 'Environnement'),
-            IntegerField::new('Score', 'Score /100'),
-            IntegerField::new('quizNb', 'Nb de quiz joués'),
-            IntegerField::new('points', 'Total de pts cumulés')
+            AssociationField::new('category', 'Catégorie'),
+            IntegerField::new('quizNb', 'Nombre de quiz joués'),
+            IntegerField::new('Score', 'Score/100')
         ];
 
         return $fields;
@@ -51,6 +51,15 @@ class ScoreCrudController extends AbstractCrudController
             // ->setPageTitle('new', 'Score')
             // ->setPageTitle('edit', 'Score')
             // ->setPageTitle('detail', 'Score')
+        ;
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('user')
+            ->add('category')
+            ->add('environment')
         ;
     }
 }

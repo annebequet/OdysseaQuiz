@@ -4,7 +4,6 @@ import {
   CHANGE_FIELD_VALUE,
   SAVE_USER,
   LOGOUT,
-  LOGIN,
 } from '../actions';
 
 const initialState = {

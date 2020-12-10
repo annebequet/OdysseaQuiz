@@ -13,19 +13,22 @@ import {
   saveAvatars,
   saveEmail,
   saveScores,
+  saveEnvironment,
 } from 'src/actions/profile';
+
+import baseUrl from './baseUri';
 
 const categories = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_AVATARS: {
-      axios.get('http://54.226.34.31/back/api/avatars',
+      axios.get(`${baseUrl}/avatars`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           store.dispatch(saveAvatars(response.data));
         })
         .catch((error) => {
@@ -39,7 +42,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newAvatar: avatar } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
+      axios.put(`${baseUrl}/users/${id}`, {
         avatar,
       },
       {
@@ -53,7 +56,7 @@ const categories = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response.data);
-          store.dispatch(setRequestError({ 'avatar': ['choisissez un avatar'] }));
+          store.dispatch(setRequestError({ avatar: ['choisissez un avatar'] }));
         });
 
       next(action);
@@ -63,7 +66,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newEmail: email } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
+      axios.put(`${baseUrl}/users/${id}`, {
         email,
       },
       {
@@ -87,7 +90,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newPseudo: pseudo } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
+      axios.put(`${baseUrl}/users/${id}`, {
 
         pseudo,
       },
@@ -112,7 +115,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newPassword: password } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
+      axios.put(`${baseUrl}/users/${id}`, {
         password,
       },
       {
@@ -121,7 +124,7 @@ const categories = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           // As there is no redirection, we want to reset the error State
           store.dispatch(setRequestError({}));
         })
@@ -135,16 +138,18 @@ const categories = (store) => (next) => (action) => {
     }
     case GET_USER: {
       const id = sessionStorage.getItem('id');
-      axios.get(`http://54.226.34.31/back/api/users/${id}`,
+      axios.get(`${baseUrl}/users/${id}`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
           },
         })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(saveEmail(response.data.email));
           store.dispatch(saveScores(response.data.scores));
+          store.dispatch(saveEnvironment(response.data.environment.name));
+          window.sessionStorage.removeItem('environment');
+          window.sessionStorage.setItem('environment', response.data.environment.id);
         })
         .catch((error) => {
           console.log(error.response);
@@ -156,8 +161,10 @@ const categories = (store) => (next) => (action) => {
     case HANDLE_EDIT_ENVIRONMENT: {
       const state = store.getState();
       const { newEnvironment: environment } = state.profile;
+      window.sessionStorage.removeItem('environment');
+      window.sessionStorage.setItem('environment', environment);
       const id = sessionStorage.getItem('id');
-      axios.put(`http://54.226.34.31/back/api/users/${id}`, {
+      axios.put(`${baseUrl}/users/${id}`, {
         environment,
       },
       {
@@ -171,7 +178,7 @@ const categories = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response.data);
-          store.dispatch(setRequestError({ 'environnement': ['choisissez un environnement'] }));
+          store.dispatch(setRequestError({ environnement: ['choisissez un environnement'] }));
         });
 
       next(action);
@@ -179,7 +186,7 @@ const categories = (store) => (next) => (action) => {
     }
     case HANDLE_DELETE: {
       const id = sessionStorage.getItem('id');
-      axios.delete(`http://54.226.34.31/back/api/users/${id}`,
+      axios.delete(`${baseUrl}/users/${id}`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),

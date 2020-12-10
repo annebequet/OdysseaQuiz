@@ -13,12 +13,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  * @UniqueEntity(
- *      fields="name",
- *      message="{{ value }} est déjà utilisé."
+ *      fields = "name",
+ *      message = "{{ value }} est déjà utilisé."
  * )
  * @UniqueEntity(
- *      fields="picture",
- *      message="L'image {{ value }} est déjà utilisée."
+ *      fields = "picture",
+ *      message = "L'image {{ value }} est déjà utilisée."
  * )
  */
 class Category
@@ -27,32 +27,32 @@ class Category
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"categories_get", "categories_get_one", "users_get_one"})
+     * @Groups("api_users_get_one")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Groups({"categories_get", "categories_get_one", "users_get_one"})
+     * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Length(
-     *      max=12,
-     *      maxMessage="Le nom de la catégorie est trop long, merci d'en choisir un autre.",
-     *      allowEmptyString=false
+     *      max = 12,
+     *      maxMessage = "Le nom de la catégorie est trop long, merci d'en choisir un autre.",
+     *      allowEmptyString = false
      * )
      * @Assert\NotBlank(
-     *      message="Veuillez remplir ce champs"
+     *      message = "Veuillez saisir un nom"
      * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"categories_get", "categories_get_one", "users_get_one"})
+     * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Url(
      *    message = "L'url '{{ value }}' n'est pas valide.",
      * )
      * @Assert\NotBlank(
-     *      message="Veuillez remplir ce champs"
+     *      message = "Veuillez saisir l'URL de l'image"
      * )
      */
     private $picture;
@@ -69,9 +69,13 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="category")
-     * @Groups("categories_get_one")
      */
     private $questions;
+
+    /**
+     * @ORM\OneToMany(targetEntity=QuestionImage::class, mappedBy="category")
+     */
+    private $questionImages;
 
     /**
      * @ORM\OneToMany(targetEntity=Score::class, mappedBy="category")
@@ -81,6 +85,7 @@ class Category
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->questionImages = new ArrayCollection();
         $this->scores = new ArrayCollection();
         $this->createdAt = new \DateTime();
     }
@@ -203,5 +208,36 @@ class Category
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection|QuestionImage[]
+     */
+    public function getQuestionImages(): Collection
+    {
+        return $this->questionImages;
+    }
+
+    public function addQuestionImage(QuestionImage $questionImage): self
+    {
+        if (!$this->questionImages->contains($questionImage)) {
+            $this->questionImages[] = $questionImage;
+            $questionImage->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionImage(QuestionImage $questionImage): self
+    {
+        if ($this->questionImages->contains($questionImage)) {
+            $this->questionImages->removeElement($questionImage);
+            // set the owning side to null (unless already changed)
+            if ($questionImage->getCategory() === $this) {
+                $questionImage->setCategory(null);
+            }
+        }
+
+        return $this;
     }
 }

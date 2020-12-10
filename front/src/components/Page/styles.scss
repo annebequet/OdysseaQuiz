@@ -1,25 +1,9 @@
 @use 'src/styles/vars';
 
-.page {  
-  background-image: url('https://cdn.pixabay.com/photo/2016/10/10/22/05/jellyfish-1730018_1280.jpg');
-  height: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-}
-.page__content {
-  padding-top: 3em;
-  display: inline-block;
-  width: 100vw;
-}
-
-.page__otherPages {
-  background: none;
-}
-
-/* small screen size */
-@media (max-width: 768px) {
-  .page__content{
-    padding-top: 8em;
+.page {
+  display: flex;
+  justify-content: center;
+  &__content{
+    width: 80%;
   }
 }

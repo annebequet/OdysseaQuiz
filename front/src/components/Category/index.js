@@ -16,14 +16,14 @@ const Category = ({
   }, []);
 
   return (
-    <div className="category">
+    <div className="category__survey">
       {!surveyLoading && isLogged && (
       <Quiz
-        isChildQuiz={false}
+        isExempleQuiz={false}
       />
       )}
       {error && !isLogged && (
-        <div className="errorMessage">Il faut être connecté pour jouer ! Sautez dans l'eau !</div>
+        <div className="errorMessage category__error__log">Il faut être connecté pour jouer. Sautez dans l'eau !</div>
       )}
     </div>
   );
@@ -31,8 +31,8 @@ const Category = ({
 
 Category.propTypes = {
   category: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    name: PropTypes.string,
   }),
   getSurveys: PropTypes.func.isRequired,
   surveyLoading: PropTypes.bool.isRequired,
