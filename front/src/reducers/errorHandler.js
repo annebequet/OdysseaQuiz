@@ -5,6 +5,7 @@ import {
 
 const initialState = {
   requestErrors: {},
+  showError: false,
 };
 
 const categories = (state = initialState, action = {}) => {
@@ -13,11 +14,13 @@ const categories = (state = initialState, action = {}) => {
       return {
         ...state,
         requestErrors: action.errors,
+        showError: true,
       };
     case CLEAR_ERRORS:
       return {
         ...state,
         requestErrors: {},
+        showError: false,
       };
     default:
       return state;

@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { failEmail, failPassword, failPseudo } from 'src/selectors/errors';
-
-import ErrorMessage from 'src/components/ErrorMessage';
 import FieldRegister from './FieldRegister';
 import FieldRadioRegister from './FieldRadioRegister';
 
@@ -17,7 +14,6 @@ const Register = ({
   changeField,
   handleRegister,
   isRegistered,
-  requestErrors,
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -90,10 +86,6 @@ const Register = ({
         // eslint-disable-next-line max-len
         <p className="register--validate">Bravo pour votre inscription, vous pouvez maintenant vous connecter et commencer à jouer dans le grand bain !</p>
       )}
-
-      {Object.keys(requestErrors).length > 0 && !isRegistered && (
-      <ErrorMessage errors={requestErrors} />
-      )}
     </div>
   );
 };
@@ -106,7 +98,6 @@ Register.propTypes = {
   handleRegister: PropTypes.func.isRequired,
   environment: PropTypes.string.isRequired,
   isRegistered: PropTypes.bool.isRequired,
-  requestErrors: PropTypes.object.isRequired,
 };
 
 export default Register;

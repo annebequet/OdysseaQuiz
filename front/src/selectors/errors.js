@@ -37,6 +37,7 @@ export const Normalizer = (errors) => {
   let key;
   let txt;
   const list = [];
+  console.log(errors);
 
   for (key in errors) {
     txt = errors[key];

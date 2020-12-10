@@ -13,8 +13,6 @@ import levelImg from 'src/assets/images/level.svg';
 import avatarImg from 'src/assets/images/user.svg';
 import deleteImg from 'src/assets/images/delete.svg';
 
-import ErrorMessage from 'src/components/ErrorMessage';
-import Categories from 'src/containers/Categories';
 import Field from './Field';
 import FieldRadio from './FieldRadio';
 import FieldRadioAvatars from './FieldRadioAvatars';
@@ -43,7 +41,6 @@ const Profile = ({
   avatars,
   environment,
   scores,
-  requestErrors,
   // selectedOption,
 }) => {
   useEffect(() => {
@@ -81,9 +78,6 @@ const Profile = ({
 
   return (
     <div className="profile">
-      {Object.keys(requestErrors).length > 0 && (
-        <ErrorMessage errors={requestErrors} />
-      )}
       <div className="profile__edit">
         <div className="profile__wrap__left">
           <div className="profile__wrap__left__top">
@@ -330,7 +324,6 @@ Profile.propTypes = {
   ).isRequired,
   environment: PropTypes.string.isRequired,
   scores: PropTypes.array.isRequired,
-  requestErrors: PropTypes.object.isRequired,
 };
 
 Profile.defaultProps = {

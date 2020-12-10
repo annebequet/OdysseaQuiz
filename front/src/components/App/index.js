@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Route, Switch, useHistory, Redirect,
+  Route, Switch, Redirect,
 } from 'react-router-dom';
 
 // == Import
@@ -17,18 +17,17 @@ import Contact from 'src/components/Contact';
 import Faq from 'src/components/Faq';
 import Footer from 'src/components/Footer';
 import Error404 from 'src/components/Error404';
+import ErrorBoundary from 'src/containers/ErrorBoundary';
 import './styles.scss';
 
 // == Composant
 const App = ({
   checkIsLogged,
   categoriesLoading,
-  clearErrors,
   isLogged,
+  showError,
 }) => {
   useEffect(checkIsLogged, []);
-
-  useEffect(clearErrors, []);
 
   return (
     <div className="app">
@@ -114,15 +113,18 @@ const App = ({
         )}
       </Switch>
       <Footer />
+      {showError && (
+        <ErrorBoundary />
+      )}
     </div>
   );
 };
 
 App.propTypes = {
   checkIsLogged: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired,
   categoriesLoading: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  showError: PropTypes.bool.isRequired,
 };
 
 // == Export

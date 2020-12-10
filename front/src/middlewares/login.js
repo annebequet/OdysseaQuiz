@@ -32,7 +32,6 @@ const login = (store) => (next) => (action) => {
           store.dispatch(getCategories(true));
         })
         .catch((error) => {
-          console.log('login', error.response);
           store.dispatch(setRequestError({ 'Erreur de connexion': ['Mot de passe ou identifiant Incorrect'] }));
           store.dispatch(getCategories(false));
         });

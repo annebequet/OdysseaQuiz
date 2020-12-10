@@ -6,6 +6,7 @@
   background-color: white;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .25rem;
+  width: 300px;
 }
 
 .results {
@@ -109,7 +110,18 @@
       background-color: white !important;
     }
   }
+  &_row {
+    min-width: 200px !important;
+    & > .sv_q {
+      min-width: 200px !important;
+    }
+  }
+  &_p_container {
+    min-width: 200px !important;
+  }
 }
+
+
 
 .endQuiz {
   background-color: rgba(1,1,36,.8);
@@ -129,7 +141,7 @@
   }  
 }
 
-@media (min-width: 768px) {
+@media (min-width: 510px) {
   .survey {
     width: 500px;
   }

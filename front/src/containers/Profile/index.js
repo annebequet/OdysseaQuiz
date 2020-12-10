@@ -26,7 +26,6 @@ const mapStateToProps = (state) => ({
   newEnvironment: state.profile.newEnvironment,
   newAvatar: state.profile.newAvatar,
   scores: state.profile.scores,
-  requestErrors: state.errorHandler.requestErrors,
 });
 
 const mapDispatchToProps = (dispatch) => ({
