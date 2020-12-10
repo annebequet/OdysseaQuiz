@@ -7,9 +7,6 @@ import { getCategories } from 'src/actions/categories';
 
 import baseUrl from './baseUri';
 
-// http://54.226.34.31/*
-// http://localhost/Apotheose/Odyssea/back/odyssea/public/*
-
 const login = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
