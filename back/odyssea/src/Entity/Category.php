@@ -13,12 +13,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  * @UniqueEntity(
- *      fields="name",
- *      message="{{ value }} est déjà utilisé."
+ *      fields = "name",
+ *      message = "{{ value }} est déjà utilisé."
  * )
  * @UniqueEntity(
- *      fields="picture",
- *      message="L'image {{ value }} est déjà utilisée."
+ *      fields = "picture",
+ *      message = "L'image {{ value }} est déjà utilisée."
  * )
  */
 class Category
@@ -27,32 +27,32 @@ class Category
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"categories_get", "categories_get_one", "users_get_one"})
+     * @Groups("api_users_get_one")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Groups({"categories_get", "categories_get_one", "users_get_one", "categories_get_one_podium", "api_scores_get_one"})
+     * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Length(
-     *      max=12,
-     *      maxMessage="Le nom de la catégorie est trop long, merci d'en choisir un autre.",
-     *      allowEmptyString=false
+     *      max = 12,
+     *      maxMessage = "Le nom de la catégorie est trop long, merci d'en choisir un autre.",
+     *      allowEmptyString = false
      * )
      * @Assert\NotBlank(
-     *      message="Veuillez saisir un nom"
+     *      message = "Veuillez saisir un nom"
      * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"categories_get", "categories_get_one", "users_get_one", "api_scores_get_one"})
+     * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Url(
      *    message = "L'url '{{ value }}' n'est pas valide.",
      * )
      * @Assert\NotBlank(
-     *      message="Veuillez saisir l'URL de l'image"
+     *      message = "Veuillez saisir l'URL de l'image"
      * )
      */
     private $picture;
@@ -69,27 +69,25 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="category")
-     * @Groups("categories_get_one")
      */
     private $questions;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Score::class, mappedBy="category")
-     * @Groups("categories_get_one")
-     */
-    private $scores;
 
     /**
      * @ORM\OneToMany(targetEntity=QuestionImage::class, mappedBy="category")
      */
     private $questionImages;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Score::class, mappedBy="category")
+     */
+    private $scores;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->questionImages = new ArrayCollection();
         $this->scores = new ArrayCollection();
         $this->createdAt = new \DateTime();
-        $this->questionImages = new ArrayCollection();
     }
 
     public function getId(): ?int

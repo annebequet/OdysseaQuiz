@@ -21,7 +21,6 @@ class GradeAdult
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="gradeAdults")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("grades_get_one")
      */
     private $user;
 
@@ -33,25 +32,21 @@ class GradeAdult
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"grades_get_one", "questions_get_grades"})
      */
     private $grade;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups("grades_get_one")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"grades_get_one", "questions_get_grades"})
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="json", nullable=true)
-     * @Groups({"grades_get_one", "questions_get_grades"})
      */
     private $deck = [];
 

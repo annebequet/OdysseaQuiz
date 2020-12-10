@@ -7,10 +7,8 @@ use App\Repository\AnswerImageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints\Url;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=AnswerImageRepository::class)
@@ -26,7 +24,7 @@ class AnswerImage
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("get_questImage_by_cat")
+     * @Groups("api_questionImages_get")
      * @Assert\NotBlank(
      *      message = "Veuillez saisir une description courte de l'image"
      * )
@@ -35,7 +33,7 @@ class AnswerImage
 
     /**
      * @ORM\Column(type="string", length=8000)
-     * @Groups("get_questImage_by_cat")
+     * @Groups("api_questionImages_get")
      * @Assert\NotBlank(
      *      message = "Veuillez saisir l'URL de l'image"
      * )

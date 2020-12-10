@@ -21,39 +21,25 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
-     * Get all Users
-     *
-     * @Route("/api/users", name="api_users_get", methods={"GET"})
-     */
-    public function getAll(UserRepository $userRepository)
-    {
-        $users = $userRepository->findAll();
-        //dump($users);
-
-        return $this->json($users, 200, [], ['groups' => 'users_get']);
-    }
-
-    /**
-     * Get one user
+     * Get one User - Profile
      *
      * @Route("/api/users/{id<\d+>}", name="api_users_get_one", methods={"GET"})
      */
-    public function getOne($id, UserRepository $userRepository, User $user)
+    public function getOne(UserRepository $userRepository, User $user)
     {
-        // Custom request
-        $userFull = $userRepository->find($user);
-        //dump($userFull);
+        // Get the User
+        $user = $userRepository->find($user);
 
         // Check if the User exists, if not, return 404
         if ($user === null) {
             return $this->json(['error' => 'Utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
-        return $this->json($userFull, 200, [], ['groups' => 'users_get_one']);
+        return $this->json($user, 200, [], ['groups' => 'api_users_get_one']);
     }
 
     /**
-     * Edit user (PUT)
+     * Edit User
      *
      * @Route("/api/users/{id<\d+>}", name="api_users_put", methods={"PUT"})
      * @Route("/api/users/{id<\d+>}", name="api_users_patch", methods={"PATCH"})

@@ -17,25 +17,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class GradeAdultController extends AbstractController
 {
     /**
-     * Get one grade for an user in the adult environment
-     *
-     * @Route("/api/grade/{id<\d+>}", name="api_grades_get_one", methods={"GET"})
-     */
-    public function getOne(GradeAdultRepository $gradeAdultRepository, GradeAdult $gradeAdult)
-    {
-        $grade = $gradeAdultRepository->find($gradeAdult);
-        //dump($grade);
-
-        // Check if the Grade exists, if not, return 404
-        if ($grade === null) {
-            return $this->json(['error' => 'Grade non trouvée'], Response::HTTP_NOT_FOUND);
-        }
-
-        return $this->json($grade, 200, [], ['groups' => 'grades_get_one']);
-    }
-
-    /**
-     * Update grade of question
+     * Update Grade of Question
+     * 
      * @Route("/api/results/adult", name="api_questions_update_grade", methods={"POST"})
      */
     public function updateGrade(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, GradeAdultRepository $gradeAdultRepository, UserRepository $userRepository, ScoreRepository $scoreRepository)
@@ -49,6 +32,7 @@ class GradeAdultController extends AbstractController
             $user = $userRepository->find($parametersAsArray['user']);
         }
 
+        // Get the Score data
         $scoreArray['user'] = $parametersAsArray['user'];
         $scoreArray['environment'] = $parametersAsArray['environmentId'];
         $scoreArray['points'] = $parametersAsArray['points'];
@@ -71,15 +55,20 @@ class GradeAdultController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        // Get the Score corresponding to the User/Environment/Category combination
         $scoreLine = $scoreRepository->findOneBy([
             'user' => $score->getUser(),
             'category' => $score->getCategory(),
             'environment' => $score->getEnvironment()
         ]);
 
+        // For each answers
         for ($i=0; $i < count($answers); $i++) {
-            $grade1 = $serializer->serialize($answers[$i], 'json');
-            $grade = $serializer->deserialize($grade1, GradeAdult::class, 'json');
+            // Serialize the Array content into Json
+            $gradeJson = $serializer->serialize($answers[$i], 'json');
+            // Deserialiaze the Json content into a GradeAdult entity
+            $grade = $serializer->deserialize($gradeJson, GradeAdult::class, 'json');
+            // Set the current User to the GradeAdult entity
             $grade->setUser($user);
 
             // Validate the entity with the validator service
@@ -94,17 +83,19 @@ class GradeAdultController extends AbstractController
                 return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
             }
 
+            // Get the GradeAdult corresponding to the User/Question combination
             $gradeLine = $gradeAdultRepository->findOneBy([
                 'user' => $user,
                 'question' => $grade->getQuestion()
             ]);
             
+            // Get the value of the answer, grade and session
             $answer = $answers[$i]['answer'];
             $grade = $gradeLine->getGrade();
             $session = $scoreLine->getSession();
 
-            // Change the grade of the question according to the answer
-            // If the question come from the current pool (level 1)
+            // Update the grade of the Question and assign a deck if necessary
+            // If the Question comes from the current pool (level 1)
             if ($grade == 1 && $answer == true) {
                 if ($session == 0) {
                     $gradeLine->setDeck([0, 2, 5, 9]);

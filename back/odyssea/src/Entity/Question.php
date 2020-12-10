@@ -2,23 +2,26 @@
 
 namespace App\Entity;
 
-use App\Repository\QuestionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\QuestionRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Count;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
  * @UniqueEntity(
- *      fields="name",
- *      message="{{ value }} est déjà utilisé"
+ *      fields = "name",
+ *      message = "{{ value }} est déjà utilisé"
  * )
  * @UniqueEntity(
- *      fields="title",
- *      message="Cette question est déjà posée"
+ *      fields = "title",
+ *      message = "Cette question est déjà posée"
  * )
  */
 class Question
@@ -27,32 +30,32 @@ class Question
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("get_quest_by_cat")
+     * @Groups("api_questions_get")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
+     * @Groups("api_questions_get")
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
+     * @Groups("api_questions_get")
      * @Assert\NotBlank(
      *      message = "Veuillez définir un slug pour identifier la question"
      * )
      * @Assert\Regex(
-     *     pattern="/^[a-z]+(?:-[a-z]+)*$/",
-     *     message="N'utilisez que des lettres minuscules et des tirets (ex : baleine-en-chocolat)."
+     *     pattern = "/^[a-z]+(?:-[a-z]+)*$/",
+     *     message = "N'utilisez que des lettres minuscules et des tirets (ex : baleine-en-chocolat)"
      * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"categories_get_one", "get_quest_by_cat", "grades_get_one", "questions_get_grades"})
+     * @Groups("api_questions_get")
      * @Assert\NotBlank(
      *      message = "Veuillez poser une question"
      * )
@@ -61,14 +64,14 @@ class Question
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
+     * @Groups("api_questions_get")
      * @Assert\Count(min=4, max=4)
      */
     private $choices = [];
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"categories_get_one", "get_quest_by_cat", "questions_get_grades"})
+     * @Groups("api_questions_get")
      * @Assert\NotBlank(
      *      message = "Veuillez recopier la bonne réponse"
      * )
@@ -87,7 +90,9 @@ class Question
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="questions")
-     * @Assert\NotBlank(message="Veuillez selectionner une catégorie")
+     * @Assert\NotBlank(
+     *      message = "Veuillez selectionner une catégorie"
+     * )
      */
     private $category;
 

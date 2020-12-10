@@ -17,12 +17,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=QuestionImageRepository::class)
  * @UniqueEntity(
- *      fields="name",
- *      message="{{ value }} est déjà utilisé"
+ *      fields = "name",
+ *      message = "{{ value }} est déjà utilisé"
  * )
  * @UniqueEntity(
- *      fields="title",
- *      message="Cette question est déjà posée"
+ *      fields = "title",
+ *      message = "Cette question est déjà posée"
  * )
  */
 class QuestionImage
@@ -31,32 +31,32 @@ class QuestionImage
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("get_questImage_by_cat")
+     * @Groups("api_questionImages_get")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Groups("get_questImage_by_cat")
+     * @Groups("api_questionImages_get")
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("get_questImage_by_cat")
+     * @Groups("api_questionImages_get")
      * @Assert\NotBlank(
      *      message = "Veuillez définir un slug pour identifier la question"
      * )
      * @Assert\Regex(
-     *     pattern="/^[a-z]+(?:-[a-z]+)*$/",
-     *     message="N'utilisez que des lettres minuscules et des tirets (ex : baleine-en-chocolat)"
+     *     pattern = "/^[a-z]+(?:-[a-z]+)*$/",
+     *     message = "N'utilisez que des lettres minuscules et des tirets (ex : baleine-en-chocolat)"
      * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups("get_questImage_by_cat")
+     * @Groups("api_questionImages_get")
      * @Assert\NotBlank(
      *      message = "Veuillez poser une question"
      * )
@@ -93,8 +93,11 @@ class QuestionImage
 
     /**
      * @ORM\ManyToMany(targetEntity=AnswerImage::class, inversedBy="questionImages")
-     * @Groups("get_questImage_by_cat")
-     * Assert\Count(min = 4, max = 4)
+     * @Groups("api_questionImages_get")
+     * Assert\Count(
+     *      min = 4, 
+     *      max = 4
+     * )
      */
     private $choices;
 
@@ -109,7 +112,7 @@ class QuestionImage
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"get_questImage_by_cat"})
+     * @Groups("api_questionImages_get")
      */
     private $correctAnswer;
 

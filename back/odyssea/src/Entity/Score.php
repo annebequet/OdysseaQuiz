@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ScoreRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ScoreRepository;
+use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -32,7 +34,7 @@ class Score
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"users_get_one", "categories_get", "api_scores_get_one"})
+     * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Range(
      *      min = "0",
      *      max = "100",
@@ -54,7 +56,7 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"categories_get", "api_scores_get_one"})
+     * @Groups("api_categories_get")
      * @Assert\NotNull
      */
     private $user;
@@ -62,7 +64,7 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"users_get_one", "categories_get_one_podium"})
+     * @Groups("api_users_get_one")
      * @Assert\NotNull
      */
     private $category;
@@ -70,7 +72,7 @@ class Score
     /**
      * @ORM\ManyToOne(targetEntity=Environment::class, inversedBy="scores")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"users_get_one", "categories_get_one_podium"})
+     * @Groups("api_users_get_one")
      * @Assert\NotNull
      */
     private $environment;

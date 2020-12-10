@@ -7,6 +7,7 @@ use App\Repository\EnvironmentRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -14,8 +15,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=EnvironmentRepository::class)
  * @UniqueEntity(
- *      fields="name",
- *      message="{{ value }} est déjà utilisé."
+ *      fields = "name",
+ *      message = "{{ value }} est déjà utilisé."
  * )
  */
 class Environment
@@ -24,19 +25,21 @@ class Environment
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"users_get_one", "categories_get_one"})
+     * @Groups("api_users_get_one")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=20)
-     * @Groups({"users_get", "users_get_one", "categories_get_one", "categories_get_one_podium", "api_scores_get_one"})
+     * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Length(
-     *      max=12,
-     *      maxMessage="Le nom est trop long, merci d'en choisir un autre.",
+     *      max = 12,
+     *      maxMessage = "Le nom est trop long, merci d'en choisir un autre.",
      *      allowEmptyString = false
      * )
-     * @Assert\NotBlank(message = "Veuillez saisir un nom d'environnement")
+     * @Assert\NotBlank(
+     *      message = "Veuillez saisir un nom d'environnement"
+     * )
      */
     private $name;
 

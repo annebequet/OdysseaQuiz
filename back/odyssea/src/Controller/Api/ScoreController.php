@@ -17,15 +17,16 @@ class ScoreController extends AbstractController
     /**
      * Add or Edit Score
      *
-     * @Route("/api/score/{environmentId<\d+>}", name="api_add_score", methods={"POST"})
+     * @Route("/api/score/{environmentId<\d+>}", name="api_scores_add", methods={"POST"})
     */
     public function addScore(EntityManagerInterface $em, SerializerInterface $serializer, ScoreRepository $scoreRepository, Request $request, ValidatorInterface $validator, $environmentId)
     {
-        // Get the content of the request we need (Score)
+        // Get the content of the request
         if ($content = $request->getContent()) {
             $parametersAsArray = json_decode($content, true);
         }
 
+        // Get the Score data
         $scoreArray['user'] = $parametersAsArray['user'];
         $scoreArray['environment'] = $environmentId;
         $scoreArray['points'] = $parametersAsArray['points'];
@@ -48,46 +49,48 @@ class ScoreController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        // Get the Score corresponding to the User/Environment/Category combination
         $scoreLine = $scoreRepository->findOneBy([
             'user' => $score->getUser(),
             'category' => $score->getCategory(),
             'environment' => $score->getEnvironment()
         ]);
         
-        // if there's no score for this user/category/environement yet 
+        // If there is no Score for this User/Environement/Category combination
         if (empty($scoreLine)) { 
-            // The user played for the first time
+
+            // The User played for the first time, initialize the data
             $score->setQuizNb(1);
             $score->setScore(($score->getPoints())*10);
             $score->setSession(0);
-            // Add the new score to the database
+
+            // Persist the new Score to the database
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($score);
             $entityManager->flush();
-            //return $this->json(['message' => 'Score ajouté'], Response::HTTP_CREATED);
 
-        } else {
-                   
-            // if there's already a score, calculate the new totals
+        } else {         
+            // If there is already a Score, calculate the new totals
             $points = ($scoreLine->getPoints()) + ($score->getPoints());
             $quizNb = ($scoreLine->getQuizNb()) + 1;
             $scoreTotal = ($points/$quizNb)*10;
+
+            // If the session number is 9, go back to 0
             if ($scoreLine->getSession() === 9) {
                 $session = 0;
             }
+            // If not go to the next one
             else {
                 $session = $scoreLine->getSession() + 1;
             }
-            // and set them
+
+            // Set and update the Score 
             $scoreLine->setPoints($points);
             $scoreLine->setQuizNb($quizNb);
             $scoreLine->setScore($scoreTotal);
             $scoreLine->setSession($session);
-
-            // Set the updated_at time
             $scoreLine->setUpdatedAt(new \DateTime());
             $em->flush();
-            //return $this->json(['message' => 'Score modifié'], Response::HTTP_OK);
         }
 
         // After processing the score, forward the request to the appropriate function to handle the update of the grades

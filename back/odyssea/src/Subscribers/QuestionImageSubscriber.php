@@ -70,12 +70,6 @@ class QuestionImageSubscriber implements EventSubscriberInterface
             // Set automatically the environment Kid to the Question
             $environment = $this->environmentRepository->find(2);
             $entity->setEnvironment($environment);
-
-            // Associate the AnswerImages to this Question
-            $answers = $entity->getChoices();
-            foreach ($answers as $answer) {
-                $answer->addQuestionImage($entity);
-            }
         }
     }
 
@@ -88,11 +82,6 @@ class QuestionImageSubscriber implements EventSubscriberInterface
         if ($entity instanceof QuestionImage) {
             $value = $entity->getCorrectAnswerObject()->getValue();
             $entity->setCorrectAnswer($value);
-
-            $answers = $entity->getChoices();
-            foreach ($answers as $answer) {
-                $answer->addQuestionImage($entity);
-            }
         }
     }
 }
