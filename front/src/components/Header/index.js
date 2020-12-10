@@ -62,15 +62,6 @@ const Header = ({
           >
             F.A.Q
           </NavLink>
-          {(roles.indexOf('ROLE_ADMIN') !== -1) && (
-          <a
-            href="http://54.237.18.247/back/admin/login"
-            className="menu__item"
-            onClick={handleAdmin}
-          >
-            Admin
-          </a>
-          )}
         </nav>
         <nav className="menu--burger">
           <Menu disableAutoFocus>
@@ -98,15 +89,6 @@ const Header = ({
             >
               Catégories
             </NavLink>
-            {(roles.indexOf('ROLE_ADMIN') !== -1) && (
-            <a
-              href="http://54.237.18.247/back/admin/login"
-              className="menu__item"
-              onClick={handleAdmin}
-            >
-              Admin
-            </a>
-            )}
             <NavLink
               to="/contact"
               className="menu__item"
