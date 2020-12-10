@@ -10,7 +10,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleLogout: () => {
-    //console.log('je veux me déconnecter');
     dispatch(logout());
   },
 });

@@ -12,7 +12,7 @@ import RegisterButton from './RegisterButton';
 import './styles.scss';
 
 const Header = ({
-  roles, isLogged, loginAdmin, handleLogout,
+  roles, isLogged, loginAdmin,
 }) => {
   const handleAdmin = () => {
     loginAdmin();
@@ -64,7 +64,7 @@ const Header = ({
           </NavLink>
           {(roles.indexOf('ROLE_ADMIN') !== -1) && (
           <a
-            href="http://54.226.34.31/back/admin/login"
+            href="http://54.237.18.247/back/admin/login"
             className="menu__item"
             onClick={handleAdmin}
           >
@@ -100,7 +100,7 @@ const Header = ({
             </NavLink>
             {(roles.indexOf('ROLE_ADMIN') !== -1) && (
             <a
-              href="http://54.226.34.31/back/admin/login"
+              href="http://54.237.18.247/back/admin/login"
               className="menu__item"
               onClick={handleAdmin}
             >
@@ -144,7 +144,6 @@ Header.propTypes = {
   roles: PropTypes.array.isRequired,
   isLogged: PropTypes.bool.isRequired,
   loginAdmin: PropTypes.func.isRequired,
-  handleLogout: PropTypes.func.isRequired,
 };
 
 export default Header;
