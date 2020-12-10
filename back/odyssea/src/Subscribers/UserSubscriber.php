@@ -46,16 +46,16 @@ class UserSubscriber implements EventSubscriberInterface
     {
         // Get the data sent through the form
         $entity = $event->getEntityInstance();
-
+        
         // Verify if the entity is an User
         if ($entity instanceof User) {
-
+            
             // Encode the password
             $passwordHashed = $this->passwordEncoder->encodePassword($entity, $entity->getPassword());
-
+            
             // Set it to the User entity
             $entity->setPassword($passwordHashed);
-
+            
             // If an avatar isn't selected, set it by default to the first avatar in the Gallery table (sea lion)
             if (empty($entity->getAvatar())) {
                 $entity->setAvatar($this->galleryRepository->find(1));
