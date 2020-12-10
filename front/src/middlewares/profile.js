@@ -129,7 +129,7 @@ const categories = (store) => (next) => (action) => {
           store.dispatch(setRequestError({}));
         })
         .catch((error) => {
-          console.log(error.response.data);
+          ErrorBoundary(error.response.data);
           store.dispatch(setRequestError(error.response.data));
         });
 
