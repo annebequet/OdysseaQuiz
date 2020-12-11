@@ -159,9 +159,6 @@ class User implements UserInterface
     /**
      * @ORM\ManyToOne(targetEntity=Gallery::class)
      * @Groups("api_users_get_one")
-     * @Assert\NotNull(
-     *      message = "Veuillez sélectionner un avatar"
-     * )
      */
     private $avatar;
 
