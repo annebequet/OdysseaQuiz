@@ -6,7 +6,8 @@ import {
   LOGOUT,
 } from '../actions';
 
-const initialState = {
+export const initialState = {
+  email: '',
   open: false,
   username: '',
   pseudo: '',
