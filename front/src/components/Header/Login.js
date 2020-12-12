@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Field from 'src/containers/Field';
+
+import {
+  Formik, Form, Field, ErrorMessage,
+} from 'formik';
+
 import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import LoginSchema from 'src/selectors/validation';
 
 import './styles.scss';
 
@@ -19,9 +25,15 @@ const Login = ({
     setShow(true);
   };
 
-  const handleOnSubmit = (evt) => {
-    evt.preventDefault();
-    login();
+  const initialValues = {
+    email: '',
+    password: '',
+  };
+
+
+  const onSubmit = (values) => {
+    console.log(values);
+    login(values);
   };
 
   return (
@@ -35,32 +47,43 @@ const Login = ({
           <Modal.Title>Entrez vos identifiants!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form
-            className="login__form"
-            onSubmit={handleOnSubmit}
+
+          <Formik
+            {...{ initialValues, onSubmit }}
+            validateOnChange
+            validationSchema={LoginSchema}
           >
-            <Field
-              label="Adresse Email"
-              id="username"
-              type="username"
-              pattern="^[^@]+@[^@]+\.[^@]+$"
-              title="Entrez un email valide"
-            />
-            <Field
-              label="Mot de passe"
-              id="password"
-              type="password"
-              pattern="(?=^.{6,32}$).*$"
-              title="Votre mot de passe doit contenir au moins 6 caractères"
-            />
-            <Button
-              className="login__submit"
-              type="submit"
-              variant="primary"
-            >
-              Connexion
-            </Button>
-          </form>
+            {() => (
+              <Form
+                className="baseForm"
+              >
+                <label htmlFor="login--email">
+                  Email
+                </label>
+                <Field
+                  placeholder="odyssea@quiz.com"
+                  id="login--email"
+                  className="email formField"
+                  name="email"
+                />
+                <ErrorMessage name="email" component="div" />
+                <label htmlFor="login--password">
+                  Mot de passe
+                </label>
+                <Field
+                  type="password"
+                  id="login--password"
+                  className="password formField"
+                  name="password"
+                />
+                <ErrorMessage name="password" component="div" />
+                <button type="submit">
+                  Submit
+                </button>
+              </Form>
+            )}
+          </Formik>
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
