@@ -53,7 +53,7 @@ class GradeAdultCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add('user')
+            ->add('user', 'Utilisateur')
             ->add('question')
         ;
     }
