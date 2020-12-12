@@ -58,7 +58,7 @@ class ScoreCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add('user')
+            ->add('pseudo')
             ->add('category')
             ->add('environment')
         ;
