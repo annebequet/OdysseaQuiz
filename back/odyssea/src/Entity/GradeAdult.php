@@ -131,4 +131,9 @@ class GradeAdult
 
         return $this;
     }
+
+    public function getPseudo()
+    {
+        return $this->user->getPseudo();
+    }
 }

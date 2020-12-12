@@ -130,4 +130,9 @@ class GradeKid
 
         return $this;
     }
+
+    public function getPseudo()
+    {
+        return $this->user->getPseudo();
+    }
 }

@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class GradeKidCrudController extends AbstractCrudController
 {
@@ -26,7 +27,7 @@ class GradeKidCrudController extends AbstractCrudController
         $fields = [
             IdField::new('id')
                 ->onlyOnIndex(),
-            AssociationField::new('user', 'Joueur'),
+            TextField::new('pseudo', 'Joueur'),
             AssociationField::new('question', 'Question'),
             IntegerField::new('grade', 'Niveau'),
             ArrayField::new('Deck', 'Tas')
