@@ -15,6 +15,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 
 class QuestionImageCrudController extends AbstractCrudController
 {
@@ -26,7 +28,9 @@ class QuestionImageCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        return [
+        $choicesValues = ArrayField::new('choicesValues', 'Réponses proposées');
+
+        $fields = [
             IdField::new('id')
                 ->onlyOnIndex(),
             AssociationField::new('category', 'Catégorie'),
@@ -34,10 +38,14 @@ class QuestionImageCrudController extends AbstractCrudController
                 ->hideOnIndex()                
                 ->setHelp('Utilisez seulement des minuscules et des tirets.'),
             TextareaField::new('title', 'Question'),
+            $choicesValues->hideOnForm(),
             AssociationField::new('choices', 'Réponses proposées')
-                ->setHelp('Entrez 4 réponses seulement'),
+                ->setHelp('Entrez 4 réponses seulement')
+                ->onlyOnForms(),
             AssociationField::new('correctAnswerObject', 'Bonne réponse'),
         ];
+
+        return $fields;
     }
    
     public function configureCrud(Crud $crud): Crud
@@ -60,6 +68,7 @@ class QuestionImageCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
             return $action->setLabel('Créer une question(enfant)');
         });

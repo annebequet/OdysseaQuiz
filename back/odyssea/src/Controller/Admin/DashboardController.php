@@ -9,6 +9,8 @@ use App\Entity\Category;
 use App\Entity\Question;
 use App\Entity\Environment;
 use App\Controller\Admin\UserCrudController;
+use App\Entity\GradeAdult;
+use App\Entity\GradeKid;
 use App\Entity\QuestionImage;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,7 +48,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Odyssea')
+            ->setTitle('Odyssea Quiz')
             ->setFaviconPath('https://icon-icons.com/icons2/519/PNG/128/jellyfish_icon-icons.com_51220.png');
     }
 
@@ -57,12 +59,14 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Mots de passe', 'fas fa-key', User::class)
             ->setController(PasswordCrudController::class),
         yield MenuItem::linkToCrud('Avatars', 'fa fa-picture-o', Gallery::class),
-        yield MenuItem::linkToCrud('Questions', 'fa fa-question-circle', Question::class),
-        yield MenuItem::linkToCrud('Questions Image', 'fa fa-question-circle', QuestionImage::class),
-        yield MenuItem::linkToCrud('Réponses Image', 'fa fa-images', AnswerImage::class)
+        yield MenuItem::linkToCrud('Questions(Adulte)', 'fa fa-question-circle', Question::class),
+        yield MenuItem::linkToCrud('Notes(Adulte)', 'fas fa-star-half-alt', GradeAdult::class),
+        yield MenuItem::linkToCrud('Questions(Enfant)', 'fa fa-question-circle', QuestionImage::class),
+        yield MenuItem::linkToCrud('Réponses(Enfant)', 'fa fa-images', AnswerImage::class)
             ->setController(AnswerImageCrudController::class),
-        yield MenuItem::linkToCrud('Scores', 'fas fa-star-half-alt', Score::class),
-        yield MenuItem::linkToCrud('Environnement', 'fab fa-etsy', Environment::class),
+        yield MenuItem::linkToCrud('Notes(Enfant)', 'fas fa-star-half-alt', GradeKid::class),
+        yield MenuItem::linkToCrud('Scores', 'fas fa-percent', Score::class),
+        yield MenuItem::linkToCrud('Environnements', 'fab fa-etsy', Environment::class),
         yield MenuItem::linkToCrud('Catégories', 'fab fa-cuttlefish', Category::class),
         yield MenuItem::linkToUrl('Home', 'fa fa-home','http://54.237.18.247/')
         // MenuItem::linkToLogout('Logout', 'fa fa-exit'),

@@ -76,6 +76,15 @@ class UserCrudController extends AbstractCrudController
         return $fields;
     }
 
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
+            return $action->setLabel('Créer un utilisateur');
+        });
+    }
+
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
@@ -84,13 +93,5 @@ class UserCrudController extends AbstractCrudController
             ->setPageTitle('edit', 'Éditer un utilisateur')
             ->setPageTitle('detail', 'Utilisateur')
         ;
-    }
-
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions
-            ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
-            return $action->setLabel('Créer un utilisateur');
-        });
     }
 }

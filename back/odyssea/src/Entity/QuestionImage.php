@@ -298,4 +298,9 @@ class QuestionImage
 
         return $this;
     }
+
+    public function getChoicesValues()
+    {
+        return $this->choices->getValues();
+    }
 }

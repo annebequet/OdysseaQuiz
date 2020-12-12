@@ -25,9 +25,7 @@ class AnswerImageCrudController extends AbstractCrudController
         $image = ImageField::new('imageLink', 'Image');
         $imageLink = TextField:: new('imageLink', 'URL');
 
-
-
-        if($pageName === Crud::PAGE_INDEX){
+        if($pageName === Crud::PAGE_INDEX or Crud::PAGE_DETAIL){
             return [
                 IdField::new('id')
                     ->onlyOnIndex(),
@@ -49,6 +47,7 @@ class AnswerImageCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
             return $action->setLabel('Créer une réponse(enfant)');
         });

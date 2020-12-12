@@ -2,22 +2,22 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Score;
+use App\Entity\GradeAdult;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 
-class ScoreCrudController extends AbstractCrudController
+class GradeAdultCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Score::class;
+        return GradeAdult::class;
     }
 
     public function configureFields(string $pageName): iterable
@@ -26,12 +26,10 @@ class ScoreCrudController extends AbstractCrudController
         $fields = [
             IdField::new('id')
                 ->onlyOnIndex(),
-            TextField:: new('pseudo', 'Joueur'),
-            AssociationField::new('environment', 'Environnement'),
-            AssociationField::new('category', 'Catégorie'),
-            IntegerField::new('quizNb', 'Nombre de quiz joués'),
-            IntegerField::new('Score', 'Score/100'),
-            IntegerField::new('Session')
+            AssociationField::new('user', 'Joueur'),
+            AssociationField::new('question', 'Question'),
+            IntegerField::new('grade', 'Niveau'),
+            ArrayField::new('Deck', 'Tas')
         ];
 
         return $fields;
@@ -48,10 +46,7 @@ class ScoreCrudController extends AbstractCrudController
    public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setPageTitle('index', 'Scores')
-            // ->setPageTitle('new', 'Score')
-            // ->setPageTitle('edit', 'Score')
-            // ->setPageTitle('detail', 'Score')
+            ->setPageTitle('index', 'Notes(Adulte')
         ;
     }
 
@@ -59,8 +54,7 @@ class ScoreCrudController extends AbstractCrudController
     {
         return $filters
             ->add('user', 'Utilisateur')
-            ->add('category')
-            ->add('environment')
+            ->add('question')
         ;
     }
 }

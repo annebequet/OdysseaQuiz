@@ -60,6 +60,7 @@ class QuestionCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
             return $action->setLabel('Créer une question(adulte)');
         });
