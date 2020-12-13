@@ -69,7 +69,7 @@ const HomepageInformations = () => (
         <img className="bulletPoint__icon" src={masque} alt="logo masque" />
         <div>
           <h3>Un suivi individualisé</h3>
-          <p>Suivez vos progrès en consultant votre pourcentage de réussite par catégories</p>
+          <p>Suivez vos progrès en consultant votre pourcentage de réussite par catégorie</p>
         </div>
       </div>
       <div className="bulletPoint">
