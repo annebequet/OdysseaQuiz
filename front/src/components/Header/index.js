@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { bubble as Menu } from 'react-burger-menu';
 
+import baseUrl from 'src/middlewares/baseUri';
+
 import Logo from 'src/assets/images/logo.png';
 
 import Login from 'src/containers/Login';
@@ -64,7 +66,7 @@ const Header = ({
           </NavLink>
           {(roles.indexOf('ROLE_ADMIN') !== -1) && (
           <a
-            href="http://54.237.18.247/back/admin/login"
+            href={`${baseUrl}/admin/login`}
             className="menu__item"
             onClick={handleAdmin}
           >
@@ -100,7 +102,7 @@ const Header = ({
             </NavLink>
             {(roles.indexOf('ROLE_ADMIN') !== -1) && (
             <a
-              href="http://54.237.18.247/back/admin/login"
+              href={`${baseUrl}/admin/login`}
               className="menu__item"
               onClick={handleAdmin}
             >

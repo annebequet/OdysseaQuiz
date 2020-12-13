@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { checkIsLogged, updateLocation } from 'src/actions';
+import { checkIsLogged } from 'src/actions';
 
 import App from 'src/components/App';
 
@@ -12,7 +12,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   checkIsLogged: () => dispatch(checkIsLogged()),
-  updateLocation: (newLocation) => dispatch(updateLocation(newLocation)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

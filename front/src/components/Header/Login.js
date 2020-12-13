@@ -30,9 +30,7 @@ const Login = ({
     password: '',
   };
 
-
   const onSubmit = (values) => {
-    console.log(values);
     login(values);
   };
 
@@ -52,32 +50,37 @@ const Login = ({
             {...{ initialValues, onSubmit }}
             validateOnChange
             validationSchema={LoginSchema}
+            className="login__form"
           >
             {() => (
               <Form
-                className="baseForm"
+                className="login__form"
               >
-                <label htmlFor="login--email">
-                  Email
-                </label>
-                <Field
-                  placeholder="odyssea@quiz.com"
-                  id="login--email"
-                  className="email formField"
-                  name="email"
-                />
-                <ErrorMessage name="email" component="div" />
-                <label htmlFor="login--password">
-                  Mot de passe
-                </label>
-                <Field
-                  type="password"
-                  id="login--password"
-                  className="password formField"
-                  name="password"
-                />
-                <ErrorMessage name="password" component="div" />
-                <button type="submit">
+                <div>
+                  <label htmlFor="login--email" className="login__label">
+                    Email
+                  </label>
+                  <Field
+                    placeholder="odyssea@quiz.com"
+                    id="login--email"
+                    className="login__field"
+                    name="email"
+                  />
+                  <ErrorMessage name="email" component="div" />
+                </div>
+                <div>
+                  <label htmlFor="login--password" className="login__label">
+                    Mot de passe
+                  </label>
+                  <Field
+                    type="password"
+                    id="login--password"
+                    className="login__field"
+                    name="password"
+                  />
+                  <ErrorMessage name="password" component="div" />
+                </div>
+                <button type="submit" className="login__submit">
                   Submit
                 </button>
               </Form>
@@ -99,3 +102,4 @@ Login.propTypes = {
   login: PropTypes.func.isRequired,
 };
 export default Login;
+

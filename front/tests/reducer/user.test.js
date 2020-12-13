@@ -2,12 +2,6 @@ import { should } from 'chai';
 
 import userReducer, { initialState } from 'src/reducers/headerLogin';
 import {
-  HANDLE_TOGGLER_CLICK,
-  handleTogglerClick,
-  ON_BLUR_LOGIN,
-  onBlurLogin,
-  CHANGE_FIELD_VALUE,
-  changeFieldValue,
   SAVE_USER,
   saveUser,
   LOGOUT,
@@ -33,83 +27,7 @@ describe.only('Reducer user', () => {
     });
   });
 
-  describe('with action', () => {
-    it(CHANGE_FIELD_VALUE, () => {
-      let action = changeFieldValue('email', 'test');
-      // {
-      //   type: CHANGE_FIELD,
-      //   value: 'test',
-      //   name: 'email',
-      // }
-      userReducer({}, action).should.be.eql({ email: 'test' });
-
-      action = changeFieldValue('password', '123');
-      userReducer({}, action).should.be.eql({ password: '123' });
-      userReducer(initialState, action).should.be.eql({
-        ...initialState,
-        password: '123',
-      });
-    });
-    it(HANDLE_TOGGLER_CLICK, () => {
-      let action = handleTogglerClick();
-      // {
-      //   type: HANDLE_TOGGLER_CLICK,
-      //   open: !state.open
-      // }
-
-      const state = {
-        email: '',
-        open: false,
-        username: '',
-        pseudo: '',
-        roles: [],
-        password: '',
-        isLogged: false,
-        avatar: {},
-        id: '',
-      }
-      userReducer(state, action).should.be.eql({
-        email: '',
-        open: true,
-        username: '',
-        pseudo: '',
-        roles: [],
-        password: '',
-        isLogged: false,
-        avatar: {},
-        id: '',
-      });
-    });
-    it(ON_BLUR_LOGIN, () => {
-      let action = onBlurLogin();
-      // {
-      //   type: ON_BLUR_LOGIN,
-      //   open: !state.open
-      // }
-
-      const state = {
-        email: '',
-        open: true,
-        username: '',
-        pseudo: '',
-        roles: [],
-        password: '',
-        isLogged: false,
-        avatar: {},
-        id: '',
-      }
-      userReducer(state, action).should.be.eql({
-        email: '',
-        open: false,
-        username: '',
-        pseudo: '',
-        roles: [],
-        password: '',
-        isLogged: false,
-        avatar: {},
-        id: '',
-      });
-    });
+  describe('with action', () => {    
     it(SAVE_USER, () => {
       let action = saveUser('toto', ['ADMIN'], 'poisson', 3);
       // {
@@ -119,24 +37,16 @@ describe.only('Reducer user', () => {
       //    avatar: 'poisson',
       //    id: 3,
       // }
-      let state = {
-        email: 'test@test.com',
-        open: false,
-        username: '',
+      let state = {        
         pseudo: '',
         roles: [],
-        password: '123',
         isLogged: false,
         avatar: {},
         id: '',
       };
       userReducer(state, action).should.be.eql({   
-        email: '',
-        open: false,
-        username: '',
         pseudo: 'toto',
         roles: ['ADMIN'],
-        password: '', 
         isLogged: true, 
         avatar: 'poisson',
         id: 3,
@@ -148,10 +58,6 @@ describe.only('Reducer user', () => {
       //   type: 'LOGOUT',
       // }
       const state = {
-        email: '',
-        password: '',
-        username: '',
-        open: false,
         isLogged: true,
         pseudo: 'toto',
         roles: ['ADMIN'],
@@ -159,11 +65,7 @@ describe.only('Reducer user', () => {
         id: 3,
       };
       userReducer(state, action).should.be.eql({
-        email: '',
-        password: '',
-        username: '',
         isLogged: false,
-        open: false,
         pseudo: '',
         roles: '',
         avatar: '',

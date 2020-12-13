@@ -6,7 +6,7 @@ import baseUrl from './baseUri';
 const register = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN_ADMIN: {
-      axios.get('http://54.237.18.247/back/admin/login', {
+      axios.get(`${baseUrl}/admin/login`, {
         headers: {
           'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },

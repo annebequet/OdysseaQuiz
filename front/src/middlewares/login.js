@@ -10,13 +10,15 @@ import baseUrl from './baseUri';
 const login = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
-      const { username, password } = store.getState().headerLogin;
+      const { password } = action.values;
+      const username = action.values.email;
 
       axios.post(`${baseUrl}/login`, {
         username,
         password,
       })
         .then((response) => {
+          console.log('success');
           const {
             token, pseudo, roles, avatar, id, environmentId: environment,
           } = response.data;

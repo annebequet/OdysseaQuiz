@@ -179,6 +179,24 @@ svg:nth-child(1) {
     font-weight: bold;
     font-size: medium;
   }
+  &__field {
+    font-size: 1.5em;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    border: 1px solid #bbb;
+    border-top: #bbb;
+    background: transparent;
+    display: block;
+    height: 2em;
+    width: 12em;
+    margin-bottom: 5%;
+    padding: 0 3%;
+    position: relative;
+    z-index: 0;
+  }
   &__submit {
     background-color: vars.$background-color;
     color: white;
@@ -186,6 +204,7 @@ svg:nth-child(1) {
     border-radius: 10px;
     padding: vars.$gutter / 2;
     font-weight: bold;
+    width: 100%;
   }  
 }
 /* In case of errors on Login */
