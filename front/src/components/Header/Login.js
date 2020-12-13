@@ -81,7 +81,7 @@ const Login = ({
                   <ErrorMessage name="password" component="div" />
                 </div>
                 <button type="submit" className="login__submit">
-                  Submit
+                  Connexion
                 </button>
               </Form>
             )}

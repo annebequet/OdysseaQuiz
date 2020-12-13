@@ -179,6 +179,11 @@ svg:nth-child(1) {
     font-weight: bold;
     font-size: medium;
   }
+  &__label {
+    font-size: .8em;
+    color: #010124;
+    font-weight: 700;
+  }
   &__field {
     font-size: 1.5em;
     outline: none;
