@@ -238,6 +238,10 @@ body > div.fade.modal.show > div > div > div.modal-footer > div {
       text-decoration: none;
     }
   }
+  &--desktop__logo{
+    display: flex;
+    align-items: center;
+  }
   &--desktop__logo > img{
     width:75px;
   }  
