@@ -5,7 +5,6 @@ import register from './register';
 import categories from './categories';
 import profile from './profile';
 import errorHandler from './errorHandler';
-import app from './app';
 
 export default combineReducers({
   headerLogin,
@@ -13,6 +12,5 @@ export default combineReducers({
   surveys,
   categories,
   profile,
-  app,
   errorHandler,
 });

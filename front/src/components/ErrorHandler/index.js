@@ -4,7 +4,7 @@ import { Normalizer } from 'src/selectors/errors';
 
 import './styles.scss';
 
-const ErrorBoundary = ({ requestErrors, clearErrors }) => (
+const ErrorHandler = ({ requestErrors, clearErrors }) => (
   <div className="error--message__container">
     <div className="error--informations">
       <p>ERREUR <br /> On reste calme, on rajuste ses brassières, et on réessaie. </p>
@@ -20,13 +20,13 @@ const ErrorBoundary = ({ requestErrors, clearErrors }) => (
   </div>
 );
 
-ErrorBoundary.propTypes = {
+ErrorHandler.propTypes = {
   requestErrors: PropTypes.object,
   clearErrors: PropTypes.func.isRequired,
 };
 
-ErrorBoundary.defaultProps = {
+ErrorHandler.defaultProps = {
   requestErrors: { Erreur: ['revenez bientôt'] },
 };
 
-export default ErrorBoundary;
+export default ErrorHandler;

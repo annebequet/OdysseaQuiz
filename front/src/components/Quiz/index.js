@@ -1,24 +1,24 @@
 /* eslint-disable max-len */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as Survey from 'survey-react';
 import 'survey-react/survey.css';
 import { Link } from 'react-router-dom';
 
-import { changeCSSStyles, handleSingularOrPlural, turnAnswersIntoBooleans } from 'src/selectors/survey';
+import { changeCSStyles, handleSingularOrPlural, turnAnswersIntoBooleans } from 'src/selectors/survey';
 
 import './styles.scss';
 
 const Quiz = ({
   isExempleQuiz,
   surveyData,
-  completedSurveyData,
   isCompleted,
   surveyAnswers,
   sendResults,
   endQuiz,
   grade,
 }) => {
+  const [numberOfQuestions, setNumberOfQuestions] = useState(0);
   // Allows to restart the quiz when the user comes back on the component, by changing the value of isCompleted
   useEffect(() => {
     endQuiz();
@@ -26,21 +26,16 @@ const Quiz = ({
 
   // Write survey results into database and state, and send the question / answers detailed informations to the state, so that it can be used for the survey that displays the answers.
   const handleOnComplete = (survey) => {
+    setNumberOfQuestions(survey.getAllQuestions().length - 1);
     const answers = survey.data;
     const booleanAnswers = turnAnswersIntoBooleans(answers, surveyData);
     const numberOfCorrectAnswers = survey.getCorrectedAnswerCount();
-    sendResults(booleanAnswers, answers, numberOfCorrectAnswers, surveyData);
+    sendResults(booleanAnswers, answers, numberOfCorrectAnswers);
   };
 
   // Adapt the css style of the correct and wrong answers
   const displayResults = (survey, options) => {
-    changeCSSStyles(survey, options);
-  };
-
-  // Depending on whether the number of correct answers is plural or not, this function will return a grammaticaly correct result text
-  const getResultTitle = (numberOfCorrectAnswers) => {
-    const title = handleSingularOrPlural(numberOfCorrectAnswers);
-    return title;
+    changeCSStyles(survey, options);
   };
 
   /* We have two surveys : one to use as a quiz, the second one to display the results. The completion of the quiz passes the const isCompleted to true, so as to display the second survey with the results. */
@@ -58,8 +53,8 @@ const Quiz = ({
       {isCompleted && (
         <div className="results">
           <Survey.Survey
-            title={getResultTitle(grade)}
-            json={completedSurveyData}
+            title={handleSingularOrPlural(grade, numberOfQuestions)}
+            json={surveyData}
             data={surveyAnswers}
             showCompletedPage={false}
             mode="display"
@@ -91,7 +86,6 @@ const Quiz = ({
 
 Quiz.propTypes = {
   surveyData: PropTypes.object.isRequired,
-  completedSurveyData: PropTypes.object.isRequired,
   isCompleted: PropTypes.bool.isRequired,
   isExempleQuiz: PropTypes.bool.isRequired,
   sendResults: PropTypes.func.isRequired,

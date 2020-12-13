@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 // Function that changes the css styles of the quiz to display the results
-export const changeCSSStyles = (survey, options) => {
+export const changeCSStyles = (survey, options) => {
   const span = document.createElement('span');
   const isCorrect = options.question.isAnswerCorrect();
   span.innerHTML = isCorrect
@@ -17,38 +17,13 @@ export const changeCSSStyles = (survey, options) => {
   header.appendChild(span);
 };
 
-export const handleSingularOrPlural = (numberOfCorrectAnswers) => {
-  const singularTitle = `Vous avez ${numberOfCorrectAnswers} bonne réponse sur 10`;
-  const pluralTitle = `Vous avez ${numberOfCorrectAnswers} bonnes réponses sur 10`;
+export const handleSingularOrPlural = (numberOfCorrectAnswers, totalNumberOfQuestions) => {
+  const singularTitle = `${numberOfCorrectAnswers} bonne réponse sur ${totalNumberOfQuestions}`;
+  const pluralTitle = `${numberOfCorrectAnswers} bonnes réponses sur ${totalNumberOfQuestions}`;
   const title = numberOfCorrectAnswers < 2
     ? singularTitle
     : pluralTitle;
   return title;
-};
-
-const shuffle = (array) => {
-  let currentIndex = array.length;
-  let temporaryValue;
-  let randomIndex;
-
-  // While there remain elements to shuffle...
-  while (currentIndex !== 0) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-  return array;
-};
-
-const get10RandomQuestions = (quiz) => {
-  shuffle(quiz);
-  // eslint-disable-next-line no-unreachable
-  return quiz.slice(0, 10);
 };
 
 const getIntroductionQuizText = (quiz) => {
@@ -63,7 +38,7 @@ const getIntroductionQuizText = (quiz) => {
 };
 
 export const transformQuestionsInSurveyObject = (allQuestions, category) => {
-  const quiz = get10RandomQuestions(allQuestions);
+  const quiz = allQuestions;
 
   const newQuestions = quiz.map((question) => {
     question.choices = Object.values(question.choices);
@@ -103,10 +78,8 @@ export const transformQuestionsInSurveyObject = (allQuestions, category) => {
 export const turnAnswersIntoBooleans = (answers, surveyData) => {
   // Get the answers of the user
   const userAnswers = answers;
-  console.log(userAnswers);
   // Get an array with all the questions and answers. We slice the first one because it is not a question, it is actually the title of the quiz.
   const surveyQuestions = surveyData.pages.slice(1);
-  console.log(surveyQuestions);
 
   const booleansAnswers = Object.keys(surveyQuestions).map((questionItem) => {
     const question = surveyQuestions[questionItem].questions[0].id;

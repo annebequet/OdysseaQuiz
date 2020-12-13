@@ -18,7 +18,6 @@ const login = (store) => (next) => (action) => {
         password,
       })
         .then((response) => {
-          console.log('success');
           const {
             token, pseudo, roles, avatar, id, environmentId: environment,
           } = response.data;

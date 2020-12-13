@@ -10,12 +10,11 @@ export const getSurveys = (category) => ({
 });
 
 // eslint-disable-next-line max-len
-export const sendResults = (requestAnswers, displayAnswers, numberOfCorrectAnswers, surveyData, isExempleQuiz, isChildExempleQuiz) => ({
+export const sendResults = (requestAnswers, displayAnswers, numberOfCorrectAnswers, isExempleQuiz, isChildExempleQuiz) => ({
   type: SEND_RESULTS,
   requestAnswers,
   displayAnswers,
   numberOfCorrectAnswers,
-  surveyData,
   isExempleQuiz,
   isChildExempleQuiz,
 });

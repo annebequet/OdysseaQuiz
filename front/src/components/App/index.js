@@ -17,7 +17,7 @@ import Contact from 'src/components/Contact';
 import Faq from 'src/components/Faq';
 import Footer from 'src/components/Footer';
 import Error404 from 'src/components/Error404';
-import ErrorBoundary from 'src/containers/ErrorBoundary';
+import ErrorHandler from 'src/containers/ErrorHandler';
 import './styles.scss';
 
 // == Composant
@@ -114,7 +114,7 @@ const App = ({
       </Switch>
       <Footer />
       {showError && (
-        <ErrorBoundary />
+        <ErrorHandler />
       )}
     </div>
   );

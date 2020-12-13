@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ErrorBoundary from 'src/components/ErrorBoundary';
+import ErrorHandler from 'src/components/ErrorHandler';
 
 import { clearErrors } from 'src/actions/errorHandler';
 
@@ -12,4 +12,4 @@ const mapDispatchToProps = (dispatch) => ({
   clearErrors: () => dispatch(clearErrors()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ErrorBoundary);
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorHandler);

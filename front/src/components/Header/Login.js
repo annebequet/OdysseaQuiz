@@ -66,7 +66,11 @@ const Login = ({
                     className="login__field"
                     name="email"
                   />
-                  <ErrorMessage name="email" component="div" />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="login__error"
+                  />
                 </div>
                 <div>
                   <label htmlFor="login--password" className="login__label">
@@ -78,7 +82,11 @@ const Login = ({
                     className="login__field"
                     name="password"
                   />
-                  <ErrorMessage name="password" component="div" />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="login__error"
+                  />
                 </div>
                 <button type="submit" className="login__submit">
                   Connexion
@@ -102,4 +110,3 @@ Login.propTypes = {
   login: PropTypes.func.isRequired,
 };
 export default Login;
-

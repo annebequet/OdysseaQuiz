@@ -26,19 +26,17 @@ const mapStateToProps = (state, ownProps) => {
     isExempleQuiz,
     surveyData,
     isCompleted,
-    completedSurveyData: state.surveys.completedSurveyData,
     surveyAnswers: state.surveys.surveyAnswers,
     grade: state.surveys.points,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  sendResults: (requestAnswers, displayAnswers, numberOfCorrectAnswers, surveyData) => {
+  sendResults: (requestAnswers, displayAnswers, numberOfCorrectAnswers) => {
     dispatch(sendResults(
       requestAnswers,
       displayAnswers,
       numberOfCorrectAnswers,
-      surveyData,
       ownProps.isExempleQuiz,
       ownProps.isChildExempleQuiz,
     ));
