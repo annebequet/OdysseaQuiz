@@ -6,8 +6,6 @@ import baseUrl from './baseUri';
 const categories = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_CATEGORIES: {
-      const handleError = useErrorHandler();
-
       const environmentSlug = sessionStorage.getItem('environment');
       const { isLogged } = action;
 
@@ -17,7 +15,7 @@ const categories = (store) => (next) => (action) => {
       const token = sessionStorage.getItem('token');
       const header = isLogged ? { 'X-AUTH-TOKEN': token } : '';
 
-      axios.get(`${baseUrl}/categorie${slug}`,
+      axios.get(`${baseUrl}/categories${slug}`,
         {
           headers: header,
         })
