@@ -23,10 +23,8 @@ final class Version20201214142017 extends AbstractMigration
         $this->addSql('ALTER TABLE answer_image CHANGE image_link image_link VARCHAR(2000) NOT NULL');
         $this->addSql('ALTER TABLE category CHANGE picture picture VARCHAR(2000) NOT NULL');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_64C19C15E237E06 ON category (name)');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_64C19C116DB4F89 ON category (picture)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_4626DE225E237E06 ON environment (name)');
         $this->addSql('ALTER TABLE gallery CHANGE image_url image_url VARCHAR(2000) NOT NULL, CHANGE name name VARCHAR(20) NOT NULL');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_472B783AAC9C95FD ON gallery (image_url)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_472B783A5E237E06 ON gallery (name)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_B6F7494E5E237E06 ON question (name)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_B6F7494E2B36786B ON question (title)');
