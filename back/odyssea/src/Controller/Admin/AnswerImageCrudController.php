@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class AnswerImageCrudController extends AbstractCrudController
@@ -21,26 +22,24 @@ class AnswerImageCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-
-        $image = ImageField::new('imageLink', 'Image');
-        $imageLink = TextField:: new('imageLink', 'URL');
-
-        if($pageName === Crud::PAGE_INDEX or Crud::PAGE_DETAIL){
-            return [
+        $image = ImageField::new('imageLink');
+        $url = TextField::new('imageLink');
+        $fields = [
                 IdField::new('id')
                     ->onlyOnIndex(),
                 TextField::new('value', 'Description'),
-                $image
+                $image->hideOnForm(),
+                $url->onlyOnForms()
             ];
-        }
-        if($pageName === Crud::PAGE_NEW or Crud::PAGE_EDIT){
-            return [
-                IdField::new('id')
-                    ->onlyOnIndex(),
-                TextField::new('value', 'Description'),
-                $imageLink
-            ];
-        }
+        
+            if($pageName === Crud::PAGE_INDEX or $pageName === Crud::PAGE_DETAIL){
+                $fields [] = $image;
+            }
+            else{
+                $fields [] = $url;
+            }
+
+        return $fields;
 
     }
 
