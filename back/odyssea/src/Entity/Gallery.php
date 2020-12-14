@@ -34,7 +34,7 @@ class Gallery
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=2000, nullable=false, unique=true)
+     * @ORM\Column(type="string", length=2000, nullable=false)
      * @Groups({"api_avatars_get", "api_avatars_get_one", "api_users_get_one"})
      * @Assert\NotBlank(
      *      message = "Veuillez saisir l'URL de l'image"
