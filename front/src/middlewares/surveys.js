@@ -10,7 +10,7 @@ export default (store) => (next) => (action) => {
     case GET_SURVEYS: {
       const categorySlug = action.category.id;
       const environmentSlug = sessionStorage.getItem('environment');
-      axios.get(`${baseUrl}/questions/${environmentSlug}/${categorySlug}`, {
+      axios.get(`${baseUrl}/api/questions/${environmentSlug}/${categorySlug}`, {
         headers: {
           'X-AUTH-TOKEN': sessionStorage.getItem('token'),
         },
@@ -34,7 +34,7 @@ export default (store) => (next) => (action) => {
         const answers = action.requestAnswers;
         const user = sessionStorage.getItem('id');
         const points = action.numberOfCorrectAnswers;
-        axios.post(`${baseUrl}/score/${environmentSlug}`, {
+        axios.post(`${baseUrl}/api/score/${environmentSlug}`, {
           environmentId,
           categoryId,
           user,

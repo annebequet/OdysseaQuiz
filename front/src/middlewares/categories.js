@@ -15,7 +15,7 @@ const categories = (store) => (next) => (action) => {
       const token = sessionStorage.getItem('token');
       const header = isLogged ? { 'X-AUTH-TOKEN': token } : '';
 
-      axios.get(`${baseUrl}/categories${slug}`,
+      axios.get(`${baseUrl}/api/categories${slug}`,
         {
           headers: header,
         })

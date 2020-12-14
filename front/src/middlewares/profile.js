@@ -21,7 +21,7 @@ import baseUrl from './baseUri';
 const categories = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_AVATARS: {
-      axios.get(`${baseUrl}/avatars`,
+      axios.get(`${baseUrl}/api/avatars`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -42,7 +42,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newAvatar: avatar } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`${baseUrl}/users/${id}`, {
+      axios.put(`${baseUrl}/api/users/${id}`, {
         avatar,
       },
       {
@@ -66,7 +66,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newEmail: email } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`${baseUrl}/users/${id}`, {
+      axios.put(`${baseUrl}/api/users/${id}`, {
         email,
       },
       {
@@ -90,7 +90,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newPseudo: pseudo } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`${baseUrl}/users/${id}`, {
+      axios.put(`${baseUrl}/api/users/${id}`, {
 
         pseudo,
       },
@@ -115,7 +115,7 @@ const categories = (store) => (next) => (action) => {
       const state = store.getState();
       const { newPassword: password } = state.profile;
       const id = sessionStorage.getItem('id');
-      axios.put(`${baseUrl}/users/${id}`, {
+      axios.put(`${baseUrl}/api/users/${id}`, {
         password,
       },
       {
@@ -137,7 +137,7 @@ const categories = (store) => (next) => (action) => {
     }
     case GET_USER: {
       const id = sessionStorage.getItem('id');
-      axios.get(`${baseUrl}/users/${id}`,
+      axios.get(`${baseUrl}/api/users/${id}`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -163,7 +163,7 @@ const categories = (store) => (next) => (action) => {
       window.sessionStorage.removeItem('environment');
       window.sessionStorage.setItem('environment', environment);
       const id = sessionStorage.getItem('id');
-      axios.put(`${baseUrl}/users/${id}`, {
+      axios.put(`${baseUrl}/api/users/${id}`, {
         environment,
       },
       {
@@ -185,7 +185,7 @@ const categories = (store) => (next) => (action) => {
     }
     case HANDLE_DELETE: {
       const id = sessionStorage.getItem('id');
-      axios.delete(`${baseUrl}/users/${id}`,
+      axios.delete(`${baseUrl}/api/users/${id}`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),

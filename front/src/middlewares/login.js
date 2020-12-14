@@ -13,7 +13,7 @@ const login = (store) => (next) => (action) => {
       const { password } = action.values;
       const username = action.values.email;
 
-      axios.post(`${baseUrl}/login`, {
+      axios.post(`${baseUrl}/api/login`, {
         username,
         password,
       })
@@ -38,7 +38,7 @@ const login = (store) => (next) => (action) => {
       break;
     }
     case CHECK_IS_LOGGED:
-      axios.get(`${baseUrl}/islogged`,
+      axios.get(`${baseUrl}/api/islogged`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
@@ -64,7 +64,7 @@ const login = (store) => (next) => (action) => {
       next(action);
       break;
     case LOGOUT:
-      axios.get(`${baseUrl}/logout`,
+      axios.get(`${baseUrl}/api/logout`,
         {
           headers: {
             'X-AUTH-TOKEN': sessionStorage.getItem('token'),
