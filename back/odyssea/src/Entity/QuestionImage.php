@@ -59,7 +59,7 @@ class QuestionImage
     private $name;
 
     /**
-     * @ORM\Column(type="text", unique=true)
+     * @ORM\Column(type="text")
      * @Groups("api_questionImages_get")
      * @Assert\NotBlank(
      *      message = "Veuillez poser une question"
