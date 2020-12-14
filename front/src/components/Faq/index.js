@@ -37,12 +37,12 @@ const Faq = () => (
       </details>
 
       <details className="faq__details">
-        <summary className="faq__question"> Je veux supprimer mon compte. </summary>
+        <summary className="faq__question"> Je veux supprimer mon compte </summary>
         <p className="faq__answer"> Nous sommes désolés de vous voir partir ! Si vous souhaitez proposer des améliorations il est possible de <Link exact="true" to="/contact">nous contacter</Link> par mail. Si vous êtes sûr de vouloir prendre cette décision radicale et décevante, rendez vous sur votre profil. Votre adresse email ne sera pas conservée, ni vos scores, vous devrez recommencer à zéro. </p>
       </details>
 
       <details className="faq__details">
-        <summary className="faq__question"> Je veux un autre avatar que ceux proposés. </summary>
+        <summary className="faq__question"> Je veux un autre avatar que ceux proposés </summary>
         <p className="faq__answer"> Mince alors !
           Rien ne vous empêche de nous proposer un nouvel avatar si celui ci respecte la charte graphique du site, ceci dit rien n’est garanti. Si vous voulez mettre une photo de votre plus belle paire de chaussures, désolé, ça ne sera pas possible.
         </p>

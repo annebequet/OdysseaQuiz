@@ -24,13 +24,13 @@ const HomepageInformations = () => (
       <div className="presentation__text">
         <h1 className="presentation__title">Odyssea Quiz </h1>
         <p className="presentation__description__1">
-          Les océans et les mers sont le berceau de la vie. Ils recouvrent 70% de notre planète et représentent 97% de l’eau sur Terre. Ils abreuvent les hommes, connectent les pays, fournissent des ressources en nourriture abondante, et génèrent de l'oxygène. Ils maintiennent aussi notre climat en absorbant près d’un quart du CO2 produit. La variété d'espèces et de paysages offerts est étourdissante, et ils comptent encore bien des territoires inexplorés.
+          Les océans et les mers sont le berceau de la vie. Ils recouvrent 70% de notre planète et représentent 97% de l’eau sur Terre. Ils abreuvent les hommes, connectent les pays, fournissent des ressources en nourriture abondantes, et génèrent de l'oxygène. Ils maintiennent aussi notre climat en absorbant près d’un quart du CO2 produit. La variété d'espèces et de paysages offerts est étourdissante, et ils comptent encore bien des territoires inexplorés.
           Les océans et les mers nous sont indispensables et tout le monde s'accorde pour dire qu'il est urgent de les protéger.
           Nous avons donc créé OdysseaQuiz, parce que le premier pas vers la protection, c'est la connaissance.
         </p>
         <h2 className="presentation__subtitle">Pourquoi apprendre avec nous ?</h2>
         <p className="presentation__description__2">
-          Parce qu'on te comprend. Apprendre quelque chose de nouveau ça peut parfois être ennuyeux et laborieux. C'est pourquoi on a une approche d'apprentissage basée sur des quiz ludiques ! Adaptés aux petits et aux grands, nous proposons des quiz documentés, qui vont du domaine scientifique à la mythologie marine, en passant par les pokemons marins pour les plus jeunes.
+          Parce qu'on te comprend. Apprendre quelque chose de nouveau ça peut parfois être ennuyeux et laborieux. C'est pourquoi on a une approche d'apprentissage basée sur des quiz ludiques ! Adaptés aux petits et aux grands, nous proposons des quiz documentés, qui vont du domaine scientifique à la mythologie marine, en passant par les pokemons aquatiques pour les plus jeunes.
         </p>
       </div>
 

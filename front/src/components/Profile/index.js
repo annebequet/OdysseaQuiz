@@ -184,7 +184,7 @@ const Profile = ({
                 <Card.Header>
                   <Accordion.Toggle as={Button} variant="link" eventKey="3">
                     <img className="profile__icon" src={passwordImg} alt="logo password" />
-                    <label>Changer le Mot de passe</label>
+                    <label>Changer le mot de passe</label>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="3">
