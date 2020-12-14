@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\Category;
+use App\Entity\GradeKid;
+use App\Entity\AnswerImage;
+use App\Entity\Environment;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\QuestionImageRepository;
 use Doctrine\Common\Collections\Collection;
@@ -42,7 +46,7 @@ class QuestionImage
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Groups("api_questionImages_get")
      * @Assert\NotBlank(
      *      message = "Veuillez définir un slug pour identifier la question"
@@ -55,7 +59,7 @@ class QuestionImage
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", unique=true)
      * @Groups("api_questionImages_get")
      * @Assert\NotBlank(
      *      message = "Veuillez poser une question"
@@ -94,9 +98,12 @@ class QuestionImage
     /**
      * @ORM\ManyToMany(targetEntity=AnswerImage::class, inversedBy="questionImages")
      * @Groups("api_questionImages_get")
-     * Assert\Count(
-     *      min = 4, 
-     *      max = 4
+     * @Assert\NotBlank
+     * @Assert\Count(
+     *      min = 4,
+     *      minMessage = "Veuillez sélectionner {{ limit }} réponses",
+     *      max = 4,
+     *      maxMessage = "Veuillez sélectionne {{ limite }} réponses seulement"
      * )
      */
     private $choices;
@@ -111,7 +118,7 @@ class QuestionImage
     private $correctAnswerObject;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      * @Groups("api_questionImages_get")
      */
     private $correctAnswer;

@@ -30,7 +30,7 @@ class Environment
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=20, unique=true)
      * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Length(
      *      max = 12,

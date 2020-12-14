@@ -2,7 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\Score;
 use App\Entity\Gallery;
+use App\Entity\GradeKid;
+use App\Entity\GradeAdult;
+use App\Entity\Environment;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
@@ -61,7 +65,7 @@ class User implements UserInterface
      * @Groups("api_users_get_one")
      * @Assert\Length(
      *      min = 2,
-     *      max = 18,
+     *      max = 50,
      *      minMessage = "Le nom doit contenir plus de {{ limit }} caractères.",
      *      maxMessage = "Le nom ne peut contenir plus de {{ limit }} caractères.",
      *      allowEmptyString = true
@@ -74,7 +78,7 @@ class User implements UserInterface
      * @Groups("api_users_get_one")
      * @Assert\Length(
      *      min = 2,
-     *      max = 18,
+     *      max = 50,
      *      minMessage = "Le prénom doit contenir plus de {{ limit }} caractères.",
      *      maxMessage = "Le prénom ne peut contenir plus de {{ limit }} caractères.",
      *      allowEmptyString = true
@@ -83,7 +87,7 @@ class User implements UserInterface
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", unique=true, length=16)
+     * @ORM\Column(type="string", unique=true, length=20)
      * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Sequentially({
      *      @Assert\NotBlank(
@@ -91,7 +95,7 @@ class User implements UserInterface
      *      ),
      *      @Assert\Length(
      *           min = 6,
-     *           max = 12,
+     *           max = 20,
      *           minMessage = "Le pseudo doit contenir plus de {{ limit }} caractères.",
      *           maxMessage = "Le pseudo ne peut contenir plus de {{ limit }} caractères.",
      *           allowEmptyString = false
@@ -158,6 +162,7 @@ class User implements UserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Gallery::class)
+     * @ORM\JoinColumn(nullable=false)
      * @Groups("api_users_get_one")
      */
     private $avatar;

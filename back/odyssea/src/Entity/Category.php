@@ -32,7 +32,7 @@ class Category
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, unique=true)
      * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Length(
      *      max = 12,
@@ -46,7 +46,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=2000, unique=true)
      * @Groups({"api_users_get_one", "api_categories_get"})
      * @Assert\Url(
      *    message = "L'url '{{ value }}' n'est pas valide.",

@@ -32,7 +32,7 @@ class AnswerImage
     private $value;
 
     /**
-     * @ORM\Column(type="string", length=8000)
+     * @ORM\Column(type="string", length=2000)
      * @Groups("api_questionImages_get")
      * @Assert\NotBlank(
      *      message = "Veuillez saisir l'URL de l'image"

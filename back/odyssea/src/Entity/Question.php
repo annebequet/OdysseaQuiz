@@ -41,7 +41,7 @@ class Question
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Groups("api_questions_get")
      * @Assert\NotBlank(
      *      message = "Veuillez définir un slug pour identifier la question"
@@ -54,7 +54,7 @@ class Question
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", unique=true)
      * @Groups("api_questions_get")
      * @Assert\NotBlank(
      *      message = "Veuillez poser une question"
@@ -65,7 +65,13 @@ class Question
     /**
      * @ORM\Column(type="json")
      * @Groups("api_questions_get")
-     * @Assert\Count(min=4, max=4)
+     * @Assert\NotBlank
+     * @Assert\Count(
+     *      min = 4,
+     *      minMessage = "Veuillez sélectionner {{ limit }} réponses",
+     *      max = 4,
+     *      maxMessage = "Veuillez sélectionner {{ limit }} réponses seulement"
+     * )
      */
     private $choices = [];
 

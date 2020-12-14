@@ -34,7 +34,7 @@ class Gallery
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=2000, nullable=false, unique=true)
      * @Groups({"api_avatars_get", "api_avatars_get_one", "api_users_get_one"})
      * @Assert\NotBlank(
      *      message = "Veuillez saisir l'URL de l'image"
@@ -56,16 +56,16 @@ class Gallery
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=20, unique=true)
      * @Groups({"api_avatars_get", "api_avatars_get_one"})
      * @Assert\NotBlank(
      *      message = "Veuillez saisir le nom de l'avatar"
      * )
      * @Assert\Length(
      *      min = 3,
-     *      minMessage = "Veuillez saisir un nom de plus de 3 caractères",
-     *      max = 18,
-     *      maxMessage = "Veuillez saisir un nom de moins de 18 caractères"
+     *      minMessage = "Veuillez saisir un nom de plus de {{ limit }} caractères",
+     *      max = 20,
+     *      maxMessage = "Veuillez saisir un nom de moins de {{ limit }} caractères"
      * )
      */
     private $name;
