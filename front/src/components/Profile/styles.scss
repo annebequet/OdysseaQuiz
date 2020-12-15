@@ -165,6 +165,7 @@
     color: white;
     padding-right: 2rem;
     box-shadow: 0 0 8px grey;
+    margin-bottom: 15px;
     & > .profile__title {
       font-size: 2em;
       letter-spacing: .2rem;
@@ -187,7 +188,6 @@
       justify-content: space-between;
       width: 100%;
       border-bottom: 1px solid grey;
-      margin-top: 15px;
       > h3 {
         color: black;
         font-weight: 300;
@@ -196,7 +196,7 @@
       } 
       > .profile__progress {  
         width: 150px;
-        margin-right: 2rem;
+        margin-right: 1rem;
         height: 1.5rem;
         & > .progress {
           font-size: 1em !important;
@@ -233,6 +233,12 @@
     &__wrap__right {
       margin-left: 0px;
     }
+  }
+}
+
+@media (max-width: 500px) {
+  .profile__progress {
+    width: 70px !important;
   }
 }
 
