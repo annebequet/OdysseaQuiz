@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -28,6 +29,9 @@ class DispatchController extends AbstractController
                 'environmentId' => $environmentId,
                 'categoryId' => $categoryId
             ], 307);
+        }
+        else {
+            return $this->json(['error' => 'Environment not found'], Response::HTTP_NOT_FOUND);
         }
     }
 }

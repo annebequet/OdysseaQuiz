@@ -3,8 +3,12 @@
 namespace App\Controller\Api;
 
 use App\Entity\User;
+use App\Entity\GradeKid;
+use App\Entity\GradeAdult;
 use App\Repository\UserRepository;
 use App\Repository\GalleryRepository;
+use App\Repository\QuestionImageRepository;
+use App\Repository\QuestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -98,7 +102,7 @@ class SecurityController extends AbstractController
      * 
      * @Route("/api/register", methods={"POST"})
      */
-    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, GalleryRepository $galleryRepository)
+    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, GalleryRepository $galleryRepository, QuestionRepository $questionRepository, QuestionImageRepository $questionImageRepository, EntityManagerInterface $entityManager)
     {
         // Get the content of the request
         $content = $request->getContent();
@@ -127,11 +131,36 @@ class SecurityController extends AbstractController
         if($user->getAvatar() === null) {
             $user->setAvatar($galleryRepository->find(1));
         };
-        
+
         // Persist the new user to the database
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
+
+        // Get all Adult Questions
+        $allAdultQuestions = $questionRepository->findAll();
+        // Get all Questions
+        $allKidQuestions = $questionImageRepository->findAll();
+
+        // Set a new GradeAdult with the grade 1 for the user for each question
+        foreach ($allAdultQuestions as $question) {
+            $gradeAdult = new GradeAdult;
+            $gradeAdult->setQuestion($question);
+            $gradeAdult->setUser($user);
+            $gradeAdult->setGrade(1);
+            $entityManager->persist($gradeAdult);
+            $entityManager->flush();
+        }
+
+        // Set a new GradeKid with the grade 1 for the user for each question
+        foreach ($allKidQuestions as $question) {
+            $gradeKid = new GradeKid;
+            $gradeKid->setQuestion($question);
+            $gradeKid->setUser($user);
+            $gradeKid->setGrade(1);
+            $entityManager->persist($gradeKid);
+            $entityManager->flush();
+        }
 
         // Redirect to the Api route of the new User with a 201 status code
         return $this->redirectToRoute('api_users_get_one', ['id' => $user->getId()], Response::HTTP_CREATED);
