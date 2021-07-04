@@ -23,7 +23,7 @@ final class Version20201125152934 extends AbstractMigration
         $this->addSql('CREATE TABLE question_image (id INT AUTO_INCREMENT NOT NULL, category_id INT DEFAULT NULL, environment_id INT DEFAULT NULL, type VARCHAR(50) NOT NULL, name VARCHAR(255) NOT NULL, title LONGTEXT NOT NULL, choices LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\', correct_answer VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME DEFAULT NULL, INDEX IDX_F5D6155B12469DE2 (category_id), INDEX IDX_F5D6155B903E3A94 (environment_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE question_image ADD CONSTRAINT FK_F5D6155B12469DE2 FOREIGN KEY (category_id) REFERENCES category (id)');
         $this->addSql('ALTER TABLE question_image ADD CONSTRAINT FK_F5D6155B903E3A94 FOREIGN KEY (environment_id) REFERENCES environment (id)');
-        $this->addSql('DROP TABLE grade_adult');
+        $this->addSql('DROP TABLE grade_adult IF EXISTS');
     }
 
     public function down(Schema $schema) : void
