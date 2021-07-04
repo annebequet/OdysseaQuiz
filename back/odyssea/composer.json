@@ -36,7 +36,7 @@
         "symfony/serializer": "5.1.*",
         "symfony/string": "5.1.*",
         "symfony/translation": "5.1.*",
-        "symfony/twig-bundle": "5.1.*",
+        "symfony/twig-bundle": "5.2.11",
         "symfony/validator": "5.1.*",
         "symfony/web-link": "5.1.*",
         "symfony/yaml": "5.1.*",
