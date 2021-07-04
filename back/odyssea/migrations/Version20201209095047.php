@@ -22,7 +22,6 @@ final class Version20201209095047 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE grade_adult ADD deck LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json)\'');
         $this->addSql('ALTER TABLE grade_kid ADD deck LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json)\'');
-        $this->addSql('ALTER TABLE question_image DROP correct_answer');
         $this->addSql('ALTER TABLE score ADD session INT DEFAULT NULL');
     }
 
