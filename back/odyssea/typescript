@@ -1,0 +1,670 @@
+Script started on 2021-07-05 08:15:42+0000
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ composer require doctrine/doctrine-fixtures-bundle --dev[Kphp bin/console doctrine:fixtures:load[23Pcomposer update
+[30;43mThe "symfony/flex" plugin was skipped because it is not compatible with Composer 2+. Make sure to update it to version 1.9.8 or greater.[39;49m
+[30;43mComposer is operating significantly slower than normal because you do not have the PHP curl extension enabled.[39;49m
+[32mLoading composer repositories with package information[39m
+[32mUpdating dependencies[39m
+[37;41mUnable to find a compatible set of packages based on your non-dev requirements alone.[39;49m
+Your requirements can be resolved successfully when require-dev packages are present.
+You may need to move packages from require-dev or some of their dependencies to require.
+
+  Problem 1
+    - Root composer.json requires symfony/twig-bundle 5.1.*, found symfony/twig-bundle[v5.2.11] but it does not match the constraint.
+
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ git pull
+Enter passphrase for key '/home/ubuntu/.ssh/id_ed25519': 
+Enter passphrase for key '/home/ubuntu/.ssh/id_ed25519': 
+remote: Enumerating objects: 5, done.[K
+remote: Counting objects:  20% (1/5)[Kremote: Counting objects:  40% (2/5)[Kremote: Counting objects:  60% (3/5)[Kremote: Counting objects:  80% (4/5)[Kremote: Counting objects: 100% (5/5)[Kremote: Counting objects: 100% (5/5), done.[K
+remote: Compressing objects:  50% (1/2)[Kremote: Compressing objects: 100% (2/2)[Kremote: Compressing objects: 100% (2/2), done.[K
+remote: Total 5 (delta 2), reused 5 (delta 2), pack-reused 0[K
+Unpacking objects:  20% (1/5)   Unpacking objects:  40% (2/5)   Unpacking objects:  60% (3/5)   Unpacking objects:  80% (4/5)   Unpacking objects: 100% (5/5)   Unpacking objects: 100% (5/5), done.
+From github.com:annebequet/OdysseaQuiz
+   9904f37..1112dc1  master     -> origin/master
+Updating 9904f37..1112dc1
+error: Your local changes to the following files would be overwritten by merge:
+	back/odyssea/composer.json
+Please commit your changes or stash them before you merge.
+Aborting
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ git stash
+Saved working directory and index state WIP on master: 9904f37 composer.json scripts
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ git stash[1Ppull
+Enter passphrase for key '/home/ubuntu/.ssh/id_ed25519': 
+Updating 9904f37..1112dc1
+Fast-forward
+ back/odyssea/composer.json | 4 [32m++[m[31m--[m
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ git pullstash[1Ppullcomposer updaterequire doctrine/doctrine-fixtures-bundle --dev[Kphp bin/console doctrine:fixtures:load[23Pcomposer updaterequire doctrine/doctrine-fixtures-bundle --dev --no-scripts[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cgit pull[Kcomposer require doctrine/doctrine-fixtures-bundle --dev --no-scripts[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cgit pull[Kstash[1Ppullcomposer update -W-width-all-dependencies[K --width-all-dependenciesW[K[10Pgit pullstash[1Ppullcomposer require doctrine/doctrine-fixtures-bundle --dev --no-scripts[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cgit pull[Kcomposer require doctrine/doctrine-fixtures-bundle --dev --no-scriptsupdate[Kphp bin/console doctrine:fixtures:load[9Pcomposer require doctrine/doctrine-fixtures-bundle --devupdate[K[7Pgit pullstash[1Ppull[Kphp bin/console cache:clear
+
+[39;49m // [39;49mClearing the cache for the [32mdev[39m environment with debug [32mtrue[39m                                                          
+
+[30;42m                                                                                                                        [39;49m
+[30;42m [OK] Cache for the "dev" environment (debug=true) was successfully cleared.                                            [39;49m
+[30;42m                                                                                                                        [39;49m
+
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ php bin/console cache:cleargit pull[Kstash[1Ppullcomposer updaterequire doctrine/doctrine-fixtures-bundle --dev
+
+[37;41m                                                                              [39;49m
+[37;41m  [UnexpectedValueException]                                                  [39;49m
+[37;41m  Could not parse version constraint ^5.2.*: Invalid version string "^5.2.*"  [39;49m
+[37;41m                                                                              [39;49m
+
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ git pull
+Enter passphrase for key '/home/ubuntu/.ssh/id_ed25519': 
+remote: Enumerating objects: 5, done.[K
+remote: Counting objects:  20% (1/5)[Kremote: Counting objects:  40% (2/5)[Kremote: Counting objects:  60% (3/5)[Kremote: Counting objects:  80% (4/5)[Kremote: Counting objects: 100% (5/5)[Kremote: Counting objects: 100% (5/5), done.[K
+remote: Compressing objects:  50% (1/2)[Kremote: Compressing objects: 100% (2/2)[Kremote: Compressing objects: 100% (2/2), done.[K
+remote: Total 5 (delta 2), reused 5 (delta 2), pack-reused 0[K
+Unpacking objects:  20% (1/5)   Unpacking objects:  40% (2/5)   Unpacking objects:  60% (3/5)   Unpacking objects:  80% (4/5)   Unpacking objects: 100% (5/5)   Unpacking objects: 100% (5/5), done.
+From github.com:annebequet/OdysseaQuiz
+   1112dc1..4df5c0a  master     -> origin/master
+Updating 1112dc1..4df5c0a
+Fast-forward
+ back/odyssea/composer.json | 2 [32m+[m[31m-[m
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ git pullcomposer require doctrine/doctrine-fixtures-bundle --dev[29Pphp bin/console cache:clearcomposer require doctrine/doctrine-fixtures-bundle --dev
+[30;43mThe "symfony/flex" plugin was skipped because it is not compatible with Composer 2+. Make sure to update it to version 1.9.8 or greater.[39;49m
+Using version [32m^3.4[39m for [32mdoctrine/doctrine-fixtures-bundle[39m
+[32m./composer.json has been updated[39m
+[30;43mThe "symfony/flex" plugin was skipped because it is not compatible with Composer 2+. Make sure to update it to version 1.9.8 or greater.[39;49m
+[32mRunning composer update doctrine/doctrine-fixtures-bundle[39m
+[32mLoading composer repositories with package information[39m
+[32mUpdating dependencies[39m
+[37;41mYour requirements could not be resolved to an installable set of packages.[39;49m
+
+  Problem 1
+    - Root composer.json requires symfony/twig-bundle 5.2.*, found symfony/twig-bundle[v5.2.0, ..., v5.2.11] but the package is fixed to v5.1.3 (lock file version) by a partial update and that version does not match. Make sure you list it as an argument for the update command.
+
+Use the option --with-all-dependencies (-W) to allow upgrades, downgrades and removals for packages currently locked to specific versions.
+
+[37;41mInstallation failed, reverting ./composer.json and ./composer.lock to their original content.[39;49m
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ composer update
+[30;43mThe "symfony/flex" plugin was skipped because it is not compatible with Composer 2+. Make sure to update it to version 1.9.8 or greater.[39;49m
+[30;43mComposer is operating significantly slower than normal because you do not have the PHP curl extension enabled.[39;49m
+[32mLoading composer repositories with package information[39m
+[32mUpdating dependencies[39m
+[32mLock file operations: 4 installs, 96 updates, 4 removals[39m
+  - Removing [32mdoctrine/reflection[39m ([33m1.2.1[39m)
+  - Removing [32mocramius/proxy-manager[39m ([33m2.2.3[39m)
+  - Removing [32mzendframework/zend-code[39m ([33m3.4.1[39m)
+  - Removing [32mzendframework/zend-eventmanager[39m ([33m3.2.1[39m)
+  - Upgrading [32mbeberlei/doctrineextensions[39m ([33mv1.2.9[39m => [33mv1.3.0[39m)
+  - Upgrading [32mcomposer/package-versions-deprecated[39m ([33m1.10.99[39m => [33m1.11.99.2[39m)
+  - Upgrading [32mdoctrine/annotations[39m ([33m1.10.3[39m => [33m1.13.1[39m)
+  - Upgrading [32mdoctrine/cache[39m ([33m1.10.2[39m => [33m2.0.3[39m)
+  - Upgrading [32mdoctrine/collections[39m ([33m1.6.6[39m => [33m1.6.7[39m)
+  - Upgrading [32mdoctrine/common[39m ([33m2.13.3[39m => [33m3.1.2[39m)
+  - Upgrading [32mdoctrine/dbal[39m ([33m2.10.2[39m => [33m2.13.2[39m)
+  - Locking [32mdoctrine/deprecations[39m ([33mv0.5.3[39m)
+  - Upgrading [32mdoctrine/doctrine-bundle[39m ([33m2.1.0[39m => [33m2.3.2[39m)
+  - Upgrading [32mdoctrine/doctrine-migrations-bundle[39m ([33m3.0.1[39m => [33m3.1.1[39m)
+  - Upgrading [32mdoctrine/event-manager[39m ([33m1.1.0[39m => [33m1.1.1[39m)
+  - Upgrading [32mdoctrine/inflector[39m ([33m1.4.3[39m => [33m2.0.3[39m)
+  - Upgrading [32mdoctrine/instantiator[39m ([33m1.3.1[39m => [33m1.4.0[39m)
+  - Upgrading [32mdoctrine/migrations[39m ([33m3.0.1[39m => [33m3.1.4[39m)
+  - Upgrading [32mdoctrine/orm[39m ([33mv2.7.3[39m => [33m2.9.3[39m)
+  - Upgrading [32mdoctrine/persistence[39m ([33m1.3.7[39m => [33m2.2.1[39m)
+  - Upgrading [32mdoctrine/sql-formatter[39m ([33m1.1.0[39m => [33m1.1.1[39m)
+  - Upgrading [32measycorp/easyadmin-bundle[39m ([33mv3.1.3[39m => [33mv3.4.0[39m)
+  - Upgrading [32megulias/email-validator[39m ([33m2.1.18[39m => [33m2.1.25[39m)
+  - Locking [32mfriendsofphp/proxy-manager-lts[39m ([33mv1.0.5[39m)
+  - Locking [32mlaminas/laminas-code[39m ([33m4.4.0[39m)
+  - Upgrading [32mmonolog/monolog[39m ([33m2.1.1[39m => [33m2.2.0[39m)
+  - Upgrading [32mnelmio/cors-bundle[39m ([33m2.1.0[39m => [33m2.1.1[39m)
+  - Upgrading [32mnikic/php-parser[39m ([33mv4.6.0[39m => [33mv4.11.0[39m)
+  - Upgrading [32mphpdocumentor/reflection-docblock[39m ([33m5.2.0[39m => [33m5.2.2[39m)
+  - Upgrading [32mphpdocumentor/type-resolver[39m ([33m1.3.0[39m => [33m1.4.0[39m)
+  - Upgrading [32mpsr/container[39m ([33m1.0.0[39m => [33m1.1.1[39m)
+  - Upgrading [32mpsr/log[39m ([33m1.1.3[39m => [33m1.1.4[39m)
+  - Upgrading [32msensio/framework-extra-bundle[39m ([33mv5.5.6[39m => [33mv5.6.1[39m)
+  - Upgrading [32msymfony/asset[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/browser-kit[39m ([33mv5.1.3[39m => [33mv5.3.0[39m)
+  - Upgrading [32msymfony/cache[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/cache-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m)
+  - Upgrading [32msymfony/config[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/console[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/css-selector[39m ([33mv5.1.3[39m => [33mv5.3.0[39m)
+  - Upgrading [32msymfony/debug-bundle[39m ([33mv5.1.3[39m => [33mv5.3.0[39m)
+  - Upgrading [32msymfony/dependency-injection[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/deprecation-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m)
+  - Upgrading [32msymfony/doctrine-bridge[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/dom-crawler[39m ([33mv5.1.3[39m => [33mv5.3.0[39m)
+  - Upgrading [32msymfony/dotenv[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/error-handler[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/event-dispatcher[39m ([33mv5.1.3[39m => [33mv5.3.0[39m)
+  - Upgrading [32msymfony/event-dispatcher-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m)
+  - Upgrading [32msymfony/expression-language[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/filesystem[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/finder[39m ([33mv5.1.3[39m => [33mv5.3.0[39m)
+  - Upgrading [32msymfony/flex[39m ([33mv1.9.1[39m => [33mv1.13.3[39m)
+  - Upgrading [32msymfony/form[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/framework-bundle[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/http-client[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/http-client-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m)
+  - Upgrading [32msymfony/http-foundation[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/http-kernel[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/intl[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/mailer[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/maker-bundle[39m ([33mv1.20.0[39m => [33mv1.33.0[39m)
+  - Upgrading [32msymfony/mime[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/monolog-bridge[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/monolog-bundle[39m ([33mv3.5.0[39m => [33mv3.7.0[39m)
+  - Upgrading [32msymfony/notifier[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/options-resolver[39m ([33mv5.1.3[39m => [33mv5.3.0[39m)
+  - Upgrading [32msymfony/phpunit-bridge[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/polyfill-intl-grapheme[39m ([33mv1.18.0[39m => [33mv1.23.0[39m)
+  - Upgrading [32msymfony/polyfill-intl-icu[39m ([33mv1.18.0[39m => [33mv1.23.0[39m)
+  - Upgrading [32msymfony/polyfill-intl-idn[39m ([33mv1.18.0[39m => [33mv1.23.0[39m)
+  - Upgrading [32msymfony/polyfill-intl-normalizer[39m ([33mv1.18.0[39m => [33mv1.23.0[39m)
+  - Upgrading [32msymfony/polyfill-mbstring[39m ([33mv1.18.0[39m => [33mv1.23.0[39m)
+  - Upgrading [32msymfony/polyfill-php73[39m ([33mv1.18.0[39m => [33mv1.23.0[39m)
+  - Upgrading [32msymfony/polyfill-php80[39m ([33mv1.18.0[39m => [33mv1.23.0[39m)
+  - Locking [32msymfony/polyfill-php81[39m ([33mv1.23.0[39m)
+  - Upgrading [32msymfony/polyfill-uuid[39m ([33mv1.18.0[39m => [33mv1.23.0[39m)
+  - Upgrading [32msymfony/process[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/property-access[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/property-info[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/routing[39m ([33mv5.1.3[39m => [33mv5.3.0[39m)
+  - Upgrading [32msymfony/security-bundle[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/security-core[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/security-csrf[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/security-guard[39m ([33mv5.1.3[39m => [33mv5.2.10[39m)
+  - Upgrading [32msymfony/security-http[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/serializer[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/service-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m)
+  - Upgrading [32msymfony/stopwatch[39m ([33mv5.1.3[39m => [33mv5.3.0[39m)
+  - Upgrading [32msymfony/string[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/translation[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/translation-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m)
+  - Upgrading [32msymfony/twig-bridge[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/twig-bundle[39m ([33mv5.1.3[39m => [33mv5.2.11[39m)
+  - Upgrading [32msymfony/uid[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/validator[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/var-dumper[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/var-exporter[39m ([33mv5.1.3[39m => [33mv5.3.3[39m)
+  - Upgrading [32msymfony/web-link[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32msymfony/web-profiler-bundle[39m ([33mv5.1.3[39m => [33mv5.2.11[39m)
+  - Upgrading [32msymfony/yaml[39m ([33mv5.1.3[39m => [33mv5.1.11[39m)
+  - Upgrading [32mtwig/extra-bundle[39m ([33mv3.0.4[39m => [33mv3.3.1[39m)
+  - Upgrading [32mtwig/twig[39m ([33mv3.0.4[39m => [33mv3.3.2[39m)
+  - Upgrading [32mwebmozart/assert[39m ([33m1.9.1[39m => [33m1.10.0[39m)
+[32mWriting lock file[39m
+[32mInstalling dependencies from lock file (including require-dev)[39m
+[32mPackage operations: 4 installs, 96 updates, 6 removals[39m
+  - Syncing [32mcomposer/package-versions-deprecated[39m ([33m1.11.99.2[39m) into cache
+  - Syncing [32msymfony/flex[39m ([33mv1.13.3[39m) into cache
+  - Syncing [32msymfony/polyfill-php80[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/polyfill-mbstring[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/polyfill-intl-normalizer[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/polyfill-intl-grapheme[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/string[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32mpsr/container[39m ([33m1.1.1[39m) into cache
+  - Syncing [32msymfony/service-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/polyfill-php73[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/console[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32mdoctrine/event-manager[39m ([33m1.1.1[39m) into cache
+  - Syncing [32mdoctrine/collections[39m ([33m1.6.7[39m) into cache
+  - Syncing [32mdoctrine/cache[39m ([33m2.0.3[39m) into cache
+  - Syncing [32mdoctrine/annotations[39m ([33m1.13.1[39m) into cache
+  - Syncing [32mdoctrine/persistence[39m ([33m2.2.1[39m) into cache
+  - Syncing [32mdoctrine/instantiator[39m ([33m1.4.0[39m) into cache
+  - Syncing [32mdoctrine/inflector[39m ([33m2.0.3[39m) into cache
+  - Syncing [32mdoctrine/dbal[39m ([33m2.13.2[39m) into cache
+  - Syncing [32mdoctrine/common[39m ([33m3.1.2[39m) into cache
+  - Syncing [32mdoctrine/orm[39m ([33m2.9.3[39m) into cache
+  - Syncing [32mbeberlei/doctrineextensions[39m ([33mv1.3.0[39m) into cache
+  - Syncing [32msymfony/deprecation-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/routing[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/http-foundation[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/http-client-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/event-dispatcher-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/event-dispatcher[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/var-dumper[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32mpsr/log[39m ([33m1.1.4[39m) into cache
+  - Syncing [32msymfony/error-handler[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/http-kernel[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/finder[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/filesystem[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/dependency-injection[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/config[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/var-exporter[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/cache-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/cache[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/framework-bundle[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/stopwatch[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32mdoctrine/migrations[39m ([33m3.1.4[39m) into cache
+  - Syncing [32msymfony/doctrine-bridge[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32mdoctrine/sql-formatter[39m ([33m1.1.1[39m) into cache
+  - Syncing [32mdoctrine/doctrine-bundle[39m ([33m2.3.2[39m) into cache
+  - Syncing [32mdoctrine/doctrine-migrations-bundle[39m ([33m3.1.1[39m) into cache
+  - Syncing [32msymfony/polyfill-uuid[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/uid[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32mtwig/twig[39m ([33mv3.3.2[39m) into cache
+  - Syncing [32msymfony/translation-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/twig-bridge[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/twig-bundle[39m ([33mv5.2.11[39m) into cache
+  - Syncing [32msymfony/translation[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/security-core[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/property-info[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/property-access[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/security-http[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/security-guard[39m ([33mv5.2.10[39m) into cache
+  - Syncing [32msymfony/security-csrf[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/security-bundle[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/polyfill-intl-icu[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/intl[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/options-resolver[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/form[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/asset[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32mnikic/php-parser[39m ([33mv4.11.0[39m) into cache
+  - Syncing [32measycorp/easyadmin-bundle[39m ([33mv3.4.0[39m) into cache
+  - Syncing [32mnelmio/cors-bundle[39m ([33m2.1.1[39m) into cache
+  - Syncing [32mwebmozart/assert[39m ([33m1.10.0[39m) into cache
+  - Syncing [32mphpdocumentor/type-resolver[39m ([33m1.4.0[39m) into cache
+  - Syncing [32mphpdocumentor/reflection-docblock[39m ([33m5.2.2[39m) into cache
+  - Syncing [32msensio/framework-extra-bundle[39m ([33mv5.6.1[39m) into cache
+  - Syncing [32msymfony/dom-crawler[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/browser-kit[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/css-selector[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/debug-bundle[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/dotenv[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/expression-language[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/http-client[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/polyfill-intl-idn[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/mime[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32megulias/email-validator[39m ([33m2.1.25[39m) into cache
+  - Syncing [32msymfony/mailer[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/maker-bundle[39m ([33mv1.33.0[39m) into cache
+  - Syncing [32mmonolog/monolog[39m ([33m2.2.0[39m) into cache
+  - Syncing [32msymfony/monolog-bridge[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/monolog-bundle[39m ([33mv3.7.0[39m) into cache
+  - Syncing [32msymfony/notifier[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/phpunit-bridge[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/process[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/serializer[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/validator[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/web-link[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/web-profiler-bundle[39m ([33mv5.2.11[39m) into cache
+  - Syncing [32msymfony/yaml[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32mtwig/extra-bundle[39m ([33mv3.3.1[39m) into cache
+    0 [>---------------------------][2K    0 [>---------------------------][2K    0 [>---------------------------][2K  - Removing [32mzendframework/zend-eventmanager[39m ([33m3.2.1[39m)
+  - Removing [32mzendframework/zend-code[39m ([33m3.4.1[39m)
+  - Removing [32mocramius/proxy-manager[39m ([33m2.2.3[39m)
+  - Removing [32mdoctrine/reflection[39m ([33m1.2.1[39m)
+  - Removing [32mdoctrine/doctrine-fixtures-bundle[39m ([33m3.4.0[39m)
+  - Removing [32mdoctrine/data-fixtures[39m ([33m1.5.0[39m)
+    0 [>---------------------------][2K    0 [>---------------------------][2K    0 [>---------------------------][2K    [37;41mcomposer/package-versions-deprecated has modified files:[39;49m
+    M src/PackageVersions/Versions.php
+    [32mDiscard changes [y,n,v,d,s,?]?[39m n
+
+[37;41m                      [39;49m
+[37;41m  [RuntimeException]  [39;49m
+[37;41m  Update aborted      [39;49m
+[37;41m                      [39;49m
+
+[32mupdate [--with WITH] [--prefer-source] [--prefer-dist] [--prefer-install PREFER-INSTALL] [--dry-run] [--dev] [--no-dev] [--lock] [--no-install] [--no-autoloader] [--no-scripts] [--no-suggest] [--no-progress] [-w|--with-dependencies] [-W|--with-all-dependencies] [-v|vv|vvv|--verbose] [-o|--optimize-autoloader] [-a|--classmap-authoritative] [--apcu-autoloader] [--apcu-autoloader-prefix APCU-AUTOLOADER-PREFIX] [--ignore-platform-req IGNORE-PLATFORM-REQ] [--ignore-platform-reqs] [--prefer-stable] [--prefer-lowest] [-i|--interactive] [--root-reqs] [--] [[39m[32m<packages>[39m[32m]...[39m
+
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ composer update
+[30;43mThe "symfony/flex" plugin was skipped because it is not compatible with Composer 2+. Make sure to update it to version 1.9.8 or greater.[39;49m
+[30;43mComposer is operating significantly slower than normal because you do not have the PHP curl extension enabled.[39;49m
+[32mLoading composer repositories with package information[39m
+^C]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ composer update -W
+[30;43mThe "symfony/flex" plugin was skipped because it is not compatible with Composer 2+. Make sure to update it to version 1.9.8 or greater.[39;49m
+[30;43mComposer is operating significantly slower than normal because you do not have the PHP curl extension enabled.[39;49m
+[32mLoading composer repositories with package information[39m
+[32mUpdating dependencies[39m
+Nothing to modify in lock file
+[32mInstalling dependencies from lock file (including require-dev)[39m
+[32mPackage operations: 4 installs, 96 updates, 0 removals[39m
+  - Syncing [32mcomposer/package-versions-deprecated[39m ([33m1.11.99.2[39m) into cache
+  - Syncing [32msymfony/flex[39m ([33mv1.13.3[39m) into cache
+  - Syncing [32msymfony/polyfill-php80[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/polyfill-mbstring[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/polyfill-intl-normalizer[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/polyfill-intl-grapheme[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/string[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32mpsr/container[39m ([33m1.1.1[39m) into cache
+  - Syncing [32msymfony/service-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/polyfill-php73[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/console[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32mdoctrine/event-manager[39m ([33m1.1.1[39m) into cache
+  - Syncing [32mdoctrine/collections[39m ([33m1.6.7[39m) into cache
+  - Syncing [32mdoctrine/cache[39m ([33m2.0.3[39m) into cache
+  - Syncing [32mdoctrine/annotations[39m ([33m1.13.1[39m) into cache
+  - Syncing [32mdoctrine/persistence[39m ([33m2.2.1[39m) into cache
+  - Syncing [32mdoctrine/instantiator[39m ([33m1.4.0[39m) into cache
+  - Syncing [32mdoctrine/inflector[39m ([33m2.0.3[39m) into cache
+  - Syncing [32mdoctrine/dbal[39m ([33m2.13.2[39m) into cache
+  - Syncing [32mdoctrine/common[39m ([33m3.1.2[39m) into cache
+  - Syncing [32mdoctrine/orm[39m ([33m2.9.3[39m) into cache
+  - Syncing [32mbeberlei/doctrineextensions[39m ([33mv1.3.0[39m) into cache
+  - Syncing [32msymfony/deprecation-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/routing[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/http-foundation[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/http-client-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/event-dispatcher-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/event-dispatcher[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/var-dumper[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32mpsr/log[39m ([33m1.1.4[39m) into cache
+  - Syncing [32msymfony/error-handler[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/http-kernel[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/finder[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/filesystem[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/dependency-injection[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/config[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/var-exporter[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/cache-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/cache[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/framework-bundle[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/stopwatch[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32mdoctrine/migrations[39m ([33m3.1.4[39m) into cache
+  - Syncing [32msymfony/doctrine-bridge[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32mdoctrine/sql-formatter[39m ([33m1.1.1[39m) into cache
+  - Syncing [32mdoctrine/doctrine-bundle[39m ([33m2.3.2[39m) into cache
+  - Syncing [32mdoctrine/doctrine-migrations-bundle[39m ([33m3.1.1[39m) into cache
+  - Syncing [32msymfony/polyfill-uuid[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/uid[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32mtwig/twig[39m ([33mv3.3.2[39m) into cache
+  - Syncing [32msymfony/translation-contracts[39m ([33mv2.4.0[39m) into cache
+  - Syncing [32msymfony/twig-bridge[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/twig-bundle[39m ([33mv5.2.11[39m) into cache
+  - Syncing [32msymfony/translation[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/security-core[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/property-info[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/property-access[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/security-http[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/security-guard[39m ([33mv5.2.10[39m) into cache
+  - Syncing [32msymfony/security-csrf[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/security-bundle[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/polyfill-intl-icu[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/intl[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/options-resolver[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/form[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/asset[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32mnikic/php-parser[39m ([33mv4.11.0[39m) into cache
+  - Syncing [32measycorp/easyadmin-bundle[39m ([33mv3.4.0[39m) into cache
+  - Syncing [32mnelmio/cors-bundle[39m ([33m2.1.1[39m) into cache
+  - Syncing [32mwebmozart/assert[39m ([33m1.10.0[39m) into cache
+  - Syncing [32mphpdocumentor/type-resolver[39m ([33m1.4.0[39m) into cache
+  - Syncing [32mphpdocumentor/reflection-docblock[39m ([33m5.2.2[39m) into cache
+  - Syncing [32msensio/framework-extra-bundle[39m ([33mv5.6.1[39m) into cache
+  - Syncing [32msymfony/dom-crawler[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/browser-kit[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/css-selector[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/debug-bundle[39m ([33mv5.3.0[39m) into cache
+  - Syncing [32msymfony/dotenv[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/expression-language[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/http-client[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/polyfill-intl-idn[39m ([33mv1.23.0[39m) into cache
+  - Syncing [32msymfony/mime[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32megulias/email-validator[39m ([33m2.1.25[39m) into cache
+  - Syncing [32msymfony/mailer[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/maker-bundle[39m ([33mv1.33.0[39m) into cache
+  - Syncing [32mmonolog/monolog[39m ([33m2.2.0[39m) into cache
+  - Syncing [32msymfony/monolog-bridge[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/monolog-bundle[39m ([33mv3.7.0[39m) into cache
+  - Syncing [32msymfony/notifier[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/phpunit-bridge[39m ([33mv5.3.3[39m) into cache
+  - Syncing [32msymfony/process[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/serializer[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/validator[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/web-link[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32msymfony/web-profiler-bundle[39m ([33mv5.2.11[39m) into cache
+  - Syncing [32msymfony/yaml[39m ([33mv5.1.11[39m) into cache
+  - Syncing [32mtwig/extra-bundle[39m ([33mv3.3.1[39m) into cache
+    0 [>---------------------------][2K    0 [>---------------------------][2K    0 [>---------------------------][2K    [37;41mcomposer/package-versions-deprecated has modified files:[39;49m
+    M src/PackageVersions/Versions.php
+    [32mDiscard changes [y,n,v,d,s,?]?[39m y
+  - Upgrading [32mcomposer/package-versions-deprecated[39m ([33m1.10.99[39m => [33m1.11.99.2[39m): Checking out c6522afe55 from cache
+  - Upgrading [32msymfony/flex[39m ([33mv1.9.1[39m => [33mv1.13.3[39m): Checking out 2597d0dda8 from cache
+  - Upgrading [32msymfony/polyfill-php80[39m ([33mv1.18.0[39m => [33mv1.23.0[39m): Checking out eca0bf41ed from cache
+  - Upgrading [32msymfony/polyfill-mbstring[39m ([33mv1.18.0[39m => [33mv1.23.0[39m): Checking out 2df51500ad from cache
+  - Upgrading [32msymfony/polyfill-intl-normalizer[39m ([33mv1.18.0[39m => [33mv1.23.0[39m): Checking out 8590a5f561 from cache
+  - Upgrading [32msymfony/polyfill-intl-grapheme[39m ([33mv1.18.0[39m => [33mv1.23.0[39m): Checking out 24b72c6baa from cache
+  - Upgrading [32msymfony/string[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 83bbb92d34 from cache
+  - Upgrading [32mpsr/container[39m ([33m1.0.0[39m => [33m1.1.1[39m): Checking out 8622567409 from cache
+  - Upgrading [32msymfony/service-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m): Checking out f040a30e04 from cache
+  - Upgrading [32msymfony/polyfill-php73[39m ([33mv1.18.0[39m => [33mv1.23.0[39m): Checking out fba8933c38 from cache
+  - Upgrading [32msymfony/console[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out d9a267b621 from cache
+  - Upgrading [32mdoctrine/event-manager[39m ([33m1.1.0[39m => [33m1.1.1[39m): Checking out 41370af6a3 from cache
+  - Installing [32mdoctrine/deprecations[39m ([33mv0.5.3[39m): Extracting archive
+  - Upgrading [32mdoctrine/collections[39m ([33m1.6.6[39m => [33m1.6.7[39m): Checking out 55f8b79926 from cache
+  - Upgrading [32mdoctrine/cache[39m ([33m1.10.2[39m => [33m2.0.3[39m): Checking out c9622c6820 from cache
+  - Upgrading [32mdoctrine/annotations[39m ([33m1.10.3[39m => [33m1.13.1[39m): Checking out e6e7b7d5b4 from cache
+  - Upgrading [32mdoctrine/persistence[39m ([33m1.3.7[39m => [33m2.2.1[39m): Checking out d138f3ab5f from cache
+  - Upgrading [32mdoctrine/instantiator[39m ([33m1.3.1[39m => [33m1.4.0[39m): Checking out d56bf61029 from cache
+  - Upgrading [32mdoctrine/inflector[39m ([33m1.4.3[39m => [33m2.0.3[39m): Checking out 9cf661f4eb from cache
+  - Upgrading [32mdoctrine/dbal[39m ([33m2.10.2[39m => [33m2.13.2[39m): Checking out 8dd39d2ead from cache
+  - Upgrading [32mdoctrine/common[39m ([33m2.13.3[39m => [33m3.1.2[39m): Checking out a036d90c30 from cache
+  - Upgrading [32mdoctrine/orm[39m ([33mv2.7.3[39m => [33m2.9.3[39m): Checking out 82e77cf508 from cache
+  - Upgrading [32mbeberlei/doctrineextensions[39m ([33mv1.2.9[39m => [33mv1.3.0[39m): Checking out 008f162f19 from cache
+  - Upgrading [32msymfony/deprecation-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m): Checking out 5f38c8804a from cache
+  - Upgrading [32msymfony/routing[39m ([33mv5.1.3[39m => [33mv5.3.0[39m): Checking out 368e81376a from cache
+  - Upgrading [32msymfony/http-foundation[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out 0e45ab1574 from cache
+  - Upgrading [32msymfony/http-client-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m): Checking out 7e82f6084d from cache
+  - Upgrading [32msymfony/event-dispatcher-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m): Checking out 69fee1ad23 from cache
+  - Upgrading [32msymfony/event-dispatcher[39m ([33mv5.1.3[39m => [33mv5.3.0[39m): Checking out 67a5f354af from cache
+  - Upgrading [32msymfony/var-dumper[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out 46aa709aff from cache
+  - Upgrading [32mpsr/log[39m ([33m1.1.3[39m => [33m1.1.4[39m): Checking out d49695b909 from cache
+  - Upgrading [32msymfony/error-handler[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out 43323e79c8 from cache
+  - Upgrading [32msymfony/http-kernel[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out 90ad9f4b21 from cache
+  - Upgrading [32msymfony/finder[39m ([33mv5.1.3[39m => [33mv5.3.0[39m): Checking out 0ae3f047be from cache
+  - Upgrading [32msymfony/filesystem[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out 19b71c8f31 from cache
+  - Upgrading [32msymfony/dependency-injection[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out e421c4f161 from cache
+  - Installing [32msymfony/polyfill-php81[39m ([33mv1.23.0[39m): Extracting archive
+  - Upgrading [32msymfony/config[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out a69e0c5552 from cache
+  - Upgrading [32msymfony/var-exporter[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out 903c2c0bab from cache
+  - Upgrading [32msymfony/cache-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m): Checking out c044646372 from cache
+  - Upgrading [32msymfony/cache[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out 82962a497f from cache
+  - Upgrading [32msymfony/framework-bundle[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out b40931adcd from cache
+  - Upgrading [32msymfony/stopwatch[39m ([33mv5.1.3[39m => [33mv5.3.0[39m): Checking out 313d02f59d from cache
+  - Installing [32mlaminas/laminas-code[39m ([33m4.4.0[39m): Extracting archive
+  - Installing [32mfriendsofphp/proxy-manager-lts[39m ([33mv1.0.5[39m): Extracting archive
+  - Upgrading [32mdoctrine/migrations[39m ([33m3.0.1[39m => [33m3.1.4[39m): Checking out 207210c57f from cache
+  - Upgrading [32msymfony/doctrine-bridge[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 290deda490 from cache
+  - Upgrading [32mdoctrine/sql-formatter[39m ([33m1.1.0[39m => [33m1.1.1[39m): Checking out 56070bebac from cache
+  - Upgrading [32mdoctrine/doctrine-bundle[39m ([33m2.1.0[39m => [33m2.3.2[39m): Checking out d6b3c37804 from cache
+  - Upgrading [32mdoctrine/doctrine-migrations-bundle[39m ([33m3.0.1[39m => [33m3.1.1[39m): Checking out 91f0a5e235 from cache
+  - Upgrading [32msymfony/polyfill-uuid[39m ([33mv1.18.0[39m => [33mv1.23.0[39m): Checking out 9165effa2e from cache
+  - Upgrading [32msymfony/uid[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out 45853bbc72 from cache
+  - Upgrading [32mtwig/twig[39m ([33mv3.0.4[39m => [33mv3.3.2[39m): Checking out 21578f00e8 from cache
+  - Upgrading [32msymfony/translation-contracts[39m ([33mv2.1.3[39m => [33mv2.4.0[39m): Checking out 95c812666f from cache
+  - Upgrading [32msymfony/twig-bridge[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 4421afc6e1 from cache
+  - Upgrading [32msymfony/twig-bundle[39m ([33mv5.1.3[39m => [33mv5.2.11[39m): Checking out c110dcdaf4 from cache
+  - Upgrading [32msymfony/translation[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out b16d3e4b2d from cache
+  - Upgrading [32msymfony/security-core[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 33a6d376ef from cache
+  - Upgrading [32msymfony/property-info[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out d4981d2189 from cache
+  - Upgrading [32msymfony/property-access[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out d99f6d5233 from cache
+  - Upgrading [32msymfony/security-http[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out c3a869cc01 from cache
+  - Upgrading [32msymfony/security-guard[39m ([33mv5.1.3[39m => [33mv5.2.10[39m): Checking out 9fc67f0fd8 from cache
+  - Upgrading [32msymfony/security-csrf[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out 20259eb80a from cache
+  - Upgrading [32msymfony/security-bundle[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 911f6b515d from cache
+  - Upgrading [32msymfony/polyfill-intl-icu[39m ([33mv1.18.0[39m => [33mv1.23.0[39m): Checking out 4a80a521d6 from cache
+  - Upgrading [32msymfony/intl[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 930f176897 from cache
+  - Upgrading [32msymfony/options-resolver[39m ([33mv5.1.3[39m => [33mv5.3.0[39m): Checking out 162e886ca0 from cache
+  - Upgrading [32msymfony/form[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out b794bed839 from cache
+  - Upgrading [32msymfony/asset[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 54a42aa50f from cache
+  - Upgrading [32mnikic/php-parser[39m ([33mv4.6.0[39m => [33mv4.11.0[39m): Checking out fe14cf3672 from cache
+  - Upgrading [32measycorp/easyadmin-bundle[39m ([33mv3.1.3[39m => [33mv3.4.0[39m): Checking out e2fa1a2b24 from cache
+  - Upgrading [32mnelmio/cors-bundle[39m ([33m2.1.0[39m => [33m2.1.1[39m): Checking out 0b964b6650 from cache
+  - Upgrading [32mwebmozart/assert[39m ([33m1.9.1[39m => [33m1.10.0[39m): Checking out 6964c76c78 from cache
+  - Upgrading [32mphpdocumentor/type-resolver[39m ([33m1.3.0[39m => [33m1.4.0[39m): Checking out 6a467b8989 from cache
+  - Upgrading [32mphpdocumentor/reflection-docblock[39m ([33m5.2.0[39m => [33m5.2.2[39m): Checking out 069a785b21 from cache
+  - Upgrading [32msensio/framework-extra-bundle[39m ([33mv5.5.6[39m => [33mv5.6.1[39m): Checking out 430d14c018 from cache
+  - Upgrading [32msymfony/dom-crawler[39m ([33mv5.1.3[39m => [33mv5.3.0[39m): Checking out 55fff62b19 from cache
+  - Upgrading [32msymfony/browser-kit[39m ([33mv5.1.3[39m => [33mv5.3.0[39m): Checking out 379984e25e from cache
+  - Upgrading [32msymfony/css-selector[39m ([33mv5.1.3[39m => [33mv5.3.0[39m): Checking out fcd0b29a7a from cache
+  - Upgrading [32msymfony/debug-bundle[39m ([33mv5.1.3[39m => [33mv5.3.0[39m): Checking out b73833ac97 from cache
+  - Upgrading [32msymfony/dotenv[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 783f12027c from cache
+  - Upgrading [32msymfony/expression-language[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 13a16b1cc6 from cache
+  - Upgrading [32msymfony/http-client[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 82f87fa4b7 from cache
+  - Upgrading [32msymfony/polyfill-intl-idn[39m ([33mv1.18.0[39m => [33mv1.23.0[39m): Checking out 65bd267525 from cache
+  - Upgrading [32msymfony/mime[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out d7d899822d from cache
+  - Upgrading [32megulias/email-validator[39m ([33m2.1.18[39m => [33m2.1.25[39m): Checking out 0dbf5d7845 from cache
+  - Upgrading [32msymfony/mailer[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 3c7ab7a402 from cache
+  - Upgrading [32msymfony/maker-bundle[39m ([33mv1.20.0[39m => [33mv1.33.0[39m): Checking out f093d906c6 from cache
+  - Upgrading [32mmonolog/monolog[39m ([33m2.1.1[39m => [33m2.2.0[39m): Checking out 1cb1cde8e8 from cache
+  - Upgrading [32msymfony/monolog-bridge[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out 8badf83f1b from cache
+  - Upgrading [32msymfony/monolog-bundle[39m ([33mv3.5.0[39m => [33mv3.7.0[39m): Checking out 4054b2e940 from cache
+  - Upgrading [32msymfony/notifier[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out c2ccb5b6f9 from cache
+  - Upgrading [32msymfony/phpunit-bridge[39m ([33mv5.1.3[39m => [33mv5.3.3[39m): Checking out d7d3193df3 from cache
+  - Upgrading [32msymfony/process[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out d279ae7f2d from cache
+  - Upgrading [32msymfony/serializer[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 76404a1e1a from cache
+  - Upgrading [32msymfony/validator[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out c651438e15 from cache
+  - Upgrading [32msymfony/web-link[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 28e6bd9028 from cache
+  - Upgrading [32msymfony/web-profiler-bundle[39m ([33mv5.1.3[39m => [33mv5.2.11[39m): Checking out c62eb4235a from cache
+  - Upgrading [32msymfony/yaml[39m ([33mv5.1.3[39m => [33mv5.1.11[39m): Checking out 6bb8b36c6d from cache
+  - Upgrading [32mtwig/extra-bundle[39m ([33mv3.0.4[39m => [33mv3.3.1[39m): Checking out e12a8ee633 from cache
+ 0/4 [>---------------------------]   0%[2K 4/4 [============================] 100%[2K 4/4 [============================] 100%[2K[32mGenerating optimized autoload files[39m
+[32mcomposer/package-versions-deprecated:[39m Generating version class...
+[32mcomposer/package-versions-deprecated:[39m ...done generating version class
+[32m85 packages you are using are looking for funding.[39m
+[32mUse the `composer fund` command to find out more![39m
+
+What about running [33mcomposer global require symfony/thanks && composer thanks[39m now?
+This will spread some 💖  by sending a ★  to the GitHub repositories of your fellow package maintainers.
+
+Run [33mcomposer recipes[39m at any time to see the status of your Symfony recipes.
+
+Executing script bin/symfony cache:clear [37;41m[KO][39;49m
+ [37;41m[KO][39;49m
+[37;41mScript bin/symfony cache:clear returned with error code 127[39;49m
+!!  sh: 1: bin/symfony: not found
+!!  
+[37;41mScript @auto-scripts was called via post-update-cmd[39;49m
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ composer update -W[Krequire doctrine/doctrine-fixtures-bundle --devgit pull[Kcomposer require doctrine/doctrine-fixtures-bundle --devgit pull[K
+Enter passphrase for key '/home/ubuntu/.ssh/id_ed25519': 
+remote: Enumerating objects: 5, done.[K
+remote: Counting objects:  20% (1/5)[Kremote: Counting objects:  40% (2/5)[Kremote: Counting objects:  60% (3/5)[Kremote: Counting objects:  80% (4/5)[Kremote: Counting objects: 100% (5/5)[Kremote: Counting objects: 100% (5/5), done.[K
+remote: Compressing objects:  50% (1/2)[Kremote: Compressing objects: 100% (2/2)[Kremote: Compressing objects: 100% (2/2), done.[K
+remote: Total 5 (delta 2), reused 5 (delta 2), pack-reused 0[K
+Unpacking objects:  20% (1/5)   Unpacking objects:  40% (2/5)   Unpacking objects:  60% (3/5)   Unpacking objects:  80% (4/5)   Unpacking objects: 100% (5/5)   Unpacking objects: 100% (5/5), done.
+From github.com:annebequet/OdysseaQuiz
+   4df5c0a..c162a7b  master     -> origin/master
+Updating 4df5c0a..c162a7b
+Fast-forward
+ back/odyssea/composer.json | 4 [32m++[m[31m--[m
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ git pullcomposer update -W
+[30;43mComposer is operating significantly slower than normal because you do not have the PHP curl extension enabled.[39;49m
+[32mLoading composer repositories with package information[39m
+[32mRestricting packages listed in "symfony/symfony" to "5.1.*"[39m
+[32mUpdating dependencies[39m
+[37;41mYour requirements could not be resolved to an installable set of packages.[39;49m
+
+  Problem 1
+    - Root composer.json requires symfony/security-bundle 5.1.* -> satisfiable by symfony/security-bundle[v5.1.0, ..., v5.1.11].
+    - symfony/maker-bundle[1.0.0, ..., v1.13.1] require symfony/config ^3.4|^4.0 -> found symfony/config[v3.4.0, ..., v3.4.47, v4.0.0, ..., v4.4.26] but these were not loaded, likely because it conflicts with another require.
+    - Root composer.json requires symfony/twig-bundle 5.2.* -> satisfiable by symfony/twig-bundle[v5.2.0, ..., v5.2.11].
+    - symfony/maker-bundle[v1.30.0, ..., v1.33.0] require symfony/dependency-injection ^4.0|^5.0 -> satisfiable by symfony/dependency-injection[v5.1.0, ..., v5.1.11].
+    - symfony/maker-bundle[v1.14.0, ..., v1.29.2] require symfony/dependency-injection ^3.4|^4.0|^5.0 -> satisfiable by symfony/dependency-injection[v5.1.0, ..., v5.1.11].
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.11.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.10.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.9.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.8.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.7.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.6.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.5.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.4.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.3.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.2.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.1.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.0.
+    - Conclusion: install symfony/twig-bundle v5.2.0 (conflict analysis result)
+    - Root composer.json requires symfony/maker-bundle ^1.0 -> satisfiable by symfony/maker-bundle[1.0.0, ..., v1.33.0].
+
+Use the option --with-all-dependencies (-W) to allow upgrades, downgrades and removals for packages currently locked to specific versions.
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ symfony -v
+symfony: command not found
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ composer update symfony/symfony
+[30;43mComposer is operating significantly slower than normal because you do not have the PHP curl extension enabled.[39;49m
+[32mLoading composer repositories with package information[39m
+[30;43mPackage "symfony/symfony" listed for update is not locked.[39;49m
+[32mUpdating dependencies[39m
+Nothing to modify in lock file
+[32mInstalling dependencies from lock file (including require-dev)[39m
+Nothing to install, update or remove
+[32mGenerating optimized autoload files[39m
+[32mcomposer/package-versions-deprecated:[39m Generating version class...
+[32mcomposer/package-versions-deprecated:[39m ...done generating version class
+[32m85 packages you are using are looking for funding.[39m
+[32mUse the `composer fund` command to find out more![39m
+
+Run [33mcomposer recipes[39m at any time to see the status of your Symfony recipes.
+
+Executing script php bin/symfony cache:clear [37;41m[KO][39;49m
+ [37;41m[KO][39;49m
+[37;41mScript php bin/symfony cache:clear returned with error code 1[39;49m
+!!  Could not open input file: bin/symfony
+!!  
+[37;41mScript @auto-scripts was called via post-update-cmd[39;49m
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ composer update symfony/symfony --no-script
+
+[37;41m                                                          [39;49m
+[37;41m  [Symfony\Component\Console\Exception\RuntimeException]  [39;49m
+[37;41m  The "--no-script" option does not exist.                [39;49m
+[37;41m                                                          [39;49m
+
+[32mupdate [--with WITH] [--prefer-source] [--prefer-dist] [--prefer-install PREFER-INSTALL] [--dry-run] [--dev] [--no-dev] [--lock] [--no-install] [--no-autoloader] [--no-scripts] [--no-suggest] [--no-progress] [-w|--with-dependencies] [-W|--with-all-dependencies] [-v|vv|vvv|--verbose] [-o|--optimize-autoloader] [-a|--classmap-authoritative] [--apcu-autoloader] [--apcu-autoloader-prefix APCU-AUTOLOADER-PREFIX] [--ignore-platform-req IGNORE-PLATFORM-REQ] [--ignore-platform-reqs] [--prefer-stable] [--prefer-lowest] [-i|--interactive] [--root-reqs] [--] [[39m[32m<packages>[39m[32m]...[39m
+
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ composer update symfony/symfony --no-scripts
+[30;43mComposer is operating significantly slower than normal because you do not have the PHP curl extension enabled.[39;49m
+[32mLoading composer repositories with package information[39m
+[30;43mPackage "symfony/symfony" listed for update is not locked.[39;49m
+[32mUpdating dependencies[39m
+Nothing to modify in lock file
+[32mInstalling dependencies from lock file (including require-dev)[39m
+Nothing to install, update or remove
+[32mGenerating optimized autoload files[39m
+[32mcomposer/package-versions-deprecated:[39m Generating version class...
+[32mcomposer/package-versions-deprecated:[39m ...done generating version class
+[32m85 packages you are using are looking for funding.[39m
+[32mUse the `composer fund` command to find out more![39m
+
+Run [33mcomposer recipes[39m at any time to see the status of your Symfony recipes.
+
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ composer update --no-scripts
+[30;43mComposer is operating significantly slower than normal because you do not have the PHP curl extension enabled.[39;49m
+[32mLoading composer repositories with package information[39m
+[32mRestricting packages listed in "symfony/symfony" to "5.1.*"[39m
+[32mUpdating dependencies[39m
+[37;41mYour requirements could not be resolved to an installable set of packages.[39;49m
+
+  Problem 1
+    - Root composer.json requires symfony/security-bundle 5.1.* -> satisfiable by symfony/security-bundle[v5.1.0, ..., v5.1.11].
+    - symfony/maker-bundle[1.0.0, ..., v1.13.1] require symfony/config ^3.4|^4.0 -> found symfony/config[v3.4.0, ..., v3.4.47, v4.0.0, ..., v4.4.26] but these were not loaded, likely because it conflicts with another require.
+    - Root composer.json requires symfony/twig-bundle 5.2.* -> satisfiable by symfony/twig-bundle[v5.2.0, ..., v5.2.11].
+    - symfony/maker-bundle[v1.30.0, ..., v1.33.0] require symfony/dependency-injection ^4.0|^5.0 -> satisfiable by symfony/dependency-injection[v5.1.0, ..., v5.1.11].
+    - symfony/maker-bundle[v1.14.0, ..., v1.29.2] require symfony/dependency-injection ^3.4|^4.0|^5.0 -> satisfiable by symfony/dependency-injection[v5.1.0, ..., v5.1.11].
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.11.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.10.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.9.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.8.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.7.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.6.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.5.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.4.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.3.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.2.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.1.
+    - symfony/twig-bundle v5.2.0 conflicts with symfony/dependency-injection v5.1.0.
+    - Conclusion: install symfony/twig-bundle v5.2.0 (conflict analysis result)
+    - Root composer.json requires symfony/maker-bundle ^1.0 -> satisfiable by symfony/maker-bundle[1.0.0, ..., v1.33.0].
+
+Use the option --with-all-dependencies (-W) to allow upgrades, downgrades and removals for packages currently locked to specific versions.
+]0;ubuntu@ip-172-31-18-228: /var/www/html/OdysseaQuiz/back/odyssea[01;32mubuntu@ip-172-31-18-228[00m:[01;34m/var/www/html/OdysseaQuiz/back/odyssea[00m$ composer update --no-scriptssymfony/symfony --no-scripts[K[Ksymfony -v[Kcomposer update -W[10Pgit pullcomposer update -W[Krequire doctrine/doctrine-fixtures-bundle --dev --no-scripts
+Using version [32m^3.4[39m for [32mdoctrine/doctrine-fixtures-bundle[39m
+[32m./composer.json has been updated[39m
+[32mRunning composer update doctrine/doctrine-fixtures-bundle[39m
+[32mLoading composer repositories with package information[39m
+[32mUpdating dependencies[39m
+[32mLock file operations: 2 installs, 0 updates, 0 removals[39m
+  - Locking [32mdoctrine/data-fixtures[39m ([33m1.5.0[39m)
+  - Locking [32mdoctrine/doctrine-fixtures-bundle[39m ([33m3.4.0[39m)
+[32mWriting lock file[39m
+[32mInstalling dependencies from lock file (including require-dev)[39m
+[32mPackage operations: 2 installs, 0 updates, 0 removals[39m
+    0 [>---------------------------][2K    0 [>---------------------------][2K    0 [>---------------------------][2K  - Installing [32mdoctrine/data-fixtures[39m ([33m1.5.0[39m): Extracting archive
+  - Installing [32mdoctrine/doctrine-fixtures-bundle[39m ([33m3.4.0[39m): Extracting archive
+ 0/2 [>---------------------------]   0%[2K 2/2 [============================] 100%[2K[32mGenerating optimized autoload files[39m
+[32mcompos
